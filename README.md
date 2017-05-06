@@ -317,7 +317,7 @@
 ### 개발 팀 구성
 
 이름 | 역할
-—--|---
+---|---
 길상우 | html, css, 서버 개발(Spring Framework), UI/UX설계(디자인)
 김수민 | Android, UI/UX설계(디자인)
 윤태훈 | Android, DB설계, 전반적인 모든 개발에 참여(Sub)
