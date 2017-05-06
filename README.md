@@ -322,7 +322,7 @@
 김수민 | Android, UI/UX설계(디자인)
 윤태훈 | Android, DB설계, 전반적인 모든 개발에 참여(Sub)
 홍소망 | 서버 개발(Spring Framework), DB설계
-  
+
 ### 프로젝트 수행 방법
 
 **간트 차트**  
