@@ -1,4 +1,4 @@
-package com.neeomsign.signme;
+package com.signme.signme;
 
 import org.junit.Test;
 

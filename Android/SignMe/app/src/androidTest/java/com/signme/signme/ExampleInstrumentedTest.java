@@ -1,4 +1,4 @@
-package com.neeomsign.signme;
+package com.signme.signme;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.neeomsign.signme", appContext.getPackageName());
+        assertEquals("com.signme.signme", appContext.getPackageName());
     }
 }
