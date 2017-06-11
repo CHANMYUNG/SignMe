@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_width="400"
+        app:scale_base_height="130"
+        >
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scale_base_height="580"
+        app:scale_base_width="580">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:scale_height="120"
+            app:scale_left="0"
+            app:scale_textsize="80"
+            app:scale_width="600" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line"
+            app:scale_height="15"
+            app:scale_top="140"
+            app:scale_width="580" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/login"
+            android:textAlignment="center"
+            app:scale_left="90"
+            app:scale_textsize="40"
+            app:scale_width="400"
+            app:scale_height="80"
+            app:scale_top="220" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/register"
+            android:textAlignment="center"
+            app:scale_left="90"
+            app:scale_textsize="40"
+            app:scale_width="400"
+            app:scale_height="80"
+            app:scale_top="320" />
+
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+</LinearLayout>
