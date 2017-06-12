@@ -1,71 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/white"
+    android:orientation="vertical"
+    app:scale_base_width="1000"
+    app:scale_base_height="1000"
+    >
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:scale_base_width="400"
+        app:scale_base_width="600"
+        app:scale_base_height="100">
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
         app:scale_base_height="130"
+        app:scale_base_width="400"
         >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            app:scale_top="20"
+            app:scale_width="400" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:scale_base_height="580"
+        android:background="#fff"
+        app:scale_base_height="450"
         app:scale_base_width="580">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/app_name"
-            android:textAlignment="center"
+            android:text="@string/id"
+            android:textColor="#000"
+            app:scale_height="50"
+            app:scale_left="40"
+            app:scale_textsize="25"
+            app:scale_top="20"
+            app:scale_width="120" />
+
+        <EditText
+            android:id="@+id/idField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:hint="@string/id"
+            android:textColorHint="@color/gray"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            app:scale_height="85"
+            app:scale_left="35"
+            app:scale_textsize="40"
+            app:scale_top="70"
+            app:scale_width="500" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:textColor="#000"
+            app:scale_height="50"
+            app:scale_left="40"
+            app:scale_textsize="25"
+            app:scale_top="180"
+            app:scale_width="120" />
+
+        <EditText
+            android:id="@+id/passwordField"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:hint="@string/password"
+            android:textColorHint="@color/gray"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            app:scale_height="85"
+            app:scale_left="35"
+            app:scale_textsize="40"
+            app:scale_top="230"
+            app:scale_width="500" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:text="@string/login"
             android:textColor="@color/white"
-            app:scale_height="120"
-            app:scale_left="0"
-            app:scale_textsize="80"
-            app:scale_width="600" />
+            android:onClick="loginClicked"
+            app:scale_height="80"
+            app:scale_textsize="30"
+            app:scale_top="160"
+            app:scale_width="200" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:scale_base_height="150"
+        app:scale_base_width="580">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원이 아니신가요?"
+            android:textColor="@color/black"
+            android:onClick="goRegisterClicked"
+            app:scale_height="150"
+            app:scale_left="40"
+            app:scale_textsize="25"
+            app:scale_top="60"
+            app:scale_width="250" />
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/line"
-            app:scale_height="15"
-            app:scale_top="140"
-            app:scale_width="580" />
+            android:src="@drawable/slash"
+            app:scale_left="260"
+            app:scale_top="30"
+            app:scale_width="100" />
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="@string/login"
-            android:textAlignment="center"
-            app:scale_left="90"
-            app:scale_textsize="40"
-            app:scale_width="400"
-            app:scale_height="80"
-            app:scale_top="220" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="@string/register"
-            android:textAlignment="center"
-            app:scale_left="90"
-            app:scale_textsize="40"
-            app:scale_width="400"
-            app:scale_height="80"
-            app:scale_top="320" />
-
-
+            android:text="ID/PW 찾기"
+            android:onClick="goForgetClicked"
+            android:textColor="@color/black"
+            app:scale_height="150"
+            app:scale_left="380"
+            app:scale_textsize="25"
+            app:scale_top="60"
+            app:scale_width="200" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:scale_base_width="700"
+        app:scale_base_height="100"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            app:scale_textsize="40"
+            app:scale_width="700"
+            app:scale_height="100"
+            />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
 </LinearLayout>
