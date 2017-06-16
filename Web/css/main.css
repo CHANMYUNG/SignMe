@@ -1,7 +1,29 @@
-body, html, div, li, h1, p, span, a, input, button {
+body, html, div, ul, li, h1, p, span, a, input, button {
     padding: 0;
     margin: 0;
 }
+li {
+    list-style: none;
+}
+h1 {
+    font-size: 35px;
+}
+input:-ms-input-placeholder {
+    color: #cdcdcd;
+; 
+} 
+input::-webkit-input-placeholder {
+    color: #cdcdcd;
+;
+} 
+input::-moz-placeholder {
+    color: #cdcdcd;
+;
+} 
+input::-moz-placeholder {
+    color: #cdcdcd;
+;
+} 
 .g_banner { 
     height: 5vh;
     background-color: #fff;
@@ -28,21 +50,11 @@ body, html, div, li, h1, p, span, a, input, button {
     width: 60vw;
     padding-left: 20vw;
 }
-
 #g_a_artcle {
-    padding-top: 25vh;
-}
-.s_loginbox {
-    float: left;
-}
-.loginbox {
-    /*float: none;*/
-    width: 32vw;
-    padding-left: 15vw;
+
 }
 
 .b_leftbox {
-    float: right;
     padding-bottom : 25px;
 }
 
@@ -71,23 +83,20 @@ label {
     height: 25px;
     margin: auto;
 }
-h1 {
-    font-size: 35px;
-}
 
 .inputbox {
     height: 25px;
     width: 400px;
 }
-#submitbutton {
+.button {
     background-color: #888888; 
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
-    width: 5vw;
+    width: 150px;
     height: 25px;
-    margin-left: 120px;
+
     /*padding: 1px 25px 1px 25px;*/
     display: inline-block;
 }
