@@ -42,8 +42,10 @@ input::-moz-placeholder {
 .g_a_b_h1{
     padding-bottom: 0px;
 }
-.g_a_b_bar {
-    border: solid 1px #262626;
+.bar {
+    height: 1px;
+    color: black;
+    background-color: black;
 }
 .g_artcle {
     padding-top: 5vh;
@@ -65,23 +67,8 @@ input::-moz-placeholder {
 .clear {
     clear: both;
 }
-label {
+.g_a_text{
     font-size: 20px;
-}
-.link{
-    float: left; 
-}
-#b_linkbox {
-    text-align: center;
-    width: 30vw;
-    /*margin: 0;*/
-}
-#linkbox {
-    display: inline-block;
-    font-size: 18px;
-    width:auto;
-    height: 25px;
-    margin: auto;
 }
 
 .inputbox {
@@ -95,7 +82,7 @@ label {
     text-align: center;
     text-decoration: none;
     width: 150px;
-    height: 25px;
+    height: 27px;
 
     /*padding: 1px 25px 1px 25px;*/
     display: inline-block;
