@@ -16,6 +16,7 @@ public @interface API {
     String title();
     String summary() default "";
     String parameters() default "No parameter";
-    int successCode() default 200;
+    int successCode() default 201;
     int failureCode() default 400;
+    int errorCode() default 500;
 }
