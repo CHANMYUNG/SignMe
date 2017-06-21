@@ -52,9 +52,14 @@ public class CoreVirticle extends AbstractVerticle {
 
     @Override
     public void start(Future<Void> future) {
+        Router router = Router.router(vertx);
+        router.route().handler(BodyHandler.create().setUploadsDirectory("files"));
+        router.route().handler(CookieHandler.create());
+        router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
+        router.route().handler(StaticHandler.create());
         server = vertx.createHttpServer(options);
-        nubes.bootstrap(onSuccessOnly(future, router -> {
-            server.requestHandler(router::accept);
+        nubes.bootstrap(onSuccessOnly(future, _router -> {
+            server.requestHandler(_router::accept);
             server.listen(ignoreResult(future));
             LOG.info("Server listening on port : " + options.getPort());
         }));

@@ -7,9 +7,11 @@ import java.sql.*;
  */
 public class DBManager {
     private static Connection connection;
-    private static final String URL = "jdbc:mysql://localhost:3306/daejeon_people";
+    private static final String URL = "jdbc:mysql://localhost:3306/signme?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "xogns1228";
+
+    private DBManager(){}
 
     static {
         try {
@@ -36,6 +38,7 @@ public class DBManager {
         int affectedRows = -1;
 
         try{
+            System.out.println(getPrepared(query,param).toString());
             affectedRows = getPrepared(query, param).executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
