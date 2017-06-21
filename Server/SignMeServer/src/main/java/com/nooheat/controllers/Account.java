@@ -11,6 +11,7 @@ import com.nooheat.secure.AES256;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.util.SessionManager;
+
 import com.oracle.tools.packager.Log;
 import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;
@@ -34,12 +35,13 @@ public class Account {
     @API(category = Category.ACCOUNT, title = "로그인", parameters = "id : String, password : String")
     @POST("/login")
     public void login(RoutingContext context, @RequestBody String param, Session session, Cookie cookie) {
-        System.out.println(param);
+
         // 각각의 파라미터 값을 읽어옴
         JSONObject params = new JSONObject(param);
         String id = params.getString("id");
         String password = params.getString("password");
         boolean keepLogin = params.getBoolean("keepLogin");
+
 
 
         // 파라미터가 유효하지 않을 때 (null 일 때)
@@ -54,6 +56,7 @@ public class Account {
         try {
             // 로그인 성공시
             if (UserManager.login(id, password)) {
+
                 if(keepLogin)
                     session.put("user", AES256.encrypt(id));
 
@@ -67,6 +70,7 @@ public class Account {
             // 실패시
             else {
                 // 상태코드 400 반환 후 연결 해제
+
                 Log.info("Could not login");
                 context.response().setStatusCode(400).end();
                 context.response().close();
@@ -79,18 +83,21 @@ public class Account {
             context.response().setStatusCode(500).end();
             context.response().close();
         }
+
+    }
+
+
+    @GET("/sessionCheck")
+    public void sessionCheck(RoutingContext context) {
+
     }
 
     @API(category = Category.ACCOUNT, title = "로그아웃")
     @DELETE("/logout")
-    public void logout(RoutingContext context) {
-        SessionManager.rmAll(context);
+    public void logout(RoutingContext context){
+
     }
 
-    @GET("/sessionCheck")
-    public void sessionCheck(RoutingContext context) {
-        String sessionKey = SessionManager.getSessionValueByKey(context.session(), "UserSession");
-        System.out.println(sessionKey);
-    }
+
 
 }
