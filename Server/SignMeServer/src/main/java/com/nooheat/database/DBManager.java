@@ -11,6 +11,8 @@ public class DBManager {
     private static final String USER = "root";
     private static final String PASSWORD = "xogns1228";
 
+    private DBManager(){}
+
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -36,6 +38,7 @@ public class DBManager {
         int affectedRows = -1;
 
         try{
+            System.out.println(getPrepared(query,param).toString());
             affectedRows = getPrepared(query, param).executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
