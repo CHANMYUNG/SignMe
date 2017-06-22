@@ -8,11 +8,13 @@ import com.github.aesteve.vertx.nubes.annotations.routing.http.POST;
 import com.nooheat.manager.RequestManager;
 import com.nooheat.manager.UserManager;
 import com.nooheat.secure.AES256;
+import com.nooheat.secure.SHA256;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.util.SessionManager;
 
 import com.oracle.tools.packager.Log;
+import io.jsonwebtoken.Jwts;
 import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.Session;
@@ -36,6 +38,7 @@ public class Account {
     @POST("/login")
     public void login(RoutingContext context, @RequestBody String param, Session session, Cookie cookie) {
 
+
         // 각각의 파라미터 값을 읽어옴
         JSONObject params = new JSONObject(param);
         String id = params.getString("id");
@@ -52,7 +55,7 @@ public class Account {
             context.response().close();
             return;
         }
-
+        System.out.println(AES256.encrypt(id) + " : " + SHA256.encrypt(password));
         try {
             // 로그인 성공시
             if (UserManager.login(id, password)) {
@@ -60,9 +63,10 @@ public class Account {
                 if(keepLogin)
                     session.put("user", AES256.encrypt(id));
 
-                // 세션 생성
+
 
                 // 상태코드 201 반환 후 연결 해제
+                //context.response().putHeader("token", )
                 context.response().setStatusCode(201).end();
                 context.response().close();
             }
