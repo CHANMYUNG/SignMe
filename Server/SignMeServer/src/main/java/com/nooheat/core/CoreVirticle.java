@@ -17,6 +17,7 @@ import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CookieHandler;
 import io.vertx.ext.web.handler.SessionHandler;
 import io.vertx.ext.web.handler.StaticHandler;
+import io.vertx.ext.web.impl.RouterImpl;
 import io.vertx.ext.web.sstore.LocalSessionStore;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,13 +53,17 @@ public class CoreVirticle extends AbstractVerticle {
 
     @Override
     public void start(Future<Void> future) {
-        Router router = Router.router(vertx);
-        router.route().handler(BodyHandler.create().setUploadsDirectory("files"));
-        router.route().handler(CookieHandler.create());
-        router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
-        router.route().handler(StaticHandler.create());
+//        Router router = Router.router(vertx);
+//        router.route().handler(BodyHandler.create().setUploadsDirectory("files"));
+//        router.route().handler(CookieHandler.create());
+//        router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
+//        router.route().handler(StaticHandler.create());
         server = vertx.createHttpServer(options);
         nubes.bootstrap(onSuccessOnly(future, _router -> {
+            _router.route().handler(BodyHandler.create().setUploadsDirectory("files"));
+            _router.route().handler(CookieHandler.create());
+            _router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
+            _router.route().handler(StaticHandler.create());
             server.requestHandler(_router::accept);
             server.listen(ignoreResult(future));
             LOG.info("Server listening on port : " + options.getPort());

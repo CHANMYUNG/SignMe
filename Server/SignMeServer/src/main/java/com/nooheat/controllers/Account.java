@@ -1,18 +1,25 @@
 package com.nooheat.controllers;
 
 import com.github.aesteve.vertx.nubes.annotations.Controller;
+import com.github.aesteve.vertx.nubes.annotations.auth.Auth;
+import com.github.aesteve.vertx.nubes.annotations.cookies.CookieValue;
+import com.github.aesteve.vertx.nubes.annotations.cookies.Cookies;
 import com.github.aesteve.vertx.nubes.annotations.params.RequestBody;
 import com.github.aesteve.vertx.nubes.annotations.routing.http.DELETE;
 import com.github.aesteve.vertx.nubes.annotations.routing.http.GET;
 import com.github.aesteve.vertx.nubes.annotations.routing.http.POST;
+import com.github.aesteve.vertx.nubes.auth.AuthMethod;
 import com.nooheat.manager.RequestManager;
 import com.nooheat.manager.UserManager;
 import com.nooheat.secure.AES256;
+import com.nooheat.secure.SHA256;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.util.SessionManager;
 
 import com.oracle.tools.packager.Log;
+import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.Jwts;
 import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.Session;
@@ -31,10 +38,11 @@ import java.sql.SQLException;
 
 @Controller("/account")
 public class Account {
-
+    
+    @Auth(method = AuthMethod.JWT, authority = "User")
     @API(category = Category.ACCOUNT, title = "로그인", parameters = "id : String, password : String")
     @POST("/login")
-    public void login(RoutingContext context, @RequestBody String param, Session session, Cookie cookie) {
+    public void login(RoutingContext context, @RequestBody String param) {
 
         // 각각의 파라미터 값을 읽어옴
         JSONObject params = new JSONObject(param);
@@ -52,28 +60,21 @@ public class Account {
             context.response().close();
             return;
         }
+        System.out.println(AES256.encrypt(id) + " : " + SHA256.encrypt(password));
 
         try {
             // 로그인 성공시
             if (UserManager.login(id, password)) {
+                if(keepLogin){
 
-                if(keepLogin)
-                    session.put("user", AES256.encrypt(id));
+                }
 
-                // 세션 생성
-
-                // 상태코드 201 반환 후 연결 해제
-                context.response().setStatusCode(201).end();
-                context.response().close();
             }
 
             // 실패시
             else {
                 // 상태코드 400 반환 후 연결 해제
 
-                Log.info("Could not login");
-                context.response().setStatusCode(400).end();
-                context.response().close();
             }
 
             // 처리과정에서 오류 발생
