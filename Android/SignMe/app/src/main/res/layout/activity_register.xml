@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_width="700"
+        app:scale_base_height="130"
+        android:background="@color/colorPrimary"
+        >
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/left"
+            app:scale_left="3"
+            app:scale_top="15"
+            android:background="@android:color/transparent"
+            android:onClick="BackButtonClicked"
+            android:id="@+id/backButton"
+            />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textColor="@color/white"
+        app:scale_top="25"
+        app:scale_width="240"
+        app:scale_left = "240"
+        app:scale_textsize="60"
+        />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/close"
+            app:scale_left="590"
+            app:scale_top="15"
+            android:background="@android:color/transparent"
+            android:onClick="CloseButtonClicked"
+            android:id="@+id/registerClose"
+            />
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사용에 앞서 약관 동의를 부탁드립니다"
+        android:textStyle="normal"
+        android:textSize="10dp"
+
+        />
+
+    <CheckBox
+        android:layout_width="50pt"
+        android:layout_height="50pt"
+        android:id="@+id/check1"
+        />
+
+    <CheckBox
+        android:layout_width="50pt"
+        android:layout_height="50pt"
+        android:id="@+id/check2"
+        />
+    <CheckBox
+        android:layout_width="50pt"
+        android:layout_height="50pt"
+        android:id="@+id/check3"
+        />
+    <CheckBox
+        android:layout_width="50pt"
+        android:layout_height="50pt"
+        android:id="@+id/check4"
+        />
+    <CheckBox
+        android:layout_width="50pt"
+        android:layout_height="50pt"
+        android:id="@+id/check5"
+        />-->
+
+</com.ssomai.android.scalablelayout.ScalableLayout>
+
+
+</LinearLayout>
