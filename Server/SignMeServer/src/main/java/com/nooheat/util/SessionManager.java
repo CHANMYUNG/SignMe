@@ -17,4 +17,46 @@ import java.util.UUID;
  */
 public class SessionManager {
 
+    public static void createSession(RoutingContext context, String id, String sessionKey) {
+        context.session().put("key", sessionKey);
+        DBManager.update("update account set sessionKey = ? where id = ?", sessionKey, id);
+    }
+
+
+    public static String getSessionkey(RoutingContext context, String key) {
+        String sessionKey = null;
+        if (context.session() != null) {
+            sessionKey = context.session().get(key);
+        }
+        if (sessionKey == null && context.getCookie(key) != null) {
+            sessionKey = context.getCookie(key).getValue();
+        }
+        if (sessionKey != null && sessionKey.equals("null"))
+            sessionKey = null;
+        return sessionKey;
+    }
+
+    public static void createCookie(RoutingContext context, String key, String sessionKey) {
+        Cookie cookie = Cookie.cookie(key, sessionKey);
+        cookie.setPath("/");
+        cookie.setMaxAge(365 * 24 * 60 * 60);
+        context.addCookie(cookie);
+    }
+
+    public static void rmBoth(RoutingContext context, String key) {
+        if (context.getCookie(key) != null) {
+            context.getCookie(key).setValue("null");
+            createCookie(context, key, "null");
+        }
+
+        context.session().remove(key);
+    }
+
+    public static boolean isSessionKeyExist(RoutingContext context, String key) throws SQLException {
+
+        ResultSet rs = DBManager.excute("select (*) from account where sessionKey = ?", AES256.encrypt(key));
+
+        //if(rs.next())
+        return true;
+    }
 }
