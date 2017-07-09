@@ -10,13 +10,14 @@ import java.lang.annotation.Target;
  */
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target(ElementType.TYPE)
 public @interface API {
     Category category();
-    String title();
     String summary() default "";
-    String parameters() default "No parameter";
-    int successCode() default 201;
-    int failureCode() default 400;
-    int errorCode() default 500;
+    String params() default "";
+    String requestBody() default "";
+    String response() default "";
+    int successCode() default 0;
+    int failureCode() default 0;
+    String etc() default "";
 }

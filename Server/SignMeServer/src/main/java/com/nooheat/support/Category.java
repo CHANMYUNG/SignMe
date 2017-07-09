@@ -5,6 +5,7 @@ package com.nooheat.support;
  */
 public enum Category {
 
-    ACCOUNT
+    ACCOUNT,
+    TEST
 
 }

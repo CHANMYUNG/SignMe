@@ -1,7 +1,6 @@
 package com.nooheat.core;
 
-import com.github.aesteve.vertx.nubes.NubesServer;
-import com.github.aesteve.vertx.nubes.VertxNubes;
+import com.nooheat.support.Routing;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Context;
 import io.vertx.core.Future;
@@ -23,64 +22,26 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
-
-import static com.github.aesteve.vertx.nubes.utils.async.AsyncUtils.completeOrFail;
-import static com.github.aesteve.vertx.nubes.utils.async.AsyncUtils.ignoreResult;
-import static com.github.aesteve.vertx.nubes.utils.async.AsyncUtils.onSuccessOnly;
 
 /**
  * Created by NooHeat on 16/06/2017.
  */
 public class CoreVirticle extends AbstractVerticle {
 
-    private static final io.vertx.core.logging.Logger LOG = LoggerFactory.getLogger(NubesServer.class);
-
-    protected HttpServer server;
-    protected HttpServerOptions options;
-    protected VertxNubes nubes;
-
     @Override
-    public void init(Vertx vertx, Context context) {
-        super.init(vertx, context);
-        JsonObject config = context.config();
-        config.put("src-package", "com.nooheat");
-        options = new HttpServerOptions();
-        options.setHost(config.getString("host", "localhost"));
-        options.setPort(config.getInteger("port", 8080));
-        nubes = new VertxNubes(vertx, config);
-    }
+    public void start() throws Exception {
+        Router router = Router.router(vertx);
+        int serverPort = 8000;
 
-    @Override
-    public void start(Future<Void> future) {
-//        Router router = Router.router(vertx);
-//        router.route().handler(BodyHandler.create().setUploadsDirectory("files"));
-//        router.route().handler(CookieHandler.create());
-//        router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
-//        router.route().handler(StaticHandler.create());
-        server = vertx.createHttpServer(options);
-        nubes.bootstrap(onSuccessOnly(future, _router -> {
-            _router.route().handler(BodyHandler.create().setUploadsDirectory("files"));
-            _router.route().handler(CookieHandler.create());
-            _router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
-            _router.route().handler(StaticHandler.create());
-            server.requestHandler(_router::accept);
-            server.listen(ignoreResult(future));
-            LOG.info("Server listening on port : " + options.getPort());
-        }));
-    }
 
-    @Override
-    public void stop(Future<Void> future) {
-        nubes.stop(nubesRes -> closeServer(future));
-    }
+        router.route().handler(BodyHandler.create().setUploadsDirectory("upload-files"));
+        router.route().handler(CookieHandler.create());
+        router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
 
-    private void closeServer(Future<Void> future) {
-        if (server != null) {
-            LOG.info("Closing HTTP server");
-            server.close(completeOrFail(future));
-        } else {
-            future.complete();
-        }
+        Routing.route(router, "com.nooheat.controller");
+        router.route().handler(StaticHandler.create());
+
+        vertx.createHttpServer().requestHandler(router::accept).listen(serverPort);
+
     }
 }
