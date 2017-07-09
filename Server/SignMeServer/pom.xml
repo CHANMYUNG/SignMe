@@ -153,18 +153,6 @@
             <artifactId>json</artifactId>
             <version>20160810</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.massisframework/nubes -->
-        <dependency>
-            <groupId>com.massisframework</groupId>
-            <artifactId>nubes</artifactId>
-            <version>1.4.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
-        </dependency>
+        
     </dependencies>
 </project>
