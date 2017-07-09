@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_width="400"
+        app:scale_base_height="640"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tutoreal4"
+            android:textColor="@color/black"
+            app:scale_textsize="30"
+            app:scale_height="100"
+            app:scale_width="150"
+            />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+</LinearLayout>

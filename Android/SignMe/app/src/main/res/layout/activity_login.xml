@@ -12,8 +12,41 @@
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:scale_base_width="600"
-        app:scale_base_height="100">
+        android:background="#33C5F3"
+        app:scale_base_height="100"
+        app:scale_base_width="600">
+
+        <ImageButton
+            android:id="@+id/id_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="BackonClick"
+            android:src="@drawable/back"
+            app:scale_height="100"
+            app:scale_top="5"
+            app:scale_width="100" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            android:textColor="@color/white"
+            app:scale_left="270"
+            app:scale_textsize="60"
+            app:scale_top="20"
+            app:scale_width="240" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="CloseonClick"
+            android:src="@drawable/close"
+            app:scale_left="500"
+            app:scale_top="5"
+
+            />
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
@@ -21,22 +54,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:scale_base_height="130"
+        app:scale_base_height="150"
         app:scale_base_width="400"
         >
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/logo"
-            app:scale_top="20"
-            app:scale_width="400" />
+            app:scale_left="50"
+            app:scale_top="50"
+            app:scale_width="300" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
+  \
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+        android:background="#85CBFF"
         app:scale_base_height="450"
         app:scale_base_width="580">
 
@@ -51,21 +87,6 @@
             app:scale_top="20"
             app:scale_width="120" />
 
-        <EditText
-            android:id="@+id/idField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape"
-            android:hint="@string/id"
-            android:textColorHint="@color/gray"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            app:scale_height="85"
-            app:scale_left="35"
-            app:scale_textsize="40"
-            app:scale_top="70"
-            app:scale_width="500" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,14 +100,14 @@
 
         <EditText
             android:id="@+id/passwordField"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape"
             android:hint="@string/password"
-            android:textColorHint="@color/gray"
+            android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="@color/black"
+            android:textColorHint="@color/gray"
             app:scale_height="85"
             app:scale_left="35"
             app:scale_textsize="40"
@@ -98,21 +119,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/colorPrimary"
+            android:background="#33C5F3"
+            android:onClick="loginClicked"
             android:text="@string/login"
             android:textColor="@color/white"
-            android:onClick="loginClicked"
             app:scale_height="80"
             app:scale_textsize="30"
             app:scale_top="160"
             app:scale_width="200" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
 
+        <EditText
+            android:id="@+id/idField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:hint="@string/id"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            app:scale_height="85"
+            app:scale_left="35"
+            app:scale_textsize="40"
+            app:scale_top="70"
+            app:scale_width="500" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:scale_base_height="150"
+        app:scale_base_height="100"
         app:scale_base_width="580">
 
         <TextView
@@ -122,9 +157,9 @@
             android:textColor="@color/black"
             android:onClick="goRegisterClicked"
             app:scale_height="150"
-            app:scale_left="40"
+            app:scale_left="80"
             app:scale_textsize="25"
-            app:scale_top="60"
+            app:scale_top="40"
             app:scale_width="250" />
 
         <ImageView
@@ -132,8 +167,9 @@
             android:layout_height="wrap_content"
             android:src="@drawable/slash"
             app:scale_left="260"
-            app:scale_top="30"
-            app:scale_width="100" />
+            app:scale_top="15"
+            app:scale_width="80"
+            app:scale_height="80"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -144,28 +180,27 @@
             app:scale_height="150"
             app:scale_left="380"
             app:scale_textsize="25"
-            app:scale_top="60"
+            app:scale_top="40"
             app:scale_width="200" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:scale_base_width="700"
+        android:background="#33C5F3"
         app:scale_base_height="100"
-        >
+        app:scale_base_width="700">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textColor="@color/white"
             android:textAlignment="center"
-            app:scale_textsize="40"
-            app:scale_width="700"
+            android:textColor="@color/white"
             app:scale_height="100"
-            />
+            app:scale_textsize="40"
+            app:scale_top="15"
+            app:scale_width="700" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
 </LinearLayout>

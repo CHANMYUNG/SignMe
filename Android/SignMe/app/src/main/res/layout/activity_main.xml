@@ -4,26 +4,73 @@
     android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scale_base_width="1000"
+        app:scale_base_height="1600"
+        android:background="#85CBFF">
 
+        <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/circle"
+    app:scale_width="500"
+    app:scale_height="500"
+    app:scale_left="250"
+    app:scale_top="300"/>
+ <ImageButton
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:src="@drawable/plus"
+     app:scale_width="150"
+     app:scale_height="150"
+     app:scale_left="630"
+     app:scale_top="600"
+     android:background="@android:color/transparent"
+     />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:scale_height="600"
+
+            app:scale_top="1000"
+            app:scale_width="1000">
+        <ListView
+            android:id="@+id/alarm_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="@drawable/listview_selector"
+            android:transcriptMode="alwaysScroll"
+            android:fastScrollEnabled="true">
+
+        </ListView>
+
+
+        </ScrollView>
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:scale_base_width="600"
-        app:scale_base_height="120"
+        app:scale_base_height="100"
         >
 
         <ImageButton
             android:id="@+id/ib_drawer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/main_menu"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/memu1"
             android:background="@android:color/transparent"
             android:onClick="sideButtonClicked"
             app:scale_width="100"
             app:scale_height="100"
-            app:scale_left="20"
-            app:scale_top="10"
+            app:scale_left="10"
+            app:scale_top="5"
             />
 
         <TextView
@@ -33,20 +80,23 @@
             android:textColor="@color/white"
             app:scale_top="20"
             app:scale_width="240"
-            app:scale_left = "180"
+            app:scale_left = "190"
             app:scale_textsize="60"
             />
-        <ImageView
+        <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/main_mypage"
-            android:onClick="mypageButtonClicked"
-            app:scale_left="480"
-            app:scale_top="10"
+            android:onClick="mypageonClicked"
+            android:background="@android:color/transparent"
+            app:scale_width="100"
+            app:scale_height="100"
+            app:scale_left="500"
+            app:scale_top="5"
 
             />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
 
+    </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
@@ -54,8 +104,9 @@
         android:layout_gravity="start"
         android:id="@+id/navigation"
         android:background="#14C7FF"
-        app:menu="@menu/main_navigationbar_menu">
+        app:menu="@menu/main_drawer_menu">
 
     </android.support.design.widget.NavigationView>
+
 
 </android.support.v4.widget.DrawerLayout>

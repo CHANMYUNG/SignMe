@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:scale_base_height="460"
+        app:scale_base_width="400" >
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:scale_base_height="153"
+        app:scale_base_width="400">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="SIGN ME는\n가정통신문 신청서를 좀 더 편하게\n전달하고 신청 및 서명을\n할 수 있도록 도와주는\n애플리케이션 입니다."
+            android:textColor="#95989A"
+            app:scale_height="153"
+            app:scale_textsize="20"
+            app:scale_width="400" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scale_base_width="1600"
+        app:scale_base_height="100"
+        android:background="@color/white">
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+</LinearLayout>
