@@ -1,0 +1,45 @@
+
+.g_artcle {
+    padding-top: 5vh;
+    width: 70vw;
+    padding-left: 20vw;
+}
+
+#g_a_artcle {
+    padding-top: 25vh;
+}
+.s_loginbox {
+    float: left;
+}
+.loginbox {
+    width: 32vw;
+    padding-left: 15vw;
+}
+
+.b_leftbox {
+    float: right;
+}
+.clear {
+    clear: both;
+
+}
+
+.link{
+    float: left; 
+}
+#b_linkbox {
+    text-align: center;
+    width: 30vw;
+    /*margin: 0;*/
+}
+#linkbox {
+    display: inline-block;
+    font-size: 18px;
+    width:auto;
+    height: 25px;
+    margin: auto;
+}
+
+.button {
+    margin-left: 120px;
+}
