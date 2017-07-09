@@ -34,7 +34,14 @@
             app:scale_left="0"
             app:scale_textsize="80"
             app:scale_width="600" />
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/circle"
+            app:scale_height="30"
+            app:scale_width="30"
+            app:scale_left="280"
+            app:scale_top="165"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
