@@ -23,6 +23,7 @@
      android:layout_width="match_parent"
      android:layout_height="match_parent"
      android:src="@drawable/plus"
+     android:onClick="profileonClick"
      app:scale_width="150"
      app:scale_height="150"
      app:scale_left="630"
@@ -37,15 +38,16 @@
 
             app:scale_top="1000"
             app:scale_width="1000">
-        <ListView
-            android:id="@+id/alarm_listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:listSelector="@drawable/listview_selector"
-            android:transcriptMode="alwaysScroll"
-            android:fastScrollEnabled="true">
 
-        </ListView>
+            <ListView
+                android:id="@+id/alarm_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fastScrollEnabled="true"
+                android:listSelector="@drawable/listview_selector"
+                android:transcriptMode="alwaysScroll">
+
+            </ListView>
 
 
         </ScrollView>

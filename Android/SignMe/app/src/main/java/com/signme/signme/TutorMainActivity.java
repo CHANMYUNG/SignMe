@@ -1,10 +1,13 @@
 package com.signme.signme;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
@@ -18,12 +21,13 @@ import java.util.List;
 public class TutorMainActivity extends AppCompatActivity implements ViewFlipperAction.ViewFlipperCallback {
     ViewFlipper flipper;
     List<ImageView> indexes;
+    public static Activity tutorMainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutoreal_main);
-
+        tutorMainActivity=this;
         flipper = (ViewFlipper) findViewById(R.id.flipper);
         ImageView index1 = (ImageView) findViewById(R.id.imgIndex1);
         ImageView index2 = (ImageView) findViewById(R.id.imgIndex2);
@@ -65,6 +69,29 @@ public class TutorMainActivity extends AppCompatActivity implements ViewFlipperA
 
         flipper.setOnTouchListener(new ViewFlipperAction(this, flipper));
 
+        Button btnSkip = (Button) view1.findViewById(R.id.skip);
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("dd", "dd");
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                TutorMainActivity.tutorMainActivity.finish();
+                finish();
+
+            }
+        });
+        Button btnEnd = (Button) view8.findViewById(R.id.End);
+        btnEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("dd", "dd");
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                TutorMainActivity.tutorMainActivity.finish();
+                finish();
+            }
+        });
 
     }
 

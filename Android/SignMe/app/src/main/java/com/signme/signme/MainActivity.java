@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    private long pressedTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +69,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //두번 클릭 시 종료
+    @Override
+    public void onBackPressed(){
+        if(pressedTime==0){
+            Toast.makeText(MainActivity.this,"한번 더 누르면 종료됩니다.",Toast.LENGTH_LONG).show();
+            pressedTime=System.currentTimeMillis();
+        }
+        else{
+            int seconds=(int)(System.currentTimeMillis()-pressedTime);
+            if(seconds>2000){
+                pressedTime=0;
+            }
+            else{
+                finish();
+            }
+        }
+    }
+
 
     public void sideButtonClicked(View view){
 
@@ -77,4 +95,6 @@ public class MainActivity extends AppCompatActivity {
     public void mypageButtonClicked(View view) {
         Log.d(getLocalClassName(), "mypageButtonClicked: ");
     }
+    public void profileonClick(View view){}
+
 }

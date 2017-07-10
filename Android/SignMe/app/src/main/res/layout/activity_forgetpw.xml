@@ -131,29 +131,33 @@
             app:scale_top="210"
             app:scale_width="100" />
 
-        <TextView
-            android:id="@+id/sel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="240"
-            app:scale_textsize="25"
-            app:scale_top="200"
-            app:scale_width="150" />
 
         <Spinner
             android:id="@+id/eamil2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:background="@drawable/rectangle"
             android:drawSelectorOnTop="true"
             app:scale_height="35"
             app:scale_left="240"
             app:scale_textsize="25"
-            app:scale_top="210"
+            app:scale_top="260"
             app:scale_width="150" />
 
+        <EditText
+            android:id="@+id/email3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            app:scale_height="35"
+            app:scale_left="240"
+            app:scale_textsize="25"
+            app:scale_top="210"
+            app:scale_width="150" />
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
@@ -178,7 +182,7 @@
             app:scale_height="35"
             app:scale_left="300"
             app:scale_textsize="25"
-            app:scale_top="280"
+            app:scale_top="310"
             app:scale_width="70" />
 
         <TextView
@@ -188,7 +192,8 @@
             android:textColor="#95989A"
             app:scale_left="20"
             app:scale_textsize="25"
-            app:scale_top="270" />
+            app:scale_top="300" />
+
         <EditText
             android:id="@+id/emailcode"
             android:layout_width="match_parent"
@@ -200,7 +205,7 @@
             app:scale_height="35"
             app:scale_left="100"
             app:scale_textsize="25"
-            app:scale_top="280"
+            app:scale_top="310"
             app:scale_width="190" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 

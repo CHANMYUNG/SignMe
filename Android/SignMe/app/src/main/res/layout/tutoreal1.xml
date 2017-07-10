@@ -39,7 +39,8 @@
         app:scale_base_height="45"
         app:scale_base_width="400">
 
-        <TextView
+        <Button
+            android:background="@null"
             android:id="@+id/skip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

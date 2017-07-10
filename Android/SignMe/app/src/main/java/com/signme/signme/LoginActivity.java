@@ -84,14 +84,24 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-
+    public void BackonClick(View view){
+        Intent intent=new Intent(getApplicationContext(),LandingActivity.class);
+        startActivity(intent);
+        LandingActivity.landingActivity.finish();
+    }
+    public void CloseonClick(View view){
+        Intent intent=new Intent(getApplicationContext(),LandingActivity.class);
+        startActivity(intent);
+        LandingActivity.landingActivity.finish();
+    }
     public void goRegisterClicked(View view) {
 
         Log.d(this.getLocalClassName(), "goRegisterClicked: ");
     }
 
     public void goForgetClicked(View view) {
-
+        Intent intent=new Intent(getApplicationContext(),FogetidActivity.class);
+        startActivity(intent);
         Log.d(this.getLocalClassName(), "goForgetClicked: ");
     }
 }

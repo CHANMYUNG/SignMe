@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    >
+    android:orientation="vertical">
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:scale_base_height="130"
         app:scale_base_width="400">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,7 +19,8 @@
             app:scale_height="60"
             app:scale_left="0"
             app:scale_top="50"
-            app:scale_width="200"/>
+            app:scale_width="200" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,6 +29,7 @@
             app:scale_left="110"
             app:scale_top="50"
             app:scale_width="120" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,12 +38,13 @@
             app:scale_left="230"
             app:scale_top="50"
             app:scale_width="120" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#95989A"
             android:text="아이디 찾기"
-           app:scale_height="25"
+            android:textColor="#95989A"
+            app:scale_height="25"
             app:scale_left="140"
             app:scale_textsize="25"
             app:scale_top="70"
@@ -69,17 +72,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="간단한 정보입력을 통해 알 수 있습니다."
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="20"
-            app:scale_textsize="25"
-            app:scale_top="30"
-            app:scale_width="300" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="이름"
             android:textColor="#95989A"
             app:scale_height="30"
@@ -98,7 +90,7 @@
             android:textColorHint="@color/gray"
             app:scale_height="35"
             app:scale_left="20"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="130"
             app:scale_width="140" />
 
@@ -124,16 +116,6 @@
             app:scale_top="200"
             app:scale_width="100" />
 
-        <TextView
-            android:id="@+id/sel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="240"
-            app:scale_textsize="25"
-            app:scale_top="200"
-            app:scale_width="150" />
 
         <Spinner
             android:id="@+id/eamil2"
@@ -141,6 +123,23 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle"
             android:drawSelectorOnTop="true"
+            android:entries="@array/planets_array"
+            android:prompt="@string/planet_prompt"
+            android:textColor="#95989A"
+            app:scale_height="35"
+            app:scale_left="240"
+            app:scale_textsize="25"
+            app:scale_top="240"
+            app:scale_width="150" />
+
+        <EditText
+            android:id="@+id/email3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
             app:scale_height="35"
             app:scale_left="240"
             app:scale_textsize="25"
@@ -174,15 +173,26 @@
             app:scale_textsize="25"
             app:scale_top="200"
             app:scale_width="140" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="간단한 정보입력을 통해 알 수 있습니다."
+            android:textColor="#95989A"
+            app:scale_height="30"
+            app:scale_left="20"
+            app:scale_textsize="25"
+            app:scale_top="30"
+            app:scale_width="400" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#33C5F3"
-        app:scale_base_width="400"
         app:scale_base_height="100"
-        >
+        app:scale_base_width="400">
 
         <TextView
             android:id="@+id/textView"

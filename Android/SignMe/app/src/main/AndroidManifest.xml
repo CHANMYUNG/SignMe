@@ -20,6 +20,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".TutorMainActivity"></activity>
+        <activity android:name=".FogetidActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>

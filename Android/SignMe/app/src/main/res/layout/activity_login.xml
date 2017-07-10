@@ -32,9 +32,9 @@
             android:layout_height="wrap_content"
             android:text="로그인"
             android:textColor="@color/white"
-            app:scale_left="270"
+            app:scale_left="230"
             app:scale_textsize="60"
-            app:scale_top="20"
+            app:scale_top="10"
             app:scale_width="240" />
 
         <ImageButton
@@ -150,16 +150,17 @@
         app:scale_base_height="100"
         app:scale_base_width="580">
 
-        <TextView
+        <Button
+            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="회원이 아니신가요?"
             android:textColor="@color/black"
             android:onClick="goRegisterClicked"
-            app:scale_height="150"
-            app:scale_left="80"
+            app:scale_height="50"
+            app:scale_left="60"
             app:scale_textsize="25"
-            app:scale_top="40"
+            app:scale_top="30"
             app:scale_width="250" />
 
         <ImageView
@@ -171,16 +172,17 @@
             app:scale_width="80"
             app:scale_height="80"/>
 
-        <TextView
+        <Button
+            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ID/PW 찾기"
             android:onClick="goForgetClicked"
             android:textColor="@color/black"
-            app:scale_height="150"
-            app:scale_left="380"
+            app:scale_height="50"
+            app:scale_left="320"
             app:scale_textsize="25"
-            app:scale_top="40"
+            app:scale_top="30"
             app:scale_width="200" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
