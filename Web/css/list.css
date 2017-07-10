@@ -1,0 +1,19 @@
+.g_a_a_a_b_l_li{
+    float: left;
+    font-size: 20px;
+    margin-right: 4px;
+}
+#g_a_a_b_select{
+    overflow: hidden;
+    float: right;
+}
+#g_a_a_b_s_select{
+    
+    border: 1px solid #cdcdcd;
+}
+#g_a_a_b_s_s_inputbox{
+    width: 8vw;
+    height: 20px;
+    background-color: #fff;
+    border: none;
+}

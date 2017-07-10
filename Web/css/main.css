@@ -8,6 +8,10 @@ li {
 h1 {
     font-size: 35px;
 }
+a {
+    color: black;
+    text-decoration:none
+}
 input:-ms-input-placeholder {
     color: #cdcdcd;
 ; 

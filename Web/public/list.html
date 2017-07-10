@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>mypage</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <link rel="stylesheet" type="text/css" href="../css/list.css">
+        <script src="jquery-3.2.1.min.js"></script>s
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        
+    </head>
+    <body>
+        <script>
+            function clicklink(link){
+                $('.g_a_a_a_b_l_li').css('text-decoration','none');
+                $(link).css('text-decoration','underline');
+            }
+        </script>
+        <div id="main">
+            <div class="g_banner">
+                <div class="g_b_banner">
+                    <span class="bannerlogo">Sign me</span>
+                   <span class="bannerlogin">로그인</span>
+                </div>
+            </div>
+            <div class="g_artcle">
+                <div id="g_a_banner">
+                    <h1 class="g_a_b_h1">진행중인 가정통신문</h1>
+                    <hr class="bar">
+                </div>
+                <div id="g_a_artcle">
+                   <div id="g_a_a_banner">
+                       <div id="g_a_a_b_list">
+                            <ul>
+                                <li class="g_a_a_a_b_l_li" id="g_a_a_a_b_l_li1"><span><a href="#" onclick="clicklink(g_a_a_a_b_l_li1)">전체</a></span></li>
+                                
+                                <li class="g_a_a_a_b_l_li" id="g_a_a_a_b_l_li2"><span><a href="#" onclick="clicklink(g_a_a_a_b_l_li2)">교내</a></span></li>
+                    
+                                <li class="g_a_a_a_b_l_li" id="g_a_a_a_b_l_li3"><span><a href="#" onclick="clicklink(g_a_a_a_b_l_li3)">교외</a></span></li>
+                            </ul>                    
+                       </div>
+                       <div id="g_a_a_b_select">
+                           <div id="g_a_a_b_s_select">
+                               <input type="text" id="g_a_a_b_s_s_inputbox" value="검색어를 입력하세요.">
+                               <input type="button" id="g_a_a_b_s_s_icon" value="">
+                           </div>
+                           <div id="g_a_a_b_s_checkbox">
+                               <a href="" id="g_a_a_b_s_ch_a">
+                                   <span id="g_a_a_b_s_ch_span">전체 선생님</span>
+                                   <span id="g_a_a_b_s_ch_icon"></span>
+                               </a>
+                               <ul id="g_a_a_b_s_ch_list">
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li1"><a href="">자바선생님</a></a></li>
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li2"><a href="">미술선생님</a></a></li>
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li3"><a href="">음악선생님</a></a></li>
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li4"><a href="">라면선생님</a></a></li>
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li5"><a href="">먹고선생님</a></a></li> 
+                               </ul>
+                           </div>
+                       </div>
+
+                   </div>
+                   <div id="g_a_a_artcle">
+                       <div id="g_a_a_a_bar">
+                           <div class="g_a_a_b_div">
+                                <span id="g_a_a_a_b_d_titlebar">제목</span>        
+                           </div>
+                           <span>|</span>
+                           <div class="g_a_a_b_div">
+                                <span id="g_a_a_a_b_d_textbar">내용</span>        
+                           </div>
+                           <span>|</span>
+                           <div class="g_a_a_b_div">
+                                <span id="g_a_a_a_b_d_datebar">마감일</span>        
+                           </div>
+                           <span>|</span>
+                           <div class="g_a_a_b_div">
+                                <span id="g_a_a_a_b_d_whobar">작성자</span>        
+                           </div>
+                       </div>
+                       <div id="g_a_a_a_contant">
+                           <ul id="g_a_a_a_c_list">
+                               <li class="g_a_a_a_c_l_li" id="g_a_a_a_c_l_li1">
+                                   <a href="">
+                                        <div class="g_a_a_a_c_l_li_div" id="g_a_a_a_c_l_li_div1">
+                                            <span class="g_a_a_a_c_list_title">
+                                                2학년 수학여행
+                                            </span>
+                                            <span class="g_a_a_a_c_list_text">
+                                                본교 2학년들이 이번에 수학여행을 가게 되었습니다.
+                                            </span>
+                                            <span class="g_a_a_a_c_list_date">2017-08-03</span>
+                                            <span class="g_a_a_a_c_list_who">김자바선생님</span>
+                                        </div>
+                                   </a>
+                                </li>
+                                
+                               <li class="g_a_a_a_c_l_li" id="g_a_a_a_c_l_li2">
+                                   <a href="">
+                                        <div class="g_a_a_a_c_l_li_div" id="g_a_a_a_c_l_li_div1">
+                                            <span class="g_a_a_a_c_list_title">
+                                                2학년 수학여행
+                                            </span>
+                                            <span class="g_a_a_a_c_list_text">
+                                                본교 2학년들이 이번에 수학여행을 가게 되었습니다.
+                                            </span>
+                                            <span class="g_a_a_a_c_list_date">2017-08-03</span>
+                                            <span class="g_a_a_a_c_list_who">김자바선생님</span>
+                                        </div>
+                                   </a>
+                                </li>
+                               <li class="g_a_a_a_c_l_li" id="g_a_a_a_c_l_li3">
+                                   <a href="">
+                                        <div class="g_a_a_a_c_l_li_div" id="g_a_a_a_c_l_li_div1">
+                                            <span class="g_a_a_a_c_list_title">
+                                                2학년 수학여행
+                                            </span>
+                                            <span class="g_a_a_a_c_list_text">
+                                                본교 2학년들이 이번에 수학여행을 가게 되었습니다.
+                                            </span>
+                                            <span class="g_a_a_a_c_list_date">2017-08-03</span>
+                                            <span class="g_a_a_a_c_list_who">김자바선생님</span>
+                                        </div>
+                                   </a>
+                                </li>
+                                <li class="g_a_a_a_c_l_li" id="g_a_a_a_c_l_li4">
+                                   <a href="">
+                                        <div class="g_a_a_a_c_l_li_div" id="g_a_a_a_c_l_li_div1">
+                                            <span class="g_a_a_a_c_list_title">
+                                                2학년 수학여행
+                                            </span>
+                                            <span class="g_a_a_a_c_list_text">
+                                                본교 2학년들이 이번에 수학여행을 가게 되었습니다.
+                                            </span>
+                                            <span class="g_a_a_a_c_list_date">2017-08-03</span>
+                                            <span class="g_a_a_a_c_list_who">김자바선생님</span>
+                                        </div>
+                                   </a>
+                                </li>
+                                <li class="g_a_a_a_c_l_li" id="g_a_a_a_c_l_li5">
+                                   <a href="">
+                                        <div class="g_a_a_a_c_l_li_div" id="g_a_a_a_c_l_li_div1">
+                                            <span class="g_a_a_a_c_list_title">
+                                                2학년 수학여행
+                                            </span>
+                                            <span class="g_a_a_a_c_list_text">
+                                                본교 2학년들이 이번에 수학여행을 가게 되었습니다.
+                                            </span>
+                                            <span class="g_a_a_a_c_list_date">2017-08-03</span>
+                                            <span class="g_a_a_a_c_list_who">김자바선생님</span>
+                                        </div>
+                                   </a>
+                                </li>
+                                
+                                <li class="g_a_a_a_c_l_li" id="g_a_a_a_c_l_li6">
+                                   <a href="">
+                                        <div class="g_a_a_a_c_l_li_div" id="g_a_a_a_c_l_li_div1">
+                                            <span class="g_a_a_a_c_list_title">
+                                                2학년 수학여행
+                                            </span>
+                                            <span class="g_a_a_a_c_list_text">
+                                                본교 2학년들이 이번에 수학여행을 가게 되었습니다.
+                                            </span>
+                                            <span class="g_a_a_a_c_list_date">2017-08-03</span>
+                                            <span class="g_a_a_a_c_list_who">김자바선생님</span>
+                                        </div>
+                                   </a>
+                                </li>
+                           </ul>
+                       </div>
+                   </div>
+                </div>
+            </div>
+            <div class="g_footer">
+                   
+            </div>
+        </div>
+    </body>
+</html>
