@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    app:scale_base_width="1000"
     app:scale_base_height="1000"
-    >
+    app:scale_base_width="1000">
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:onClick="BackonClick"
+            android:onClick="backonClick"
             android:src="@drawable/back"
             app:scale_height="100"
             app:scale_top="5"
@@ -31,9 +31,9 @@
             android:layout_height="wrap_content"
             android:text="마이페이지"
             android:textColor="@color/white"
-            app:scale_left="230"
-            app:scale_textsize="60"
-            app:scale_top="10"
+            app:scale_left="220"
+            app:scale_textsize="45"
+            app:scale_top="25"
             app:scale_width="240" />
 
 
@@ -42,18 +42,102 @@
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:scale_base_height="250"
-        app:scale_base_width="400"></com.ssomai.android.scalablelayout.ScalableLayout>
+        app:scale_base_height="300"
+        app:scale_base_width="400">
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/shape2"
+            app:scale_height="200"
+            app:scale_left="100"
+            app:scale_top="30"
+            app:scale_width="200" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ooo고등학교 홍길동님"
+            android:textColor="@color/black"
+            app:scale_width="200"
+            app:scale_textsize="15"
+            app:scale_height="40"
+            app:scale_top="250"
+            app:scale_left="150"
+            />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:scale_base_width="400"
         app:scale_base_height="325"
-        >
+        app:scale_base_width="400">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="개인정보 변경"/>
+            android:text="개인정보 변경"
+            android:textColor="#95989A"
+            app:scale_height="40"
+            app:scale_width="150"
+            app:scale_left="40"
+            app:scale_textsize="20"
+            app:scale_top="50" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="신청서 수정"
+            android:textColor="#95989A"
+            app:scale_height="40"
+            app:scale_width="150"
+            app:scale_left="40"
+            app:scale_textsize="20"
+            app:scale_top="150" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:text="개인정보 변경하기"
+            app:scale_height="40"
+            app:scale_left="45"
+            app:scale_textsize="20"
+            app:scale_top="85"
+            app:scale_width="300"/>
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangle"
+            android:onClick="mypageonClick1"
+            android:textColor="@color/black"
+            app:scale_height="40"
+            app:scale_left="40"
+            app:scale_textsize="20"
+            app:scale_top="80"
+            app:scale_width="300" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:text="최근 신청한 신청서 목록"
+            app:scale_height="40"
+            app:scale_left="45"
+            app:scale_textsize="20"
+            app:scale_top="185"
+            app:scale_width="300"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangle"
+            android:onClick="mypageonClick1"
+            android:textColor="@color/black"
+            app:scale_height="40"
+            app:scale_left="40"
+            app:scale_textsize="20"
+            app:scale_top="180"
+            app:scale_width="300" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 </LinearLayout>

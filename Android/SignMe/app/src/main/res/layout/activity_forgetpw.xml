@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     >
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:scale_base_height="130"
+        app:scale_base_height="120"
         app:scale_base_width="400">
 
         <ImageView
@@ -20,6 +21,7 @@
             app:scale_left="110"
             app:scale_top="50"
             app:scale_width="120" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +46,7 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="20"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="5"
             app:scale_width="300" />
 
@@ -55,7 +57,7 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="20"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="30"
             app:scale_width="300" />
 
@@ -66,8 +68,8 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="20"
-            app:scale_textsize="25"
-            app:scale_top="100"
+            app:scale_textsize="15"
+            app:scale_top="110"
             app:scale_width="100" />
 
         <EditText
@@ -80,7 +82,7 @@
             android:textColorHint="@color/gray"
             app:scale_height="35"
             app:scale_left="70"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="100"
             app:scale_width="170" />
 
@@ -93,7 +95,7 @@
             android:textColor="#95989A"
             app:scale_height="35"
             app:scale_left="250"
-            app:scale_textsize="25"
+            app:scale_textsize="20"
             app:scale_top="100"
             app:scale_width="70" />
 
@@ -104,8 +106,8 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="20"
-            app:scale_textsize="25"
-            app:scale_top="170"
+            app:scale_textsize="15"
+            app:scale_top="180"
             app:scale_width="100" />
 
         <Button
@@ -127,21 +129,31 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="190"
-            app:scale_textsize="25"
-            app:scale_top="210"
+            app:scale_textsize="15"
+            app:scale_top="220"
             app:scale_width="100" />
 
-
-        <Spinner
-            android:id="@+id/eamil2"
+        <TextView
+            android:id="@+id/email_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:text="--이메일입력--"
+            android:textColor="#000"
+            app:scale_height="35"
+            app:scale_left="250"
+            app:scale_textsize="15"
+            app:scale_top="270"
+            app:scale_width="150" />
+        <Spinner
+            android:id="@+id/email2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/rectangle"
+            android:entries="@array/planets_array"
             android:drawSelectorOnTop="true"
             app:scale_height="35"
             app:scale_left="240"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="260"
             app:scale_width="150" />
 
@@ -155,22 +167,9 @@
             android:textColorHint="@color/gray"
             app:scale_height="35"
             app:scale_left="240"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="210"
             app:scale_width="150" />
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            app:scale_height="35"
-            app:scale_left="20"
-            app:scale_textsize="25"
-            app:scale_top="210"
-            app:scale_width="140" />
 
         <Button
             android:id="@+id/button"
@@ -181,7 +180,7 @@
             android:textColor="#95989A"
             app:scale_height="35"
             app:scale_left="300"
-            app:scale_textsize="25"
+            app:scale_textsize="20"
             app:scale_top="310"
             app:scale_width="70" />
 
@@ -191,8 +190,8 @@
             android:text="이메일 인증\n\t번호 확인"
             android:textColor="#95989A"
             app:scale_left="20"
-            app:scale_textsize="25"
-            app:scale_top="300" />
+            app:scale_textsize="15"
+            app:scale_top="310" />
 
         <EditText
             android:id="@+id/emailcode"
@@ -204,9 +203,23 @@
             android:textColorHint="@color/gray"
             app:scale_height="35"
             app:scale_left="100"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="310"
             app:scale_width="190" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            app:scale_height="35"
+            app:scale_left="20"
+            app:scale_textsize="15"
+            app:scale_top="210"
+            app:scale_width="140" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
@@ -226,7 +239,7 @@
             android:textColor="@color/white"
             app:scale_height="100"
             app:scale_textsize="25"
-            app:scale_top="5"
+            app:scale_top="10"
             app:scale_width="400" />
 
     </com.ssomai.android.scalablelayout.ScalableLayout>

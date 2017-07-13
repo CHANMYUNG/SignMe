@@ -9,7 +9,7 @@
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:scale_base_height="130"
+        app:scale_base_height="120"
         app:scale_base_width="400">
 
         <ImageView
@@ -112,13 +112,23 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="190"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="200"
             app:scale_width="100" />
 
-
+        <TextView
+            android:id="@+id/email_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--이메일입력--"
+            android:textColor="#000"
+            app:scale_height="35"
+            app:scale_left="270"
+            app:scale_textsize="15"
+            app:scale_top="245"
+            app:scale_width="150" />
         <Spinner
-            android:id="@+id/eamil2"
+            android:id="@+id/email2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle"
@@ -128,7 +138,7 @@
             android:textColor="#95989A"
             app:scale_height="35"
             app:scale_left="240"
-            app:scale_textsize="25"
+            app:scale_textsize="20"
             app:scale_top="240"
             app:scale_width="150" />
 
@@ -142,7 +152,7 @@
             android:textColorHint="@color/gray"
             app:scale_height="35"
             app:scale_left="240"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="200"
             app:scale_width="150" />
 
@@ -154,7 +164,7 @@
             android:textColor="#95989A"
             app:scale_height="35"
             app:scale_left="20"
-            app:scale_textsize="25"
+            app:scale_textsize="20"
             app:scale_top="280"
             app:scale_width="70"
 
@@ -170,7 +180,7 @@
             android:textColorHint="@color/gray"
             app:scale_height="35"
             app:scale_left="20"
-            app:scale_textsize="25"
+            app:scale_textsize="15"
             app:scale_top="200"
             app:scale_width="140" />
 
@@ -203,7 +213,7 @@
             android:textColor="@color/white"
             app:scale_height="100"
             app:scale_textsize="25"
-            app:scale_top="5"
+            app:scale_top="10"
             app:scale_width="400" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 

@@ -4,32 +4,33 @@
     android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:scale_base_width="1000"
+        android:background="#85CBFF"
         app:scale_base_height="1600"
-        android:background="#85CBFF">
+        app:scale_base_width="1000">
 
         <ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src="@drawable/circle"
-    app:scale_width="500"
-    app:scale_height="500"
-    app:scale_left="250"
-    app:scale_top="300"/>
- <ImageButton
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:src="@drawable/plus"
-     android:onClick="profileonClick"
-     app:scale_width="150"
-     app:scale_height="150"
-     app:scale_left="630"
-     app:scale_top="600"
-     android:background="@android:color/transparent"
-     />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/circle"
+            app:scale_height="500"
+            app:scale_left="250"
+            app:scale_top="300"
+            app:scale_width="500" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:onClick="profileonClick"
+            android:src="@drawable/plus"
+            app:scale_height="150"
+            app:scale_left="630"
+            app:scale_top="600"
+            app:scale_width="150" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -53,58 +54,57 @@
         </ScrollView>
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        app:scale_base_width="600"
         app:scale_base_height="100"
-        >
+        app:scale_base_width="600">
 
         <ImageButton
             android:id="@+id/ib_drawer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/memu1"
             android:background="@android:color/transparent"
             android:onClick="sideButtonClicked"
-            app:scale_width="100"
+            android:scaleType="fitXY"
+            android:src="@drawable/memu1"
             app:scale_height="100"
             app:scale_left="10"
             app:scale_top="5"
-            />
+            app:scale_width="100" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            app:scale_top="20"
-            app:scale_width="240"
-            app:scale_left = "190"
+            app:scale_left="190"
             app:scale_textsize="60"
-            />
+            app:scale_top="20"
+            app:scale_width="240" />
+
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/main_mypage"
-            android:onClick="mypageonClicked"
             android:background="@android:color/transparent"
-            app:scale_width="100"
+            android:onClick="mypageonClicked"
+            android:src="@drawable/main_mypage"
             app:scale_height="100"
             app:scale_left="500"
             app:scale_top="5"
+            app:scale_width="100"
 
             />
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/navigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:id="@+id/navigation"
         android:background="#14C7FF"
         app:menu="@menu/main_drawer_menu">
 

@@ -8,31 +8,55 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by dsm2016 on 2017-07-10.
  */
 
-public class FogetidActivity extends AppCompatActivity{
-   public static Activity fogetidActivity;
+public class FogetidActivity extends AppCompatActivity {
+    public static Activity fogetidActivity;
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_forgetid);
         fogetidActivity = this;
-        Spinner spinner = (Spinner) findViewById(R.id.eamil2);
-        String text=spinner.getSelectedItem().toString();
+        final Spinner spinner = (Spinner) findViewById(R.id.email2);
+        final EditText tv = (EditText) findViewById(R.id.email3);
+        final TextView v=(TextView)findViewById(R.id.email_view);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tv.setText(spinner.getItemAtPosition(position).toString());
+                v.setText(spinner.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+       /* String text=spinner.getSelectedItem().toString();
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.planets_array,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new MyOnltemSelectdListener());
-    }
+        spinner.setAdapter(adapter);*/
 
-    private class MyOnltemSelectdListener implements android.widget.AdapterView.OnItemSelectedListener {
+    }
+}
+
+    /*private class MyOnltemSelectdListener implements android.widget.AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+           Toast.makeText(
+                    parent.getContext(),
+            "The planet is"+parent.getItemAtPosition(position).toString(),
+            Toast.LENGTH_LONG).show();
+
             Log.d("gkgk","gkgk");
 
         }
@@ -42,4 +66,4 @@ public class FogetidActivity extends AppCompatActivity{
 
         }
     }
-}
+}*/

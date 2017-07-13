@@ -1,5 +1,6 @@
 package com.signme.signme;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     // 마이페이지 선택시
                     case R.id.nav_mypage:
-
+                        Intent  mypage_btn=new Intent(getApplicationContext(),MypageActivity.class);
+                        startActivity(mypage_btn);
                         break;
                     // 신청서 일정 선택시
                     case R.id.nav_schedule :
@@ -95,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
     public void mypageButtonClicked(View view) {
         Log.d(getLocalClassName(), "mypageButtonClicked: ");
     }
-    public void profileonClick(View view){}
+    public void profileonClick(View view){
+
+    }
 
 }
