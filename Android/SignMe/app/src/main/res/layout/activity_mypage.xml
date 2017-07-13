@@ -54,17 +54,17 @@
             app:scale_left="100"
             app:scale_top="30"
             app:scale_width="200" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="ooo고등학교 홍길동님"
             android:textColor="@color/black"
-            app:scale_width="200"
-            app:scale_textsize="15"
             app:scale_height="40"
-            app:scale_top="250"
             app:scale_left="150"
-            />
+            app:scale_textsize="15"
+            app:scale_top="250"
+            app:scale_width="200" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
@@ -79,10 +79,10 @@
             android:text="개인정보 변경"
             android:textColor="#95989A"
             app:scale_height="40"
-            app:scale_width="150"
             app:scale_left="40"
             app:scale_textsize="20"
-            app:scale_top="50" />
+            app:scale_top="50"
+            app:scale_width="150" />
 
         <TextView
             android:layout_width="match_parent"
@@ -90,21 +90,22 @@
             android:text="신청서 수정"
             android:textColor="#95989A"
             app:scale_height="40"
-            app:scale_width="150"
             app:scale_left="40"
             app:scale_textsize="20"
-            app:scale_top="150" />
+            app:scale_top="150"
+            app:scale_width="150" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/black"
             android:text="개인정보 변경하기"
+            android:textColor="@color/black"
             app:scale_height="40"
             app:scale_left="45"
             app:scale_textsize="20"
             app:scale_top="85"
-            app:scale_width="300"/>
+            app:scale_width="300" />
+
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
@@ -121,13 +122,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/black"
             android:text="최근 신청한 신청서 목록"
+            android:textColor="@color/black"
             app:scale_height="40"
             app:scale_left="45"
             app:scale_textsize="20"
             app:scale_top="185"
-            app:scale_width="300"/>
+            app:scale_width="300" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"

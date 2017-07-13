@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
@@ -16,9 +16,9 @@
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:scale_base_width="400"
+        android:background="@color/white"
         app:scale_base_height="105"
-        android:background="@color/white">
+        app:scale_base_width="400">
 
         <TextView
 
@@ -40,10 +40,10 @@
         app:scale_base_width="400">
 
         <Button
-            android:background="@null"
             android:id="@+id/skip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:text="SKIP>"
             android:textColor="#95989A"
             android:textStyle="bold"
@@ -58,7 +58,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         app:scale_base_height="100"
-        app:scale_base_width="1000" >
+        app:scale_base_width="1000">
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 

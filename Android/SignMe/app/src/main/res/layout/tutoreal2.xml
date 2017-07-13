@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:scale_base_height="460"
-        app:scale_base_width="400" >
+        app:scale_base_width="400">
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
@@ -32,11 +32,11 @@
             app:scale_textsize="20"
             app:scale_width="400" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:scale_base_width="1600"
+        android:background="@color/white"
         app:scale_base_height="100"
-        android:background="@color/white">
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+        app:scale_base_width="1600"></com.ssomai.android.scalablelayout.ScalableLayout>
 </LinearLayout>

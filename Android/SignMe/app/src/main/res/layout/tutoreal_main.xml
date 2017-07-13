@@ -4,99 +4,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:scale_base_width="1000"
+        android:background="@color/white"
         app:scale_base_height="1500"
-        android:background="@color/white">
+        app:scale_base_width="1000">
+
         <ViewFlipper
             android:id="@+id/flipper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:scale_width="1000"
-            app:scale_height="1500">
+            app:scale_height="1500"
+            app:scale_width="1000">
 
         </ViewFlipper>
     </com.ssomai.android.scalablelayout.ScalableLayout>
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:scale_base_width="1000"
+        android:background="@color/white"
         app:scale_base_height="100"
-        android:background="@color/white">
+        app:scale_base_width="1000">
+
         <ImageView
             android:id="@+id/imgIndex1"
-            android:src="@drawable/white"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:scale_width="100"
+            android:padding="10dp"
+            android:src="@drawable/white"
             app:scale_height="100"
-            app:scale_left="100"/>
+            app:scale_left="100"
+            app:scale_width="100" />
+
         <ImageView
             android:id="@+id/imgIndex2"
-            android:src="@drawable/white"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:scale_width="100"
+            android:padding="10dp"
+            android:src="@drawable/white"
             app:scale_height="100"
-            app:scale_left="200"/>
+            app:scale_left="200"
+            app:scale_width="100" />
+
         <ImageView
             android:id="@+id/imgIndex3"
-            android:src="@drawable/white"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:scale_width="100"
+            android:padding="10dp"
+            android:src="@drawable/white"
             app:scale_height="100"
-            app:scale_left="300"/>
+            app:scale_left="300"
+            app:scale_width="100" />
+
         <ImageView
             android:id="@+id/imgIndex4"
-            android:src="@drawable/white"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:scale_width="100"
+            android:padding="10dp"
+            android:src="@drawable/white"
             app:scale_height="100"
-            app:scale_left="400"/>
+            app:scale_left="400"
+            app:scale_width="100" />
+
         <ImageView
             android:id="@+id/imgIndex5"
-            android:src="@drawable/white"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/white"
+            app:scale_height="100"
             app:scale_left="500"
-            app:scale_width="100"
-            app:scale_height="100"/>
+            app:scale_width="100" />
+
         <ImageView
             android:id="@+id/imgIndex6"
-            android:src="@drawable/white"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/white"
+            app:scale_height="100"
             app:scale_left="600"
-            app:scale_width="100"
-            app:scale_height="100"/>
+            app:scale_width="100" />
+
         <ImageView
             android:id="@+id/imgIndex7"
-            android:src="@drawable/white"
-            app:scale_width="100"
-            app:scale_height="100"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:scale_left="700"/>
+            android:padding="10dp"
+            android:src="@drawable/white"
+            app:scale_height="100"
+            app:scale_left="700"
+            app:scale_width="100" />
+
         <ImageView
             android:id="@+id/imgIndex8"
-            android:src="@drawable/white"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/white"
+            app:scale_height="100"
             app:scale_left="800"
-            app:scale_width="100"
-            app:scale_height="100"/>
+            app:scale_width="100" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 </LinearLayout>

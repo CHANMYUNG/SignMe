@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    >
+    android:orientation="vertical">
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
@@ -31,6 +30,41 @@
             app:scale_top="50"
             app:scale_width="120" />
 
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:onClick="closeonClick"
+            android:src="@drawable/close"
+            app:scale_height="10"
+            app:scale_left="325"
+            app:scale_top="80"
+            app:scale_width="10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 찾기"
+            android:textColor="#95989A"
+            app:scale_height="25"
+            app:scale_left="240"
+            app:scale_textsize="15"
+            app:scale_top="75"
+            app:scale_width="80" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:onClick="fogetidonClick"
+            android:text="아이디 찾기"
+            android:textColor="#95989A"
+            app:scale_height="25"
+            app:scale_left="115"
+            app:scale_textsize="15"
+            app:scale_top="70"
+            app:scale_width="80" />
+
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
@@ -46,7 +80,7 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="20"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="5"
             app:scale_width="300" />
 
@@ -57,7 +91,7 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="20"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="30"
             app:scale_width="300" />
 
@@ -68,7 +102,7 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="20"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="110"
             app:scale_width="100" />
 
@@ -81,7 +115,7 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray"
             app:scale_height="35"
-            app:scale_left="70"
+            app:scale_left="80"
             app:scale_textsize="15"
             app:scale_top="100"
             app:scale_width="170" />
@@ -94,7 +128,7 @@
             android:text="확인"
             android:textColor="#95989A"
             app:scale_height="35"
-            app:scale_left="250"
+            app:scale_left="260"
             app:scale_textsize="20"
             app:scale_top="100"
             app:scale_width="70" />
@@ -106,21 +140,9 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="20"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="180"
             app:scale_width="100" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape2"
-            android:text="인증번호 전송"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="70"
-            app:scale_textsize="20"
-            app:scale_top="170"
-            app:scale_width="80" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -133,24 +155,14 @@
             app:scale_top="220"
             app:scale_width="100" />
 
-        <TextView
-            android:id="@+id/email_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="--이메일입력--"
-            android:textColor="#000"
-            app:scale_height="35"
-            app:scale_left="250"
-            app:scale_textsize="15"
-            app:scale_top="270"
-            app:scale_width="150" />
+
         <Spinner
             android:id="@+id/email2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle"
-            android:entries="@array/planets_array"
             android:drawSelectorOnTop="true"
+            android:entries="@array/planets_array"
             app:scale_height="35"
             app:scale_left="240"
             app:scale_textsize="15"
@@ -171,6 +183,15 @@
             app:scale_top="210"
             app:scale_width="150" />
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/down"
+            app:scale_height="20"
+            app:scale_left="360"
+            app:scale_top="265"
+            app:scale_width="20" />
+
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
@@ -179,7 +200,7 @@
             android:text="확인"
             android:textColor="#95989A"
             app:scale_height="35"
-            app:scale_left="300"
+            app:scale_left="320"
             app:scale_textsize="20"
             app:scale_top="310"
             app:scale_width="70" />
@@ -190,8 +211,8 @@
             android:text="이메일 인증\n\t번호 확인"
             android:textColor="#95989A"
             app:scale_left="20"
-            app:scale_textsize="15"
-            app:scale_top="310" />
+            app:scale_textsize="20"
+            app:scale_top="300" />
 
         <EditText
             android:id="@+id/emailcode"
@@ -202,7 +223,7 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray"
             app:scale_height="35"
-            app:scale_left="100"
+            app:scale_left="120"
             app:scale_textsize="15"
             app:scale_top="310"
             app:scale_width="190" />
@@ -220,15 +241,27 @@
             app:scale_textsize="15"
             app:scale_top="210"
             app:scale_width="140" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape2"
+            android:text="인증번호 전송"
+            android:textColor="#95989A"
+            app:scale_height="30"
+            app:scale_left="80"
+            app:scale_textsize="10"
+            app:scale_top="175"
+            app:scale_width="80" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#33C5F3"
-        app:scale_base_width="400"
         app:scale_base_height="100"
-        >
+        app:scale_base_width="400">
 
         <TextView
             android:id="@+id/textView"

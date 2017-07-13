@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,22 +35,24 @@
             app:scale_top="25"
             app:scale_width="240" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:scale_base_height="90"
         app:scale_base_width="400">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="개인정보 변경"
-            android:textStyle="bold"
             android:textColor="#95989A"
+            android:textStyle="bold"
+            app:scale_height="40"
             app:scale_left="10"
             app:scale_textsize="20"
-            app:scale_height="40"
-            app:scale_width="120"
-            app:scale_top="55"/>
+            app:scale_top="55"
+            app:scale_width="120" />
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
@@ -58,6 +61,7 @@
         android:layout_height="wrap_content"
         app:scale_base_height="390"
         app:scale_base_width="400">
+
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
@@ -67,6 +71,7 @@
             app:scale_left="10"
             app:scale_top="5"
             app:scale_width="380" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -74,16 +79,17 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="18"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="50" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rectangle"
             android:textColor="#95989A"
-            app:scale_textsize="15"
             app:scale_height="35"
             app:scale_left="80"
+            app:scale_textsize="15"
             app:scale_top="40"
             app:scale_width="300" />
 
@@ -92,9 +98,9 @@
             android:layout_height="match_parent"
             android:background="@drawable/rectangle"
             android:textColor="#95989A"
-            app:scale_textsize="15"
             app:scale_height="35"
             app:scale_left="80"
+            app:scale_textsize="15"
             app:scale_top="110"
             app:scale_width="300" />
 
@@ -105,7 +111,7 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="18"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="120" />
 
         <EditText
@@ -113,9 +119,9 @@
             android:layout_height="match_parent"
             android:background="@drawable/rectangle"
             android:textColor="#95989A"
-            app:scale_textsize="15"
             app:scale_height="35"
             app:scale_left="80"
+            app:scale_textsize="15"
             app:scale_top="180"
             app:scale_width="300" />
 
@@ -126,7 +132,7 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="18"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="190" />
 
         <EditText
@@ -134,9 +140,9 @@
             android:layout_height="match_parent"
             android:background="@drawable/rectangle"
             android:textColor="#95989A"
-            app:scale_textsize="15"
             app:scale_height="35"
             app:scale_left="130"
+            app:scale_textsize="15"
             app:scale_top="250"
             app:scale_width="250" />
 
@@ -147,7 +153,7 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="18"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="260" />
 
         <TextView
@@ -157,9 +163,8 @@
             android:textColor="#95989A"
             app:scale_height="30"
             app:scale_left="18"
-            app:scale_textsize="15"
+            app:scale_textsize="20"
             app:scale_top="330" />
-
 
 
         <EditText
@@ -168,9 +173,9 @@
             android:layout_height="match_parent"
             android:background="@drawable/rectangle"
             android:textColor="#95989A"
-            app:scale_textsize="15"
             app:scale_height="35"
             app:scale_left="130"
+            app:scale_textsize="15"
             app:scale_top="320"
             app:scale_width="250" />
 
@@ -181,17 +186,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:scale_base_height="95"
-        app:scale_base_width="400" >
+        app:scale_base_width="400">
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#33C5F3"
             android:text="수정하기"
             android:textColor="@color/white"
-            android:background="#33C5F3"
             app:scale_height="60"
-            app:scale_width="380"
             app:scale_left="10"
             app:scale_textsize="40"
-            app:scale_top="15"/>
+            app:scale_top="15"
+            app:scale_width="380" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 </LinearLayout>

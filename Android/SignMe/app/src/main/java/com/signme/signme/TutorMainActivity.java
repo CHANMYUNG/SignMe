@@ -27,7 +27,7 @@ public class TutorMainActivity extends AppCompatActivity implements ViewFlipperA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutoreal_main);
-        tutorMainActivity=this;
+        tutorMainActivity = this;
         flipper = (ViewFlipper) findViewById(R.id.flipper);
         ImageView index1 = (ImageView) findViewById(R.id.imgIndex1);
         ImageView index2 = (ImageView) findViewById(R.id.imgIndex2);

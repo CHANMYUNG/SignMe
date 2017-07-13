@@ -18,14 +18,16 @@ public class MypageActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
-        mypageActivity=this;
+        mypageActivity = this;
 
     }
-    public void mypageonClick1(View view){
-    Intent intent=new Intent(getApplicationContext(),ModifyActivity.class);
-     startActivity(intent);
+
+    public void mypageonClick1(View view) {
+        Intent intent = new Intent(getApplicationContext(), ModifyActivity.class);
+        startActivity(intent);
     }
-    public void backonClick(View view){
+
+    public void backonClick(View view) {
         MypageActivity.mypageActivity.finish();
         finish();
     }

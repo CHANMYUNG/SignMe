@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    app:scale_base_width="1000"
     app:scale_base_height="1000"
-    >
+    app:scale_base_width="1000">
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
@@ -55,8 +54,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:scale_base_height="150"
-        app:scale_base_width="400"
-        >
+        app:scale_base_width="400">
 
         <ImageView
             android:id="@+id/imageView"
@@ -68,7 +66,8 @@
             app:scale_width="300" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
-  \
+    \
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -143,6 +142,7 @@
             app:scale_top="70"
             app:scale_width="500" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
+
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,12 +151,12 @@
         app:scale_base_width="580">
 
         <Button
-            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@null"
+            android:onClick="goRegisterClicked"
             android:text="회원이 아니신가요?"
             android:textColor="@color/black"
-            android:onClick="goRegisterClicked"
             app:scale_height="50"
             app:scale_left="60"
             app:scale_textsize="25"
@@ -167,17 +167,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/slash"
+            app:scale_height="80"
             app:scale_left="260"
             app:scale_top="15"
-            app:scale_width="80"
-            app:scale_height="80"/>
+            app:scale_width="80" />
 
         <Button
-            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID/PW 찾기"
+            android:background="@null"
             android:onClick="goForgetClicked"
+            android:text="ID/PW 찾기"
             android:textColor="@color/black"
             app:scale_height="50"
             app:scale_left="320"

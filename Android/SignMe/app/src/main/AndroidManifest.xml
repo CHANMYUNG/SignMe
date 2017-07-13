@@ -21,9 +21,12 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".TutorMainActivity"></activity>
         <activity android:name=".FogetidActivity"></activity>
+        <activity android:name=".FogetpwActivity"></activity>
         <activity android:name=".MypageActivity"></activity>
         <activity android:name=".ModifyActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>

@@ -12,20 +12,23 @@
         app:scale_base_height="1600"
         app:scale_base_width="1000">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/circle"
+            android:background="@drawable/circle"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
             app:scale_height="500"
             app:scale_left="250"
             app:scale_top="300"
             app:scale_width="500" />
 
         <ImageButton
+            android:id="@+id/profilebtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:onClick="profileonClick"
             android:src="@drawable/plus"
             app:scale_height="150"
             app:scale_left="630"

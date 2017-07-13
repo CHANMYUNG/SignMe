@@ -29,5 +29,8 @@ dependencies {
     compile 'com.ssomai:android.scalablelayout:2.1.1'
     compile 'com.googlecode.android-query:android-query:0.25.9'
     testCompile 'junit:junit:4.12'
+    //noinspection GradleCompatible
     compile 'com.android.support:design:26.0.0-alpha1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
 }
