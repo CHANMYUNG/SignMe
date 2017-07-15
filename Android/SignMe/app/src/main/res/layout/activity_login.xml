@@ -66,7 +66,7 @@
             app:scale_width="300" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
-    \
+
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
@@ -129,6 +129,7 @@
 
         <EditText
             android:id="@+id/idField"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape"

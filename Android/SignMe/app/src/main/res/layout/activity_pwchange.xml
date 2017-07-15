@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33C5F3"
+        app:scale_base_height="100"
+        app:scale_base_width="600">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 변경"
+            android:textColor="@color/white"
+            app:scale_left="200"
+            app:scale_textsize="45"
+            app:scale_top="25"
+            app:scale_width="300" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_height="wrap_content"
+        app:scale_base_width="400"
+        app:scale_base_height="460"
+        android:background="@color/white"
+        android:layout_width="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle_blue"
+            app:scale_height="400"
+            app:scale_left="10"
+            app:scale_top="50"
+            app:scale_width="380" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="비밀번호 입력"
+            android:textColor="#95989A"
+            app:scale_textsize="20"
+            app:scale_left="60"
+            app:scale_top="170"
+            app:scale_width="150"
+            app:scale_height="40"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangle"
+            android:inputType="textPassword"
+            app:scale_width="280"
+            app:scale_height="30"
+            app:scale_left="60"
+            app:scale_top="200"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="비밀번호 재입력"
+            android:textColor="#95989A"
+            app:scale_textsize="20"
+            app:scale_left="60"
+            app:scale_top="250"
+            app:scale_width="150"
+            app:scale_height="40"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangle"
+            android:inputType="textPassword"
+            app:scale_width="280"
+            app:scale_height="30"
+            app:scale_left="60"
+            app:scale_top="280"/>
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_height="95"
+        app:scale_base_width="400">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33C5F3"
+            android:text="변경 완료"
+            android:textColor="@color/white"
+            app:scale_height="60"
+            app:scale_left="10"
+            app:scale_textsize="40"
+            app:scale_top="25"
+            app:scale_width="380" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+</LinearLayout>

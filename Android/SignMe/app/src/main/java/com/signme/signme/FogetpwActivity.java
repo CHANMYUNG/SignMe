@@ -1,10 +1,12 @@
 package com.signme.signme;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,12 +14,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.androidquery.AQuery;
+
 /**
  * Created by dsm2016 on 2017-07-12.
  */
 
 public class FogetpwActivity extends AppCompatActivity {
     public static Activity fogetpwActivity;
+    public static final String url = "http://13.124.15.202:80/";
+    AQuery aquery;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,4 +58,23 @@ public class FogetpwActivity extends AppCompatActivity {
         FogetpwActivity.fogetpwActivity.finish();
         finish();
     }
+    public  void idcheckonClick(View view){
+        aquery = new AQuery(getApplicationContext());
+        EditText idfiled=(EditText)findViewById(R.id.user_id);
+        //EditText emailfield1=(EditText)findViewById(R.id.email);
+       // EditText emailfield2=(EditText)findViewById(R.id.email3);
+        String id=idfiled.getText().toString();
+        //String email1=emailfield1.getText().toString();
+       // String email2=emailfield2.getText().toString();
+        if(id.trim().equals("")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(FogetpwActivity.this);
+            Dialog dialog = builder.setMessage("아이디를 입력해주세요.").setPositiveButton("OK", null).create();
+            dialog.show();
+        }
+    }
+    public  void pwchangeonClick(View view){
+        Intent intent =new Intent(getApplicationContext(),PwchangeActivity.class);
+        startActivity(intent);
+    }
+
 }

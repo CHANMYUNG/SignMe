@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
         } else if (id.contains(" ") || password.contains(" ")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-            Dialog dialog = builder.setMessage("아이디나 비밀번호엔 공백이 포함될 수 없습니다").setPositiveButton("OK", null).create();
+            Dialog dialog = builder.setMessage("아이디나 비밀번호에는 공백이 포함될 수 없습니다").setPositiveButton("OK", null).create();
             dialog.show();
 
         } else {

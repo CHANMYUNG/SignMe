@@ -24,6 +24,7 @@
         <activity android:name=".FogetpwActivity"></activity>
         <activity android:name=".MypageActivity"></activity>
         <activity android:name=".ModifyActivity"></activity>
+        <activity android:name=".PwchangeActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>

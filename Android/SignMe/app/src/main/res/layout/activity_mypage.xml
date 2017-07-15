@@ -134,7 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rectangle"
-            android:onClick="mypageonClick1"
+            android:onClick="mypageonClick2"
             android:textColor="@color/black"
             app:scale_height="40"
             app:scale_left="40"

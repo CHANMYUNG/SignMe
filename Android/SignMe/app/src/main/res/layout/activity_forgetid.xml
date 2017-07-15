@@ -13,20 +13,31 @@
         app:scale_base_width="400">
 
         <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/line3"
+            app:scale_height="100"
+            app:scale_left="280"
+            app:scale_top="47"
+            app:scale_width="120"
+
+            />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/chooese"
+            android:src="@drawable/box"
             app:scale_height="60"
-            app:scale_left="110"
+            app:scale_left="160"
             app:scale_top="50"
             app:scale_width="120" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/chooese"
+            android:src="@drawable/box"
             app:scale_height="60"
-            app:scale_left="230"
+            app:scale_left="280"
             app:scale_top="50"
             app:scale_width="120" />
 
@@ -37,7 +48,7 @@
             android:onClick="closeonClick"
             android:src="@drawable/close"
             app:scale_height="10"
-            app:scale_left="200"
+            app:scale_left="250"
             app:scale_top="80"
             app:scale_width="10" />
 
@@ -49,7 +60,7 @@
             android:text="비밀번호 찾기"
             android:textColor="#95989A"
             app:scale_height="25"
-            app:scale_left="240"
+            app:scale_left="290"
             app:scale_textsize="15"
             app:scale_top="70"
             app:scale_width="80" />
@@ -60,10 +71,19 @@
             android:text="아이디 찾기"
             android:textColor="#95989A"
             app:scale_height="25"
-            app:scale_left="130"
+            app:scale_left="180"
             app:scale_textsize="15"
             app:scale_top="75"
             app:scale_width="80" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/line3"
+            app:scale_height="100"
+            app:scale_top="47"
+            app:scale_width="160" />
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
@@ -97,6 +117,7 @@
 
         <EditText
             android:id="@+id/name"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle"
@@ -121,6 +142,7 @@
             app:scale_width="100" />
 
         <TextView
+            android:id="@+id/email_whelk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="\@"
@@ -147,6 +169,7 @@
 
         <EditText
             android:id="@+id/email3"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle"
@@ -172,6 +195,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape"
+            android:onClick="fogetidcheck"
             android:text="확인"
             android:textColor="#95989A"
             app:scale_height="35"
@@ -184,6 +208,7 @@
 
         <EditText
             android:id="@+id/email"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle"
