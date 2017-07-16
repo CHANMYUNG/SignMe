@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>mypage</title>
+        <title>list</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
        
         <link rel="stylesheet" type="text/css" href="../css/main.css">
         <link rel="stylesheet" type="text/css" href="../css/list.css">
-        <script src="jquery-3.2.1.min.js"></script>s
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        
+        <script src="../jquery-3.2.1.js"></script>
     </head>
     <body>
         <script>
             function clicklink(link){
                 $('.g_a_a_a_b_l_li').css('text-decoration','none');
                 $(link).css('text-decoration','underline');
+            }
+            function dropdown(){
+                
             }
         </script>
         <div id="main">
@@ -46,17 +48,17 @@
                                <input type="text" id="g_a_a_b_s_s_inputbox" value="검색어를 입력하세요.">
                                <input type="button" id="g_a_a_b_s_s_icon" value="">
                            </div>
-                           <div id="g_a_a_b_s_checkbox">
-                               <a href="" id="g_a_a_b_s_ch_a">
+                           <div id="g_a_a_b_s_checkbox" >
+                               <a href="#" id="g_a_a_b_s_ch_a" onclick="dropdown()">
                                    <span id="g_a_a_b_s_ch_span">전체 선생님</span>
-                                   <span id="g_a_a_b_s_ch_icon"></span>
+                                   <span class="caret" id="g_a_a_b_s_ch_icon"></span>
                                </a>
                                <ul id="g_a_a_b_s_ch_list">
-                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li1"><a href="">자바선생님</a></a></li>
-                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li2"><a href="">미술선생님</a></a></li>
-                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li3"><a href="">음악선생님</a></a></li>
-                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li4"><a href="">라면선생님</a></a></li>
-                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li5"><a href="">먹고선생님</a></a></li> 
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li1"><a href="#">자바선생님</a></a></li>
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li2"><a href="#">미술선생님</a></a></li>
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li3"><a href="#">음악선생님</a></a></li>
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li4"><a href="#">라면선생님</a></a></li>
+                                   <li class="g_a_a_b_s_ch_list_li" id="g_a_a_b_s_ch_list_li5"><a href="#">먹고선생님</a></a></li> 
                                </ul>
                            </div>
                        </div>
