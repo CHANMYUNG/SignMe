@@ -29,14 +29,15 @@ public class MypageActivity extends AppCompatActivity {
     }
 
     public void mypageonClick1(View view) {
-        Context mContext=getApplicationContext();
-        LayoutInflater inflater=(LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout=inflater.inflate(R.layout.pw_dialog,(ViewGroup)findViewById(R.id.layout_root));
-        AlertDialog.Builder aDialog=new AlertDialog.Builder(MypageActivity.this);
+        Context mContext = getApplicationContext();
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.pw_dialog, (ViewGroup) findViewById(R.id.layout_root));
+        AlertDialog.Builder aDialog = new AlertDialog.Builder(MypageActivity.this);
         aDialog.setTitle("비밀번호 입력");
         aDialog.setView(layout);
 
-        aDialog.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+        aDialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -44,10 +45,8 @@ public class MypageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        AlertDialog ad=aDialog.create();
+        AlertDialog ad = aDialog.create();
         ad.show();
-
-
 
 
     }

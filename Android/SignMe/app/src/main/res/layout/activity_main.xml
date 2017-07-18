@@ -35,26 +35,22 @@
             app:scale_top="600"
             app:scale_width="150" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:scale_height="600"
-
-            app:scale_top="1000"
-            app:scale_width="1000">
 
             <ListView
                 android:id="@+id/alarm_listview"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fastScrollEnabled="true"
+                app:scale_width="1000"
+                app:scale_height="400"
+                app:scale_top="1200"
                 android:listSelector="@drawable/listview_selector"
                 android:transcriptMode="alwaysScroll">
 
             </ListView>
 
 
-        </ScrollView>
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 

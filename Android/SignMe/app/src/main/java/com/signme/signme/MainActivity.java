@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -35,7 +37,18 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //리스트 뷰
+        ListView listView;
+        ListViewAdapter adapter;
 
+        adapter=new ListViewAdapter();
+
+        listView=(ListView)findViewById(R.id.alarm_listview);
+        listView.setAdapter(adapter);
+        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.text),"\n새로운 가정통신문",ContextCompat.getDrawable(this,R.drawable.right));
+        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.chat),"\n새로운 메세지",ContextCompat.getDrawable(this,R.drawable.right));
+        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.calander),"\n새로운 일정",ContextCompat.getDrawable(this,R.drawable.right));
+        //네비게이션 바
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
         ImageButton drawerIB = (ImageButton) findViewById(R.id.ib_drawer);
         drawerIB.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +114,8 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
     }
 
     private void doTakeAlbumAction() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
+
+          Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
         startActivityForResult(intent, PICK_FROM_ALBUM);
     }
@@ -204,5 +218,6 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
         Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
         startActivity(intent);
     }
+
 
 }
