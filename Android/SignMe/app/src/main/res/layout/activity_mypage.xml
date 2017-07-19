@@ -46,14 +46,13 @@
         app:scale_base_width="400">
 
         <ImageView
-            android:id="@+id/profile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/shape2"
-            app:scale_height="200"
-            app:scale_left="100"
-            app:scale_top="30"
-            app:scale_width="200" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line3"
+            android:background="@android:color/transparent"
+            app:scale_height="100"
+            app:scale_width="400"
+            app:scale_top="250"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -64,6 +63,17 @@
             app:scale_left="150"
             app:scale_textsize="15"
             app:scale_top="250"
+            app:scale_width="200" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/mypage_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape2"
+            app:civ_border_width="2dp"
+            app:scale_height="200"
+            app:scale_left="100"
+            app:scale_top="30"
             app:scale_width="200" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 

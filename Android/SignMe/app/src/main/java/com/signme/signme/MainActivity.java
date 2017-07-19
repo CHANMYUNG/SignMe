@@ -30,6 +30,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
 
     private Uri mImageCoptureUri;
     private ImageView mPhotoImgeView;
+    private ImageButton mypagebtn;
     private ImageButton mButton;
     private long pressedTime;
 
@@ -100,6 +101,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
         });
         mButton = (ImageButton) findViewById(R.id.profilebtn);
         mPhotoImgeView = (ImageView) findViewById(R.id.profile);
+        mypagebtn=(ImageButton) findViewById(R.id.mypagebtn);
         mButton.setOnClickListener(this);
     }
 
@@ -132,6 +134,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
                 if (extras != null) {
                     Bitmap photo = extras.getParcelable("data");
                     mPhotoImgeView.setImageBitmap(photo);
+                    mypagebtn.setImageBitmap(photo);
                 }
                 File f = new File(mImageCoptureUri.getPath());
                 if (f.exists()) {

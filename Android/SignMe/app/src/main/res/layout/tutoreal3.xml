@@ -9,16 +9,8 @@
         android:layout_height="wrap_content"
         app:scale_base_width="400"
         app:scale_base_height="640"
-        android:background="@color/white">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="tutoreal3"
-            android:textColor="@color/black"
-            app:scale_textsize="30"
-            app:scale_height="100"
-            app:scale_width="150"
-            />
+        android:background="@drawable/background">
+
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
 </LinearLayout>

@@ -85,15 +85,15 @@
             app:scale_width="240" />
 
         <ImageButton
+            android:id="@+id/mypagebtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@drawable/main_mypage"
             android:onClick="mypageonClicked"
-            android:src="@drawable/main_mypage"
-            app:scale_height="100"
-            app:scale_left="500"
-            app:scale_top="5"
-            app:scale_width="100"
+            app:scale_height="50"
+            app:scale_left="520"
+            app:scale_top="25"
+            app:scale_width="50"
 
             />
 

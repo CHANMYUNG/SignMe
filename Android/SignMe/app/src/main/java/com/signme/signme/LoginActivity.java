@@ -16,6 +16,8 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by NooHeat on 11/06/2017.
@@ -45,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         String id = idField.getText().toString();
         String password = passwordField.getText().toString();
 
-        if ((id.trim().equals("") || password.trim().equals(""))) {
+         if ((id.trim().equals("") || password.trim().equals(""))) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
             Dialog dialog = builder.setMessage("아이디와 비밀번호는 반드시 입력해주세요.").setPositiveButton("OK", null).create();
             dialog.show();
