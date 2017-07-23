@@ -1,5 +1,6 @@
 package com.nooheat.util;
 
+import com.mysql.cj.api.mysqla.result.Resultset;
 import com.nooheat.database.DBManager;
 import com.nooheat.secure.AES256;
 import io.vertx.ext.web.Cookie;
@@ -19,9 +20,23 @@ public class SessionManager {
 
     public static void createSession(RoutingContext context, String id, String sessionKey) {
         context.session().put("key", sessionKey);
-        DBManager.update("update account set sessionKey = ? where id = ?", sessionKey, id);
+        DBManager.update("update user set sessionKey = ? where id = ?", sessionKey, id);
     }
 
+    public static String createUUID() {
+        String uid = null;
+        while (true) {
+            uid = UUID.randomUUID().toString();
+            ResultSet userRs = DBManager.execute("SELECT COUNT(*) FROM USER WHERE sessionKey = ?", uid);
+            ResultSet adminRs = DBManager.execute("SELECT COUNT(*) FROM ADMIN WHERE sessionKey = ?", uid);
+            try {
+                if (userRs.getInt(0) == 0 && adminRs.getInt(0) == 0) break;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return uid;
+    }
 
     public static String getSessionkey(RoutingContext context, String key) {
         String sessionKey = null;
@@ -54,7 +69,7 @@ public class SessionManager {
 
     public static boolean isSessionKeyExist(RoutingContext context, String key) throws SQLException {
 
-        ResultSet rs = DBManager.excute("select (*) from account where sessionKey = ?", AES256.encrypt(key));
+        ResultSet rs = DBManager.execute("select (*) from account where sessionKey = ?", AES256.encrypt(key));
 
         //if(rs.next())
         return true;

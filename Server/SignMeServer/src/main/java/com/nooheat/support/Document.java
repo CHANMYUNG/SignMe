@@ -7,15 +7,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by NooHeat on 10/07/2017.
  */
 public class Document {
+    private static String title = "SignMe-API-Document";
 
-    public static void makeDocument(String title, List<DocumentResource> documentResources) {
+    public static void makeDocument(List<DocumentResource> documentResources) {
         XSSFWorkbook document = new XSSFWorkbook();
         XSSFSheet sheet = document.createSheet("API");
 
@@ -48,9 +49,11 @@ public class Document {
             row.createCell(8).setCellValue(resource.failureCode);
             row.createCell(9).setCellValue(resource.etc);
         }
-
+        SimpleDateFormat formatter = new SimpleDateFormat("MMdd ", Locale.KOREA);
+        Date currentTime = new Date();
+        String formattedTime = formatter.format(currentTime);
         try {
-            document.write(new FileOutputStream(title+".xlsx"));
+            document.write(new FileOutputStream(/*formattedTime+" "+*/formattedTime + title + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

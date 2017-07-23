@@ -23,6 +23,5 @@ public class SessionCheck implements Handler<RoutingContext> {
         else{
             context.response().setStatusCode(200).end();
         }
-
     }
 }

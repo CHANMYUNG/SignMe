@@ -5,7 +5,7 @@ package com.nooheat.manager;
  */
 public class RequestManager {
 
-    public static boolean paramVaildationCheck(Object... params) {
+    public static boolean paramValidationCheck(Object... params) {
         for (Object param : params) {
             if (param == null) return false;
         }

@@ -25,10 +25,17 @@ public class UserManager {
         로그인 내부 로직 처리
          */
 
-        ResultSet rs = DBManager.excute("select id, password from account where id = ? and password = ?", AES256.encrypt(id), SHA256.encrypt(password));
+        ResultSet rs = DBManager.execute("select id, password from user where id = ? and password = ?", AES256.encrypt(id), SHA256.encrypt(password));
 
         if (rs.next()) return true;
 
         return false;
+    }
+
+    public static boolean createAccount(String uid, String id, String password, String email) {
+        int userAffectedRows = DBManager.update("UPDATE USER SET id = ?, password = ?, email = ? WHERE uid = ? AND id IS NULL AND password IS NULL", id, password, email, uid);
+        int adminAffectedRows = DBManager.update("UPDATE ADMIN SET id = ?, password = ?, email = ? WHERE uid = ? AND id IS NULL AND password IS NULL", id, password, email, uid);
+
+        return userAffectedRows + adminAffectedRows == 1;
     }
 }

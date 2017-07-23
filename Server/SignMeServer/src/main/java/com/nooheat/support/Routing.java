@@ -1,5 +1,7 @@
 package com.nooheat.support;
 
+import com.nooheat.secure.AES256;
+import com.nooheat.secure.SHA256;
 import io.vertx.core.Handler;
 import io.vertx.ext.web.Router;
 
@@ -54,8 +56,8 @@ public class Routing {
         }
 
         Collections.sort(documentResources);
-
-        Document.makeDocument("SignMe-API-Document",documentResources);
+        System.out.println(AES256.encrypt("yunth1228")+","+ SHA256.encrypt("xogns1228"));
+        Document.makeDocument(documentResources);
 
     }
 }

@@ -11,8 +11,6 @@ import com.nooheat.util.SessionManager;
 
 import com.oracle.tools.packager.Log;
 import com.sun.org.apache.xpath.internal.operations.Bool;
-import io.jsonwebtoken.Jwt;
-import io.jsonwebtoken.Jwts;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Cookie;
@@ -47,9 +45,9 @@ public class SignIn implements Handler<RoutingContext> {
 
 
         // 파라미터가 유효하지 않을 때 (null 일 때)
-        if (RequestManager.paramVaildationCheck(id, password, keepLogin) == false) {
+        if (RequestManager.paramValidationCheck(id, password, keepLogin) == false) {
             // 상태코드 400 반환 후 연결 해제
-            System.out.println("parameters not available");
+
             context.response().setStatusCode(400).end();
             context.response().close();
             return;
@@ -62,14 +60,15 @@ public class SignIn implements Handler<RoutingContext> {
                 if (keepLogin) {
 
                 }
-                SessionManager.createSession(context, AES256.encrypt(id), "sessionKey");
-                context.response().setStatusCode(201).end("Logined");
+
+                SessionManager.createSession(context, AES256.encrypt(id), SessionManager.createUUID());
+                context.response().setStatusCode(201).end();
             }
 
             // 실패시
             else {
-                // 상태코드 400 반환 후 연결 해제
-                context.response().setStatusCode(400).end("SignIn failed");
+                // 상태코드 400 반환 후 연결
+                context.response().setStatusCode(400).end();
             }
 
             // 처리과정에서 오류 발생
