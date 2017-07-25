@@ -38,4 +38,8 @@ public class UserManager {
 
         return userAffectedRows + adminAffectedRows == 1;
     }
+
+    public static boolean isAdmin(String uid){
+        return true;
+    }
 }

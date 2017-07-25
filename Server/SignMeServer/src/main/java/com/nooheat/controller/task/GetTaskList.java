@@ -16,7 +16,7 @@ import java.sql.SQLException;
 /**
  * Created by NooHeat on 24/07/2017.
  */
-@API(category = Category.TEST, summary = "일정", successCode = 200, failureCode = 400)
+@API(category = Category.TASK, summary = "일정 조회", successCode = 200, failureCode = 400)
 @URIMapping(uri="/task", method = HttpMethod.GET)
 public class GetTaskList implements Handler<RoutingContext>{
 

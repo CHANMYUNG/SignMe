@@ -19,23 +19,24 @@ import java.util.UUID;
 public class SessionManager {
 
     public static void createSession(RoutingContext context, String id, String sessionKey) {
-        context.session().put("key", sessionKey);
+        context.session().put("sessionKey", sessionKey);
         DBManager.update("update user set sessionKey = ? where id = ?", sessionKey, id);
     }
 
     public static String createUUID() {
-        String uid = null;
+        String uuid = null;
         while (true) {
-            uid = UUID.randomUUID().toString();
-            ResultSet userRs = DBManager.execute("SELECT COUNT(*) FROM USER WHERE sessionKey = ?", uid);
-            ResultSet adminRs = DBManager.execute("SELECT COUNT(*) FROM ADMIN WHERE sessionKey = ?", uid);
+            uuid = UUID.randomUUID().toString();
+            ResultSet userRs = DBManager.execute("SELECT * FROM USER WHERE sessionKey = ?", uuid);
+            ResultSet adminRs = DBManager.execute("SELECT * FROM ADMIN WHERE sessionKey = ?", uuid);
             try {
-                if (userRs.getInt(0) == 0 && adminRs.getInt(0) == 0) break;
+                if(!userRs.next() && !adminRs.next()) break;
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return uid;
+        return uuid;
     }
 
     public static String getSessionkey(RoutingContext context, String key) {
