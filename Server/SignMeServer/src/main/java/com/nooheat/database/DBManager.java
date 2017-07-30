@@ -22,7 +22,20 @@ public class DBManager {
         }
     }
 
-    public synchronized static ResultSet excute(String query, Object... param) {
+    public synchronized static ResultSet execute(String query) {
+        ResultSet rs = null;
+        System.out.println(query);
+        try {
+
+            rs = connection.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
+
+    public synchronized static ResultSet execute(String query, Object... param) {
         ResultSet rs = null;
 
         try {
