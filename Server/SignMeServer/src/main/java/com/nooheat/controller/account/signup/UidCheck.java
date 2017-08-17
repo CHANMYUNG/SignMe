@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * Created by NooHeat on 17/07/2017.
  */
 
-@URIMapping(uri = "/account/uid/check", method = HttpMethod.POST)
+@URIMapping(uri = "/account/uid/check", method = HttpMethod.GET)
 @API(category = Category.ACCOUNT, summary = "고유 키 검사", requestBody = "uid", response = "name : String, stuNum : String(Optional)", successCode = 200, failureCode = 400)
 public class UidCheck implements Handler<RoutingContext> {
     @Override

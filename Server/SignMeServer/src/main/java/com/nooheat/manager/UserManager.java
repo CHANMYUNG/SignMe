@@ -1,35 +1,36 @@
 package com.nooheat.manager;
 
-import com.mysql.cj.api.mysqla.result.Resultset;
 import com.nooheat.database.DBManager;
 import com.nooheat.secure.AES256;
 import com.nooheat.secure.SHA256;
-import com.nooheat.util.SessionManager;
 import io.vertx.ext.web.RoutingContext;
-import io.vertx.ext.web.Session;
-import io.vertx.ext.web.sstore.impl.SessionImpl;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.UUID;
 
 /**
  * Created by NooHeat on 18/06/2017.
  */
 public class UserManager {
 
-    public static boolean login(String id, String password) throws SQLException {
+    public static void login(RoutingContext context, String id, String password, String type) {
 
         /*
         로그인 내부 로직 처리
          */
 
-        ResultSet rs = DBManager.execute("select id, password from user where id = ? and password = ?", AES256.encrypt(id), SHA256.encrypt(password));
+        ResultSet rs = DBManager.execute("select * from " + type + " where id = ? and password = ?", AES256.encrypt(id), SHA256.encrypt(password));
 
-        if (rs.next()) return true;
+        boolean isAdmin = type.equals("admin");
 
-        return false;
+        try {
+
+            if (rs.next()) {
+                context.response().setStatusCode(201).end(JWTManager.createToken(rs.getString("uid"), rs.getString("name"), isAdmin));
+            } else context.response().setStatusCode(400).end();
+        } catch (Exception e) {
+            e.printStackTrace();
+            context.response().setStatusCode(500).end();
+        }
     }
 
     public static boolean createAccount(String uid, String id, String password, String email) {
@@ -39,7 +40,7 @@ public class UserManager {
         return userAffectedRows + adminAffectedRows == 1;
     }
 
-    public static boolean isAdmin(String uid){
+    public static boolean isAdmin(String uid) {
         return true;
     }
 }
