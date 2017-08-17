@@ -25,7 +25,7 @@ public class UserManager {
         try {
 
             if (rs.next()) {
-                context.response().setStatusCode(201).end(JWTManager.createToken(rs.getString("uid"), rs.getString("name"), isAdmin));
+                context.response().setStatusCode(201).end(JWT.createToken(rs.getString("uid"), rs.getString("name"), isAdmin));
             } else context.response().setStatusCode(400).end();
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,10 +34,10 @@ public class UserManager {
     }
 
     public static boolean createAccount(String uid, String id, String password, String email) {
-        int userAffectedRows = DBManager.update("UPDATE USER SET id = ?, password = ?, email = ? WHERE uid = ? AND id IS NULL AND password IS NULL", id, password, email, uid);
-        int adminAffectedRows = DBManager.update("UPDATE ADMIN SET id = ?, password = ?, email = ? WHERE uid = ? AND id IS NULL AND password IS NULL", id, password, email, uid);
+        int userAffectedRows = DBManager.update("UPDATE USER SET id = ?, password = ?, email = ? WHERE uid = ? AND id IS NULL AND password IS NULL", AES256.encrypt(id), SHA256.encrypt(password), email, uid);
+        int adminAffectedRows = DBManager.update("UPDATE ADMIN SET id = ?, password = ?, email = ? WHERE uid = ? AND id IS NULL AND password IS NULL", AES256.encrypt(id), SHA256.encrypt(password), email, uid);
 
-        return userAffectedRows + adminAffectedRows == 1;
+        return (userAffectedRows + adminAffectedRows) == 1;
     }
 
     public static boolean isAdmin(String uid) {

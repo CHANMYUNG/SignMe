@@ -21,7 +21,7 @@ import java.sql.SQLException;
 public class UidCheck implements Handler<RoutingContext> {
     @Override
     public void handle(RoutingContext context) {
-        String uid = context.request().getFormAttribute("uid");
+        String uid = context.request().getParam("uid");
 
         ResultSet userRs = DBManager.execute("SELECT * FROM USER WHERE uid = ? AND id IS NULL AND password IS NULL", uid);
         ResultSet adminRs = DBManager.execute("SELECT * FROM ADMIN WHERE uid = ? AND id IS NULL AND password IS NULL", uid);

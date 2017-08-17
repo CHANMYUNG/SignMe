@@ -1,6 +1,6 @@
 package com.nooheat.controller.account;
 
-import com.nooheat.manager.JWTManager;
+import com.nooheat.manager.JWT;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.support.URIMapping;
@@ -16,7 +16,7 @@ import io.vertx.ext.web.RoutingContext;
 public class TokenCheck implements Handler<RoutingContext> {
     @Override
     public void handle(RoutingContext context) {
-        if(!JWTManager.verify(context)){
+        if(JWT.verify(context) == null){
             context.response().setStatusCode(401).end();
             return;
         }

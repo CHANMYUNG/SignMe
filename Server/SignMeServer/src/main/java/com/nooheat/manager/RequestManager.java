@@ -7,7 +7,7 @@ public class RequestManager {
 
     public static boolean paramValidationCheck(Object... params) {
         for (Object param : params) {
-            if (param == null) return false;
+            if (param == null || param == "") return false;
         }
 
         return true;

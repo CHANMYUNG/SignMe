@@ -36,7 +36,6 @@ public class CoreVirticle extends AbstractVerticle {
 
         router.route().handler(BodyHandler.create().setUploadsDirectory("upload-files"));
         router.route().handler(CookieHandler.create());
-        router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
 
         Routing.route(router, "com.nooheat.controller");
         router.route().handler(StaticHandler.create());
