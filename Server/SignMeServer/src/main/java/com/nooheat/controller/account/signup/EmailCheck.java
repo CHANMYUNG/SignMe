@@ -15,7 +15,7 @@ import java.sql.SQLException;
 /**
  * Created by NooHeat on 24/07/2017.
  */
-@URIMapping(uri = "/account/email/check", method = HttpMethod.POST)
+@URIMapping(uri = "/account/email/check", method = HttpMethod.GET)
 @API(category = Category.ACCOUNT, summary = "이메일 중복 검사", requestBody = "email : String", successCode = 200, failureCode = 400)
 public class EmailCheck implements Handler<RoutingContext> {
     @Override
