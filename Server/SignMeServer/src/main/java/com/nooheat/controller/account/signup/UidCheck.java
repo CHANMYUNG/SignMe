@@ -16,8 +16,8 @@ import java.sql.SQLException;
  * Created by NooHeat on 17/07/2017.
  */
 
-@URIMapping(uri = "/account/uid/check", method = HttpMethod.GET)
-@API(category = Category.ACCOUNT, summary = "고유 키 검사", requestBody = "uid", response = "name : String, stuNum : String(Optional)", successCode = 200, failureCode = 400)
+@URIMapping(uri = "/account/uid/check/:uid", method = HttpMethod.GET)
+@API(category = Category.ACCOUNT, summary = "고유 키 검사", requestBody = "uid : String", response = "name : String, stuNum : String(Optional)", successCode = 200, failureCode = 400)
 public class UidCheck implements Handler<RoutingContext> {
     @Override
     public void handle(RoutingContext context) {
@@ -32,10 +32,12 @@ public class UidCheck implements Handler<RoutingContext> {
                     JSONObject response = new JSONObject();
                     response.put("name", userRs.getString("name"));
                     response.put("stuNum", userRs.getString("stuNum"));
+                    response.put("isAdmin", false);
                     context.response().setStatusCode(200).end(response.toString());
                 } else if (adminRs.isLast()) {
                     JSONObject response = new JSONObject();
                     response.put("name", adminRs.getString("name"));
+                    response.put("isAdmin", true);
                     context.response().setStatusCode(200).end(response.toString());
                 }
             } else {
