@@ -33,7 +33,14 @@ public class PutTask implements Handler<RoutingContext> {
             return;
         }
 
-        int tid = Integer.parseInt(req.getParam("tid"));
+        int tid = -1;
+
+        try {
+            tid = Integer.parseInt(req.getParam("tid"));
+        } catch (NumberFormatException e) {
+            res.setStatusCode(400).end();
+            return;
+        }
 
         Task task = Task.findOne(tid);
 
@@ -41,8 +48,8 @@ public class PutTask implements Handler<RoutingContext> {
             res.setStatusCode(400).end();
             return;
         }
-
-
+        System.out.println(task.getWriterUid() == null);
+        System.out.println(token.getUid() == null);
         if (task.getWriterUid().equals(token.getUid()) == false) {
             res.setStatusCode(403).end();
             return;
@@ -56,7 +63,7 @@ public class PutTask implements Handler<RoutingContext> {
         if (RequestManager.paramValidationCheck(title, summary, startDate, endDate) == false) {
             res.setStatusCode(400).end();
         }
-
+        // 여까지함 씨발
         task.update(title, summary, startDate, endDate);
 
         if (task.isDuplicated()) {
@@ -64,7 +71,7 @@ public class PutTask implements Handler<RoutingContext> {
             return;
         }
 
-        boolean result = task.save();
+        boolean result = task.saveUpdated();
 
         if (result) res.setStatusCode(200).end();
         else res.setStatusCode(400).end();

@@ -11,31 +11,31 @@ import java.sql.SQLException;
  * Created by NooHeat on 18/08/2017.
  */
 public class Task {
-    private static final String SAVE = "INSERT INTO TASK(writer, title, summary, startDate, endDate) VALUES(?,?,?,?,?);";
-    private static final String FINDALL = "SELECT t.tid, a.uid as writerUid, a.name, startDate, endDate, title FROM TASK AS t LEFT JOIN ADMIN AS a ON a.uid = t.writer";
-    private static final String FINDONE = "SELECT t.tid, a.uid as writerUid, a.name, startDate, endDate, title, summary FROM TASK AS t LEFT JOIN ADMIN AS a ON a.uid = t.writer WHERE tid = ?";
+    private static final String SAVE = "INSERT INTO TASK(writerUid, title, summary, startDate, endDate) VALUES(?,?,?,?,?);";
+    private static final String FINDALL = "SELECT t.tid, a.uid as writerUid, a.name as writerName, startDate, endDate, title FROM TASK AS t LEFT JOIN ADMIN AS a ON a.uid = t.writerUid";
+    private static final String FINDONE = "SELECT t.tid, a.uid as writerUid, a.name as writerName, startDate, endDate, title, summary FROM TASK AS t LEFT JOIN ADMIN AS a ON a.uid = t.writerUid WHERE tid = ?";
     private static final String UPDATE = "UPDATE TASK SET title = ?, summary = ?, startDate = ?, endDate = ? WHERE tid = ?";
-
+    private static final String DELETE = "DELETE FROM TASK WHERE tid = ?";
     private String writerUid;
-    private String writer;
+    private String writerName;
     private String title;
     private String summary;
     private String startDate;
     private String endDate;
     private int tid;
 
-    public Task(String writerUid, int tid, String writer, String title, String summary, String startDate, String endDate) {
+    public Task(int tid, String writerUid, String writerName, String title, String summary, String startDate, String endDate) {
         this.writerUid = writerUid;
         this.tid = tid;
-        this.writer = writer;
+        this.writerName = writerName;
         this.title = title;
         this.summary = summary;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Task(String writer, String title, String summary, String startDate, String endDate) {
-        this(null, -1, writer, title, summary, startDate, endDate);
+    public Task(String writerUid, String title, String summary, String startDate, String endDate) {
+        this(-1, writerUid, null, title, summary, startDate, endDate);
     }
 
     public static JSONArray findAll() {
@@ -47,7 +47,7 @@ public class Task {
                 JSONObject object = new JSONObject();
                 object.put("tid", rs.getString("tid"));
                 object.put("writerUid", rs.getString("writerUid"));
-                object.put("writer", rs.getString("name"));
+                object.put("writerName", rs.getString("writerName"));
                 object.put("startDate", rs.getString("startDate"));
                 object.put("endDate", rs.getString("endDate"));
                 object.put("title", rs.getString("title"));
@@ -69,13 +69,13 @@ public class Task {
                 JSONObject object = new JSONObject();
 
                 String writerUid = rs.getString("writerUid");
-                String writer = rs.getString("name");
+                String writerName = rs.getString("writerName");
                 String startDate = rs.getString("startDate");
                 String endDate = rs.getString("endDate");
                 String title = rs.getString("title");
                 String summary = rs.getString("summary");
 
-                return new Task(writerUid, tid, writer, title, summary, startDate, endDate);
+                return new Task(tid, writerUid, writerName, title, summary, startDate, endDate);
 
             }
         } catch (SQLException e) {
@@ -86,7 +86,7 @@ public class Task {
     }
 
     public boolean save() {
-        return DBManager.update(SAVE, writer, title, summary, startDate, endDate) != -1;
+        return DBManager.update(SAVE, writerUid, title, summary, startDate, endDate) == 1;
     }
 
     public boolean isDuplicated() {
@@ -111,13 +111,21 @@ public class Task {
         this.endDate = endDate;
     }
 
+    public boolean saveUpdated() {
+        return DBManager.update(UPDATE, title, summary, startDate, endDate, tid) == 1;
+    }
+
+    public boolean delete() {
+        return DBManager.update(DELETE, tid) != -1;
+    }
+
     @Override
     public String toString() {
         JSONObject obj = new JSONObject();
 
         obj.put("tid", tid);
         obj.put("writerUid", writerUid);
-        obj.put("writer", writer);
+        obj.put("writerName", writerName);
         obj.put("title", title);
         obj.put("summary", title);
         obj.put("startDate", title);
@@ -130,8 +138,8 @@ public class Task {
         return writerUid;
     }
 
-    public String getWriter() {
-        return writer;
+    public String getWriterName() {
+        return writerName;
     }
 
     public String getTitle() {

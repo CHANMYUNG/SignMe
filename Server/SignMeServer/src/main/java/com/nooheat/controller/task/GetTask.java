@@ -14,7 +14,7 @@ import io.vertx.ext.web.RoutingContext;
 /**
  * Created by NooHeat on 18/08/2017.
  */
-@API(category = Category.TASK, summary = "일정 내용 보기", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
+@API(category = Category.TASK, summary = "일정 내용 보기", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400")
 @URIMapping(uri = "/task/:tid", method = HttpMethod.GET)
 public class GetTask implements Handler<RoutingContext> {
 
@@ -24,10 +24,13 @@ public class GetTask implements Handler<RoutingContext> {
 
         HttpServerRequest req = ctx.request();
         HttpServerResponse res = ctx.response();
-        int tid = Integer.parseInt(req.getParam("tid"));
 
-        if (RequestManager.paramValidationCheck(tid) == false) {
-            res.setStatusCode(401).end();
+        int tid = -1;
+
+        try {
+            tid = Integer.parseInt(req.getParam("tid"));
+        } catch (NumberFormatException e) {
+            res.setStatusCode(400).end();
             return;
         }
 
