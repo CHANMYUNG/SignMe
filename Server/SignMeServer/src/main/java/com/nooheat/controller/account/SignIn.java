@@ -9,6 +9,7 @@ import com.nooheat.support.URIMapping;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
+import org.json.JSONObject;
 
 /**
  * Created by NooHeat on 16/06/2017.
@@ -29,16 +30,18 @@ public class SignIn implements Handler<RoutingContext> {
         String password = context.request().getFormAttribute("password");
         String type = context.request().getFormAttribute("type");
 
-
         // 파라미터가 유효하지 않을 때 (null 일 때)
         if (RequestManager.paramValidationCheck(id, password, type) == false) {
             // 상태코드 400 반환 후 연결 해제
-            context.response().setStatusCode(400).end();
-            context.response().close();
+            JSONObject object = new JSONObject().put("message", "params are not valid");
+            context.response().setStatusCode(400).end(object.toString());
             return;
         }
 
-        if (!(type.equals("user") || type.equals("admin"))) context.response().setStatusCode(400).end();
+        if (!(type.equals("user") || type.equals("admin"))) {
+            context.response().setStatusCode(400).end();
+            return;
+        }
 
         UserManager.login(context, id, password, type);
     }

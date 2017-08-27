@@ -1,5 +1,6 @@
 package com.nooheat.controller.account.signup;
 
+import com.nooheat.manager.JWT;
 import com.nooheat.manager.RequestManager;
 import com.nooheat.manager.UserManager;
 import com.nooheat.support.API;
