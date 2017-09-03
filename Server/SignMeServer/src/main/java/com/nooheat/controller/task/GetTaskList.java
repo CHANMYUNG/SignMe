@@ -1,11 +1,13 @@
 package com.nooheat.controller.task;
 
+import com.nooheat.manager.RequestManager;
 import com.nooheat.model.Task;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.support.URIMapping;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
+import io.vertx.core.http.HttpServerRequest;
 import io.vertx.ext.web.RoutingContext;
 import org.json.JSONArray;
 
@@ -18,10 +20,25 @@ public class GetTaskList implements Handler<RoutingContext> {
 
     @Override
     public void handle(RoutingContext context) {
-        JSONArray response = Task.findAll();
+        HttpServerRequest req = context.request();
+        JSONArray response = null;
+        try {
+            if (RequestManager.paramValidationCheck(req.getParam("year"))) {
+                int year = Integer.parseInt(req.getParam("year"));
+                if (RequestManager.paramValidationCheck(req.getParam("month"))) {
+
+                    int month = Integer.parseInt(req.getParam("month"));
+
+                    response = Task.findByYearAndMonth(year, month);
+                } else response = Task.findByYear(year);
+            } else {
+                response = Task.findAll();
+            }
+
+        } catch (NumberFormatException exception) {
+        }
 
         if (response != null) context.response().setStatusCode(200).end(response.toString());
-
-        else context.response().setStatusCode(400).end();
+        else context.response().setStatusCode(200).end(new JSONArray().toString());
     }
 }

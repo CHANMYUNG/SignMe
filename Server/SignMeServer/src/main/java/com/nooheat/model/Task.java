@@ -60,6 +60,54 @@ public class Task {
         return response;
     }
 
+    public static JSONArray findByYear(int year) {
+        String like = year + "%";
+
+        ResultSet rs = DBManager.execute("SELECT t.tid, a.uid as writerUid, a.name as writerName, startDate, endDate, title FROM TASK AS t LEFT JOIN ADMIN AS a ON a.uid = t.writerUid where startDate like ? OR endDate like ?", like, like);
+        JSONArray response = null;
+        try {
+            while (rs.next()) {
+                response = new JSONArray();
+                JSONObject object = new JSONObject();
+                object.put("tid", rs.getString("tid"));
+                object.put("writerUid", rs.getString("writerUid"));
+                object.put("writerName", rs.getString("writerName"));
+                object.put("startDate", rs.getString("startDate"));
+                object.put("endDate", rs.getString("endDate"));
+                object.put("title", rs.getString("title"));
+                response.put(object);
+            }
+            return response;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public static JSONArray findByYearAndMonth(int year, int month) {
+        String like = month >= 10 ? year + "-" + month + "%" : year + "-0" + month + "%";
+
+        ResultSet rs = DBManager.execute("SELECT t.tid, a.uid as writerUid, a.name as writerName, startDate, endDate, title FROM TASK AS t LEFT JOIN ADMIN AS a ON a.uid = t.writerUid where startDate like ? OR endDate like ?", like, like);
+        JSONArray response = null;
+        try {
+            while (rs.next()) {
+                response = new JSONArray();
+                JSONObject object = new JSONObject();
+                object.put("tid", rs.getString("tid"));
+                object.put("writerUid", rs.getString("writerUid"));
+                object.put("writerName", rs.getString("writerName"));
+                object.put("startDate", rs.getString("startDate"));
+                object.put("endDate", rs.getString("endDate"));
+                object.put("title", rs.getString("title"));
+                response.put(object);
+            }
+            return response;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
     public static Task findOne(int tid) {
         ResultSet rs = DBManager.execute(FINDONE, tid);
 
