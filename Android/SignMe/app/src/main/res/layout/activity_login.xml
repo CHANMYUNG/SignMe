@@ -8,202 +8,272 @@
     app:scale_base_height="1000"
     app:scale_base_width="1000">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
+        android:id="@+id/u"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="#33C5F3"
-        app:scale_base_height="100"
-        app:scale_base_width="600">
+       >
+        <RelativeLayout
+            android:id="@+id/r"
+            android:layout_alignParentStart="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+            <ImageButton
+                android:id="@+id/id_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/back"
+                android:onClick="BackonClick"
+                />
 
-        <ImageButton
-            android:id="@+id/id_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:onClick="BackonClick"
-            android:src="@drawable/back"
-            app:scale_height="100"
-            app:scale_top="5"
-            app:scale_width="100" />
-
+        </RelativeLayout>
         <TextView
+            android:layout_toRightOf="@+id/r"
+            android:layout_toLeftOf="@+id/t"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="로그인"
+            android:textSize="40dp"
+            android:gravity="center"
             android:textColor="@color/white"
-            app:scale_left="230"
-            app:scale_textsize="60"
-            app:scale_top="10"
-            app:scale_width="240" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:onClick="CloseonClick"
-            android:src="@drawable/close"
-            app:scale_left="500"
-            app:scale_top="5"
-
             />
 
-    </com.ssomai.android.scalablelayout.ScalableLayout>
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+
+        <ImageButton
+            android:id="@+id/t"
+            android:layout_alignParentRight="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/close"
+            android:onClick="CloseonClick"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_above="@+id/u"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:scale_base_height="150"
-        app:scale_base_width="400">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+
+        <RelativeLayout
+            android:id="@+id/w"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo"
-            app:scale_left="50"
-            app:scale_top="50"
-            app:scale_width="300" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+            android:layout_height="120dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/y"
+                android:src="@drawable/logo" />
+
+            <ImageView
+                android:id="@+id/y"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
 
 
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#85CBFF"
-        app:scale_base_height="450"
-        app:scale_base_width="580">
-
-        <TextView
+        <RelativeLayout
+            android:id="@+id/o"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/id"
-            android:textColor="#000"
-            app:scale_height="50"
-            app:scale_left="40"
-            app:scale_textsize="25"
-            app:scale_top="20"
-            app:scale_width="120" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/w"
+            android:layout_above="@+id/q"
+            android:background="#85CBFF"
 
-        <TextView
+            >
+            <RelativeLayout
+                android:id="@+id/b"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/nn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/nn"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+                <RelativeLayout
+                    android:id="@+id/x"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"></RelativeLayout>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/x"
+                    android:layout_toLeftOf="@+id/z">
+                    <RelativeLayout
+                        android:id="@+id/g"
+                        android:layout_above="@+id/s"
+                        android:layout_alignParentTop="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/v"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="25dp"
+                            android:text="@string/id"
+                            android:textColor="#000" />
+                        <EditText
+                            android:id="@+id/idField"
+                            android:layout_below="@+id/v"
+                            android:inputType="text"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:background="@drawable/shape"
+                            android:hint="@string/id"
+                            android:textSize="20dp"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:layout_alignParentStart="true" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/s"
+                        android:layout_centerInParent="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"></RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/h"
+                        android:layout_below="@+id/s"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        >
+                        <TextView
+                            android:id="@+id/bb"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/password"
+                            android:textSize="25dp"
+                            android:textColor="#000"/>
+                        <EditText
+                            android:id="@+id/passwordField"
+                            android:textSize="20dp"
+                            android:layout_below="@+id/bb"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:background="@drawable/shape"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            />
+                    </RelativeLayout>
+                   
+                </RelativeLayout>
+                
+                <RelativeLayout
+                    android:id="@+id/z"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"></RelativeLayout>
+            
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/m"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/nn"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+            >
+                <RelativeLayout
+                    android:id="@+id/tt"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_alignParentTop="true">
+
+                </RelativeLayout>
+                <Button
+                    android:id="@+id/loginButton"
+                    android:layout_below="@+id/tt"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:background="#33C5F3"
+                    android:onClick="loginClicked"
+                    android:text="@string/login"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/q"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/password"
-            android:textColor="#000"
-            app:scale_height="50"
-            app:scale_left="40"
-            app:scale_textsize="25"
-            app:scale_top="180"
-            app:scale_width="120" />
+            android:background="#FFF"
+            android:layout_height="110dp"
+            android:layout_alignParentBottom="true"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true">
+               <Button
+                   android:id="@+id/join"
+                   android:onClick="goRisterClicked"
+                   android:background="@null"
+                   android:gravity="center"
+                   android:textSize="20dp"
+                   android:layout_toLeftOf="@+id/n"
+                   android:text="회원이 아니신가요?"
+                   android:textColor="#95989A"
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:layout_alignParentStart="true"
+                   android:layout_centerVertical="true"
+                   />
+                <ImageView
+                    android:id="@+id/n"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/slash"
+                    android:layout_centerInParent="true"/>
+                <Button
+                    android:onClick="goForgetClicked"
+                    android:layout_toRightOf="@+id/n"
+                    android:background="@null"
+                    android:text="ID/PW찾기"
+                    android:textColor="#95989A"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
 
-        <EditText
-            android:id="@+id/passwordField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            app:scale_height="85"
-            app:scale_left="35"
-            app:scale_textsize="40"
-            app:scale_top="230"
-            app:scale_width="500" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:background="#33C5F3"
+                >
 
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#33C5F3"
-            android:onClick="loginClicked"
-            android:text="@string/login"
-            android:textColor="@color/white"
-            app:scale_height="80"
-            app:scale_textsize="30"
-            app:scale_top="160"
-            app:scale_width="200" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/app_name"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <EditText
-            android:id="@+id/idField"
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape"
-            android:hint="@string/id"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            app:scale_height="85"
-            app:scale_left="35"
-            app:scale_textsize="40"
-            app:scale_top="70"
-            app:scale_width="500" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:scale_base_height="100"
-        app:scale_base_width="580">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:onClick="goRegisterClicked"
-            android:text="회원이 아니신가요?"
-            android:textColor="@color/black"
-            app:scale_height="50"
-            app:scale_left="60"
-            app:scale_textsize="25"
-            app:scale_top="30"
-            app:scale_width="250" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/slash"
-            app:scale_height="80"
-            app:scale_left="260"
-            app:scale_top="15"
-            app:scale_width="80" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:onClick="goForgetClicked"
-            android:text="ID/PW 찾기"
-            android:textColor="@color/black"
-            app:scale_height="50"
-            app:scale_left="320"
-            app:scale_textsize="25"
-            app:scale_top="30"
-            app:scale_width="200" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#33C5F3"
-        app:scale_base_height="100"
-        app:scale_base_width="700">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:scale_height="100"
-            app:scale_textsize="40"
-            app:scale_top="15"
-            app:scale_width="700" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
+    </RelativeLayout>
 </LinearLayout>

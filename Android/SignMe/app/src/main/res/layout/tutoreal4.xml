@@ -4,21 +4,191 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_width="400"
-        app:scale_base_height="640"
-        android:background="@color/white">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="tutoreal4"
-            android:textColor="@color/black"
-            app:scale_textsize="30"
-            app:scale_height="100"
-            app:scale_width="150"
+        android:layout_height="60dp"
+        android:background="#33C5F3">
+        <ImageView
+            android:id="@+id/xnx"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/memu1"
             />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+        <TextView
+            android:layout_toLeftOf="@+id/df"
+            android:layout_toRightOf="@+id/xnx"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="40dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            />
+        <ImageView
+            android:id="@+id/df"
+            android:layout_toLeftOf="@+id/jj"
+            android:src="@drawable/main_mypage"
+            android:layout_width="50dp"
+            android:layout_centerVertical="true"
+            android:layout_height="50dp" />
+        <RelativeLayout
+            android:id="@+id/jj"
+            android:layout_alignParentRight="true"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"></RelativeLayout>
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#85CBFF">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cmc">
+            <RelativeLayout
+                android:id="@+id/dx"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"></RelativeLayout>
+            <RelativeLayout
+                android:layout_width="220dp"
+                android:layout_height="200dp"
+                android:layout_below="@+id/dx"
+                android:layout_centerHorizontal="true"
+                >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/circle"
+                    android:src="@drawable/person"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="2dp" />
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/plus"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cmc"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF">
+            <RelativeLayout
+                android:layout_above="@+id/xkx"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/text"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/icon_image"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/titleView"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/icon_image"
+                    android:textColor="@color/black"
+                    android:layout_toLeftOf="@+id/image"
+                    android:layout_width="match_parent"
+                    android:textSize="20dp"
+                    android:text="새로운 가정통신문"
+                    android:gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1" />
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/right"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/xkx"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="65dp">
+                <ImageView
+                    android:src="@drawable/chat"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/icon_image2"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/titleView2"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/icon_image2"
+                    android:textColor="@color/black"
+                    android:layout_toLeftOf="@+id/image2"
+                    android:layout_width="match_parent"
+                    android:textSize="20dp"
+                    android:text="새로운 메세지"
+                    android:gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1" />
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/right"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@+id/xkx"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/calander"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/icon_image3"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/titleView3"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/icon_image3"
+                    android:textColor="@color/black"
+                    android:layout_toLeftOf="@+id/image3"
+                    android:layout_width="match_parent"
+                    android:textSize="20dp"
+                    android:text="새로운 일정"
+                    android:gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1" />
+                <ImageView
+                    android:id="@+id/image3"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/right"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
 </LinearLayout>

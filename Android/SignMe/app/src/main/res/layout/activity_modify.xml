@@ -6,203 +6,303 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="#33C5F3"
-        app:scale_base_height="100"
-        app:scale_base_width="600">
+        >
 
         <ImageButton
             android:id="@+id/id_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/back"
             android:onClick="backonClick"
-            android:src="@drawable/back"
-            app:scale_height="100"
-            app:scale_top="5"
-            app:scale_width="100" />
+
+            />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="마이페이지"
+            android:gravity="center"
+            android:textSize="40dp"
             android:textColor="@color/white"
-            app:scale_left="230"
-            app:scale_textsize="45"
-            app:scale_top="25"
-            app:scale_width="240" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+            android:layout_toLeftOf="@+id/uu"
+            android:layout_toRightOf="@+id/id_back"
+             />
+        <RelativeLayout
+            android:id="@+id/uu"
+            android:layout_alignParentRight="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_height="90"
-        app:scale_base_width="400">
-
-        <TextView
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/ss"
+            android:layout_alignParentStart="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="개인정보 변경"
-            android:textColor="#95989A"
-            android:textStyle="bold"
-            app:scale_height="40"
-            app:scale_left="10"
-            app:scale_textsize="20"
-            app:scale_top="55"
-            app:scale_width="120" />
+            android:layout_height="80dp"
+            >
+            <RelativeLayout
+                android:id="@+id/ttn"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"></RelativeLayout>
+            <TextView
+                android:layout_toRightOf="@+id/ttn"
+                android:gravity="bottom"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="개인정보 변경"
+                android:textColor="#95989A"
+                android:textStyle="bold"
+               />
 
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_height="390"
-        app:scale_base_width="400">
-
-        <ImageView
-            android:id="@+id/imageView2"
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_above="@+id/xx"
+            android:layout_below="@+id/ss"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/rectangle_blue"
-            app:scale_height="380"
-            app:scale_left="10"
-            app:scale_top="5"
-            app:scale_width="380" />
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/oo"
+                android:layout_width="match_parent"
+                android:layout_height="10dp">
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/hh"
+                android:layout_below="@+id/oo"
+                android:layout_alignParentStart="true"
+                android:layout_width="10dp"
+                android:layout_height="match_parent">
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_toLeftOf="@+id/ll"
+                android:layout_toRightOf="@+id/hh"
+                android:layout_below="@+id/oo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rectangle_blue"
+                    />
+                <RelativeLayout
+                    android:id="@+id/ww"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"></RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/ii"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"></RelativeLayout>
+                <RelativeLayout
+                    android:layout_above="@+id/vn"
+                    android:layout_below="@+id/ww"
+                    android:layout_toLeftOf="@+id/kk"
+                    android:layout_toRightOf="@+id/ii"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_above="@+id/pp"
+                        android:layout_alignParentStart="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:layout_above="@+id/xv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/wee"
+                                android:gravity="center_vertical"
+                                android:text="이름"
+                                android:textColor="#95989A"
+                                android:textSize="20dp"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp" />
+                            <EditText
+                                android:id="@+id/name_modify"
+                                android:background="@drawable/rectangle"
+                                android:textSize="15dp"
+                                android:textColor="#95989A"
+                                android:layout_toRightOf="@+id/wee"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp" />
 
-        <TextView
+                        </RelativeLayout>
+                        <RelativeLayout
+                                android:layout_below="@+id/xv"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:id="@+id/qee"
+                                    android:gravity="center_vertical"
+                                    android:text="전화번호"
+                                    android:textColor="#95989A"
+                                    android:textSize="20dp"
+                                    android:layout_width="100dp"
+                                    android:layout_height="50dp" />
+                                <EditText
+                                    android:id="@+id/phone_modify"
+                                    android:background="@drawable/rectangle"
+                                    android:textSize="15dp"
+                                    android:textColor="#95989A"
+                                    android:layout_toRightOf="@+id/qee"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp" />
+                            </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/xv"
+                            android:layout_centerInParent="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"></RelativeLayout>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/pp"
+                        android:layout_centerInParent="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/eee"
+                            android:gravity="center_vertical"
+                            android:text="이메일"
+                            android:textColor="#95989A"
+                            android:textSize="20dp"
+                            android:layout_width="100dp"
+                            android:layout_height="50dp" />
+                        <EditText
+                            android:id="@+id/email_modify"
+                            android:background="@drawable/rectangle"
+                            android:textSize="15dp"
+                            android:textColor="#95989A"
+                            android:layout_toRightOf="@+id/eee"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_below="@+id/pp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:layout_alignParentTop="true"
+                            android:layout_above="@+id/tn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_alignParentBottom="true"
+                                android:id="@+id/ee"
+                                android:gravity="center_vertical"
+                                android:text="비밀번호\n   변경"
+                                android:textColor="#95989A"
+                                android:textSize="20dp"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp" />
+                            <EditText
+                                android:id="@+id/pwchange_modify"
+                                android:layout_alignParentBottom="true"
+
+                                android:background="@drawable/rectangle"
+                                android:textSize="15dp"
+                                android:textColor="#95989A"
+                                android:layout_toRightOf="@+id/ee"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp" />
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/tn"
+                            android:layout_centerInParent="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"></RelativeLayout>
+                        <RelativeLayout
+                            android:layout_below="@+id/tn"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_alignParentBottom="true"
+                                android:id="@+id/hee"
+                                android:gravity="center_vertical"
+                                android:text="비밀번호\n   확인"
+                                android:textColor="#95989A"
+                                android:textSize="20dp"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp" />
+                            <EditText
+                                android:id="@+id/pwchange2_modify"
+                                android:layout_alignParentBottom="true"
+
+                                android:background="@drawable/rectangle"
+                                android:textSize="15dp"
+                                android:textColor="#95989A"
+                                android:layout_toRightOf="@+id/hee"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/vn"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"></RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/kk"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"></RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/ll"
+                android:layout_alignParentRight="true"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"></RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/xx"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="이름"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="18"
-            app:scale_textsize="20"
-            app:scale_top="50" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rectangle"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="100"
-            app:scale_textsize="15"
-            app:scale_top="40"
-            app:scale_width="280" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rectangle"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="100"
-            app:scale_textsize="15"
-            app:scale_top="110"
-            app:scale_width="280" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="전화번호"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="18"
-            app:scale_textsize="20"
-            app:scale_top="120" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rectangle"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="100"
-            app:scale_textsize="15"
-            app:scale_top="180"
-            app:scale_width="280" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="이메일"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="18"
-            app:scale_textsize="20"
-            app:scale_top="190" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPassword"
-            android:background="@drawable/rectangle"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="160"
-            app:scale_textsize="15"
-            app:scale_top="250"
-            app:scale_width="220" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="비밀번호 변경"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="18"
-            app:scale_textsize="20"
-            app:scale_top="260"
-            app:scale_width="150" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="비밀번호 확인"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="18"
-            app:scale_textsize="20"
-            app:scale_top="330"
-            app:scale_width="150" />
-
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPassword"
-            android:background="@drawable/rectangle"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="160"
-            app:scale_textsize="15"
-            app:scale_top="320"
-            app:scale_width="220" />
-
-
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_height="95"
-        app:scale_base_width="400">
-
+            android:layout_height="100dp">
+        <RelativeLayout
+            android:id="@+id/qq"
+            android:layout_alignParentStart="true"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"></RelativeLayout>
         <Button
+            android:layout_toLeftOf="@+id/rr"
+            android:layout_toRightOf="@+id/qq"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_height="70dp"
             android:background="#33C5F3"
             android:onClick="modifyonClick"
             android:text="수정하기"
             android:textColor="@color/white"
-            app:scale_height="60"
-            app:scale_left="10"
-            app:scale_textsize="40"
-            app:scale_top="15"
-            app:scale_width="380" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+            android:textSize="40dp"/>
+            <RelativeLayout
+                android:id="@+id/rr"
+                android:layout_alignParentRight="true"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"></RelativeLayout>
+        </RelativeLayout>
+        
+        
+    </RelativeLayout>
+
+
+
+
 </LinearLayout>

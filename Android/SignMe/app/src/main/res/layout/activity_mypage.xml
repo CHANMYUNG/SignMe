@@ -8,148 +8,160 @@
     app:scale_base_height="1000"
     app:scale_base_width="1000">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="#33C5F3"
-        app:scale_base_height="100"
-        app:scale_base_width="600">
+
+        >
 
         <ImageButton
             android:id="@+id/id_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:layout_alignParentStart="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/back"
             android:onClick="backonClick"
-            android:src="@drawable/back"
-            app:scale_height="100"
-            app:scale_top="5"
-            app:scale_width="100" />
+
+        />
 
         <TextView
+            android:layout_toRightOf="@+id/id_back"
+            android:layout_toLeftOf="@+id/vvn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="40dp"
+            android:gravity="center"
             android:text="마이페이지"
             android:textColor="@color/white"
-            app:scale_left="220"
-            app:scale_textsize="45"
-            app:scale_top="25"
-            app:scale_width="240" />
+            />
+        <RelativeLayout
+            android:id="@+id/vvn"
+            android:layout_alignParentEnd="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"></RelativeLayout>
 
 
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+    </RelativeLayout>
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_height="300"
-        app:scale_base_width="400">
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ff"
+            android:layout_alignParentTop="true">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/mypage_profile_mypage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape2"
+                app:civ_border_width="2dp"
+                app:scale_height="200"
+                app:scale_left="100"
+                app:scale_top="30"
+                app:scale_width="200" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/mypage_profile_mypage"
+                android:gravity="center"
+                android:text="ooo고등학교 홍길동님"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </RelativeLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/ff"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/line3"
+            android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            app:scale_height="100"
-            app:scale_width="400"
-            app:scale_top="250"/>
+            android:src="@drawable/line3" />
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/aaaa"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ff"></RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="ooo고등학교 홍길동님"
-            android:textColor="@color/black"
-            app:scale_height="40"
-            app:scale_left="150"
-            app:scale_textsize="15"
-            app:scale_top="250"
-            app:scale_width="200" />
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/ff"
+            android:layout_toLeftOf="@+id/vnv"
+            android:layout_toRightOf="@+id/aaaa">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/mypage_profile"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bbb"
+                android:layout_alignParentTop="true">
+                <TextView
+                    android:text="개인정보 변경"
+                    android:textSize="30dp"
+                    android:textColor="#95989A"
+                    android:layout_above="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+                <Button
+                    android:id="@+id/button2"
+                    android:gravity="center_vertical"
+                    android:text="개인정보 변경하기"
+                    android:textSize="30dp"
+                    android:background="@drawable/rectangle"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/black"
+                    android:onClick="mypageonClick1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bbb"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"></RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@+id/bbb"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/shape2"
-            app:civ_border_width="2dp"
-            app:scale_height="200"
-            app:scale_left="100"
-            app:scale_top="30"
-            app:scale_width="200" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/ddv"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:textColor="#95989A"
+                android:textSize="30dp"
+                android:text="신청서 수정"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="신청서 수정하기"
+                android:textSize="30dp"
+                android:gravity="center_vertical"
+                android:textColor="#000"
+                android:layout_below="@+id/ddv"
+                android:background="@drawable/rectangle"
+                android:onClick="contentonClick1"/>
+        </RelativeLayout>
+        </RelativeLayout>
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_height="325"
-        app:scale_base_width="400">
-
-        <TextView
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:id="@+id/vnv"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
-            android:text="개인정보 변경"
-            android:textColor="#95989A"
-            app:scale_height="40"
-            app:scale_left="40"
-            app:scale_textsize="20"
-            app:scale_top="50"
-            app:scale_width="150" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/ff"></RelativeLayout>
+    </RelativeLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="신청서 수정"
-            android:textColor="#95989A"
-            app:scale_height="40"
-            app:scale_left="40"
-            app:scale_textsize="20"
-            app:scale_top="150"
-            app:scale_width="150" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="개인정보 변경하기"
-            android:textColor="@color/black"
-            app:scale_height="40"
-            app:scale_left="45"
-            app:scale_textsize="20"
-            app:scale_top="85"
-            app:scale_width="300" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rectangle"
-            android:onClick="mypageonClick1"
-            android:textColor="@color/black"
-            app:scale_height="40"
-            app:scale_left="40"
-            app:scale_textsize="20"
-            app:scale_top="80"
-            app:scale_width="300" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="최근 신청한 신청서 목록"
-            android:textColor="@color/black"
-            app:scale_height="40"
-            app:scale_left="45"
-            app:scale_textsize="20"
-            app:scale_top="185"
-            app:scale_width="300" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rectangle"
-            android:onClick="mypageonClick2"
-            android:textColor="@color/black"
-            app:scale_height="40"
-            app:scale_left="40"
-            app:scale_textsize="20"
-            app:scale_top="180"
-            app:scale_width="300" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
 </LinearLayout>

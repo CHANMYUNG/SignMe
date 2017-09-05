@@ -6,78 +6,99 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_height="130"
-        app:scale_base_width="400"></com.ssomai.android.scalablelayout.ScalableLayout>
+        android:layout_height="150dp"
+        android:layout_above="@+id/l"
+       ></RelativeLayout>
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
+        android:id="@+id/l"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:scale_base_height="580"
-        app:scale_base_width="580">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:scale_height="120"
-            app:scale_left="0"
-            app:scale_textsize="80"
-            app:scale_top="30"
-            app:scale_width="600" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/circle"
-            app:scale_height="30"
-            app:scale_left="280"
-            app:scale_top="165"
-            app:scale_width="30" />
-
-        <ImageView
+        <RelativeLayout
+            android:id="@+id/i"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line"
-            app:scale_height="15"
-            app:scale_top="170"
-            app:scale_width="580" />
+            android:layout_height="100dp">
 
-        <Button
-            android:id="@+id/loginButton"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="60dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/j"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/radius_button"
-            android:onClick="goLoginClicked"
-            android:text="@string/login"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            app:scale_height="80"
-            app:scale_left="90"
-            app:scale_textsize="40"
-            app:scale_top="250"
-            app:scale_width="400" />
+            android:layout_height="50dp"
+            android:layout_below="@+id/i">
 
-        <Button
-            android:id="@+id/registerButton"
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/circle" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/line" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/radius_button"
-            android:onClick="registerClicked"
-            android:text="@string/register"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            app:scale_height="80"
-            app:scale_left="90"
-            app:scale_textsize="40"
-            app:scale_top="350"
-            app:scale_width="400" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/j">
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/radius_button"
+                android:onClick="goLoginClicked"
+                android:text="@string/login"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <RelativeLayout
+                android:id="@+id/k"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_below="@+id/loginButton">
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/k"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/radius_button"
+                android:onClick="registerClicked"
+                android:text="@string/register"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+        </RelativeLayout>
 
 
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+    </RelativeLayout>
 </LinearLayout>

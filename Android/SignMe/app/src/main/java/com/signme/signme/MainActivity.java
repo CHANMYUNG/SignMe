@@ -77,11 +77,14 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
                         break;
                     // 신청서 일정 선택시
                     case R.id.nav_schedule:
-
+                        Intent schedule=new Intent(getApplicationContext(),SignlistActivity.class);
+                        startActivity(schedule);
                         break;
 
                     // 가정통신문 선택시
                     case R.id.nav_newsLetter:
+                        Intent intent=new Intent(getApplicationContext(),ContentMainActivity.class);
+                        startActivity(intent);
 
                         break;
 
@@ -146,7 +149,8 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
                 mImageCoptureUri = data.getData();
             }
             case PICK_FROM_CAMERA: {
-                Intent intent = new Intent("com.android.camera.action.CROP");
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setDataAndType(mImageCoptureUri, "image/*");
                 intent.putExtra("outputX", 90);
                 intent.putExtra("outputY", 90);

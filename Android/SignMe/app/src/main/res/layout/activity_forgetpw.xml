@@ -6,295 +6,346 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_height="120"
-        app:scale_base_width="400">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/box"
-            app:scale_height="60"
-            app:scale_left="160"
-            app:scale_top="50"
-            app:scale_width="120" />
+        <RelativeLayout
+            android:id="@+id/jyj"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/box"
-            app:scale_height="60"
-            app:scale_left="280"
-            app:scale_top="50"
-            app:scale_width="120" />
 
-        <ImageButton
+            <RelativeLayout
+                android:id="@+id/mxm"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/cc"
+
+                >
+
+                <ImageView
+                    android:id="@+id/zz"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/box" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/qw"
+                    android:gravity="center"
+                    android:text="아이디 찾기"
+                    android:textColor="#95989A"
+                    android:textSize="15dp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/cc"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true">
+
+                <ImageButton
+                    android:id="@+id/qw"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/bbd"
+                    android:background="@android:color/transparent"
+                    android:onClick="closeonClick"
+                    android:src="@drawable/close" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/box" />
+
+                <RelativeLayout
+                    android:id="@+id/bbd"
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"></RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/bbd"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="비밀번호 찾기"
+                    android:textColor="#95989A"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/aoa"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_alignParentBottom="true"></RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/aoa"
+                android:layout_toLeftOf="@+id/cc"
+                android:src="@drawable/line3" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:onClick="closeonClick"
-            android:src="@drawable/close"
-            app:scale_height="10"
-            app:scale_left="370"
-            app:scale_top="80"
-            app:scale_width="10" />
+            android:layout_above="@+id/pd"
+            android:layout_below="@+id/jyj">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="비밀번호\n 찾기"
-            android:textColor="#95989A"
-            app:scale_height="80"
-            app:scale_left="300"
-            app:scale_textsize="15"
-            app:scale_top="65"
-            app:scale_width="150" />
+            <RelativeLayout
+                android:id="@+id/bbc"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"></RelativeLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:onClick="fogetidonClick"
-            android:text="아이디 찾기"
-            android:textColor="#95989A"
-            app:scale_height="40"
-            app:scale_left="155"
-            app:scale_textsize="15"
-            app:scale_top="63"
-            app:scale_width="100" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/bbq"
+                android:layout_toRightOf="@+id/bbc">
 
-        <ImageView
-            android:id="@+id/imageView3"
+                <RelativeLayout
+                    android:id="@+id/vixx"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp">
+
+                    <TextView
+                        android:id="@+id/textViewd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/textViewc"
+                        android:text="비밀번호를 잊으셨나요?"
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/textViewc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="이메일 인증을 통해 알 수 있습니다."
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/exo"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/vixx">
+
+                    <TextView
+                        android:id="@+id/momo"
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:gravity="center_vertical"
+                        android:text="아이디"
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/user_id"
+                        android:layout_width="180dp"
+                        android:layout_height="35dp"
+                        android:layout_toRightOf="@+id/momo"
+                        android:background="@drawable/rectangle"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+
+                    <RelativeLayout
+                        android:id="@+id/iu"
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/user_id"></RelativeLayout>
+
+                    <Button
+                        android:id="@+id/id_check"
+                        android:layout_width="100dp"
+                        android:layout_height="35dp"
+                        android:layout_toRightOf="@+id/iu"
+                        android:background="@drawable/shape"
+                        android:onClick="idcheckonClick"
+                        android:text="확인"
+                        android:textColor="#95989A" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/sm"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/exo"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/cna"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:text="이메일"
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/cna"
+                        android:background="@drawable/shape2"
+                        android:text="인증번호 전송"
+                        android:textColor="#95989A"
+                        android:textSize="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/yg"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_below="@+id/cna">
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="140dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="@drawable/rectangle"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/email_whelk"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_toLeftOf="@+id/email3"
+                            android:layout_toRightOf="@+id/email"
+                            android:gravity="center"
+                            android:text="\@"
+                            android:textColor="#95989A"
+                            android:textSize="15dp" />
+
+                        <EditText
+                            android:id="@+id/email3"
+                            android:layout_width="140dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rectangle"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="15dp" />
+                    </RelativeLayout>
+
+                    <Spinner
+                        android:id="@+id/email2"
+                        android:layout_width="140dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/yg"
+                        android:background="@drawable/rectangle"
+                        android:drawSelectorOnTop="true"
+                        android:entries="@array/planets_array"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/yg"
+                        android:src="@drawable/down" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/sm">
+
+                    <TextView
+                        android:id="@+id/qs"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:text="이메일 인증\n\t번호 확인"
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/emailcode"
+                        android:layout_width="180dp"
+                        android:layout_height="35dp"
+                        android:layout_toRightOf="@+id/qs"
+                        android:background="@drawable/rectangle"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                    <RelativeLayout
+                        android:id="@+id/cnc"
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/emailcode"
+                        ></RelativeLayout>
+                    <Button
+                        android:id="@+id/save"
+                        android:layout_width="70dp"
+                        android:layout_height="35dp"
+                        android:layout_toRightOf="@+id/cnc"
+                        android:background="@drawable/shape"
+                        android:onClick="fogetidcheck"
+                        android:text="확인"
+                        android:textColor="#95989A"
+                        android:textSize="20dp"
+
+                        />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bbq"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"></RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/pd"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/line3"
-            app:scale_height="100"
-            app:scale_top="47"
-            app:scale_width="280" />
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="#33C5F3">
 
-
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:scale_base_height="470"
-        app:scale_base_width="400">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="비밀번호를 잊으셨나요?"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="20"
-            app:scale_textsize="20"
-            app:scale_top="5"
-            app:scale_width="300" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이메일 인증을 통해 알 수 있습니다."
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="20"
-            app:scale_textsize="20"
-            app:scale_top="30"
-            app:scale_width="300" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아이디"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="20"
-            app:scale_textsize="20"
-            app:scale_top="110"
-            app:scale_width="100" />
-
-        <EditText
-            android:id="@+id/user_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle"
-            android:inputType="text"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            app:scale_height="35"
-            app:scale_left="80"
-            app:scale_textsize="15"
-            app:scale_top="100"
-            app:scale_width="170" />
-
-        <Button
-            android:id="@+id/id_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape"
-            android:onClick="idcheckonClick"
-            android:text="확인"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="260"
-            app:scale_textsize="20"
-            app:scale_top="100"
-            app:scale_width="70" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이메일"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="20"
-            app:scale_textsize="20"
-            app:scale_top="180"
-            app:scale_width="100" />
-
-        <TextView
-            android:id="@+id/email_whelk"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="\@"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="190"
-            app:scale_textsize="15"
-            app:scale_top="220"
-            app:scale_width="100" />
-
-
-        <Spinner
-            android:id="@+id/email2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle"
-            android:drawSelectorOnTop="true"
-            android:entries="@array/planets_array"
-            app:scale_height="35"
-            app:scale_left="240"
-            app:scale_textsize="15"
-            app:scale_top="260"
-            app:scale_width="150" />
-
-        <EditText
-            android:id="@+id/email3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle"
-            android:inputType="text"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            app:scale_height="35"
-            app:scale_left="240"
-            app:scale_textsize="15"
-            app:scale_top="210"
-            app:scale_width="150" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/down"
-            app:scale_height="20"
-            app:scale_left="360"
-            app:scale_top="265"
-            app:scale_width="20" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape"
-            android:onClick="pwchangeonClick"
-            android:text="확인"
-            android:textColor="#95989A"
-            app:scale_height="35"
-            app:scale_left="320"
-            app:scale_textsize="20"
-            app:scale_top="310"
-            app:scale_width="70" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이메일 인증\n\t번호 확인"
-            android:textColor="#95989A"
-            app:scale_width="200"
-            app:scale_height="200"
-            app:scale_left="20"
-            app:scale_textsize="20"
-            app:scale_top="300" />
-
-        <EditText
-            android:id="@+id/emailcode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle"
-            android:inputType="text"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            app:scale_height="35"
-            app:scale_left="120"
-            app:scale_textsize="15"
-            app:scale_top="310"
-            app:scale_width="190" />
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle"
-            android:inputType="text"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            app:scale_height="35"
-            app:scale_left="20"
-            app:scale_textsize="15"
-            app:scale_top="210"
-            app:scale_width="140" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape2"
-            android:text="인증번호 전송"
-            android:textColor="#95989A"
-            app:scale_height="30"
-            app:scale_left="80"
-            app:scale_textsize="10"
-            app:scale_top="175"
-            app:scale_width="80" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#33C5F3"
-        app:scale_base_height="100"
-        app:scale_base_width="400">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:scale_height="100"
-            app:scale_textsize="25"
-            app:scale_top="10"
-            app:scale_width="400" />
-
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -23,7 +23,7 @@ public class ModifyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         modifyActivity = this;
         setContentView(R.layout.activity_modify);
-        Log.d("aa", "되나?");
+        Log.d("aa", "되나?");//귀엽
     }
 
     public void backonClick(View view) {

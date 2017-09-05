@@ -24,7 +24,7 @@ public class TutorMainActivity extends AppCompatActivity implements ViewFlipperA
     public static Activity tutorMainActivity;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutoreal_main);
         tutorMainActivity = this;
