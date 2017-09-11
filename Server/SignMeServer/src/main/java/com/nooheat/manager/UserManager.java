@@ -1,9 +1,13 @@
 package com.nooheat.manager;
 
+import com.google.common.net.HttpHeaders;
 import com.nooheat.database.DBManager;
 import com.nooheat.secure.AES256;
 import com.nooheat.secure.SHA256;
+import io.netty.handler.codec.http.cookie.DefaultCookie;
+import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.impl.CookieImpl;
 
 import java.sql.ResultSet;
 
@@ -25,7 +29,8 @@ public class UserManager {
         try {
 
             if (rs.next()) {
-                context.response().setStatusCode(201).end(JWT.createToken(rs.getString("uid"), rs.getString("name"), isAdmin));
+                context.addCookie(new CookieImpl("signme-x-access-token", JWT.createToken(rs.getString("uid"), rs.getString("name"), isAdmin)));
+                context.response().setStatusCode(201).end();
             } else context.response().setStatusCode(400).end();
         } catch (Exception e) {
             e.printStackTrace();

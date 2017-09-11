@@ -3,9 +3,12 @@ package com.nooheat.manager;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.DefaultClaims;
 import io.vertx.core.http.HttpServerRequest;
+import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by NooHeat on 17/08/2017.
@@ -50,20 +53,19 @@ public class JWT {
     }
 
     public static JWT verify(RoutingContext context) {
-        HttpServerRequest req = context.request();
+        Cookie cookie = context.getCookie("signme-x-access-token");
+        if (cookie == null) return null;
+        String token = cookie.getValue();
+        System.out.println(token);
 
-        String token = null;
-        if (req.getHeader("x-access-token") == null) {
-            if (req.getParam("token") == null) {
-                return null;
-            } else token = req.getParam("token");
-        } else token = req.getHeader("x-access-token");
+        if (token.trim().equals("")) return null;
 
         try {
             Jwts.parser().setSigningKey(key).parseClaimsJws(token);
             return new JWT(token);
             //OK, we can trust this JWT
         } catch (SignatureException e) {
+            e.printStackTrace();
             return null;
             //don't trust the JWT!
         }

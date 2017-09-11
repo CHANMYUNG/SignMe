@@ -114,7 +114,6 @@ public class Task {
         try {
             rs.next();
             if (rs.getString("title") != null) {
-                JSONObject object = new JSONObject();
 
                 String writerUid = rs.getString("writerUid");
                 String writerName = rs.getString("writerName");

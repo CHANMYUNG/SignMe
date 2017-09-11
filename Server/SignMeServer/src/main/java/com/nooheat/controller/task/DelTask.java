@@ -16,7 +16,7 @@ import io.vertx.ext.web.RoutingContext;
  * Created by NooHeat on 18/08/2017.
  */
 
-@API(category = Category.TASK, summary = "일정 내용 보기", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
+@API(category = Category.TASK, summary = "일정 삭제", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
 @URIMapping(uri = "/task/:tid", method = HttpMethod.DELETE)
 public class DelTask implements Handler<RoutingContext> {
 
