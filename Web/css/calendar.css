@@ -24,10 +24,36 @@
     float: right;
     width: 24vw;
     height: 90%;
-    border: 1px solid black;
+    margin: 0px;
+    /* border: 1px solid black; */
     padding: 0px;
 }
 
 .leftbox{
     float: left;
+}
+.colorCodeDiv{
+    
+    margin: auto;
+    margin-top: 3vw;
+    width: 18vw;
+    height: 50vh;
+    padding: 5px 5px;
+    background-color: #ffffff;
+    border: 1px solid black;
+}
+.colorDivBlank{
+    margin-top: 1vh;
+}
+.colorDiv{
+    margin-left: 3vw;
+    padding: 0px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid black;
+    background-color: #E5F70C;
+}
+.colorWho{
+    width: 5vw;
+    text-align: right;
 }
