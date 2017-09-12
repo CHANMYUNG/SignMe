@@ -8,16 +8,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.signme.signme.server.APIinterface;
 
 /**
  * Created by dsm2016 on 2017-07-10.
@@ -26,15 +24,18 @@ import com.androidquery.AQuery;
 public class FogetidActivity extends AppCompatActivity {
     public static Activity fogetidActivity;
     AQuery aquery;
+    private APIinterface apIinterface;
     public static final String url = "http://13.124.15.202:80/";
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_forgetid);
         fogetidActivity = this;
+        //apIinterface= ApplicationController.getClient().create(APIinterface.class);
         final Spinner spinner = (Spinner) findViewById(R.id.email2);
         final EditText tv = (EditText) findViewById(R.id.email3);
-
+        final EditText filed_name=(EditText)findViewById(R.id.forgetid_name);
+        final EditText filed_email=(EditText)findViewById(R.id.forgetid_email);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -59,7 +60,7 @@ public class FogetidActivity extends AppCompatActivity {
     }
     public void fogetidcheck(View view){
         aquery = new AQuery(getApplicationContext());
-        final EditText namefield=(EditText)findViewById(R.id.name);
+        final EditText namefield=(EditText)findViewById(R.id.forgetid_name);
         final TextView whelk=(TextView)findViewById(R.id.email_whelk);
         final EditText emailfield1=(EditText) findViewById(R.id.email);
         final EditText emailfield2=(EditText) findViewById(R.id.email3);

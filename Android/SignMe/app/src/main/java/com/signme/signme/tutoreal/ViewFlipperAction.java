@@ -1,10 +1,12 @@
-package com.signme.signme;
+package com.signme.signme.tutoreal;
 
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ViewFlipper;
+
+import com.signme.signme.R;
 
 /**
  * Created by dsm2016 on 2017-07-08.

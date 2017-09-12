@@ -10,78 +10,97 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxCallback;
-import com.androidquery.callback.AjaxStatus;
+import com.signme.signme.server.APIinterface;
+import com.signme.signme.tutoreal.TutorMainActivity;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by NooHeat on 11/06/2017.
  */
 
 public class LoginActivity extends AppCompatActivity {
-
+    private APIinterface apiInterface;
     public static Activity loginActivity;
-
-    AQuery aquery;
-    public static final String url = "http://13.124.15.202:80/";
-
+    public static String id;
+    EditText idField;
+    EditText passwordField;
+    //AQuery aquery;
+     String url = "http://13.124.15.202:80/";
+    Retrofit retrofit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginActivity = this;
+        //apiInterface = ApplicationController.getClient().create(APIinterface.class);
     }
 
 
     public void loginClicked(View view) {
-        aquery = new AQuery(getApplicationContext());
+       // aquery = new AQuery(getApplicationContext());
 
-        EditText idField = (EditText) findViewById(R.id.idField);
-        EditText passwordField = (EditText) findViewById(R.id.passwordField);
+         idField = (EditText) findViewById(R.id.idField);
+         passwordField = (EditText) findViewById(R.id.passwordField);
 
-        String id = idField.getText().toString();
-        String password = passwordField.getText().toString();
+        String user_id = idField.getText().toString();
+        String user_password = passwordField.getText().toString();
 
-         if ((id.trim().equals("") || password.trim().equals(""))) {
+         if ((user_id.trim().equals("") || user_password.trim().equals(""))) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
             Dialog dialog = builder.setMessage("아이디와 비밀번호는 반드시 입력해주세요.").setPositiveButton("OK", null).create();
             dialog.show();
 
-        } else if (id.contains(" ") || password.contains(" ")) {
+        } else if (user_id.contains(" ") || user_password.contains(" ")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
             Dialog dialog = builder.setMessage("아이디나 비밀번호에는 공백이 포함될 수 없습니다").setPositiveButton("OK", null).create();
             dialog.show();
 
         } else {
-            HashMap<String, Object> params = new HashMap<>();
+                if(!user_id.isEmpty()&&!user_password.isEmpty()){
+                    postLoginData(user_id,user_password);
+                   /* Map<String,String> params=new HashMap<>();
+                    params.put("id",id);
+                    params.put("password",password);
+                    aquery.ajax("http://13.124.15.202:80/account/sign/in",params,String.class,new AjaxCallback<String>(){
+                        @Override
+                        public void callback(String url, String response, AjaxStatus status) {
+                            int statusCode=status.getCode();
+                            Log.d("statuCode",Integer.toString(statusCode));
+                            if(statusCode==201){
+                                finish();
+                                Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
+                                startActivity(intent);
 
-            params.put("id", id);
-            params.put("password", password);
-
-            aquery.ajax(url + "account/login", params, String.class, new AjaxCallback<String>() {
-
-                @Override
-                public void callback(String url, String response /* ResponseType responseValue */, AjaxStatus status) {
-                    /*
-                    내용 추가 필요
-                     */
-
+                            }
+                            else if(statusCode==400){
+                                Log.d("연결","x");
+                                Toast toast=Toast.makeText(getApplicationContext(),"연결 확인해주세요", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+                            else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                Dialog dialog = builder.setMessage("아이디 비밀번호 다시 입력해 주세요.").setPositiveButton("OK", null).create();
+                                dialog.show();
+                            }
+                        }
+                    });
+*/
                 }
 
-            });
 
             //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
 
-            startActivity(intent);
 
-            LandingActivity.landingActivity.finish();
-            finish();
 
         }
 
@@ -109,4 +128,47 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         Log.d(this.getLocalClassName(), "goForgetClicked: ");
     }
+    public void postLoginData(final String id,String password){
+        retrofit=new Retrofit.Builder()
+                .baseUrl(url)
+                .build();
+        Map map=new HashMap();
+        map.put("id",id);
+        map.put("password",password);
+        apiInterface=retrofit.create(APIinterface.class);
+        Call<ResponseBody> call=apiInterface.doSignIn(map);
+        call.enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(Response<ResponseBody> response) {
+                if(response.code()==201){
+                    LoginActivity.id=id;
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
+
+
+
+                }else if(response.code()==400){
+                    Toast.makeText(getApplicationContext(),"일시적인 서버오류 입니다.잠시후 다시 시도 해주세요.",Toast.LENGTH_SHORT).show();
+                    idField.setText("");
+                    passwordField.setText("");
+                }else {
+                    Toast.makeText(getApplicationContext(), "아이디나 비빌번호를 확인하세요.", Toast.LENGTH_SHORT).show();
+                    idField.setText("");
+                    passwordField.setText("");
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getApplicationContext(), "잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                idField.setText("");
+                passwordField.setText("");
+            }
+        });
+
+    }
+
 }

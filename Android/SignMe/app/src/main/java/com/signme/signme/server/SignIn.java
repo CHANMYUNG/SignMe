@@ -1,4 +1,4 @@
-package com.signme.signme.Retrofit;
+package com.signme.signme.server;
 
 /**
  * Created by dsm2016 on 2017-09-04.

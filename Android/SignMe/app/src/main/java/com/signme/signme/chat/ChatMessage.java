@@ -1,4 +1,4 @@
-package com.signme.signme;
+package com.signme.signme.chat;
 
 /**
  * Created by dsm2016 on 2017-07-20.

@@ -1,8 +1,10 @@
-package com.signme.signme;
+package com.signme.signme.chat;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.signme.signme.R;
 
 /**
  * Created by dsm2016 on 2017-09-04.

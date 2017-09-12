@@ -17,14 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".indexchating"></activity>
+        <activity android:name=".chat.indexchating"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".TutorMainActivity"></activity>
+        <activity android:name=".tutoreal.TutorMainActivity"></activity>
         <activity android:name=".FogetidActivity"></activity>
         <activity android:name=".FogetpwActivity"></activity>
-        <activity android:name=".MypageActivity"></activity>
-        <activity android:name=".ModifyActivity"></activity>
+        <activity android:name=".mypage.MypageActivity"></activity>
+        <activity android:name=".mypage.ModifyActivity"></activity>
         <activity android:name=".PwchangeActivity"></activity>
         <activity android:name=".ContentMainActivity"></activity>
         <activity android:name=".TestDialog"

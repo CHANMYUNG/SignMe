@@ -1,4 +1,4 @@
-package com.signme.signme;
+package com.signme.signme.chat;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

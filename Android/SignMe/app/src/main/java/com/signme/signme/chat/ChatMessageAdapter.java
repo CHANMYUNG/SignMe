@@ -1,13 +1,15 @@
-package com.signme.signme;
+package com.signme.signme.chat;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.signme.signme.R;
+import com.signme.signme.chat.ChatMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class ChatMessageAdapter extends ArrayAdapter {
 
 
     //@Override
-    public void add(ChatMessage  object) {
+    public void add(ChatMessage object) {
        msgs.add(object);
         super.add(object);
     }

@@ -1,4 +1,4 @@
-package com.signme.signme;
+package com.signme.signme.tutoreal;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
+
+import com.signme.signme.MainActivity;
+import com.signme.signme.R;
 
 import java.util.ArrayList;
 import java.util.List;
