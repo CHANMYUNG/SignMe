@@ -29,7 +29,9 @@ public class SignIn implements Handler<RoutingContext> {
         String id = context.request().getFormAttribute("id");
         String password = context.request().getFormAttribute("password");
         String type = context.request().getFormAttribute("type");
-
+        System.out.println(id);
+        System.out.println(password);
+        System.out.println(type);
         // 파라미터가 유효하지 않을 때 (null 일 때)
         if (RequestManager.paramValidationCheck(id, password, type) == false) {
             // 상태코드 400 반환 후 연결 해제
@@ -38,7 +40,7 @@ public class SignIn implements Handler<RoutingContext> {
             return;
         }
 
-        if (!(type.equals("user") || type.equals("admin"))) {
+        if (!(type.toUpperCase().equals("USER") || type.toUpperCase().equals("ADMIN"))) {
             context.response().setStatusCode(400).end();
             return;
         }

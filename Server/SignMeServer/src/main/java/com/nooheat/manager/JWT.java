@@ -53,6 +53,7 @@ public class JWT {
     }
 
     public static JWT verify(RoutingContext context) {
+
         Cookie cookie = context.getCookie("signme-x-access-token");
         if (cookie == null) return null;
         String token = cookie.getValue();

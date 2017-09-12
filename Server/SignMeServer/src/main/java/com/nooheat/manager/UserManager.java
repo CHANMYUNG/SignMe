@@ -29,8 +29,9 @@ public class UserManager {
         try {
 
             if (rs.next()) {
-                context.addCookie(new CookieImpl("signme-x-access-token", JWT.createToken(rs.getString("uid"), rs.getString("name"), isAdmin)));
+                context.addCookie(Cookie.cookie("signme-x-access-token", JWT.createToken(rs.getString("uid"), rs.getString("name"), isAdmin)).setMaxAge(3600).setPath("/"));
                 context.response().setStatusCode(201).end();
+
             } else context.response().setStatusCode(400).end();
         } catch (Exception e) {
             e.printStackTrace();
