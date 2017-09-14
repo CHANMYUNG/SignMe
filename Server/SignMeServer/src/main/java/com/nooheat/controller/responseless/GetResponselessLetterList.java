@@ -16,7 +16,7 @@ import org.json.JSONArray;
 /**
  * Created by NooHeat on 10/09/2017.
  */
-@API(category = Category.TASK, summary = "비응답형 가정통신문 목록 조회", successCode = 200, failureCode = 400)
+@API(category = Category.RESPONSELESSLETTER, summary = "비응답형 가정통신문 목록 조회", successCode = 200, failureCode = 400)
 @URIMapping(uri = "/letter/responseless", method = HttpMethod.GET)
 public class GetResponselessLetterList implements Handler<RoutingContext> {
 

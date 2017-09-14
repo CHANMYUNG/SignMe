@@ -23,6 +23,27 @@ public class ResponselessLetter {
     final static String DELETE = "DELETE FROM responselessLetter WHERE letterNumber = ?";
 
     int letterNumber;
+
+    public int getLetterNumber() {
+        return letterNumber;
+    }
+
+    public String getWriterUid() {
+        return writerUid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContents() {
+        return contents;
+    }
+
+    public String getOpenDate() {
+        return openDate;
+    }
+
     String writerUid;
     String title;
     String contents;
@@ -97,11 +118,12 @@ public class ResponselessLetter {
         return DBManager.update(SAVE, writerUid, title, contents, openDate) == 1;
     }
 
-    public void update(String writerUid, String title, String contents, String openDate) {
+    public ResponselessLetter update(String writerUid, String title, String contents) {
         this.writerUid = writerUid;
         this.title = title;
         this.contents = contents;
-        this.openDate = openDate;
+
+        return this;
     }
 
     public boolean saveUpdated() {
@@ -110,6 +132,11 @@ public class ResponselessLetter {
 
     public boolean delete() {
         return DBManager.update(DELETE, letterNumber) != -1;
+    }
+
+    @Override
+    public String toString() {
+        return new JsonObject().put("letterNumber", this.letterNumber).put("writerUid", this.writerUid).put("title", this.title).put("contents", this.contents).put("openDate", this.openDate).toString();
     }
 
 }
