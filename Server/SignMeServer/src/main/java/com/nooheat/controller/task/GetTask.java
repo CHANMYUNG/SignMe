@@ -14,7 +14,7 @@ import io.vertx.ext.web.RoutingContext;
 /**
  * Created by NooHeat on 18/08/2017.
  */
-@API(category = Category.TASK, summary = "일정 내용 보기", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400")
+@API(category = Category.TASK, summary = "일정 내용 보기", response = "[{‘endDate’:’2017-08-11 00:00:00', 'writerUid':'2', 'title':'가정통신문23', 'tid':'5', 'writerName':'정근철', 'startDate':'2017-08-08 00:00:00'}]", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400")
 @URIMapping(uri = "/task/:tid", method = HttpMethod.GET)
 public class GetTask implements Handler<RoutingContext> {
 

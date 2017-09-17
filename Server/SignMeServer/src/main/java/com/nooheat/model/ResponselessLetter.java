@@ -96,8 +96,7 @@ public class ResponselessLetter {
         ResultSet rs = DBManager.execute(FINDONE, letterNumber);
 
         try {
-            rs.next();
-            if (rs.getString("title") != null) {
+            if (rs.next()) {
 
                 String writerUid = rs.getString("writerUid");
                 String title = rs.getString("title");

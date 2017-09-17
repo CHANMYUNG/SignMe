@@ -14,7 +14,7 @@ import io.vertx.ext.web.RoutingContext;
 /**
  * Created by NooHeat on 13/09/2017.
  */
-@API(category = Category.RESPONSELESSLETTER, summary = "비응답형 가정통신문 조회", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400")
+@API(category = Category.RESPONSELESSLETTER, summary = "비응답형 가정통신문 조회", response = "{letterNumber:2, writerUid:2, title:보건교육, contents:성교육임ㅋ, openDate:2017-09-14}", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400")
 @URIMapping(uri = "/letter/responseless/:letterNumber", method = HttpMethod.GET)
 public class GetResponselessLetter implements Handler<RoutingContext> {
     @Override

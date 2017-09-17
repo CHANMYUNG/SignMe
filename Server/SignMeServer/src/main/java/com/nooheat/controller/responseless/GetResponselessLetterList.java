@@ -16,7 +16,7 @@ import org.json.JSONArray;
 /**
  * Created by NooHeat on 10/09/2017.
  */
-@API(category = Category.RESPONSELESSLETTER, summary = "비응답형 가정통신문 목록 조회", successCode = 200, failureCode = 400)
+@API(category = Category.RESPONSELESSLETTER, summary = "비응답형 가정통신문 목록 조회", response = "[{letterNumber:2, writerUid:2, title:보건교육, contents:성교육임ㅋ, openDate:2017-09-14}]", successCode = 200, failureCode = 400)
 @URIMapping(uri = "/letter/responseless", method = HttpMethod.GET)
 public class GetResponselessLetterList implements Handler<RoutingContext> {
 
@@ -24,12 +24,6 @@ public class GetResponselessLetterList implements Handler<RoutingContext> {
     public void handle(RoutingContext ctx) {
         HttpServerRequest req = ctx.request();
         HttpServerResponse res = ctx.response();
-
-        JWT token = JWT.verify(ctx);
-        if (token == null) {
-            res.setStatusCode(401).end();
-            return;
-        }
 
         JsonArray response = ResponselessLetter.findAll();
         if (response != null) res.setStatusCode(200).end(response.toString());

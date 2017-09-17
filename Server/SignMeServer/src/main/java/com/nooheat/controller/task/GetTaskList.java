@@ -14,7 +14,7 @@ import org.json.JSONArray;
 /**
  * Created by NooHeat on 24/07/2017.
  */
-@API(category = Category.TASK, summary = "일정 목록 조회", successCode = 200, failureCode = 400)
+@API(category = Category.TASK, summary = "일정 목록 조회", response = "[{‘endDate’:’2017-08-11 00:00:00', 'writerUid':'2', 'title':'가정통신문23', 'tid':'5', 'writerName':'정근철', 'startDate':'2017-08-08 00:00:00'}]", successCode = 200, failureCode = 400)
 @URIMapping(uri = "/task", method = HttpMethod.GET)
 public class GetTaskList implements Handler<RoutingContext> {
 
