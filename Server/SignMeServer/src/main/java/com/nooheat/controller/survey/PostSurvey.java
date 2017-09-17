@@ -1,5 +1,7 @@
 package com.nooheat.controller.survey;
 
+import com.nooheat.manager.JWT;
+import com.nooheat.model.Survey;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.support.URIMapping;
@@ -26,16 +28,33 @@ public class PostSurvey implements Handler<RoutingContext> {
     public void handle(RoutingContext ctx) {
         HttpServerRequest req = ctx.request();
         HttpServerResponse res = ctx.response();
+        JWT token = JWT.verify(ctx);
+
+        if (token == null) {
+            res.setStatusCode(401).end();
+            return;
+        }
+
+        if (!token.isAdmin()) {
+            res.setStatusCode(403).end();
+            return;
+        }
+
         System.out.println(req.formAttributes().toString());
         System.out.println(req.toString());
-//        JsonObject ob = new JsonObject(req.getFormAttribute("a"));
-        JsonArray list = new JsonArray(req.getFormAttribute("asdasd"));
-        System.out.println(list.toString());
-        System.out.println(list.getJsonObject(1).toString());
-//        System.out.println(ob.toString());
 
-        res.setStatusCode(200).end("asdad");
+        String writerUid = token.getUid();
+        String title = req.getFormAttribute("title");
+        String summary = req.getFormAttribute("summary");
+        String openDate = req.getFormAttribute("openDate");
+        String closeDate = req.getFormAttribute("closeDate");
+        List items = new JsonArray(req.getFormAttribute("items")).getList();
 
+        Survey survey = new Survey(writerUid, title, summary, items, openDate, closeDate);
+
+        boolean result = survey.save();
+        if (result) res.setStatusCode(201).end();
+        else res.setStatusCode(400).end();
 
     }
 }
