@@ -1,12 +1,18 @@
 body, html, div, ul, li, h1, p, span, a, input, button {
     padding: 0;
     margin: 0;
+    text-decoration: none;
 }
+
 li {
     list-style: none;
 }
 h1 {
     font-size: 35px;
+}
+a {
+    color: black;
+    text-decoration:none;
 }
 input:-ms-input-placeholder {
     color: #cdcdcd;
@@ -22,10 +28,13 @@ input::-moz-placeholder {
 } 
 input::-moz-placeholder {
     color: #cdcdcd;
-;
 } 
+
+body{
+    background-color:  rgb(249,249,249);
+}
 .g_banner { 
-    height: 5vh;
+    height: 50px;
     background-color: #fff;
     border-bottom: 1px solid rgb(85.1%, 85.1%, 85.1%);
 }
@@ -41,20 +50,26 @@ input::-moz-placeholder {
 }
 .g_a_b_h1{
     padding-bottom: 0px;
+    font-size: 45px;
 }
 .bar {
     height: 1px;
+    width: 60vw;
+    color: black;
+    background-color: black;
+}
+.minibar{
+    margin-right: 4vw;
+    width: 35vw;
     color: black;
     background-color: black;
 }
 .g_artcle {
     padding-top: 5vh;
     width: 60vw;
-    padding-left: 20vw;
+    margin-left: 20vw;
 }
-#g_a_artcle {
 
-}
 
 .b_leftbox {
     padding-bottom : 25px;

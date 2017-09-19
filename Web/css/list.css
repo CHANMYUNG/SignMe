@@ -1,0 +1,120 @@
+#listContant{
+    padding-top: 10px;
+}
+.g_artcle {
+    padding-top: 10vh;
+    width: 50vw;
+    padding-left: 25vw;
+}
+.g_a_bar{
+    color: #888888;
+    width: 50vw;
+    font-size: 22px;
+}
+#chlinks{
+    float: left;
+}
+#chboxs{
+    float: right;
+}
+.chlink{
+    padding-right: 20px;
+    height: 30px;
+    font-size: 20px;
+    float: left;
+}
+.chbox{
+    font-size: 15px;
+    
+    float: left;
+    background: #ffffff;
+    height: 40px;
+    margin-left: 5px;
+}
+
+.chbox{
+    height: 42px;
+    width: 120px;
+    font-size: 10;
+    border: 1px solid #888888;
+}
+#chboxInputdiv{
+    width: 220px;
+}
+
+#chboxInput{
+    border: none;
+    height: 40px;
+}
+select > option{
+    height: 500px;
+}
+select option:checked, 
+select option:hover {    
+    text-decoration: underline;
+    color: black;
+}
+.g_a_list{
+    padding-top: 3vh;
+    clear: both;
+}
+.g_a_text{
+    float: left;
+}
+#listName{
+    width: 60vw;
+    
+}
+.listNameItembox{
+    float: left;
+    height: 30px;
+    text-align: center;
+    color: #ffffff;
+
+    background-color: #888888;
+}
+.textcenter{
+    
+}
+.listNameItembox{
+    padding-top:5px;
+}
+#itemDate{
+    width: 10vw;
+}
+#itemContent{
+    width: 30vw;
+    border-right: 1px dashed #ffffff;
+    border-left:  1px dashed #ffffff;
+}
+#itemPerson{
+    width: 10vw;
+}
+#listArtcle{
+    width: 50vw;
+    height: 700px;
+}
+.listContant{
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #888888;
+    display: flex;
+}
+
+.listContant>div{
+    margin: auto 0;
+}
+
+.listItem{  
+    text-align: center;
+    float: left;
+}
+.listNameWhen{
+    width: 10vw;
+}
+.listNameText{
+    width: 30vw;
+}
+.listNameWho{
+    width: 10vw;
+}
