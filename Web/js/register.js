@@ -43,7 +43,7 @@ function submit_chk(myForm) {
 
 $(document).ready(function () {
     $.ajax({
-        url: '/users/register',
+        url: '/account/sign/up',
         type: 'post',
         data: $('form').serialize(),
         success: function (result) {

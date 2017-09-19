@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({
-        url: '/users/login',
+        url: '/account/sign/in',
         type: 'post',
         data: $('form').serialize(),
         success: function (result) {
