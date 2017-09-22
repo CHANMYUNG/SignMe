@@ -144,6 +144,7 @@ public class SignlistActivity extends AppCompatActivity {
         listItems.add(clickCounter++);
         arrayAdapter.notifyDataSetChanged();
     }
+    ///레트로핏 어뎁터
     public void get(){
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl(URL)
@@ -151,6 +152,7 @@ public class SignlistActivity extends AppCompatActivity {
                 .build();
         Map map= new HashMap();
         map.get(getTitle());
+        //map.get(getOpenDate());
         APIinterface retrofitService=retrofit.create(APIinterface.class);
         Call<contentListItem> call=retrofitService.letter_list(map);
         call.enqueue(new Callback<contentListItem>() {
@@ -174,5 +176,9 @@ public class SignlistActivity extends AppCompatActivity {
             }
 
         });
+    }
+    //뒤로가기
+    public void signlist_back(View view){
+        finish();
     }
 }

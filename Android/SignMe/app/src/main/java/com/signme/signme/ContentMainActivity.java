@@ -31,12 +31,19 @@ public class ContentMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_content_main);
 
     }
-
+    //가정통신문 제출 버튼
+    public void spend_contentonClick(View view){
+        //다이얼로그
+    }
+    //사인 엑티비티 실행  but, 삭제 예정
     public void testonclick(View v) {
         Intent intent=new Intent(getApplicationContext(),TestDialog.class);
         startActivity(intent);
     }
-
+    //뒤로가기
+    public void backonClick(View view){
+        finish();
+    }
 
 
 

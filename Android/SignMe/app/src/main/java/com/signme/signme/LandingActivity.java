@@ -30,12 +30,12 @@ public class LandingActivity extends AppCompatActivity{
         
     }
 
-
+    //로그인
     public void goLoginClicked(View view) {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
     }
-
+    //회원가입
     public void registerClicked(View view) {
 
     }

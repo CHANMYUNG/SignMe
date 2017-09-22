@@ -1,4 +1,4 @@
-package com.signme.signme;
+package com.signme.signme.Forget_Activity;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
+import com.signme.signme.R;
 import com.signme.signme.server.APIinterface;
 
 /**
@@ -57,6 +58,7 @@ public class FogetidActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);*/
 
     }
+    //아이디 확인 내용
     public void fogetidcheck(View view){
         aquery = new AQuery(getApplicationContext());
         final EditText namefield=(EditText)findViewById(R.id.forgetid_name);
@@ -81,11 +83,12 @@ public class FogetidActivity extends AppCompatActivity {
 
 
     }
+    //엑티비티 종료
     public void closeonClick(View view) {
         FogetidActivity.fogetidActivity.finish();
         finish();
     }
-
+    //비밀번호 찾기 실행
     public void fogetpwonClick(View view) {
         Intent intent = new Intent(getApplicationContext(), FogetpwActivity.class);
         startActivity(intent);

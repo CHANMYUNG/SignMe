@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.signme.signme.R;
+import com.signme.signme.SignlistActivity;
 
 /**
  * Created by dsm2016 on 2017-07-12.
@@ -28,7 +29,7 @@ public class MypageActivity extends AppCompatActivity {
         mypageActivity = this;
 
     }
-
+    ///회원정보 수정으로 가기
     public void mypageonClick1(View view) {
         Context mContext = getApplicationContext();
 
@@ -51,7 +52,12 @@ public class MypageActivity extends AppCompatActivity {
 
 
     }
-
+    //신청한 가정통신문으로 이동
+    public void contentonClick1(View view){
+        Intent intent=new Intent(getApplicationContext(), SignlistActivity.class);
+        startActivity(intent);
+    }
+    //뒤로가기
     public void backonClick(View view) {
         MypageActivity.mypageActivity.finish();
         finish();

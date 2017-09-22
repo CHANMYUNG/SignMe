@@ -10,18 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.signme.signme.Forget_Activity.FogetidActivity;
 import com.signme.signme.server.APIinterface;
 import com.signme.signme.tutoreal.TutorMainActivity;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**

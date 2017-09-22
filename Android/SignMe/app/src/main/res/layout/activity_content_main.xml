@@ -18,6 +18,7 @@
             android:layout_height="60dp"
             android:layout_alignParentStart="true">
             <ImageButton
+                android:onClick="backonClick"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/back"/>
@@ -147,7 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="제출하기"
-
+            android:onClick="spend_contentonClick"
             android:layout_gravity="center"
             android:textSize="40dp"
             android:background="@null"/>

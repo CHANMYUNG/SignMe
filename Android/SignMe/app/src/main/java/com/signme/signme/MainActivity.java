@@ -207,7 +207,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
                 .show();
     }
 
-    //두번 클릭 시 종료
+    //두번 클릭 시 앱 종료
     @Override
     public void onBackPressed() {
         if (pressedTime == 0) {
@@ -231,7 +231,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
     public void onClick(DialogInterface dialog, int which) {
 
     }
-
+    //마이페이지 버튼
     public void mypageonClicked(View view) {
         Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
         startActivity(intent);
