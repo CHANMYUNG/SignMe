@@ -31,7 +31,6 @@ public class FogetidActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_forgetid);
         fogetidActivity = this;
-        //apIinterface= ApplicationController.getClient().create(APIinterface.class);
         final Spinner spinner = (Spinner) findViewById(R.id.email2);
         final EditText tv = (EditText) findViewById(R.id.email3);
         final EditText filed_name=(EditText)findViewById(R.id.forgetid_name);

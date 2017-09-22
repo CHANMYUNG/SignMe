@@ -49,15 +49,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#85CBFF">
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
             <ListView
+                android:id="@+id/contentlist"
                 android:textColor="#000"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+
+                >
 
             </ListView>
-        </ScrollView>
+
     </RelativeLayout>
 </LinearLayout>

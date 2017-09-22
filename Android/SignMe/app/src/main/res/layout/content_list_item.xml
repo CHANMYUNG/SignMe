@@ -4,18 +4,23 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
         android:textColor="#FFF"
         android:textSize="30dp"
+        android:textStyle="bold"
         />
+]
+        <TextView
+            android:id="@+id/date_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="#95989A"
+            android:gravity="right"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textColor="#95989A"
-        android:gravity="right"/>
+
+
 </LinearLayout>

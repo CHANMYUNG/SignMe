@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginActivity = this;
-        //apiInterface = ApplicationController.getClient().create(APIinterface.class);
     }
 
 
@@ -67,7 +66,9 @@ public class LoginActivity extends AppCompatActivity {
 
         } else {
                 if(!user_id.isEmpty()&&!user_password.isEmpty()){
-                    postLoginData(user_id,user_password);
+                    Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
+                    startActivity(intent);
+                    // postLoginData(user_id,user_password);
                    /* Map<String,String> params=new HashMap<>();
                     params.put("id",id);
                     params.put("password",password);
@@ -128,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         Log.d(this.getLocalClassName(), "goForgetClicked: ");
     }
-    public void postLoginData(final String id,String password){
+   /* public void postLoginData(final String id,String password){
         retrofit=new Retrofit.Builder()
                 .baseUrl(url)
                 .build();
@@ -169,6 +170,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
 }

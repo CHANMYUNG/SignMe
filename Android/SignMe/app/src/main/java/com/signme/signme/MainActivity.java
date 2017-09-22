@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -52,6 +53,13 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.text),"\n새로운 가정통신문",ContextCompat.getDrawable(this,R.drawable.right));
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.chat),"\n새로운 메세지",ContextCompat.getDrawable(this,R.drawable.right));
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.calander),"\n새로운 일정",ContextCompat.getDrawable(this,R.drawable.right));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int i, long l) {
+                Intent listbtn=new Intent(getApplicationContext(),SignlistActivity.class);
+                startActivity(listbtn);
+            }
+        });
         //네비게이션 바
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
         ImageButton drawerIB = (ImageButton) findViewById(R.id.ib_drawer);
@@ -110,11 +118,11 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
         mypagebtn=(ImageButton) findViewById(R.id.mypagebtn);
         mButton.setOnClickListener(this);
     }
-
+    ///마이페이지
     //카메라에서 이미지 가져오기
     private void doTakePhotoAction() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //임시로 사용할 팔일의 경로 생성
+        //임시로 사용할 파일의 경로 생성
         String url = "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg";
         mImageCoptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageCoptureUri);

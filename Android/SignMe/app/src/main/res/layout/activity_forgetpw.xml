@@ -154,12 +154,14 @@
 
                     <TextView
                         android:id="@+id/momo"
-                        android:layout_width="40dp"
+                        android:layout_width="100dp"
                         android:layout_height="35dp"
                         android:gravity="center_vertical"
                         android:text="아이디"
                         android:textColor="#95989A"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
 
                     <EditText
                         android:id="@+id/user_id"
@@ -200,7 +202,7 @@
 
                     <TextView
                         android:id="@+id/cna"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:text="이메일"
                         android:textColor="#95989A"
@@ -285,9 +287,9 @@
 
                     <TextView
                         android:id="@+id/qs"
-                        android:layout_width="80dp"
+                        android:layout_width="120dp"
                         android:layout_height="50dp"
-                        android:text="이메일 인증\n\t번호 확인"
+                        android:text="이메일 인증\n \t번호 확인"
                         android:textColor="#95989A"
                         android:textSize="20dp" />
 
