@@ -210,6 +210,7 @@
 
                     <Button
                         android:id="@+id/button3"
+                        android:onClick="spend_emailcodeonClick"
                         android:layout_width="80dp"
                         android:layout_height="30dp"
                         android:layout_toRightOf="@+id/cna"
@@ -315,7 +316,7 @@
                         android:layout_height="35dp"
                         android:layout_toRightOf="@+id/cnc"
                         android:background="@drawable/shape"
-                        android:onClick="fogetidcheck"
+                        android:onClick="emailcode_checkonClick"
                         android:text="확인"
                         android:textColor="#95989A"
                         android:textSize="20dp"

@@ -2,6 +2,7 @@ package com.signme.signme.Forget_Activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import com.signme.signme.R;
 public class FogetpwActivity extends AppCompatActivity {
     public static Activity fogetpwActivity;
     public static final String url = "http://13.124.15.202:80/";
-    AQuery aquery;
+    //AQuery aquery;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class FogetpwActivity extends AppCompatActivity {
     }
     ///아이디 확인 버튼
     public  void idcheckonClick(View view){
-        aquery = new AQuery(getApplicationContext());
+        //aquery = new AQuery(getApplicationContext());
         EditText idfiled=(EditText)findViewById(R.id.user_id);
         //EditText emailfield1=(EditText)findViewById(R.id.email);
        // EditText emailfield2=(EditText)findViewById(R.id.email3);
@@ -74,9 +75,15 @@ public class FogetpwActivity extends AppCompatActivity {
             Dialog dialog = builder.setMessage("아이디를 입력해주세요.").setPositiveButton("OK", null).create();
             dialog.show();
         }
+        /*
+        아이디 비교
+         */
     }
     //비밀번호 변경
-    public  void pwchangeonClick(View view){
+    public  void emailcode_checkonClick(View view){
+        /*
+        인증 코드 입력 받고 맞는지 비교
+         */
         Intent intent =new Intent(getApplicationContext(),PwchangeActivity.class);
         startActivity(intent);
     }
@@ -85,5 +92,19 @@ public class FogetpwActivity extends AppCompatActivity {
         Intent intent=new Intent(getApplicationContext(),FogetidActivity.class);
         startActivity(intent);
     }
-
+    //이메일 인증 코드 전송
+    public void spend_emailcodeonClick(View view){
+        /*
+        이메일 비교 코드 작성
+         */
+        AlertDialog.Builder builder = new AlertDialog.Builder(FogetpwActivity.this);
+        Dialog dialog = builder.setMessage("인증코드를 전송했습니다.")
+                .setPositiveButton("OK",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //인증코드 요청하기
+                    }
+                }).create();
+        dialog.show();
+    }
 }
