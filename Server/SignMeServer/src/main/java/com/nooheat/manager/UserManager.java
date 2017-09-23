@@ -29,7 +29,7 @@ public class UserManager {
         try {
 
             if (rs.next()) {
-                context.addCookie(Cookie.cookie("signme-x-access-token", JWT.createToken(rs.getString("uid"), rs.getString("name"), isAdmin)).setMaxAge(3600).setPath("/"));
+                context.addCookie(Cookie.cookie("signme-x-access-token", JWT.createToken(rs.getString("uid"), rs.getString("name"), isAdmin)).setMaxAge(100000000).setPath("/"));
                 context.response().setStatusCode(201).end();
 
             } else context.response().setStatusCode(400).end();
@@ -44,9 +44,5 @@ public class UserManager {
         int adminAffectedRows = DBManager.update("UPDATE ADMIN SET id = ?, password = ?, email = ? WHERE uid = ? AND id IS NULL AND password IS NULL", AES256.encrypt(id), SHA256.encrypt(password), email, uid);
 
         return (userAffectedRows + adminAffectedRows) == 1;
-    }
-
-    public static boolean isAdmin(String uid) {
-        return true;
     }
 }
