@@ -7,6 +7,7 @@ import io.vertx.core.json.JsonObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class Survey extends Letter {
     private final static String SURVEY_FINDONE = "SELECT * FROM survey WHERE letterNumber = ?;";
     private final static String SURVEY_DELETE = "DELETE FROM survey WHERE letterNumber = ?";
     private final static String QUESTION_DELETE = "DELETE FROM surveyQuestion WHERE letterNumber = ?";
+    private final static String ANSWER_SAVE = "INSERT INTO  surveyAnswer(uid, letterNumber, columnIndex, answer, answerDate) VALUES(?, ?, ?, ?, ?);";
     private int letterNumber;
     private String title;
     private String writerUid;
@@ -147,11 +149,25 @@ public class Survey extends Letter {
         return this.writerUid;
     }
 
-    public boolean delete(){
+    public boolean delete() {
         boolean areQuestionsDeleted = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
         boolean isSurveyDeleted = DBManager.update(SURVEY_DELETE, this.letterNumber) != -1;
 
         return areQuestionsDeleted && isSurveyDeleted;
+    }
+
+    public boolean answer(String uid, List answers, String answerDate) {
+        Iterator<Integer> iterator = answers.iterator();
+        int columnIndex = 1;
+        while(iterator.hasNext()){
+            int answer = iterator.next();
+
+            if(DBManager.update(ANSWER_SAVE, uid, this.letterNumber, columnIndex++, answer, answerDate) == -1){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void setLetterNumber(int letterNumber) {
