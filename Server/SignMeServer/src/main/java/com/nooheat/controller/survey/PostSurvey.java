@@ -20,7 +20,7 @@ import java.util.List;
  * Created by NooHeat on 04/09/2017.
  */
 
-@API(category = Category.SURVEY, summary = "설문조사 생성", successCode = 201, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
+@API(category = Category.SURVEY, summary = "설문조사 생성", requestBody = "title : String, summary : String, items : List, openDate : String, closeDate : String", successCode = 201, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
 @URIMapping(uri = "/survey", method = HttpMethod.POST)
 public class PostSurvey implements Handler<RoutingContext> {
 

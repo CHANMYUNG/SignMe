@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by NooHeat on 23/09/2017.
  */
-@API(category = Category.SURVEY, summary = "설문조사 조회", successCode = 200, failureCode = 400, etc = "없는 letterNumber : 400, 비로그인 : 401, 관리자 아님 :403, 서버 오류 : 500")
+@API(category = Category.SURVEY, summary = "설문조사 조회", requestBody = "title : String, summary : String, items : List, openDate : String, closeDate : String", successCode = 200, failureCode = 400, etc = "없는 letterNumber : 400, 비로그인 : 401, 관리자 아님 :403, 서버 오류 : 500")
 @URIMapping(uri = "/survey/:letterNumber", method = HttpMethod.PUT)
 public class PutSurvey implements Handler<RoutingContext> {
     @Override
