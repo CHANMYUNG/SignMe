@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * Created by NooHeat on 10/09/2017.
  */
 
-public class ResponselessLetter {
+public class ResponselessLetter extends Letter{
 
     final static String FINDALL = "SELECT * FROM responselessLetter";
     final static String SAVE = "INSERT INTO responselessLetter(writerUid, title, contents, openDate) VALUES(?, ?, ?, ?)";
@@ -47,7 +47,7 @@ public class ResponselessLetter {
     String writerUid;
     String title;
     String contents;
-    String openDate;
+
 
 
     public ResponselessLetter(int letterNumber, String writerUid, String title, String contents, String openDate) {
@@ -117,8 +117,7 @@ public class ResponselessLetter {
         return DBManager.update(SAVE, writerUid, title, contents, openDate) == 1;
     }
 
-    public ResponselessLetter update(String writerUid, String title, String contents) {
-        this.writerUid = writerUid;
+    public ResponselessLetter update(String title, String contents) {
         this.title = title;
         this.contents = contents;
 
@@ -135,7 +134,12 @@ public class ResponselessLetter {
 
     @Override
     public String toString() {
-        return new JsonObject().put("letterNumber", this.letterNumber).put("writerUid", this.writerUid).put("title", this.title).put("contents", this.contents).put("openDate", this.openDate).toString();
+        return new JsonObject().put("letterNumber", this.letterNumber)
+                .put("writerUid", this.writerUid)
+                .put("title", this.title)
+                .put("contents", this.contents)
+                .put("openDate", this.openDate)
+                .toString();
     }
 
 }
