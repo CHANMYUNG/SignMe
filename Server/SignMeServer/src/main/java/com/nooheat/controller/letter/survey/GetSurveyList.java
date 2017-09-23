@@ -1,4 +1,4 @@
-package com.nooheat.controller.survey;
+package com.nooheat.controller.letter.survey;
 
 import com.nooheat.model.Survey;
 import com.nooheat.support.API;

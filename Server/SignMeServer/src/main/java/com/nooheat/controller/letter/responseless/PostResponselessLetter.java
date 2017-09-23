@@ -1,4 +1,4 @@
-package com.nooheat.controller.responseless;
+package com.nooheat.controller.letter.responseless;
 
 import com.nooheat.manager.JWT;
 import com.nooheat.model.ResponselessLetter;

@@ -56,7 +56,7 @@ public class Routing {
         }
 
         Collections.sort(documentResources);
-        System.out.println(AES256.encrypt("yunth1228")+","+ SHA256.encrypt("xogns1228"));
+
         Document.makeDocument(documentResources);
 
     }

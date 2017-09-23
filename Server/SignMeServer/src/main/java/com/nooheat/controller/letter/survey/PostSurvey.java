@@ -1,6 +1,7 @@
-package com.nooheat.controller.survey;
+package com.nooheat.controller.letter.survey;
 
 import com.nooheat.manager.JWT;
+import com.nooheat.manager.RequestManager;
 import com.nooheat.model.Survey;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
@@ -10,9 +11,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
-import org.json.JSONArray;
 
 import java.util.List;
 
@@ -48,7 +47,14 @@ public class PostSurvey implements Handler<RoutingContext> {
         String summary = req.getFormAttribute("summary");
         String openDate = req.getFormAttribute("openDate");
         String closeDate = req.getFormAttribute("closeDate");
-        List items = new JsonArray(req.getFormAttribute("items")).getList();
+        String itemString = req.getFormAttribute("items");
+
+        if(RequestManager.paramValidationCheck(writerUid, title, summary, openDate, closeDate, itemString) == false){
+            res.setStatusCode(400).end();
+            return;
+        }
+
+        List items = new JsonArray(itemString).getList();
 
         Survey survey = new Survey(writerUid, title, summary, items, openDate, closeDate);
 
