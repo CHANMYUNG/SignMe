@@ -1,6 +1,8 @@
 package com.nooheat.model;
 
+import com.mysql.cj.api.mysqla.result.Resultset;
 import com.nooheat.database.DBManager;
+import com.nooheat.support.Category;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import org.json.JSONArray;
@@ -9,12 +11,14 @@ import org.json.JSONObject;
 import javax.xml.ws.Response;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by NooHeat on 10/09/2017.
  */
 
-public class ResponselessLetter extends Letter{
+public class ResponselessLetter extends Letter {
 
     final static String FINDALL = "SELECT * FROM responselessLetter";
     final static String SAVE = "INSERT INTO responselessLetter(writerUid, title, contents, openDate) VALUES(?, ?, ?, ?)";
@@ -48,9 +52,12 @@ public class ResponselessLetter extends Letter{
     String title;
     String contents;
 
-
+    public ResponselessLetter() {
+        this.type = Category.RESPONSELESSLETTER;
+    }
 
     public ResponselessLetter(int letterNumber, String writerUid, String title, String contents, String openDate) {
+        this.type = Category.RESPONSELESSLETTER;
         this.letterNumber = letterNumber;
         this.writerUid = writerUid;
         this.title = title;
@@ -60,6 +67,7 @@ public class ResponselessLetter extends Letter{
 
 
     public ResponselessLetter(String writerUid, String title, String contents, String openDate) {
+        this.type = Category.RESPONSELESSLETTER;
         this.writerUid = writerUid;
         this.title = title;
         this.contents = contents;
@@ -124,6 +132,24 @@ public class ResponselessLetter extends Letter{
         return this;
     }
 
+    public static List<ResponselessLetter> getLetterList() throws SQLException {
+        ResultSet rs = DBManager.execute(FINDALL);
+        List<ResponselessLetter> letters = new ArrayList<>();
+        while (rs.next()) {
+            int letterNumber = rs.getInt("letterNumber");
+            String writerUid = rs.getString("writerUid");
+            String title = rs.getString("title");
+            String contents = rs.getString("contents");
+            String openDate = rs.getString("openDate");
+
+            ResponselessLetter letter = new ResponselessLetter(letterNumber, writerUid, title, contents, openDate);
+
+            letters.add(letter);
+        }
+
+        return letters;
+    }
+
     public boolean saveUpdated() {
         return DBManager.update(UPDATE, title, contents, openDate, letterNumber) == 1;
     }
@@ -134,12 +160,25 @@ public class ResponselessLetter extends Letter{
 
     @Override
     public String toString() {
-        return new JsonObject().put("letterNumber", this.letterNumber)
+        return new JsonObject()
+                .put("type", this.type.name())
+                .put("letterNumber", this.letterNumber)
                 .put("writerUid", this.writerUid)
                 .put("title", this.title)
                 .put("contents", this.contents)
                 .put("openDate", this.openDate)
                 .toString();
+    }
+
+    @Override
+    public JsonObject toJson() {
+        return new JsonObject()
+                .put("type", this.type.name())
+                .put("letterNumber", this.letterNumber)
+                .put("writerUid", this.writerUid)
+                .put("title", this.title)
+                .put("contents", this.contents)
+                .put("openDate", this.openDate);
     }
 
 }

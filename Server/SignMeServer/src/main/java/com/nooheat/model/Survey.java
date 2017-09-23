@@ -1,6 +1,7 @@
 package com.nooheat.model;
 
 import com.nooheat.database.DBManager;
+import com.nooheat.support.Category;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
@@ -29,9 +30,11 @@ public class Survey extends Letter {
     private String closeDate;
 
     public Survey() {
+        this.type = Category.SURVEY;
     }
 
     public Survey(int letterNumber, String writerUid, String title, String summary, List items, String openDate, String closeDate) {
+        this.type = Category.SURVEY;
         this.letterNumber = letterNumber;
         this.writerUid = writerUid;
         this.title = title;
@@ -42,6 +45,7 @@ public class Survey extends Letter {
     }
 
     public Survey(String writerUid, String title, String summary, List items, String openDate, String closeDate) {
+        this.type = Category.SURVEY;
         this.writerUid = writerUid;
         this.title = title;
         this.summary = summary;
@@ -124,15 +128,60 @@ public class Survey extends Letter {
         } else return null;
     }
 
+    public static List<Survey> getSurveyList() throws SQLException {
+        ResultSet rs = DBManager.execute(SURVEY_FINDALL);
+
+        List<Survey> surveys = new ArrayList<>();
+
+        while (rs.next()) {
+            Survey survey = new Survey();
+            survey.setLetterNumber(rs.getInt("letterNumber"));
+            survey.setWriterUid(rs.getString("writerUid"));
+            survey.setTitle(rs.getString("title"));
+            survey.setSummary(rs.getString("summary"));
+            survey.setOpenDate(rs.getString("openDate"));
+            survey.setCloseDate(rs.getString("closeDate"));
+
+            ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", rs.getInt("letterNumber"));
+
+            List<String> items = new ArrayList<>();
+            while (inner_rs.next()) {
+
+                items.add(inner_rs.getString("question"));
+            }
+
+            survey.setItems(items);
+            surveys.add(survey);
+        }
+
+        return surveys;
+    }
+
     @Override
     public String toString() {
-        return new JsonObject().put("letterNumber", this.letterNumber).put("writerUid", this.writerUid)
+        return new JsonObject()
+                .put("type", this.type)
+                .put("letterNumber", this.letterNumber)
+                .put("writerUid", this.writerUid)
                 .put("title", this.title)
                 .put("summary", this.summary)
                 .put("items", this.items)
                 .put("openDate", this.openDate)
                 .put("closeDate", this.closeDate)
                 .toString();
+    }
+
+    @Override
+    public JsonObject toJson() {
+        return new JsonObject()
+                .put("type", this.type)
+                .put("letterNumber", this.letterNumber)
+                .put("writerUid", this.writerUid)
+                .put("title", this.title)
+                .put("summary", this.summary)
+                .put("items", this.items)
+                .put("openDate", this.openDate)
+                .put("closeDate", this.closeDate);
     }
 
     public Survey update(String title, String summary, List items, String openDate, String closeDate) {
@@ -159,10 +208,10 @@ public class Survey extends Letter {
     public boolean answer(String uid, List answers, String answerDate) {
         Iterator<Integer> iterator = answers.iterator();
         int columnIndex = 1;
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             int answer = iterator.next();
 
-            if(DBManager.update(ANSWER_SAVE, uid, this.letterNumber, columnIndex++, answer, answerDate) == -1){
+            if (DBManager.update(ANSWER_SAVE, uid, this.letterNumber, columnIndex++, answer, answerDate) == -1) {
                 return false;
             }
         }

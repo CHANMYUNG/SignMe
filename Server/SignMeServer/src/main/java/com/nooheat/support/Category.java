@@ -9,6 +9,7 @@ public enum Category {
     TEST,
     TASK,
     SURVEY,
-    RESPONSELESSLETTER
+    RESPONSELESSLETTER,
+    LETTER
 
 }

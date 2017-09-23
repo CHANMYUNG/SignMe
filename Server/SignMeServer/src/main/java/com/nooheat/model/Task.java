@@ -1,6 +1,7 @@
 package com.nooheat.model;
 
 import com.nooheat.database.DBManager;
+import io.vertx.core.json.JsonObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -168,17 +169,15 @@ public class Task {
 
     @Override
     public String toString() {
-        JSONObject obj = new JSONObject();
-
-        obj.put("tid", tid);
-        obj.put("writerUid", writerUid);
-        obj.put("writerName", writerName);
-        obj.put("title", title);
-        obj.put("summary", title);
-        obj.put("startDate", title);
-        obj.put("endDate", title);
-
-        return obj.toString();
+        return new JsonObject()
+                .put("tid", tid)
+                .put("writerUid", writerUid)
+                .put("writerName", writerName)
+                .put("title", title)
+                .put("summary", title)
+                .put("startDate", title)
+                .put("endDate", title)
+                .toString();
     }
 
     public String getWriterUid() {
