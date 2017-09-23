@@ -6,22 +6,28 @@ import io.vertx.core.json.JsonObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by NooHeat on 17/09/2017.
  */
-public class Survey {
+public class Survey extends Letter {
     private final static String SURVEY_SAVE = "INSERT INTO survey(writerUid, title, summary, openDate, closeDate) VALUES(?,?,?,?,?);";
     private final static String QUESTION_SAVE = "INSERT INTO surveyQuestion(question) VALUES(?)";
     private final static String SURVEY_FINDALL = "SELECT * FROM survey ORDER BY letterNumber;";
-    int letterNumber;
-    String title;
-    String writerUid;
-    String summary;
-    List items;
-    String openDate;
-    String closeDate;
+    private final static String SURVEY_FINDONE = "SELECT * FROM survey WHERE letterNumber = ?;";
+    private final static String SURVEY_DELETE = "DELETE FROM survey WHERE letterNumber = ?";
+    private final static String QUESTION_DELETE = "DELETE FROM surveyQuestion WHERE letterNumber = ?";
+    private int letterNumber;
+    private String title;
+    private String writerUid;
+    private String summary;
+    private List items;
+    private String closeDate;
+
+    public Survey() {
+    }
 
     public Survey(int letterNumber, String writerUid, String title, String summary, List items, String openDate, String closeDate) {
         this.letterNumber = letterNumber;
@@ -58,6 +64,14 @@ public class Survey {
         return true;
     }
 
+    public boolean saveUpdated() {
+        boolean surveySave = DBManager.update(SURVEY_SAVE, writerUid, title, summary, openDate, closeDate) == 1;
+        boolean isDeletedAll = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
+        boolean questionSave = saveItems();
+
+        return surveySave && isDeletedAll && questionSave;
+    }
+
     public static JsonArray findAll() throws SQLException {
         ResultSet rs = DBManager.execute(SURVEY_FINDALL);
         JsonArray result = new JsonArray();
@@ -81,5 +95,90 @@ public class Survey {
         }
 
         return result;
+    }
+
+    public static Survey findOne(int letterNumber) throws SQLException {
+        ResultSet rs = DBManager.execute(SURVEY_FINDONE, letterNumber);
+        if (rs.next()) {
+            Survey survey = new Survey();
+            survey.setLetterNumber(rs.getInt("letterNumber"));
+            survey.setWriterUid(rs.getString("writerUid"));
+            survey.setTitle(rs.getString("title"));
+            survey.setSummary(rs.getString("summary"));
+            survey.setOpenDate(rs.getString("openDate"));
+            survey.setCloseDate(rs.getString("closeDate"));
+
+            ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", rs.getInt("letterNumber"));
+
+            List<String> items = new ArrayList<>();
+            while (inner_rs.next()) {
+
+                items.add(inner_rs.getString("question"));
+            }
+
+            survey.setItems(items);
+
+            return survey;
+        } else return null;
+    }
+
+    @Override
+    public String toString() {
+        return new JsonObject().put("letterNumber", this.letterNumber).put("writerUid", this.writerUid)
+                .put("title", this.title)
+                .put("summary", this.summary)
+                .put("items", this.items)
+                .put("openDate", this.openDate)
+                .put("closeDate", this.closeDate)
+                .toString();
+    }
+
+    public Survey update(String title, String summary, List items, String openDate, String closeDate) {
+        this.title = title;
+        this.summary = summary;
+        this.items = items;
+        this.openDate = openDate;
+        this.closeDate = closeDate;
+
+        return this;
+    }
+
+    public String getWriterUid() {
+        return this.writerUid;
+    }
+
+    public boolean delete(){
+        boolean areQuestionsDeleted = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
+        boolean isSurveyDeleted = DBManager.update(SURVEY_DELETE, this.letterNumber) != -1;
+
+        return areQuestionsDeleted && isSurveyDeleted;
+    }
+
+    public void setLetterNumber(int letterNumber) {
+        this.letterNumber = letterNumber;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setWriterUid(String writerUid) {
+        this.writerUid = writerUid;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setItems(List items) {
+        this.items = items;
+    }
+
+    public void setCloseDate(String closeDate) {
+        this.closeDate = closeDate;
+    }
+
+    public void setOpenDate(String openDate) {
+        this.openDate = openDate;
     }
 }
