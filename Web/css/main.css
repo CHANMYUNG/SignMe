@@ -70,7 +70,6 @@ body{
     margin-left: 20vw;
 }
 
-
 .b_leftbox {
     padding-bottom : 25px;
 }
@@ -79,7 +78,7 @@ body{
     float: left;
     padding: 0px 7px 0px 7px;
 }
-.clear {
+.clearbox {
     clear: both;
 }
 .g_a_text{

@@ -11,6 +11,11 @@
     width: 50vw;
     font-size: 22px;
 }
+
+#g_a_b_h1_bar{
+    width: 50vw;
+}
+
 #chlinks{
     float: left;
 }
@@ -73,9 +78,7 @@ select option:hover {
 
     background-color: #888888;
 }
-.textcenter{
-    
-}
+
 .listNameItembox{
     padding-top:5px;
 }

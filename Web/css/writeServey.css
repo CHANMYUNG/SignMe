@@ -1,0 +1,40 @@
+/* #formdiv{
+    border: 1px solid black;
+} */
+.leftbox{
+    padding: 0px;
+}
+
+#formdiv{
+    width: 60vw;
+    box-sizing: border-box;
+    font-size: 25px;
+}
+#form_hd{
+    text-align: center;
+    box-sizing: border-box;
+    
+}
+.form_title{
+    width: 40vw;
+}
+.form_check{
+    width: 4vw;
+    height: 100%;
+}
+.form_bd_list{
+    margin-bottom: 10px;
+    height: 2vw;
+}
+.form_bd_list_check{
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+.num_list{
+    text-align: right;
+}
+
+input[type=radio]{
+    display: block;
+    margin: 0px auto;
+}
