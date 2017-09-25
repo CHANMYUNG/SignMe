@@ -35,6 +35,11 @@ public class GetSurveyAnswer implements Handler<RoutingContext> {
             return;
         }
 
+        if (token.isAdmin()) {
+            res.setStatusCode(403).end();
+            return;
+        }
+
         int letterNumber = -1;
 
         try {
@@ -44,11 +49,11 @@ public class GetSurveyAnswer implements Handler<RoutingContext> {
             return;
         }
 
-        ResultSet rs = DBManager.execute("SELECT * FROM surveyAnswer WHERE letterNumber = ? AND uid = ? ORDER BY columnIndex;",letterNumber, token.getUid());
+        ResultSet rs = DBManager.execute("SELECT * FROM surveyAnswer WHERE letterNumber = ? AND uid = ? ORDER BY columnIndex;", letterNumber, token.getUid());
 
         List<Integer> answers = new ArrayList<>();
         try {
-            while(rs.next()){
+            while (rs.next()) {
                 answers.add(rs.getInt("answer"));
             }
         } catch (SQLException e) {

@@ -17,17 +17,19 @@ import java.util.List;
 public class Survey extends Letter {
     private final static String SURVEY_SAVE = "INSERT INTO survey(writerUid, title, summary, openDate, closeDate) VALUES(?,?,?,?,?);";
     private final static String QUESTION_SAVE = "INSERT INTO surveyQuestion(question) VALUES(?)";
-    private final static String SURVEY_FINDALL = "SELECT * FROM survey ORDER BY letterNumber;";
-    private final static String SURVEY_FINDONE = "SELECT * FROM survey WHERE letterNumber = ?;";
+    private final static String SURVEY_FINDALL = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid ORDER BY letterNumber;";
+    private final static String SURVEY_FINDONE = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid WHERE letterNumber = ?;";
     private final static String SURVEY_DELETE = "DELETE FROM survey WHERE letterNumber = ?";
     private final static String QUESTION_DELETE = "DELETE FROM surveyQuestion WHERE letterNumber = ?";
     private final static String ANSWER_SAVE = "INSERT INTO  surveyAnswer(uid, letterNumber, columnIndex, answer, answerDate) VALUES(?, ?, ?, ?, ?);";
+    private final static String COUNT_ANSWER = "SELECT count(distinct uid) as count FROM surveyAnswer WHERE letterNumber = ?;";
     private int letterNumber;
     private String title;
     private String writerUid;
     private String summary;
     private List items;
     private String closeDate;
+    private String writerName;
 
     public Survey() {
         this.type = Category.SURVEY;
@@ -88,6 +90,7 @@ public class Survey extends Letter {
             object.put("summary", rs.getString("summary"));
             object.put("openDate", rs.getString("openDate"));
             object.put("closeDate", rs.getString("closeDate"));
+            object.put("writerName", rs.getString("writerName"));
 
             ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", object.getInteger("letterNumber"));
 
@@ -113,6 +116,7 @@ public class Survey extends Letter {
             survey.setSummary(rs.getString("summary"));
             survey.setOpenDate(rs.getString("openDate"));
             survey.setCloseDate(rs.getString("closeDate"));
+            survey.setWriterName(rs.getString("writerName"));
 
             ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", rs.getInt("letterNumber"));
 
@@ -141,6 +145,7 @@ public class Survey extends Letter {
             survey.setSummary(rs.getString("summary"));
             survey.setOpenDate(rs.getString("openDate"));
             survey.setCloseDate(rs.getString("closeDate"));
+            survey.setWriterName(rs.getString("writerName"));
 
             ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", rs.getInt("letterNumber"));
 
@@ -160,6 +165,7 @@ public class Survey extends Letter {
     @Override
     public String toString() {
         return new JsonObject()
+                .put("writerName", this.writerName)
                 .put("type", this.type)
                 .put("letterNumber", this.letterNumber)
                 .put("writerUid", this.writerUid)
@@ -174,6 +180,7 @@ public class Survey extends Letter {
     @Override
     public JsonObject toJson() {
         return new JsonObject()
+                .put("writerName", this.writerName)
                 .put("type", this.type)
                 .put("letterNumber", this.letterNumber)
                 .put("writerUid", this.writerUid)
@@ -219,6 +226,14 @@ public class Survey extends Letter {
         return true;
     }
 
+    public int getCountOfAnswers() throws SQLException {
+        ResultSet rs = DBManager.execute(COUNT_ANSWER, this.letterNumber);
+
+        if (rs.next()) {
+            return rs.getInt("count");
+        } else return -1;
+    }
+
     public void setLetterNumber(int letterNumber) {
         this.letterNumber = letterNumber;
     }
@@ -245,5 +260,37 @@ public class Survey extends Letter {
 
     public void setOpenDate(String openDate) {
         this.openDate = openDate;
+    }
+
+    public String getWriterName() {
+        return writerName;
+    }
+
+    public void setWriterName(String writerName) {
+        this.writerName = writerName;
+    }
+
+    public int getLetterNumber() {
+        return letterNumber;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List getItems() {
+        return items;
+    }
+
+    public String getCloseDate() {
+        return closeDate;
+    }
+
+    public String getOpenDate() {
+        return openDate;
+    }
+
+    public String getSummary() {
+        return summary;
     }
 }
