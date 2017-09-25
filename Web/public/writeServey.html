@@ -29,18 +29,112 @@
                     <hr class="bar">
                 </div>
                 <div class="main_body">
-                    <div id="main_bd_head">
-                        <div >
-                            
+                    <!-- 여기부터-->
+                    <form action="/" onsubmit="return submit_chk(this);">
+                        <div id="main_bd_head">
+                            <div id="hd_title_outer">
+                                <div id="hd_title_title" class="leftbox">
+                                    <span >제목</span><span>&nbsp;:&nbsp;</span>
+                                </div>
+                                <div id="hd_title_dec" class="leftbox">
+                                    <input id="servey_title" type="text" placeholder="제목을 입력해주세요">
+                                </div>
+                                <div class="clearbox"></div>
+                            </div>
+                            <div id="hd_dec_outer">
+                                <div id="hd_dec_title">
+                                    <span>소개글</span>
+                                </div>
+                                <div id="hd_dec_dec">
+                                    <textarea id="servey_dec" placeholder="소개글을 입력해주세요" name="" id="" cols="110" rows="5" style="resize:none;font-size:18px"></textarea>
+                                </div>
+                            </div>
+                            <div id="hd_date_outer">
+                                <div id="hd_startdate_outer" class="leftbox">
+                                    <div id="hd_startdate_title" class="leftbox">
+                                        <span>시작일</span>
+                                    </div>
+                                    <div id="hd_startdate_dec" class="leftbox">
+                                        <input id="servey_startdate" type="date">
+                                    </div>
+                                        <span>&nbsp;-&nbsp;</span>
+                                    </div>
+                                    
+                                    <div id="hd_enddate_outer" class="leftbox">
+                                        <div id="hd_enddate_title" class="leftbox">
+                                            <span>종료일</span>
+                                        </div>
+                                        <div id="hd_enddate_dec" class="leftbox">
+                                            <input id="servey_enddate" type="date">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div id="main_bd_body">
-                        <table>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
-                    </div>
+                        <div id="main_bd_body">
+                            <table id="servey_table">
+                                <thead>
+                                    <tr>
+                                        <td class="tb_title">
+                                            <span>항목</span>
+                                        </td>
+                                        <td class="tb_check">
+                                            매우 좋음
+                                        </td>
+                                        <td class="tb_check">
+                                            좋음
+                                        </td>
+                                        <td class="tb_check">
+                                            보통
+                                        </td>
+                                        <td class="tb_check">
+                                            싫음
+                                        </td>
+                                        <td class="tb_check">
+                                            매우 싫음
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tb_bd">
+                                    <tr class="tb_list" id="tb_list_1">
+                                        <td class="tb_title tb_list_title ">
+                                            <div class="td_list_title_number leftbox">
+                                                <span>1.</span>
+                                            </div>
+                                            <div class="td_list_title_input leftbox">
+                                                <input id="servey_list_1" type="text">
+                                            </div>
+                                            <div class="clearbox"></div>
+                                        </td>
+                                        <td class="tb_check tb_list_check">
+                                            <input type="radio">
+                                        </td>
+                                        <td class="tb_check tb_list_check">
+                                            <input type="radio">                                            
+                                        </td>
+                                        <td class="tb_check tb_list_check">
+                                            <input type="radio">
+                                        </td>
+                                        <td class="tb_check tb_list_check">
+                                            <input type="radio">
+                                        </td>
+                                        <td class="tb_check tb_list_check">
+                                            <input type="radio">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="servey_btn">
+                                <button type="button" id="add_btn">항목추가</button>
+                                <button type="button" id="remove_btn">항목제거</button>
+
+                            </div>
+                            <div id="servey_submit">
+                                <input id="submit_btn" type="submit" value="전송">
+                            </div>
+                        </div>
+                    </form>
+                    <!--여기까지-->
                     <!-- <div>
                         <div id="b_body">
                             <div id="write_title_des">

@@ -2,45 +2,50 @@ $(document).ready(function(){
                     //list number start 1
                     var listNum=1;
                     //add list 
-                    $("#addBtn").click(function(){
+                    $("#add_btn").click(function(){
                         listNum++;
-                        $("#form_bd").append(
+                        $("tbody").append(
                             `
-                            <div class="form_bd_list" id="form_bd_list_${listNum}">
-                                <div class="form_title form_bd_list_title leftbox">
-                                    <span class="num_list">${listNum}</span>
-                                    <input type="text" placeholder="항목을 입력하세요">
-                                </div>
-                                <div class="form_check form_bd_list_check leftbox">
+                            <tr class="tb_list" id="tb_list_${listNum}">
+                                <td class="tb_title tb_list_title ">
+                                    <div class="td_list_title_number leftbox">
+                                        <span>${listNum}.</span>
+                                    </div>
+                                    <div class="td_list_title_input leftbox">
+                                        <input id="servey_list_${listNum}" type="text">
+                                    </div>
+                                    <div class="clearbox"></div>
+                                </td>
+                                <td class="tb_check tb_list_check">
                                     <input type="radio">
-                                </div>
-                                <div class="form_check form_bd_list_check leftbox">
+                                </td>
+                                <td class="tb_check tb_list_check">
+                                    <input type="radio">                                            
+                                </td>
+                                <td class="tb_check tb_list_check">
                                     <input type="radio">
-                                </div>
-                                <div class="form_check form_bd_list_check leftbox">
+                                </td>
+                                <td class="tb_check tb_list_check">
                                     <input type="radio">
-                                </div>
-                                <div class="form_check form_bd_list_check leftbox">
+                                </td>
+                                <td class="tb_check tb_list_check">
                                     <input type="radio">
-                                </div>
-                                <div class="form_check form_bd_list_check leftbox">
-                                    <input type="radio">
-                                </div>
-                                <span class="clearbox"></span>
-                            </div>`
+                                </td>
+                            </tr>
+                            `
                               
                         );
                     });
                     //remove list 
-                    $("#removeBtn").click(function(){
+                    $("#remove_btn").click(function(){
                         if(listNum==1){
                             alert("1이 마지막이에요");
                             return 0;
                         }
-                        var parent = document.getElementById("form_bd");
-                        var child = document.getElementById("form_bd_list_"+listNum);
+                        var parent = document.getElementById("tb_bd");
+                        var child = document.getElementById("tb_list_"+listNum);
                         parent.removeChild(child);
                         listNum--;
                     });
-
-                });
+    
+});

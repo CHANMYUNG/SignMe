@@ -1,40 +1,70 @@
-/* #formdiv{
-    border: 1px solid black;
-} */
 .leftbox{
     padding: 0px;
 }
-
-#formdiv{
-    width: 60vw;
-    box-sizing: border-box;
-    font-size: 25px;
-}
-#form_hd{
-    text-align: center;
-    box-sizing: border-box;
+td,tb{
+    border: 1px solid rgb(249,249,249);
+    /*border: 1px solid #cdcdcd;*/
     
 }
-.form_title{
-    width: 40vw;
+#hd_title_title>span{
+    font-size: 30px;
 }
-.form_check{
-    width: 4vw;
-    height: 100%;
+#hd_title_dec>input{
+    height: 28px;
+    font-size: 26px;
+    width: 400px;
 }
-.form_bd_list{
+#hd_dec_title>span{
+    font-size: 25px;
+}
+td{
     margin-bottom: 10px;
-    height: 2vw;
 }
-.form_bd_list_check{
-    border: 1px solid #000000;
-    box-sizing: border-box;
+#main_bd_head{
+    margin-bottom: 30px;
 }
-.num_list{
-    text-align: right;
+#hd_date_outer{
+    width: 60vw;
+}
+table{
+    background-color: #ffffff;
+    
+}
+#servey_table{
+    width: 60vw;
+}
+.tb_title{
+    width: 30vw;
 }
 
+thead{
+    text-align: center;  
+    border-bottom: 1px solid #cdcdcd;  
+}
+tbody>tr{
+    height: 40px;
+}
+.tb_check{
+    width: 6vw;
+}
+.td_list_title_number {
+    width: 1vw;
+}
+.td_list_title_input>input{
+    width: 28vw;
+}
+.td_list_title_input>input{
+    height: 30px;
+}
 input[type=radio]{
     display: block;
     margin: 0px auto;
+}
+button{
+    width: 80px;
+    height: 25px;
+}
+#servey_btn{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
