@@ -15,7 +15,7 @@ import io.vertx.ext.web.RoutingContext;
  * Created by NooHeat on 10/09/2017.
  */
 
-@API(category = Category.RESPONSELESSLETTER, summary = "응답 없는 가정통신문 생성", successCode = 201, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401, 권한 없음(관리자 아님) : 403")
+@API(category = Category.RESPONSELESSLETTER, summary = "응답 없는 가정통신문 생성", requestBody = "title : String, contents : String, openDate : String", successCode = 201, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401, 권한 없음(관리자 아님) : 403")
 @URIMapping(uri = "/letter/responseless", method = HttpMethod.POST)
 public class PostResponselessLetter implements Handler<RoutingContext> {
 
@@ -43,7 +43,7 @@ public class PostResponselessLetter implements Handler<RoutingContext> {
 
         boolean success = letter.save();
 
-        if(success) res.setStatusCode(201).end();
+        if (success) res.setStatusCode(201).end();
         else res.setStatusCode(400).end();
     }
 }
