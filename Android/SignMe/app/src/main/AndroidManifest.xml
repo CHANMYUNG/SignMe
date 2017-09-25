@@ -26,7 +26,7 @@
         <activity android:name=".mypage.MypageActivity"></activity>
         <activity android:name=".mypage.ModifyActivity"></activity>
         <activity android:name=".PwchangeActivity"></activity>
-        <activity android:name=".ContentMainActivity"></activity>
+        <activity android:name=".Content.ContentMainActivity"></activity>
         <activity android:name=".TestDialog"></activity>
         <activity android:name=".SignlistActivity"></activity>
 

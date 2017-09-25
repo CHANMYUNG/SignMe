@@ -8,19 +8,25 @@ import java.util.Comparator;
  */
 
 public class ContentlistItem {
-    public int letterNumber;
+   // public int letterNumber;
     public String title;
-    public int writerUid;
-    public   String contents;
+  //  public int writerUid;
+   // public   String contents;
     public String openDate;
 
-    public static final Comparator<ContentlistItem> ALRHA_COMPARATOR=new Comparator<ContentlistItem>() {
-        private final Collator sCollator=Collator.getInstance();
-        @Override
-        public int compare(ContentlistItem contentItem, ContentlistItem t1) {
-            return sCollator.compare(contentItem.title,t1.title);
-        }
-    };
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
+    public String getOpenDate() {
+        return openDate;
+    }
+
+    public void setOpenDate(String openDate) {
+        this.openDate = openDate;
+    }
 }

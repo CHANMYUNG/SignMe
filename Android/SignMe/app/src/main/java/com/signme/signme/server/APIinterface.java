@@ -40,8 +40,10 @@ public interface APIinterface {
     Call<JSONObject> uid_check(@Path("check_uid") String check_uid);
 
     @GET("/letter/responseless")
-    Call<contentListItem>letter_list(@QueryMap Map<String,String>option);
-    
+     Call<JSONObject>letter_list(@Query("letterNumber")int letterNumber );
+
+    @GET("/letter/responseless/:letterNumber")
+    Call<contentlistRepo> getletterNumber(@Path("letterNumber")int letterNumber);
 
     @FormUrlEncoded
     @POST("/logout")
@@ -59,5 +61,6 @@ public interface APIinterface {
     );
 
 
-
+    @GET("/jwt")
+    Call<Void> doJWTCheck();
 }

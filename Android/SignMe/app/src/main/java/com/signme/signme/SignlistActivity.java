@@ -5,11 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.signme.signme.adapter.ContentlistItem;
 import com.signme.signme.server.APIinterface;
 import com.signme.signme.server.contentListItem;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,92 +28,21 @@ public class SignlistActivity extends AppCompatActivity {
     static final String URL="http://13.124.15.202:80/";
     private ListView mListView = null;
     //private SignlistActivity.ListViewAdapter mAdapter = null;
-    ArrayList<Integer> listItems=new ArrayList<>();
-    ArrayAdapter<contentListItem> arrayAdapter;
+    ArrayAdapter<String> arrayAdapter;
     private String repo_title;
     private String repo_date;
     //ArrayAdapter<ListViewAdapter> adapter;
     int clickCounter=0;
-//    private class ViewHolder {
-//        public TextView title_textview;
-//        public TextView date_textview;
-//
-//    }
-//
-//    private class ListViewAdapter extends BaseAdapter {
-//        private Context mContext = null;
-//        private ArrayList<ContentlistItem> mListData = new ArrayList<>();
-//
-//        public ListViewAdapter(Context mContext) {
-//            super();
-//            this.mContext = mContext;
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return mListData.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return mListData.get(position);
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            SignlistActivity.ViewHolder holder;
-//            if (convertView == null) {
-//                 holder = new ViewHolder();
-//
-//                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                convertView = inflater.inflate(R.layout.content_list_item, null);
-//                holder.title_textview = (TextView) convertView.findViewById(R.id.title_text);
-//                holder.date_textview = (TextView) convertView.findViewById(R.id.date_text);
-//
-//                convertView.setTag(holder);
-//            }else{
-//                holder = (ViewHolder) convertView.getTag();
-//            }
-//
-//            ContentlistItem mData = mListData.get(position);
-//
-//
-//            holder.title_textview.setText(mData.title);
-//            holder.date_textview.setText(mData.openDate);
-//
-//
-//            return convertView;
-//        }
-//
-//        public void addItem(View v){
-////            ContentlistItem addInfo = null;
-////            addInfo = new ContentlistItem();
-////            addInfo.title = title_text;
-////            addInfo.openDate = date_text;
-//
-//
-//            mListData.add("Clicked:"+clickCounter++);
-//        }
-//
-//
-//    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signlist);
         mListView = (ListView) findViewById(R.id.contentlist);
-        arrayAdapter=new ArrayAdapter<contentListItem>(this,R.layout.content_list_item);
+        arrayAdapter=new ArrayAdapter<>(this,R.layout.content_list_item);
         mListView.setAdapter(arrayAdapter);
-//
-
-//        adapter=new ArrayAdapter<ListViewAdapter>(this,R.layout.content_list_item);
-//      mListView.setAdapter(adapter);
+        get();
 //
 //        mAdapter = new ListViewAdapter(this);
 //        mListView.setAdapter(mAdapter);
@@ -127,7 +57,6 @@ public class SignlistActivity extends AppCompatActivity {
 //                "2017-09-20"
 //        );
 //        mAdapter.notifyDataSetChanged();
-//        mAdapter.addItem(repo_title,repo_date);
 //
 //
 //
@@ -139,9 +68,11 @@ public class SignlistActivity extends AppCompatActivity {
 //                Toast.makeText(SignlistActivity.this, mData.title, Toast.LENGTH_SHORT).show();
 //            }
 //        });
+
     }
     public void addItems(View v){
-        listItems.add(clickCounter++);
+        arrayAdapter.add("Click:"+clickCounter++);
+
         arrayAdapter.notifyDataSetChanged();
     }
     ///레트로핏 어뎁터
@@ -151,34 +82,39 @@ public class SignlistActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         Map map= new HashMap();
+        //Map map2=new HashMap();
         map.get(getTitle());
-        //map.get(getOpenDate());
+       // map2.get(getOpenDate());
         APIinterface retrofitService=retrofit.create(APIinterface.class);
-        Call<contentListItem> call=retrofitService.letter_list(map);
-        call.enqueue(new Callback<contentListItem>() {
-            @Override
-            public void onResponse(Call<contentListItem> call, Response<contentListItem> response) {
-               
-                contentListItem repo=response.body();
+        //Call<contentListItem> call=retrofitService.letter_list(map);
+//        call.enqueue(new Callback<contentListItem>() {
+//            @Override
+//            public void onResponse(Call<contentListItem> call, Response<contentListItem> response) {
+//                int statusCode=response.code();
+//                contentListItem repo=response.body();
+//                if(statusCode==200){
+//                    for(int i=0;i<repo.getGetContentList().size();i++){
+//                        repo_title=repo.getGetContentList().get(i).getTitle();
+//                        repo_date=repo.getGetContentList().get(i).getOpenDate();
+//
+//                    }
+//                  //  arrayAdapter.add(repo_title,repo_dat);
+//                }
+//                else if(statusCode==400){
+//                    Toast.makeText(SignlistActivity.this,"잘못된 연결",Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
 
-                for(int i=0;i<repo.getGetContentList().size();i++){
-
-                    repo_title=repo.getGetContentList().get(i).getTitle();
-                   repo_date=repo.getGetContentList().get(i).getOpenDate();
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<contentListItem> call, Throwable t) {
-
-            }
-
-        });
-    }
-    //뒤로가기
-    public void signlist_back(View view){
-        finish();
-    }
+//            @Override
+//            public void onFailure(Call<contentListItem> call, Throwable t) {
+//                Toast.makeText(SignlistActivity.this,"인터넷 연결 해주세요",Toast.LENGTH_LONG).show();
+//            }
+//
+//        });
+//    }
+//    //뒤로가기
+//    public void signlist_back(View view){
+//        finish();
+   }
 }

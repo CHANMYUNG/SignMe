@@ -10,11 +10,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.signme.signme.Forget_Activity.FogetidActivity;
 import com.signme.signme.server.APIinterface;
 import com.signme.signme.tutoreal.TutorMainActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
@@ -28,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText idField;
     EditText passwordField;
     //AQuery aquery;
-     String url = "http://13.124.15.202:80/";
+     String url = "http://192.168.137.137:8000/";
     Retrofit retrofit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,8 +69,9 @@ public class LoginActivity extends AppCompatActivity {
 
         } else {
                 if(!user_id.isEmpty()&&!user_password.isEmpty()){
-                    Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
-                    startActivity(intent);
+                    postLoginData( user_id,user_password);
+//                    Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
+//                    startActivity(intent);
                     // postLoginData(user_id,user_password);
                    /* Map<String,String> params=new HashMap<>();
                     params.put("id",id);
@@ -76,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
 
                             }
-                            else if(statusCode==400){
+                             else if(statusCode==400){
                                 Log.d("연결","x");
                                 Toast toast=Toast.makeText(getApplicationContext(),"연결 확인해주세요", Toast.LENGTH_SHORT);
                                 toast.show();
@@ -122,19 +133,22 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         Log.d(this.getLocalClassName(), "goForgetClicked: ");
     }
-   /* public void postLoginData(final String id,String password){
+   public void postLoginData(final String id,String password){
         retrofit=new Retrofit.Builder()
                 .baseUrl(url)
                 .build();
+
         Map map=new HashMap();
         map.put("id",id);
         map.put("password",password);
+        map.put("type", "USER");
         apiInterface=retrofit.create(APIinterface.class);
         Call<ResponseBody> call=apiInterface.doSignIn(map);
         call.enqueue(new Callback<ResponseBody>() {
 
             @Override
-            public void onResponse(Response<ResponseBody> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("ASDAS!@#!@#!@#%!%", response.code()+"");
                 if(response.code()==201){
                     LoginActivity.id=id;
                     finish();
@@ -142,10 +156,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
 
-
-
                 }else if(response.code()==400){
-                    Toast.makeText(getApplicationContext(),"일시적인 서버오류 입니다.잠시후 다시 시도 해주세요.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"아이디와 비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
                     idField.setText("");
                     passwordField.setText("");
                 }else {
@@ -156,13 +168,15 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                 idField.setText("");
                 passwordField.setText("");
+
             }
+
         });
 
-    }*/
+    }
 
 }
