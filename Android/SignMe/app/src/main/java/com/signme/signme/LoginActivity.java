@@ -3,6 +3,7 @@ package com.signme.signme;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -12,20 +13,26 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.signme.signme.Forget_Activity.FogetidActivity;
 import com.signme.signme.server.APIinterface;
 import com.signme.signme.tutoreal.TutorMainActivity;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 
+import okhttp3.Cookie;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by NooHeat on 11/06/2017.
@@ -38,26 +45,30 @@ public class LoginActivity extends AppCompatActivity {
     EditText idField;
     EditText passwordField;
     //AQuery aquery;
-     String url = "http://192.168.137.137:8000/";
+    String url = "http://10.211.55.2:8000/";
     Retrofit retrofit;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         loginActivity = this;
+
+
     }
 
 
     public void loginClicked(View view) {
-       // aquery = new AQuery(getApplicationContext());
+        // aquery = new AQuery(getApplicationContext());
 
-         idField = (EditText) findViewById(R.id.idField);
-         passwordField = (EditText) findViewById(R.id.passwordField);
+        idField = (EditText) findViewById(R.id.idField);
+        passwordField = (EditText) findViewById(R.id.passwordField);
 
         String user_id = idField.getText().toString();
         String user_password = passwordField.getText().toString();
 
-         if ((user_id.trim().equals("") || user_password.trim().equals(""))) {
+        if ((user_id.trim().equals("") || user_password.trim().equals(""))) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
             Dialog dialog = builder.setMessage("아이디와 비밀번호는 반드시 입력해주세요.").setPositiveButton("OK", null).create();
             dialog.show();
@@ -68,11 +79,11 @@ public class LoginActivity extends AppCompatActivity {
             dialog.show();
 
         } else {
-                if(!user_id.isEmpty()&&!user_password.isEmpty()){
-                    postLoginData( user_id,user_password);
+            if (!user_id.isEmpty() && !user_password.isEmpty()) {
+                postLoginData(user_id, user_password);
 //                    Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
 //                    startActivity(intent);
-                    // postLoginData(user_id,user_password);
+                // postLoginData(user_id,user_password);
                    /* Map<String,String> params=new HashMap<>();
                     params.put("id",id);
                     params.put("password",password);
@@ -100,11 +111,10 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
 */
-                }
+            }
 
 
             //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
 
 
         }
@@ -133,34 +143,46 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         Log.d(this.getLocalClassName(), "goForgetClicked: ");
     }
-   public void postLoginData(final String id,String password){
-        retrofit=new Retrofit.Builder()
+
+    public void postLoginData(final String id, String password) {
+        retrofit = new Retrofit.Builder()
                 .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Map map=new HashMap();
-        map.put("id",id);
-        map.put("password",password);
+        Map map = new HashMap();
+        map.put("id", id);
+        map.put("password", password);
         map.put("type", "USER");
-        apiInterface=retrofit.create(APIinterface.class);
-        Call<ResponseBody> call=apiInterface.doSignIn(map);
-        call.enqueue(new Callback<ResponseBody>() {
+        apiInterface = retrofit.create(APIinterface.class);
+        Call<JsonObject> call = apiInterface.doSignIn(map);
+        call.enqueue(new Callback<JsonObject>() {
 
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.d("ASDAS!@#!@#!@#%!%", response.code()+"");
-                if(response.code()==201){
-                    LoginActivity.id=id;
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                Log.d("ASDAS!@#!@#!@#%!%", response.code() + "");
+                if (response.code() == 201) {
+                    LoginActivity.id = id;
+
+                    Log.d("RESPONSE", response.body().toString());
+                    String token = response.body().get("x-access-token").toString();
+
+                    SharedPreferences test = getSharedPreferences("test", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = test.edit();
+
+                    editor.putString("signme-x-access-token", token);
+                    editor.commit(); //완료한다.
+
                     finish();
                     Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
 
-                }else if(response.code()==400){
-                    Toast.makeText(getApplicationContext(),"아이디와 비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
+                } else if (response.code() == 400) {
+                    Toast.makeText(getApplicationContext(), "아이디와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                     idField.setText("");
                     passwordField.setText("");
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(), "아이디나 비빌번호를 확인하세요.", Toast.LENGTH_SHORT).show();
                     idField.setText("");
                     passwordField.setText("");
@@ -168,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                 idField.setText("");
                 passwordField.setText("");
@@ -176,6 +198,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+
 
     }
 

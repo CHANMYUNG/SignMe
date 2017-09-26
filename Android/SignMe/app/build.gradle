@@ -48,6 +48,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.squareup.okhttp3:okhttp-urlconnection:3.0.1'
     compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
 
 

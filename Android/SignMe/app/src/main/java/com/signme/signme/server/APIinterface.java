@@ -1,5 +1,8 @@
 package com.signme.signme.server;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -10,6 +13,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -27,7 +31,7 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/account/sign/in")
-    Call<ResponseBody> doSignIn(@FieldMap Map<String,String> user);
+    Call<JsonObject> doSignIn(@FieldMap Map<String,String> user);
 
     @GET("/account/email/check/:email")
     Call<JSONObject> email_check(@Path("check_email") String check_email);
@@ -60,7 +64,6 @@ public interface APIinterface {
                         @Field("Cercode") String Cercode
     );
 
-
-    @GET("/jwt")
-    Call<Void> doJWTCheck();
+    @GET("/letter")
+    Call<JsonArray> getLetterList(@Header("signme-x-access-token") String token);
 }

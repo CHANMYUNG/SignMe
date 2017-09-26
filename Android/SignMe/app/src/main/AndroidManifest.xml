@@ -10,13 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".LandingActivity">
+
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LandingActivity"></activity>
         <activity android:name=".chat.indexchating"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
@@ -28,7 +30,7 @@
         <activity android:name=".PwchangeActivity"></activity>
         <activity android:name=".Content.ContentMainActivity"></activity>
         <activity android:name=".TestDialog"></activity>
-        <activity android:name=".SignlistActivity"></activity>
+        <activity android:name=".LetterListActivity"></activity>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>

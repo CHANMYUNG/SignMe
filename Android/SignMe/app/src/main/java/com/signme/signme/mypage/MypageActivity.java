@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.signme.signme.R;
-import com.signme.signme.SignlistActivity;
+import com.signme.signme.LetterListActivity;
 
 /**
  * Created by dsm2016 on 2017-07-12.
@@ -54,7 +54,7 @@ public class MypageActivity extends AppCompatActivity {
     }
     //신청한 가정통신문으로 이동
     public void contentonClick1(View view){
-        Intent intent=new Intent(getApplicationContext(), SignlistActivity.class);
+        Intent intent=new Intent(getApplicationContext(), LetterListActivity.class);
         startActivity(intent);
     }
     //뒤로가기

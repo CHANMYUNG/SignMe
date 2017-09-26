@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.signme.signme.LetterTypes;
 import com.signme.signme.R;
 
 import java.util.ArrayList;
@@ -16,18 +17,20 @@ import java.util.ArrayList;
  */
 
 public class ContentListAdapter extends BaseAdapter {
-    ArrayList<ContentlistItem> contentlistItemArrayList=new ArrayList<ContentlistItem>();
-    public ContentListAdapter(){
+    ArrayList<ContentListItem> contentListItemArrayList = new ArrayList<ContentListItem>();
+
+    public ContentListAdapter() {
 
     }
+
     @Override
     public int getCount() {
-        return contentlistItemArrayList.size();
+        return contentListItemArrayList.size();
     }
 
     @Override
-    public ContentlistItem getItem(int position) {
-        return contentlistItemArrayList.get(position);
+    public ContentListItem getItem(int position) {
+        return contentListItemArrayList.get(position);
     }
 
     @Override
@@ -37,24 +40,34 @@ public class ContentListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View converView, ViewGroup parent) {
-        Context context=parent.getContext();
-        if(converView==null){
-            LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            converView=inflater.inflate(R.layout.content_list_item,parent,false);
+        Context context = parent.getContext();
+        if (converView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            converView = inflater.inflate(R.layout.content_list_item, parent, false);
         }
-        TextView tv_title=(TextView)converView.findViewById(R.id.title_text);
-        TextView tv_date=(TextView)converView.findViewById(R.id.date_text);
-        ContentlistItem contentlistItem=getItem(position);
-        tv_title.setText(contentlistItem.getTitle());
-        tv_date.setText(contentlistItem.getOpenDate());
+        TextView title = (TextView) converView.findViewById(R.id.title_text);
+        TextView openDate = (TextView) converView.findViewById(R.id.openDate);
+        TextView closeDate = (TextView) converView.findViewById(R.id.closeDate);
+        ContentListItem contentListItem = getItem(position);
+        title.setText(contentListItem.getTitle());
+
+        openDate.setText(contentListItem.getOpenDate());
+        
+        if (contentListItem.getType() != LetterTypes.RESPONSELESSLETTER) {
+            closeDate.setText(contentListItem.getCloseDate());
+        }
+
         return converView;
     }
-    public void addItem(String title,String date){
-        ContentlistItem contentlistItem=new ContentlistItem();
-        contentlistItem.setTitle(title);
-        contentlistItem.setOpenDate(date);
-        contentlistItemArrayList.add(contentlistItem);
+
+    public void addItem(String title, String date) {
+        ContentListItem contentListItem = new ContentListItem();
+        contentListItem.setTitle(title);
+        contentListItem.setOpenDate(date);
+        contentListItemArrayList.add(contentListItem);
     }
 
-
+    public void addItem(ContentListItem item) {
+        contentListItemArrayList.add(item);
+    }
 }

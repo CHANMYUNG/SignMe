@@ -57,7 +57,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
-                Intent listbtn=new Intent(getApplicationContext(),SignlistActivity.class);
+                Intent listbtn=new Intent(getApplicationContext(),LetterListActivity.class);
                 startActivity(listbtn);
             }
         });
@@ -89,7 +89,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
                         break;
                     // 신청서 일정 선택시
                     case R.id.nav_schedule:
-                        Intent schedule=new Intent(getApplicationContext(),SignlistActivity.class);
+                        Intent schedule=new Intent(getApplicationContext(),LetterListActivity.class);
                         startActivity(schedule);
                         break;
 

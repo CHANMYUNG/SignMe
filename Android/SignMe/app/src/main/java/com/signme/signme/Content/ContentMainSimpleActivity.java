@@ -28,7 +28,7 @@ public class ContentMainSimpleActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title_text=(TextView)findViewById(R.id.title_text);
-        date_text=(TextView)findViewById(R.id.date_text);
+        date_text=(TextView)findViewById(R.id.openDate);
         content_text=(TextView)findViewById(R.id.content_text);
         setContentView(R.layout.activity_content_main_simple);
         ApplicationController applicationController=ApplicationController.getInstance();
