@@ -15,6 +15,7 @@ import com.signme.signme.adapter.LetterListAdapter;
 
 import com.signme.signme.adapter.LetterListItem;
 import com.signme.signme.server.APIinterface;
+import com.signme.signme.survey.SurveyActivity;
 
 import java.util.Iterator;
 
@@ -45,7 +46,7 @@ public class LetterListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signlist);
+        setContentView(R.layout.activity_letter_list);
 
         mListView = (ListView) findViewById(R.id.contentlist);
 
@@ -80,6 +81,7 @@ public class LetterListActivity extends AppCompatActivity {
 
 
                         LetterListItem letterItem = new LetterListItem();
+                        letterItem.setLetterNumber(letterNumber);
                         letterItem.setType(type);
                         letterItem.setTitle(title);
                         letterItem.setOpenDate(openDate);
@@ -112,7 +114,18 @@ public class LetterListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LetterListItem item = (LetterListItem) parent.getAdapter().getItem(position);
-                Log.d("!@#*!&@#!*@#&*", item.getTitle());
+                Log.d("!@#*!&@#!*@#&*", item.getLetterNumber() + "");
+                Intent letterActivity;
+
+                if (item.getType() == LetterTypes.RESPONSELESSLETTER) {
+
+                } else if (item.getType() == LetterTypes.SURVEY) {
+                    letterActivity = new Intent(getApplicationContext(), SurveyActivity.class);
+                    letterActivity.putExtra("letterNumber", item.getLetterNumber());
+                    startActivity(letterActivity);
+                    finish();
+                }
+
             }
         });
     }

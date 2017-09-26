@@ -68,4 +68,8 @@ public class LetterListItem {
     public void setLetterNumber(int letterNumber) {
         this.letterNumber = letterNumber;
     }
+
+    public int getLetterNumber() {
+        return letterNumber;
+    }
 }

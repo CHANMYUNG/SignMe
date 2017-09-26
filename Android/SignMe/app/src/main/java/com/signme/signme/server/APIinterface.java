@@ -18,6 +18,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 
 
 /**
@@ -66,4 +67,7 @@ public interface APIinterface {
 
     @GET("/letter")
     Call<JsonArray> getLetterList(@Header("signme-x-access-token") String token);
+
+    @GET
+    Call<JsonObject> getSurvey(@Url String url, @Header("signme-x-access-token") String token);
 }
