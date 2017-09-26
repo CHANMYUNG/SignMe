@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 
 public class LetterListAdapter extends BaseAdapter {
+
     ArrayList<LetterListItem> letterListItemArrayList = new ArrayList<LetterListItem>();
 
     public LetterListAdapter() {
@@ -48,6 +49,7 @@ public class LetterListAdapter extends BaseAdapter {
         TextView title = (TextView) converView.findViewById(R.id.title_text);
         TextView openDate = (TextView) converView.findViewById(R.id.openDate);
         TextView closeDate = (TextView) converView.findViewById(R.id.closeDate);
+        TextView closeDateMent = (TextView) converView.findViewById(R.id.closeDateMent);
         LetterListItem letterListItem = getItem(position);
         title.setText(letterListItem.getTitle());
 
@@ -55,19 +57,16 @@ public class LetterListAdapter extends BaseAdapter {
 
         if (letterListItem.getType() != LetterTypes.RESPONSELESSLETTER) {
             closeDate.setText(letterListItem.getCloseDate());
+        } else {
+            closeDateMent.setVisibility(View.INVISIBLE);
+            closeDate.setVisibility(View.INVISIBLE);
         }
 
         return converView;
     }
 
-    public void addItem(String title, String date) {
-        LetterListItem letterListItem = new LetterListItem();
-        letterListItem.setTitle(title);
-        letterListItem.setOpenDate(date);
-        letterListItemArrayList.add(letterListItem);
-    }
-
     public void addItem(LetterListItem item) {
         letterListItemArrayList.add(item);
     }
+
 }
