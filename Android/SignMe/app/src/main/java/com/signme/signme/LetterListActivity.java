@@ -2,15 +2,14 @@ package com.signme.signme;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.signme.signme.adapter.ContentListAdapter;
+import com.signme.signme.adapter.LetterListAdapter;
 
-import com.signme.signme.adapter.ContentListItem;
+import com.signme.signme.adapter.LetterListItem;
 import com.signme.signme.server.APIinterface;
 
 import java.util.Iterator;
@@ -31,7 +30,7 @@ public class LetterListActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private ListView mListView = null;
     //private LetterListActivity.ListViewAdapter mAdapter = null;
-    ContentListAdapter mAdapter;
+    LetterListAdapter mAdapter;
     private String repo_title;
     private String repo_date;
     private APIinterface apiInterface;
@@ -46,7 +45,7 @@ public class LetterListActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.contentlist);
 
 
-        mAdapter = new ContentListAdapter();
+        mAdapter = new LetterListAdapter();
 
         mListView.setAdapter(mAdapter);
 
@@ -77,7 +76,7 @@ public class LetterListActivity extends AppCompatActivity {
                     String openDate = item.get("openDate").toString().replace("\"", "");
 
 
-                    ContentListItem letterItem = new ContentListItem();
+                    LetterListItem letterItem = new LetterListItem();
                     letterItem.setType(type);
                     letterItem.setTitle(title);
                     letterItem.setOpenDate(openDate);

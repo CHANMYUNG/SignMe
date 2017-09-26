@@ -6,7 +6,7 @@ import com.signme.signme.LetterTypes;
  * Created by dsm2016 on 2017-09-17.
  */
 
-public class ContentListItem {
+public class LetterListItem {
     private LetterTypes type;
     private int letterNumber;
     private String title;
@@ -14,17 +14,17 @@ public class ContentListItem {
 
     private String closeDate;
 
-    public ContentListItem() {
+    public LetterListItem() {
     }
 
-    public ContentListItem(LetterTypes type, int letterNumber, String title, String openDate) {
+    public LetterListItem(LetterTypes type, int letterNumber, String title, String openDate) {
         this.type = type;
         this.letterNumber = letterNumber;
         this.title = title;
         this.openDate = openDate;
     }
 
-    public ContentListItem(LetterTypes type, int letterNumber, String title, String openDate, String closeDate) {
+    public LetterListItem(LetterTypes type, int letterNumber, String title, String openDate, String closeDate) {
         this.type = type;
         this.letterNumber = letterNumber;
         this.title = title;

@@ -16,21 +16,21 @@ import java.util.ArrayList;
  * Created by dsm2016 on 2017-09-24.
  */
 
-public class ContentListAdapter extends BaseAdapter {
-    ArrayList<ContentListItem> contentListItemArrayList = new ArrayList<ContentListItem>();
+public class LetterListAdapter extends BaseAdapter {
+    ArrayList<LetterListItem> letterListItemArrayList = new ArrayList<LetterListItem>();
 
-    public ContentListAdapter() {
+    public LetterListAdapter() {
 
     }
 
     @Override
     public int getCount() {
-        return contentListItemArrayList.size();
+        return letterListItemArrayList.size();
     }
 
     @Override
-    public ContentListItem getItem(int position) {
-        return contentListItemArrayList.get(position);
+    public LetterListItem getItem(int position) {
+        return letterListItemArrayList.get(position);
     }
 
     @Override
@@ -43,31 +43,31 @@ public class ContentListAdapter extends BaseAdapter {
         Context context = parent.getContext();
         if (converView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            converView = inflater.inflate(R.layout.content_list_item, parent, false);
+            converView = inflater.inflate(R.layout.letter_list_item, parent, false);
         }
         TextView title = (TextView) converView.findViewById(R.id.title_text);
         TextView openDate = (TextView) converView.findViewById(R.id.openDate);
         TextView closeDate = (TextView) converView.findViewById(R.id.closeDate);
-        ContentListItem contentListItem = getItem(position);
-        title.setText(contentListItem.getTitle());
+        LetterListItem letterListItem = getItem(position);
+        title.setText(letterListItem.getTitle());
 
-        openDate.setText(contentListItem.getOpenDate());
-        
-        if (contentListItem.getType() != LetterTypes.RESPONSELESSLETTER) {
-            closeDate.setText(contentListItem.getCloseDate());
+        openDate.setText(letterListItem.getOpenDate());
+
+        if (letterListItem.getType() != LetterTypes.RESPONSELESSLETTER) {
+            closeDate.setText(letterListItem.getCloseDate());
         }
 
         return converView;
     }
 
     public void addItem(String title, String date) {
-        ContentListItem contentListItem = new ContentListItem();
-        contentListItem.setTitle(title);
-        contentListItem.setOpenDate(date);
-        contentListItemArrayList.add(contentListItem);
+        LetterListItem letterListItem = new LetterListItem();
+        letterListItem.setTitle(title);
+        letterListItem.setOpenDate(date);
+        letterListItemArrayList.add(letterListItem);
     }
 
-    public void addItem(ContentListItem item) {
-        contentListItemArrayList.add(item);
+    public void addItem(LetterListItem item) {
+        letterListItemArrayList.add(item);
     }
 }
