@@ -1,4 +1,4 @@
-package com.signme.signme.Content;
+package com.signme.signme.responseless;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,16 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.signme.signme.R;
-import com.signme.signme.server.APIinterface;
-import com.signme.signme.server.ApplicationController;
-import com.signme.signme.server.contentlistRepo;
-
-import java.util.Iterator;
+import com.signme.signme.server.APIInterface;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,9 +21,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by dsm2016 on 2017-09-25.
  */
 
-public class ContentMainSimpleActivity extends AppCompatActivity {
+public class ResponselessActivity extends AppCompatActivity {
     private TextView title_text, date_text, content_text, name_text;
-    private APIinterface apIinterface;
+    private APIInterface APIInterface;
     private Retrofit retrofit;
     int letterNumber;
 
@@ -38,13 +32,13 @@ public class ContentMainSimpleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_content_main_simple);
-        retrofit = new Retrofit.Builder().baseUrl(APIinterface.URL).addConverterFactory(GsonConverterFactory.create()).build();
-        apIinterface = retrofit.create(APIinterface.class);
+        retrofit = new Retrofit.Builder().baseUrl(APIInterface.URL).addConverterFactory(GsonConverterFactory.create()).build();
+        APIInterface = retrofit.create(APIInterface.class);
 
         Intent intent = getIntent();
         letterNumber = intent.getExtras().getInt("letterNumber");
         Log.d("ASDASDASDASD",letterNumber+"");
-        Call<JsonObject> call = apIinterface.getResponselessLetter("/letter/responseless/"+letterNumber,getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+        Call<JsonObject> call = APIInterface.getResponselessLetter("/letter/responseless/"+letterNumber,getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

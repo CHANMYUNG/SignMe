@@ -15,19 +15,13 @@ import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.signme.signme.Forget_Activity.FogetidActivity;
-import com.signme.signme.server.APIinterface;
+import com.signme.signme.server.APIInterface;
 import com.signme.signme.tutoreal.TutorMainActivity;
 
-import org.json.JSONObject;
-
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 
-import okhttp3.Cookie;
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,22 +33,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class LoginActivity extends AppCompatActivity {
-    private APIinterface apiInterface;
+    private APIInterface apiInterface;
     public static Activity loginActivity;
     public static String id;
     EditText idField;
     EditText passwordField;
-    //AQuery aquery;
     Retrofit retrofit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         loginActivity = this;
-
-
     }
 
 
@@ -145,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void postLoginData(final String id, String password) {
         retrofit = new Retrofit.Builder()
-                .baseUrl(APIinterface.URL)
+                .baseUrl(APIInterface.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -153,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
         map.put("id", id);
         map.put("password", password);
         map.put("type", "USER");
-        apiInterface = retrofit.create(APIinterface.class);
+        apiInterface = retrofit.create(APIInterface.class);
         Call<JsonObject> call = apiInterface.doSignIn(map);
         call.enqueue(new Callback<JsonObject>() {
 

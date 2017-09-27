@@ -28,11 +28,10 @@
         <activity android:name=".mypage.MypageActivity"></activity>
         <activity android:name=".mypage.ModifyActivity"></activity>
         <activity android:name=".PwchangeActivity"></activity>
-        <activity android:name=".Content.ContentMainActivity"></activity>
-        <activity android:name=".TestDialog"></activity>
+        <activity android:name=".response.ResponseActivity"></activity>
         <activity android:name=".LetterListActivity"></activity>
-        <activity android:name=".Content.ContentMainSimpleActivity"></activity>
-
+        <activity android:name=".responseless.ResponselessActivity"></activity>
+        <activity android:name=".survey.SurveyActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>

@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.signme.signme.R;
-import com.signme.signme.server.APIinterface;
+import com.signme.signme.server.APIInterface;
 
 /**
  * Created by dsm2016 on 2017-07-10.
@@ -25,7 +25,7 @@ import com.signme.signme.server.APIinterface;
 public class FogetidActivity extends AppCompatActivity {
     public static Activity fogetidActivity;
     AQuery aquery;
-    private APIinterface apIinterface;
+    private APIInterface APIInterface;
     public static final String url = "http://13.124.15.202:80/";
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {

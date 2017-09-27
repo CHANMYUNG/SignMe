@@ -26,7 +26,6 @@ public class SplashActivity extends AppCompatActivity {
                 String token = getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null);
 
                 if (token != null) {
-                    Log.d("!@#I!@U#*(!U@#(!U@*(#", "HERE I AM!");
                     nextActivity = new Intent(getApplicationContext(), MainActivity.class);
 
                 } else {

@@ -11,27 +11,36 @@ public class LetterListItem {
     private int letterNumber;
     private String title;
     private String openDate;
-
     private String closeDate;
+    private boolean isAnswered = false;
 
     public LetterListItem() {
     }
 
-    public LetterListItem(LetterTypes type, int letterNumber, String title, String openDate) {
+    public LetterListItem(LetterTypes type, int letterNumber, String title, String openDate, boolean isAnswered) {
         this.type = type;
         this.letterNumber = letterNumber;
         this.title = title;
         this.openDate = openDate;
+        this.isAnswered = isAnswered;
     }
 
-    public LetterListItem(LetterTypes type, int letterNumber, String title, String openDate, String closeDate) {
+    public LetterListItem(LetterTypes type, int letterNumber, String title, String openDate, String closeDate, boolean isAnswered) {
         this.type = type;
         this.letterNumber = letterNumber;
         this.title = title;
         this.openDate = openDate;
         this.closeDate = closeDate;
+        this.isAnswered = isAnswered;
     }
 
+    public boolean isAnswered() {
+        return isAnswered;
+    }
+
+    public void setAnswered(boolean answered) {
+        isAnswered = answered;
+    }
 
     public String getCloseDate() {
         return closeDate;

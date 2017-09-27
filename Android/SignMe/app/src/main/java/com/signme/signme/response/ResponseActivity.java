@@ -1,4 +1,4 @@
-package com.signme.signme.Content;
+package com.signme.signme.response;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.signme.signme.R;
-import com.signme.signme.TestDialog;
 
 import junit.framework.Test;
 
@@ -31,7 +30,7 @@ import junit.framework.Test;
  * Created by dsm2016 on 2017-08-23.
  */
 
-public class ContentMainActivity extends AppCompatActivity {
+public class ResponseActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private TextView title_text,name_text,content_text;
 
@@ -52,16 +51,8 @@ public class ContentMainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),selectedResult,Toast.LENGTH_SHORT).show();
     }
 
-    //사인 엑티비티 실행  but, 삭제 예정
-    public void testonclick(View v) {
-        Intent intent=new Intent(getApplicationContext(),TestDialog.class);
-        startActivity(intent);
-    }
     //뒤로가기
-    public void backonClick(View view){
+    public void backOnClick(View view){
         finish();
     }
-
-
-
 }
