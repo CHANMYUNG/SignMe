@@ -5,14 +5,12 @@
     <title>Document</title>
     <script src='./../lib/jquery.min.js'></script>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/writeLetter.css">
+    
     
     
 </head>
 <body>
-        <script>
-                
-                
-            </script>
     <div id="main">
         <div class="g_banner">
             <div class="g_b_banner">
@@ -28,6 +26,28 @@
                     <hr class="bar">
                 </div>
                 <div class="main_body">
+                    <form action="#" method="post" name="f1" onsubmit="return submit_chk(this);">
+                        <div id="wrtie_body">
+                            <div id="write_title">
+                                <span class="leftbox">제목</span>
+                                <span class="leftbox">&nbsp;:&nbsp;</span>
+                                <input type="text" id="form_title" placeholder="제목을 입력해주세요" class="leftbox">
+                                <div class="clearbox"></div>
+                            </div>
+                            <div id="wrtie_date">
+                                <span class="leftbox">작성일</span>
+                                <span class="leftbox">&nbsp;:&nbsp;</span>
+                                <input type="date" id="form_date" class="leftbox">
+                                <div class="clearbox"></div>
+                            </div>
+                            <div id="write_contant">
+                                <textarea id="form_contant" placeholder="입력할 글을 입력해주세요." name="" id="" cols="110" rows="30" style="resize:none;font-size:18px"></textarea>
+                            </div>
+                        </div>
+                        <div id="write_submit">
+                            <input type="submit">
+                        </div>
+                    </form>
                     
                 </div>                       
             </div> 

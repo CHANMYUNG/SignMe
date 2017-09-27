@@ -17,6 +17,9 @@ td,tb{
 #hd_dec_title>span{
     font-size: 25px;
 }
+#hd_date_outer{
+    font-size: 23px;
+}
 td{
     margin-bottom: 10px;
 }

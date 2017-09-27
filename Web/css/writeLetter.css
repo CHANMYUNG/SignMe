@@ -1,0 +1,17 @@
+#write_title{
+    font-size: 30px;
+}
+#write_title>input{
+    font-size: 26px;
+    height: 25px;
+    width: 500px;
+}
+#wrtie_date{
+    font-size: 26px;
+    margin-bottom: 25px;
+}
+input[type="submit"]{
+    height: 50px;
+    width: 100px;
+    
+}

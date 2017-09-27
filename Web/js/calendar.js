@@ -42,7 +42,6 @@
 			// },
 			eventSources : 
 			// eventCalendar.eventCalendar
-			
 			 [
                 {
                     events : [
