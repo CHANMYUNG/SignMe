@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.signme.signme.Content.ContentMainSimpleActivity;
 import com.signme.signme.adapter.LetterListAdapter;
 
 import com.signme.signme.adapter.LetterListItem;
@@ -30,7 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LetterListActivity extends AppCompatActivity {
 
-    private final String URL = "http://10.211.55.2:8000/";
     private Retrofit retrofit;
     private ListView mListView = null;
     //private LetterListActivity.ListViewAdapter mAdapter = null;
@@ -40,7 +40,7 @@ public class LetterListActivity extends AppCompatActivity {
     private APIinterface apiInterface;
     //ArrayAdapter<ListViewAdapter> adapter;
     int clickCounter = 0;
-
+    LetterTypes type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class LetterListActivity extends AppCompatActivity {
         mListView.setAdapter(mAdapter);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(APIinterface.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiInterface = retrofit.create(APIinterface.class);
@@ -67,13 +67,10 @@ public class LetterListActivity extends AppCompatActivity {
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if (response.code() == 200) {
                     JsonArray letters = response.body();
-
                     Iterator iterator = letters.iterator();
                     while (iterator.hasNext()) {
                         JsonObject item = (JsonObject) iterator.next();
-
-
-                        LetterTypes type = LetterTypes.valueOf(item.get("type").toString().replace("\"", ""));
+                         type = LetterTypes.valueOf(item.get("type").toString().replace("\"", ""));
                         int letterNumber = Integer.parseInt(item.get("letterNumber").toString().replace("\"", ""));
                         String title = item.get("title").toString().replace("\"", "");
                         String openDate = item.get("openDate").toString().replace("\"", "");
@@ -83,9 +80,12 @@ public class LetterListActivity extends AppCompatActivity {
                         letterItem.setType(type);
                         letterItem.setTitle(title);
                         letterItem.setOpenDate(openDate);
+                        letterItem.setLetterNumber(letterNumber);
                         if (type != LetterTypes.RESPONSELESSLETTER) {
                             letterItem.setCloseDate(item.get("closeDate").toString().replace("\"", ""));
+
                         }
+
                         mAdapter.addItem(letterItem);
                         mAdapter.notifyDataSetChanged();
 
@@ -112,7 +112,14 @@ public class LetterListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LetterListItem item = (LetterListItem) parent.getAdapter().getItem(position);
+                int letterNumber = item.getLetterNumber();
                 Log.d("!@#*!&@#!*@#&*", item.getTitle());
+                if(item.getType() == LetterTypes.RESPONSELESSLETTER){
+                    Intent intent=new Intent(getApplicationContext(), ContentMainSimpleActivity.class);
+                    intent.putExtra("letterNumber", letterNumber);
+                    startActivity(intent);
+                }
+
             }
         });
     }

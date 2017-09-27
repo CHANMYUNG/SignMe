@@ -77,34 +77,48 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <RelativeLayout
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <TextView
-                                android:id="@+id/title_text"
-                                android:layout_alignParentTop="true"
+                                android:id="@+id/responseless_title"
                                 android:textColor="#000"
-                                android:textSize="20dp"
+                                android:textSize="50dp"
                                 android:gravity="center"
                                 android:textStyle="bold"
                                 android:layout_width="match_parent"
-                                android:layout_height="100dp" />
+                                android:layout_height="100dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentStart="true" />
                             <TextView
-                                android:id="@+id/name_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:textSize="10dp"
-                                android:gravity="right"
+                                android:id="@+id/responseless_writerName"
+                                android:layout_width="80dp"
+                                android:layout_height="70dp"
+                                android:layout_alignParentRight="true"
+                                android:textSize="20dp"
+
+                                android:gravity="bottom"
                                 android:layout_gravity="center_vertical"
-                                android:textColor="@color/black"
-                                android:layout_below="@+id/title_text"/>
+                                android:textColor="@color/black"/>
                             <TextView
-                                android:id="@+id/content_text"
+                                android:id="@+id/responseless_openDate"
+                                android:layout_width="80dp"
+                                android:layout_height="30dp"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/black"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/name_text"
+                                />
+                            <TextView
+                                android:id="@+id/responseless_contents"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_below="@+id/name_text"
-                                android:textSize="10dp"
+                                android:textSize="20dp"
+                                android:padding="10dp"
                                 android:textColor="@color/black"
-                                />
+                                android:layout_below="@+id/responseless_title"
+                                 />
                         </RelativeLayout>
 
 
@@ -130,14 +144,6 @@
             android:layout_height="60dp"
             android:background="#33C5F3"
             >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="제출하기"
-                android:gravity="center"
-                android:textSize="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

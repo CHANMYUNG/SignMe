@@ -31,6 +31,7 @@
         <activity android:name=".Content.ContentMainActivity"></activity>
         <activity android:name=".TestDialog"></activity>
         <activity android:name=".LetterListActivity"></activity>
+        <activity android:name=".Content.ContentMainSimpleActivity"></activity>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>

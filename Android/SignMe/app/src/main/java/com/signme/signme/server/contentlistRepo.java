@@ -7,7 +7,7 @@ package com.signme.signme.server;
 public class contentlistRepo {
     int letterNumber;
     String title;
-    int writerUid;
+    String writerName;
     String contents;
     String openDate;
 
@@ -19,8 +19,8 @@ public class contentlistRepo {
         return title;
     }
 
-    public int getWriterUid() {
-        return writerUid;
+    public String getWriterName() {
+        return writerName;
     }
 
     public String getContents() {

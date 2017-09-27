@@ -24,9 +24,9 @@ public class ApplicationController extends Application {
     private APIinterface apIinterface;
     public  APIinterface getApIinterface(){return apIinterface;}
     private String baseUrl;
-    public void buildNetworkService(String ip){
+    public void buildNetworkService(){
         if(apIinterface==null){
-            baseUrl=String.format("http://%s",ip);
+            baseUrl="http://192.168.1.101:8000/";
             Gson gson=new GsonBuilder()
                     .create();
             GsonConverterFactory factory=GsonConverterFactory.create(gson);

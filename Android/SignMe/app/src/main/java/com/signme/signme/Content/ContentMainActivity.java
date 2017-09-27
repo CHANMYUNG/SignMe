@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.signme.signme.R;
@@ -32,7 +33,7 @@ import junit.framework.Test;
 
 public class ContentMainActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
-    private Button button;
+    private TextView title_text,name_text,content_text;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

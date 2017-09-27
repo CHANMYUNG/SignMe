@@ -18,6 +18,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 
 
 /**
@@ -25,7 +26,7 @@ import retrofit2.http.QueryMap;
  */
 
 public interface APIinterface {
-
+    String URL = "http://192.168.1.101:8000/";
     @GET("account/id/check/:id")
     Call<JSONObject> id_check(@Path("check_id")String check_id);
 
@@ -34,7 +35,7 @@ public interface APIinterface {
     Call<JsonObject> doSignIn(@FieldMap Map<String,String> user);
 
     @GET("/account/email/check/:email")
-    Call<JSONObject> email_check(@Path("check_email") String check_email);
+    Call<JsonObject> email_check(@Path("check_email") String check_email);
 
     @FormUrlEncoded
     @POST("/account/sign/up")
@@ -46,8 +47,8 @@ public interface APIinterface {
     @GET("/letter/responseless")
      Call<JSONObject>letter_list(@Query("letterNumber")int letterNumber );
 
-    @GET("/letter/responseless/:letterNumber")
-    Call<contentlistRepo> getletterNumber(@Path("letterNumber")int letterNumber);
+    @GET
+    Call<JsonObject> getResponselessLetter(@Url String url, @Header("signme-x-access-token") String token);
 
     @FormUrlEncoded
     @POST("/logout")
