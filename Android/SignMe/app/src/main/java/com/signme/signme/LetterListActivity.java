@@ -1,6 +1,8 @@
 package com.signme.signme;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -31,23 +33,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LetterListActivity extends AppCompatActivity {
 
-    private final String URL = "http://10.211.55.2:8000/";
     private Retrofit retrofit;
     private ListView mListView = null;
-    //private LetterListActivity.ListViewAdapter mAdapter = null;
     LetterListAdapter mAdapter;
-    private String repo_title;
-    private String repo_date;
     private APIinterface apiInterface;
-    //ArrayAdapter<ListViewAdapter> adapter;
-    int clickCounter = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_letter_list);
 
+        setContentView(R.layout.activity_letter_list);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getLetterListFromServer();
+    }
+
+    private void getLetterListFromServer() {
         mListView = (ListView) findViewById(R.id.contentlist);
 
 
@@ -56,7 +61,7 @@ public class LetterListActivity extends AppCompatActivity {
         mListView.setAdapter(mAdapter);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(APIinterface.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiInterface = retrofit.create(APIinterface.class);
@@ -68,7 +73,7 @@ public class LetterListActivity extends AppCompatActivity {
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if (response.code() == 200) {
                     JsonArray letters = response.body();
-
+                    Log.d("LOADED", "asdasd");
                     Iterator iterator = letters.iterator();
                     while (iterator.hasNext()) {
                         JsonObject item = (JsonObject) iterator.next();
@@ -79,13 +84,13 @@ public class LetterListActivity extends AppCompatActivity {
                         String title = item.get("title").toString().replace("\"", "");
                         String openDate = item.get("openDate").toString().replace("\"", "");
 
-
                         LetterListItem letterItem = new LetterListItem();
                         letterItem.setLetterNumber(letterNumber);
                         letterItem.setType(type);
                         letterItem.setTitle(title);
                         letterItem.setOpenDate(openDate);
                         if (type != LetterTypes.RESPONSELESSLETTER) {
+                            letterItem.setAnswered(Boolean.parseBoolean(item.get("isAnswered").toString().replace("\"", "")));
                             letterItem.setCloseDate(item.get("closeDate").toString().replace("\"", ""));
                         }
                         mAdapter.addItem(letterItem);
@@ -94,36 +99,35 @@ public class LetterListActivity extends AppCompatActivity {
                     }
                 } else if (response.code() == 401) {
 
-                    Toast.makeText(getApplicationContext(), "로그인이 만료되었습니다. 다시 로그인해주세요.", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "로그인이 만료되었습니다. 다시 로그인해주세요.", Toast.LENGTH_LONG).show();
 
                     Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(loginActivity);
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "일시적인 서버오류입니다. ", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "일시적인 서버오류입니다. ", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "오류가 발생했습니다. ", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "오류가 발생했습니다. ", Toast.LENGTH_SHORT).show();
             }
         });
-
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LetterListItem item = (LetterListItem) parent.getAdapter().getItem(position);
                 Log.d("!@#*!&@#!*@#&*", item.getLetterNumber() + "");
                 Intent letterActivity;
-
-                if (item.getType() == LetterTypes.RESPONSELESSLETTER) {
+                if (item.isAnswered()) {
+                    Toast.makeText(getApplicationContext(), "이미 응답한 가정통신문입니다.", Toast.LENGTH_SHORT).show();
+                } else if (item.getType() == LetterTypes.RESPONSELESSLETTER) {
 
                 } else if (item.getType() == LetterTypes.SURVEY) {
                     letterActivity = new Intent(getApplicationContext(), SurveyActivity.class);
                     letterActivity.putExtra("letterNumber", item.getLetterNumber());
                     startActivity(letterActivity);
-                    finish();
                 }
 
             }

@@ -5,10 +5,12 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -26,29 +28,30 @@ import retrofit2.http.Url;
  */
 
 public interface APIinterface {
+    String URL = "http://172.20.10.2:8000/";
 
     @GET("account/id/check/:id")
-    Call<JSONObject> id_check(@Path("check_id")String check_id);
+    Call<JSONObject> id_check(@Path("check_id") String check_id);
 
     @FormUrlEncoded
     @POST("/account/sign/in")
-    Call<JsonObject> doSignIn(@FieldMap Map<String,String> user);
+    Call<JsonObject> doSignIn(@FieldMap Map<String, String> user);
 
     @GET("/account/email/check/:email")
     Call<JSONObject> email_check(@Path("check_email") String check_email);
 
     @FormUrlEncoded
     @POST("/account/sign/up")
-    Call<ResponseBody> SignUp(@FieldMap Map<String,String> signup);
+    Call<ResponseBody> SignUp(@FieldMap Map<String, String> signup);
 
     @GET("/account/uid/check/:uid")
     Call<JSONObject> uid_check(@Path("check_uid") String check_uid);
 
     @GET("/letter/responseless")
-     Call<JSONObject>letter_list(@Query("letterNumber")int letterNumber );
+    Call<JSONObject> letter_list(@Query("letterNumber") int letterNumber);
 
     @GET("/letter/responseless/:letterNumber")
-    Call<contentlistRepo> getletterNumber(@Path("letterNumber")int letterNumber);
+    Call<contentlistRepo> getletterNumber(@Path("letterNumber") int letterNumber);
 
     @FormUrlEncoded
     @POST("/logout")
@@ -58,6 +61,7 @@ public interface APIinterface {
     @POST("/foget/id")
     Call<Void> forgetid(@Field("name") String name,
                         @Field("email") String email);
+
     @FormUrlEncoded
     @POST("/foget/pw")
     Call<Void> forgetpw(@Field("id") String id,
@@ -70,4 +74,8 @@ public interface APIinterface {
 
     @GET
     Call<JsonObject> getSurvey(@Url String url, @Header("signme-x-access-token") String token);
+
+    @FormUrlEncoded
+    @POST
+    Call<Void> doAnswerToSurvey(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
 }

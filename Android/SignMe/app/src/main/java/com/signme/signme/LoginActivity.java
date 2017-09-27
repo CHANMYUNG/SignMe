@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText idField;
     EditText passwordField;
     //AQuery aquery;
-    String url = "http://10.211.55.2:8000/";
+
     Retrofit retrofit;
 
     @Override
@@ -146,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void postLoginData(final String id, String password) {
         retrofit = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(APIinterface.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
