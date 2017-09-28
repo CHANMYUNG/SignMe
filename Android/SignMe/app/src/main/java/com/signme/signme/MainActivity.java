@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.signme.signme.response.ResponseActivity;
+import com.signme.signme.response.ResponseLetterActivity;
 import com.signme.signme.adapter.ListViewAdapter;
 import com.signme.signme.mypage.MypageActivity;
 
@@ -97,7 +97,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
 
                     // 가정통신문 선택시
                     case R.id.nav_newsLetter:
-                        Intent intent=new Intent(getApplicationContext(),ResponseActivity.class);
+                        Intent intent=new Intent(getApplicationContext(),ResponseLetterActivity.class);
                         startActivity(intent);
 
                         break;

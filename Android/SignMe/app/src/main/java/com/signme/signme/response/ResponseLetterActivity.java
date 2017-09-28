@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -29,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by dsm2016 on 2017-08-23.
  */
 
-public class ResponseActivity extends AppCompatActivity {
+public class ResponseLetterActivity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     private Button responseSubmitButton;
@@ -41,7 +40,7 @@ public class ResponseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_response);
+        setContentView(R.layout.activity_response_letter);
         //참여 or 불참 라디오버튼
         Intent intent = getIntent();
         letterNumber = intent.getIntExtra("letterNumber", -1);
@@ -59,6 +58,7 @@ public class ResponseActivity extends AppCompatActivity {
                 TextView contents = (TextView) findViewById(R.id.response_contents);
                 TextView openDate = (TextView) findViewById(R.id.response_openDate);
                 TextView closeDate = (TextView) findViewById(R.id.response_closeDate);
+
                 title.setText(letter.get("title").toString().replace("\"", ""));
                 contents.setText(letter.get("contents").toString().replace("\"", ""));
                 openDate.setText(letter.get("openDate").toString().replace("\"", ""));

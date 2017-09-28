@@ -95,6 +95,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:padding="10dp"
                                 android:id="@+id/response_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
@@ -111,26 +112,52 @@
                                 android:layout_height="70dp"
                                 android:layout_alignParentRight="true"
                                 android:layout_gravity="center_vertical"
-
                                 android:gravity="bottom"
                                 android:textColor="@color/black"
                                 android:textSize="20dp" />
 
+
                             <TextView
                                 android:id="@+id/response_openDate"
-                                android:layout_width="80dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_alignParentRight="true"
                                 android:layout_below="@+id/response_writerName"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="20dp"
                                 android:gravity="center_vertical"
                                 android:textColor="@color/black" />
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_below="@id/response_writerName"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_toLeftOf="@+id/response_openDate"
+                                android:gravity="center_vertical"
+                                android:text="등록일 : "
+                                android:textColor="@color/black" />
+
+                            <TextView
                                 android:id="@+id/response_closeDate"
-                                android:layout_width="80dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_alignParentRight="true"
-                                android:layout_below="@id/response_openDate" />
+                                android:layout_below="@+id/response_openDate"
+                                android:layout_marginRight="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_below="@id/response_openDate"
+                                android:layout_marginRight="15dp"
+                                android:layout_toLeftOf="@+id/response_closeDate"
+                                android:gravity="center_vertical"
+                                android:text="마감일 : "
+                                android:textColor="@color/black" />
+
 
                             <TextView
                                 android:id="@+id/response_contents"
@@ -146,6 +173,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_below="@id/response_contents"
+                                android:layout_marginTop="30dp"
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
@@ -153,15 +181,15 @@
                                     android:id="@+id/response_radio_yes"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    android:textColor="@color/black" />
+                                    android:buttonTint="@color/black" />
 
                                 <RadioButton
                                     android:id="@+id/response_radio_no"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_marginLeft="100dp"
-                                    android:checked="true"
-                                    android:textColor="@color/black" />
+                                    android:buttonTint="@color/black"
+                                    android:checked="true" />
                             </RadioGroup>
 
 
@@ -170,7 +198,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/response_radio_group"
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="10dp"
                                 android:gravity="center">
 
                                 <TextView

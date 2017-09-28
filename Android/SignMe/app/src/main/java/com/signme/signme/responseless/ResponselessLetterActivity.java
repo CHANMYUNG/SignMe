@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by dsm2016 on 2017-09-25.
  */
 
-public class ResponselessActivity extends AppCompatActivity {
+public class ResponselessLetterActivity extends AppCompatActivity {
     private TextView title_text, date_text, content_text, name_text;
     private APIInterface APIInterface;
     private Retrofit retrofit;
@@ -31,7 +31,7 @@ public class ResponselessActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_responseless);
+        setContentView(R.layout.activity_responseless_letter);
         retrofit = new Retrofit.Builder().baseUrl(APIInterface.URL).addConverterFactory(GsonConverterFactory.create()).build();
         APIInterface = retrofit.create(APIInterface.class);
 

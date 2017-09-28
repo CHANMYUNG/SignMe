@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.signme.signme.response.ResponseActivity;
-import com.signme.signme.responseless.ResponselessActivity;
+import com.signme.signme.response.ResponseLetterActivity;
+import com.signme.signme.responseless.ResponselessLetterActivity;
 import com.signme.signme.adapter.LetterListAdapter;
 
 import com.signme.signme.adapter.LetterListItem;
@@ -123,7 +123,7 @@ public class LetterListActivity extends AppCompatActivity {
                 if (item.isAnswered()) {
                     Toast.makeText(getApplicationContext(), "이미 응답한 가정통신문입니다.", Toast.LENGTH_SHORT).show();
                 } else if (item.getType() == LetterTypes.RESPONSELESSLETTER) {
-                    Intent intent = new Intent(getApplicationContext(), ResponselessActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), ResponselessLetterActivity.class);
                     intent.putExtra("letterNumber", letterNumber);
                     startActivity(intent);
                 } else if (item.getType() == LetterTypes.SURVEY) {
@@ -131,7 +131,7 @@ public class LetterListActivity extends AppCompatActivity {
                     letterActivity.putExtra("letterNumber", letterNumber);
                     startActivity(letterActivity);
                 } else if (item.getType() == LetterTypes.RESPONSELETTER) {
-                    letterActivity = new Intent(getApplicationContext(), ResponseActivity.class);
+                    letterActivity = new Intent(getApplicationContext(), ResponseLetterActivity.class);
                     letterActivity.putExtra("letterNumber", letterNumber);
                     startActivity(letterActivity);
                 }
