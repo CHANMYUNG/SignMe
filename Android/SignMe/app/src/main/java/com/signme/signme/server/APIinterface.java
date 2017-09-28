@@ -28,7 +28,7 @@ import retrofit2.http.Url;
  */
 
 public interface APIInterface {
-    String URL = "http://192.168.1.101:8000/";
+    String URL = "http://192.168.155.102:8000/";
 
     @GET("account/id/check/:id")
     Call<JSONObject> id_check(@Path("check_id") String check_id);
@@ -78,4 +78,12 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST
     Call<Void> doAnswerToSurvey(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
+
+    @FormUrlEncoded
+    @POST
+    Call<Void> doAnswerToResponse(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
+
+
+    @GET
+    Call<JsonObject> getResponseLetter(@Url String url, @Header("signme-x-access-token") String token);
 }

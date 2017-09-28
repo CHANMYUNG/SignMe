@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.signme.signme.response.ResponseActivity;
 import com.signme.signme.responseless.ResponselessActivity;
 import com.signme.signme.adapter.LetterListAdapter;
 
@@ -62,6 +63,7 @@ public class LetterListActivity extends AppCompatActivity {
                 .baseUrl(APIInterface.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         apiInterface = retrofit.create(APIInterface.class);
 
         Call<JsonArray> call = apiInterface.getLetterList(getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
@@ -126,6 +128,10 @@ public class LetterListActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (item.getType() == LetterTypes.SURVEY) {
                     letterActivity = new Intent(getApplicationContext(), SurveyActivity.class);
+                    letterActivity.putExtra("letterNumber", letterNumber);
+                    startActivity(letterActivity);
+                } else if (item.getType() == LetterTypes.RESPONSELETTER) {
+                    letterActivity = new Intent(getApplicationContext(), ResponseActivity.class);
                     letterActivity.putExtra("letterNumber", letterNumber);
                     startActivity(letterActivity);
                 }

@@ -31,7 +31,7 @@ public class ResponselessActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_content_main_simple);
+        setContentView(R.layout.activity_responseless);
         retrofit = new Retrofit.Builder().baseUrl(APIInterface.URL).addConverterFactory(GsonConverterFactory.create()).build();
         APIInterface = retrofit.create(APIInterface.class);
 
