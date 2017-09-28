@@ -1,5 +1,6 @@
 package com.nooheat.controller.letter.survey;
 
+import com.nooheat.manager.JWT;
 import com.nooheat.model.Survey;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
@@ -23,10 +24,13 @@ public class GetSurveyList implements Handler<RoutingContext> {
     public void handle(RoutingContext ctx) {
         HttpServerRequest req = ctx.request();
         HttpServerResponse res = ctx.response();
-
+        JWT token = JWT.verify(ctx);
+        if (token == null) {
+            res.setStatusCode(401).end();
+        }
         JsonArray result;
         try {
-            result = Survey.findAll();
+            result = Survey.findAll(token.getUid());
         } catch (SQLException e) {
             res.setStatusCode(500).end();
             return;

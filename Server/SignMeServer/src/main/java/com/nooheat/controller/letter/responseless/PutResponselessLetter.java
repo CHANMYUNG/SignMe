@@ -12,6 +12,8 @@ import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
 
+import java.sql.SQLException;
+
 /**
  * Created by NooHeat on 13/09/2017.
  */
@@ -38,29 +40,30 @@ public class PutResponselessLetter implements Handler<RoutingContext> {
 
         try {
             letterNumber = Integer.parseInt(req.getParam("letterNumber"));
+            ResponselessLetter letter = ResponselessLetter.findOne(letterNumber);
+
+            if (letter.getWriterUid().equals(writerUid)) {
+                res.setStatusCode(403).end();
+                return;
+            }
+
+            if (letter == null) {
+                res.setStatusCode(400).end();
+                return;
+            }
+            String title = req.getFormAttribute("title");
+            String contents = req.getFormAttribute("contents");
+
+
+            boolean success = letter.update(title, contents).saveUpdated();
+
+            if (success) res.setStatusCode(200).end();
+            else res.setStatusCode(400).end();
         } catch (NumberFormatException e) {
             res.setStatusCode(400).end();
-            return;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        ResponselessLetter letter = ResponselessLetter.findOne(letterNumber);
-
-        if (letter.getWriterUid().equals(writerUid)) {
-            res.setStatusCode(403).end();
-            return;
-        }
-
-        if (letter == null) {
-            res.setStatusCode(400).end();
-            return;
-        }
-        String title = req.getFormAttribute("title");
-        String contents = req.getFormAttribute("contents");
-
-
-        boolean success = letter.update(title, contents).saveUpdated();
-
-        if (success) res.setStatusCode(200).end();
-        else res.setStatusCode(400).end();
-
     }
 }

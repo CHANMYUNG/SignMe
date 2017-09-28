@@ -20,9 +20,9 @@ import java.util.List;
 
 public class ResponselessLetter extends Letter {
 
-    final static String FINDALL = "SELECT * FROM responselessLetter";
+    final static String FINDALL = "SELECT letterNumber, title, contents, openDate, a.name, r.writerUid, a.name AS writerName FROM responselessLetter AS r LEFT JOIN ADMIN as a ON r.writerUid = a.uid;";
     final static String SAVE = "INSERT INTO responselessLetter(writerUid, title, contents, openDate) VALUES(?, ?, ?, ?)";
-    final static String FINDONE = "SELECT * FROM responselessLetter WHERE letterNumber = ?";
+    final static String FINDONE = "SELECT letterNumber, title, contents, openDate, a.name AS writerName, a.uid AS writerUid FROM responselessLetter AS r LEFT JOIN ADMIN AS a ON r.writerUid = a.uid WHERE letterNumber = ?";
     final static String UPDATE = "UPDATE responselessLetter SET title = ?, contents = ?, openDate = ? WHERE letterNumber = ?";
     final static String DELETE = "DELETE FROM responselessLetter WHERE letterNumber = ?";
 
@@ -51,27 +51,38 @@ public class ResponselessLetter extends Letter {
     String writerUid;
     String title;
     String contents;
+    String writerName;
 
     public ResponselessLetter() {
         this.type = Category.RESPONSELESSLETTER;
     }
 
-    public ResponselessLetter(int letterNumber, String writerUid, String title, String contents, String openDate) {
-        this.type = Category.RESPONSELESSLETTER;
-        this.letterNumber = letterNumber;
+    public ResponselessLetter(String writerUid, String title, String contents, String openDate) {
         this.writerUid = writerUid;
         this.title = title;
         this.contents = contents;
         this.openDate = openDate;
     }
 
-
-    public ResponselessLetter(String writerUid, String title, String contents, String openDate) {
+    public ResponselessLetter(int letterNumber, String writerUid, String writerName, String title, String contents, String openDate) {
         this.type = Category.RESPONSELESSLETTER;
+        this.letterNumber = letterNumber;
         this.writerUid = writerUid;
+        this.writerName = writerName;
         this.title = title;
         this.contents = contents;
         this.openDate = openDate;
+    }
+
+
+    public ResponselessLetter(String writerUid, String writerName, String title, String contents, String openDate) {
+        this.type = Category.RESPONSELESSLETTER;
+        this.writerUid = writerUid;
+        this.writerName = writerName;
+        this.title = title;
+        this.contents = contents;
+        this.openDate = openDate;
+
     }
 
     public static JsonArray findAll() {
@@ -89,6 +100,7 @@ public class ResponselessLetter extends Letter {
                 object.put("title", rs.getString("title"));
                 object.put("contents", rs.getString("contents"));
                 object.put("openDate", rs.getString("openDate"));
+                object.put("writerName", rs.getString("writerName"));
                 response.add(object);
             }
             return response;
@@ -102,7 +114,7 @@ public class ResponselessLetter extends Letter {
 
     public static ResponselessLetter findOne(int letterNumber) {
         ResultSet rs = DBManager.execute(FINDONE, letterNumber);
-
+        System.out.println(letterNumber);
         try {
             if (rs.next()) {
 
@@ -110,8 +122,8 @@ public class ResponselessLetter extends Letter {
                 String title = rs.getString("title");
                 String contents = rs.getString("contents");
                 String openDate = rs.getString("openDate");
-
-                return new ResponselessLetter(letterNumber, writerUid, title, contents, openDate);
+                String writerName = rs.getString("writerName");
+                return new ResponselessLetter(letterNumber, writerUid, writerName, title, contents, openDate);
 
             }
         } catch (SQLException e) {
@@ -121,7 +133,7 @@ public class ResponselessLetter extends Letter {
         return null;
     }
 
-    public boolean save() {
+    public boolean save() throws SQLException {
         return DBManager.update(SAVE, writerUid, title, contents, openDate) == 1;
     }
 
@@ -141,8 +153,8 @@ public class ResponselessLetter extends Letter {
             String title = rs.getString("title");
             String contents = rs.getString("contents");
             String openDate = rs.getString("openDate");
-
-            ResponselessLetter letter = new ResponselessLetter(letterNumber, writerUid, title, contents, openDate);
+            String writerName = rs.getString("writerName");
+            ResponselessLetter letter = new ResponselessLetter(letterNumber, writerUid, writerName, title, contents, openDate);
 
             letters.add(letter);
         }
@@ -150,11 +162,11 @@ public class ResponselessLetter extends Letter {
         return letters;
     }
 
-    public boolean saveUpdated() {
+    public boolean saveUpdated() throws SQLException {
         return DBManager.update(UPDATE, title, contents, openDate, letterNumber) == 1;
     }
 
-    public boolean delete() {
+    public boolean delete() throws SQLException {
         return DBManager.update(DELETE, letterNumber) != -1;
     }
 
@@ -167,6 +179,7 @@ public class ResponselessLetter extends Letter {
                 .put("title", this.title)
                 .put("contents", this.contents)
                 .put("openDate", this.openDate)
+                .put("writerName", this.writerName)
                 .toString();
     }
 
@@ -178,7 +191,8 @@ public class ResponselessLetter extends Letter {
                 .put("writerUid", this.writerUid)
                 .put("title", this.title)
                 .put("contents", this.contents)
-                .put("openDate", this.openDate);
+                .put("openDate", this.openDate)
+                .put("writerName", this.writerName);
     }
 
 }

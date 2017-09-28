@@ -11,6 +11,8 @@ import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
 
+import java.sql.SQLException;
+
 /**
  * Created by NooHeat on 13/09/2017.
  */
@@ -50,9 +52,15 @@ public class DelResponselessLetter implements Handler<RoutingContext> {
         if (letter == null || !letter.getWriterUid().equals(writerUid)) {
             res.setStatusCode(400).end();
         } else {
-            boolean success = letter.delete();
-            if (success) res.setStatusCode(200).end();
-            else res.setStatusCode(500).end();
+            boolean success = false;
+            try {
+                success = letter.delete();
+                if (success) res.setStatusCode(200).end();
+                else res.setStatusCode(500).end();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                res.setStatusCode(500).end();
+            }
         }
 
     }

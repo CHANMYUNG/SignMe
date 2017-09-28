@@ -22,6 +22,8 @@ public class GetResponselessLetter implements Handler<RoutingContext> {
         HttpServerRequest req = ctx.request();
         HttpServerResponse res = ctx.response();
 
+        System.out.println("letterGETETETE");
+
         int letterNumber = -1;
         try {
             letterNumber = Integer.parseInt(req.getParam("letterNumber"));
@@ -30,7 +32,7 @@ public class GetResponselessLetter implements Handler<RoutingContext> {
             return;
         }
         ResponselessLetter letter = ResponselessLetter.findOne(letterNumber);
-
+        System.out.println(letter.toString());
         if (letter != null) res.setStatusCode(200).end(letter.toString());
         else res.setStatusCode(400).end();
     }

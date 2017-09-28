@@ -4,12 +4,15 @@ import com.nooheat.manager.JWT;
 import com.nooheat.model.ResponselessLetter;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
+import com.nooheat.support.DateTime;
 import com.nooheat.support.URIMapping;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
+
+import java.sql.SQLException;
 
 /**
  * Created by NooHeat on 10/09/2017.
@@ -37,11 +40,18 @@ public class PostResponselessLetter implements Handler<RoutingContext> {
         String writerUid = token.getUid();
         String title = req.getFormAttribute("title");
         String contents = req.getFormAttribute("contents");
-        String openDate = req.getFormAttribute("openDate");
+        String openDate = DateTime.getDateNow();
 
         ResponselessLetter letter = new ResponselessLetter(writerUid, title, contents, openDate);
 
-        boolean success = letter.save();
+        boolean success = false;
+        try {
+            success = letter.save();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            res.setStatusCode(500).end();
+            return;
+        }
 
         if (success) res.setStatusCode(201).end();
         else res.setStatusCode(400).end();

@@ -48,27 +48,23 @@ public class DeleteSurvey implements Handler<RoutingContext> {
         Survey survey = null;
         try {
             survey = Survey.findOne(letterNumber);
+
+            if (survey == null) {
+                res.setStatusCode(400).end();
+                return;
+            }
+
+            if (!survey.getWriterUid().equals(token.getUid())) {
+                res.setStatusCode(403).end();
+                return;
+            }
+
+
+            boolean success = survey.delete();
+            if (success) res.setStatusCode(200).end();
+            else res.setStatusCode(500).end();
         } catch (SQLException e) {
             res.setStatusCode(500).end();
-            return;
         }
-
-
-        if (survey == null) {
-            res.setStatusCode(400).end();
-            return;
-        }
-
-        if (!survey.getWriterUid().equals(token.getUid())) {
-            res.setStatusCode(403).end();
-            return;
-        }
-
-
-        boolean success = survey.delete();
-        if (success) res.setStatusCode(200).end();
-        else res.setStatusCode(500).end();
-
-
     }
 }

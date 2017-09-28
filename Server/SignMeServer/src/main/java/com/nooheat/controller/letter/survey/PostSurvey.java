@@ -13,6 +13,7 @@ import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonArray;
 import io.vertx.ext.web.RoutingContext;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public class PostSurvey implements Handler<RoutingContext> {
         String closeDate = req.getFormAttribute("closeDate");
         String itemString = req.getFormAttribute("items");
 
-        if(RequestManager.paramValidationCheck(writerUid, title, summary, openDate, closeDate, itemString) == false){
+        if (RequestManager.paramValidationCheck(writerUid, title, summary, openDate, closeDate, itemString) == false) {
             res.setStatusCode(400).end();
             return;
         }
@@ -58,9 +59,16 @@ public class PostSurvey implements Handler<RoutingContext> {
 
         Survey survey = new Survey(writerUid, title, summary, items, openDate, closeDate);
 
-        boolean result = survey.save();
-        if (result) res.setStatusCode(201).end();
-        else res.setStatusCode(400).end();
+        boolean result = false;
+        try {
+            result = survey.save();
+            if (result) res.setStatusCode(201).end();
+            else res.setStatusCode(400).end();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            res.setStatusCode(500).end();
+        }
+
 
     }
 }

@@ -16,6 +16,6 @@ public class Letter implements Comparable<Letter> {
 
     @Override
     public int compareTo(Letter o) {
-        return openDate.compareTo(o.openDate);
+        return openDate.compareTo(o.openDate) * -1;
     }
 }

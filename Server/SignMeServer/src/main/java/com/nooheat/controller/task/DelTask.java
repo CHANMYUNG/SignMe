@@ -12,6 +12,8 @@ import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
 
+import java.sql.SQLException;
+
 /**
  * Created by NooHeat on 18/08/2017.
  */
@@ -49,9 +51,14 @@ public class DelTask implements Handler<RoutingContext> {
         Task task = Task.findOne(tid);
 
 
-        if (task.delete()) res.setStatusCode(200).end();
+        try {
+            if (task.delete()) res.setStatusCode(200).end();
 
-        else res.setStatusCode(400).end();
+            else res.setStatusCode(400).end();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            res.setStatusCode(500).end();
+        }
 
 
     }

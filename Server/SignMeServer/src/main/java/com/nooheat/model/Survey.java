@@ -17,7 +17,7 @@ import java.util.List;
 public class Survey extends Letter {
     private final static String SURVEY_SAVE = "INSERT INTO survey(writerUid, title, summary, openDate, closeDate) VALUES(?,?,?,?,?);";
     private final static String QUESTION_SAVE = "INSERT INTO surveyQuestion(question) VALUES(?)";
-    private final static String SURVEY_FINDALL = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid ORDER BY letterNumber;";
+    private final static String SURVEY_FINDALL = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName, (SELECT count(*)>=1 FROM surveyAnswer as SA WHERE SA.uid = ? AND SA.letterNumber = s.letterNumber) as isAnswered  FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid ORDER BY letterNumber;";
     private final static String SURVEY_FINDONE = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid WHERE letterNumber = ?;";
     private final static String SURVEY_DELETE = "DELETE FROM survey WHERE letterNumber = ?";
     private final static String QUESTION_DELETE = "DELETE FROM surveyQuestion WHERE letterNumber = ?";
@@ -30,6 +30,7 @@ public class Survey extends Letter {
     private List items;
     private String closeDate;
     private String writerName;
+    private boolean isAnswered;
 
     public Survey() {
         this.type = Category.SURVEY;
@@ -56,14 +57,14 @@ public class Survey extends Letter {
         this.closeDate = closeDate;
     }
 
-    public boolean save() {
+    public boolean save() throws SQLException {
         boolean surveySave = DBManager.update(SURVEY_SAVE, writerUid, title, summary, openDate, closeDate) == 1;
         boolean questionSave = saveItems();
 
         return surveySave && questionSave;
     }
 
-    public boolean saveItems() {
+    public boolean saveItems() throws SQLException {
 
         for (Object question : items) {
             if (DBManager.update(QUESTION_SAVE, (String) question) != 1) return false;
@@ -72,7 +73,7 @@ public class Survey extends Letter {
         return true;
     }
 
-    public boolean saveUpdated() {
+    public boolean saveUpdated() throws SQLException {
         boolean surveySave = DBManager.update(SURVEY_SAVE, writerUid, title, summary, openDate, closeDate) == 1;
         boolean isDeletedAll = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
         boolean questionSave = saveItems();
@@ -80,8 +81,8 @@ public class Survey extends Letter {
         return surveySave && isDeletedAll && questionSave;
     }
 
-    public static JsonArray findAll() throws SQLException {
-        ResultSet rs = DBManager.execute(SURVEY_FINDALL);
+    public static JsonArray findAll(String uid) throws SQLException {
+        ResultSet rs = DBManager.execute(SURVEY_FINDALL, uid);
         JsonArray result = new JsonArray();
         while (rs.next()) {
             JsonObject object = new JsonObject();
@@ -91,7 +92,7 @@ public class Survey extends Letter {
             object.put("openDate", rs.getString("openDate"));
             object.put("closeDate", rs.getString("closeDate"));
             object.put("writerName", rs.getString("writerName"));
-
+            object.put("isAnswered", rs.getBoolean("isAnswered"));
             ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", object.getInteger("letterNumber"));
 
             JsonArray items = new JsonArray();
@@ -132,8 +133,8 @@ public class Survey extends Letter {
         } else return null;
     }
 
-    public static List<Survey> getSurveyList() throws SQLException {
-        ResultSet rs = DBManager.execute(SURVEY_FINDALL);
+    public static List<Survey> getSurveyList(String uid) throws SQLException {
+        ResultSet rs = DBManager.execute(SURVEY_FINDALL, uid);
 
         List<Survey> surveys = new ArrayList<>();
 
@@ -146,7 +147,7 @@ public class Survey extends Letter {
             survey.setOpenDate(rs.getString("openDate"));
             survey.setCloseDate(rs.getString("closeDate"));
             survey.setWriterName(rs.getString("writerName"));
-
+            survey.setAnswered(rs.getBoolean("isAnswered"));
             ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", rs.getInt("letterNumber"));
 
             List<String> items = new ArrayList<>();
@@ -174,6 +175,7 @@ public class Survey extends Letter {
                 .put("items", this.items)
                 .put("openDate", this.openDate)
                 .put("closeDate", this.closeDate)
+                .put("isAnswered", this.isAnswered)
                 .toString();
     }
 
@@ -188,6 +190,7 @@ public class Survey extends Letter {
                 .put("summary", this.summary)
                 .put("items", this.items)
                 .put("openDate", this.openDate)
+                .put("isAnswered", this.isAnswered)
                 .put("closeDate", this.closeDate);
     }
 
@@ -205,14 +208,14 @@ public class Survey extends Letter {
         return this.writerUid;
     }
 
-    public boolean delete() {
+    public boolean delete() throws SQLException {
         boolean areQuestionsDeleted = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
         boolean isSurveyDeleted = DBManager.update(SURVEY_DELETE, this.letterNumber) != -1;
 
         return areQuestionsDeleted && isSurveyDeleted;
     }
 
-    public boolean answer(String uid, List answers, String answerDate) {
+    public boolean answer(String uid, List answers, String answerDate) throws SQLException {
         Iterator<Integer> iterator = answers.iterator();
         int columnIndex = 1;
         while (iterator.hasNext()) {
@@ -292,5 +295,13 @@ public class Survey extends Letter {
 
     public String getSummary() {
         return summary;
+    }
+
+    public boolean isAnswered() {
+        return isAnswered;
+    }
+
+    public void setAnswered(boolean answered) {
+        isAnswered = answered;
     }
 }

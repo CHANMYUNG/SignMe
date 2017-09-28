@@ -5,10 +5,15 @@ import com.nooheat.manager.RequestManager;
 import com.nooheat.model.Task;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
+import com.nooheat.support.DateTime;
 import com.nooheat.support.URIMapping;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
+import io.vertx.core.http.HttpServerRequest;
+import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
+
+import java.sql.SQLException;
 
 /**
  * Created by NooHeat on 25/07/2017.
@@ -19,39 +24,47 @@ public class PostTask implements Handler<RoutingContext> {
 
     @Override
     public void handle(RoutingContext context) {
+        HttpServerRequest req = context.request();
+        HttpServerResponse res = context.response();
         JWT token = JWT.verify(context);
 
         if (token == null) {
-            context.response().setStatusCode(401).end();
+            res.setStatusCode(401).end();
             return;
         }
 
         if (!token.isAdmin()) {
-            context.response().setStatusCode(403).end();
+            res.setStatusCode(403).end();
             return;
         }
 
         String title = context.request().getFormAttribute("title");
         String summary = context.request().getFormAttribute("summary");
-        String startDate = context.request().getFormAttribute("startDate");
+        String startDate = DateTime.getDateNow();
         String endDate = context.request().getFormAttribute("endDate");
 
-        if (RequestManager.paramValidationCheck(title, summary, startDate, endDate) == false) {
-            context.response().setStatusCode(400).end();
+        if (RequestManager.paramValidationCheck(title, summary, endDate) == false) {
+            res.setStatusCode(400).end();
             return;
         }
 
         Task task = new Task(token.getUid(), title, summary, startDate, endDate);
 
         if (task.isDuplicated()) {
-            context.response().setStatusCode(400).end("Duplicated");
+            res.setStatusCode(400).end("Duplicated");
             return;
         }
 
-        boolean result = task.save();
+        boolean result = false;
+        try {
+            result = task.save();
+        } catch (SQLException e) {
+            res.setStatusCode(500).end();
+            return;
+        }
 
-        if (result) context.response().setStatusCode(201).end();
-        else context.response().setStatusCode(400).end();
+        if (result) res.setStatusCode(201).end();
+        else res.setStatusCode(400).end();
     }
 
 }

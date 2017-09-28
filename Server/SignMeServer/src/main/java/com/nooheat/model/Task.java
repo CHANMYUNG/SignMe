@@ -133,7 +133,7 @@ public class Task {
         return null;
     }
 
-    public boolean save() {
+    public boolean save() throws SQLException {
         return DBManager.update(SAVE, writerUid, title, summary, startDate, endDate) == 1;
     }
 
@@ -159,11 +159,11 @@ public class Task {
         this.endDate = endDate;
     }
 
-    public boolean saveUpdated() {
+    public boolean saveUpdated() throws SQLException {
         return DBManager.update(UPDATE, title, summary, startDate, endDate, tid) == 1;
     }
 
-    public boolean delete() {
+    public boolean delete() throws SQLException {
         return DBManager.update(DELETE, tid) != -1;
     }
 

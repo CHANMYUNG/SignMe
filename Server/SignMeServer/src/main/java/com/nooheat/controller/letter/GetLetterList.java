@@ -3,6 +3,7 @@ package com.nooheat.controller.letter;
 import com.nooheat.database.DBManager;
 import com.nooheat.manager.JWT;
 import com.nooheat.model.Letter;
+import com.nooheat.model.ResponseLetter;
 import com.nooheat.model.ResponselessLetter;
 import com.nooheat.model.Survey;
 import com.nooheat.support.API;
@@ -33,7 +34,7 @@ public class GetLetterList implements Handler<RoutingContext> {
 
         JWT token = JWT.verify(ctx);
 
-        if(token == null){
+        if (token == null) {
             res.setStatusCode(401).end();
             return;
         }
@@ -41,19 +42,15 @@ public class GetLetterList implements Handler<RoutingContext> {
         List<Letter> letterList = new ArrayList<>();
 
         try {
-            letterList.addAll(Survey.getSurveyList());
+            letterList.addAll(Survey.getSurveyList(token.getUid()));
             letterList.addAll(ResponselessLetter.getLetterList());
+            letterList.addAll(ResponseLetter.getLetterList((token.getUid())));
         } catch (SQLException e) {
             e.printStackTrace();
             res.setStatusCode(500).end();
         }
 
-        letterList.sort(new Comparator<Letter>() {
-            @Override
-            public int compare(Letter o1, Letter o2) {
-                return o1.compareTo(o2);
-            }
-        });
+        letterList.sort(Letter::compareTo);
 
         JsonArray list = new JsonArray();
 

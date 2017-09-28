@@ -10,6 +10,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+import java.sql.SQLException;
+
 /**
  * Created by NooHeat on 17/07/2017.
  */
@@ -25,10 +27,15 @@ public class SignUp implements Handler<RoutingContext> {
 
 
         if (RequestManager.paramValidationCheck(uid, id, password, email)) {
-            if (UserManager.createAccount(uid, id, password, email)) {
-                context.response().setStatusCode(201).end();
-            } else {
-                context.response().setStatusCode(400).end();
+            try {
+                if (UserManager.createAccount(uid, id, password, email)) {
+                    context.response().setStatusCode(201).end();
+                } else {
+                    context.response().setStatusCode(400).end();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                context.response().setStatusCode(500).end();
             }
 
         }

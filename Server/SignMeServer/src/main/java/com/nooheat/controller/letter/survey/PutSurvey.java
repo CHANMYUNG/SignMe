@@ -42,43 +42,44 @@ public class PutSurvey implements Handler<RoutingContext> {
 
         try {
             letterNumber = Integer.parseInt(req.getParam("letterNumber"));
+            String title = req.getFormAttribute("title");
+            String summary = req.getFormAttribute("summary");
+            String openDate = req.getFormAttribute("openDate");
+            String closeDate = req.getFormAttribute("closeDate");
+            List items = new JsonArray(req.getFormAttribute("items")).getList();
+
+            if (RequestManager.paramValidationCheck(title, summary, openDate, closeDate, items) == false) {
+                res.setStatusCode(400).end();
+                return;
+            }
+            Survey survey = null;
+            try {
+                survey = Survey.findOne(letterNumber);
+            } catch (SQLException e) {
+                res.setStatusCode(500).end();
+                return;
+            }
+
+            if (survey == null) {
+                res.setStatusCode(400).end();
+                return;
+            }
+
+            if (!survey.getWriterUid().equals(token.getUid())) {
+                res.setStatusCode(403).end();
+                return;
+            }
+
+            boolean success = survey.update(title, summary, items, openDate, closeDate).saveUpdated();
+
+            if (success) {
+                res.setStatusCode(200).end();
+            } else {
+                res.setStatusCode(500).end();
+            }
         } catch (NumberFormatException e) {
             res.setStatusCode(400).end();
-        }
-
-        String title = req.getFormAttribute("title");
-        String summary = req.getFormAttribute("summary");
-        String openDate = req.getFormAttribute("openDate");
-        String closeDate = req.getFormAttribute("closeDate");
-        List items = new JsonArray(req.getFormAttribute("items")).getList();
-
-        if (RequestManager.paramValidationCheck(title, summary, openDate, closeDate, items) == false) {
-            res.setStatusCode(400).end();
-            return;
-        }
-        Survey survey = null;
-        try {
-            survey = Survey.findOne(letterNumber);
-        } catch (SQLException e) {
-            res.setStatusCode(500).end();
-            return;
-        }
-
-        if (survey == null) {
-            res.setStatusCode(400).end();
-            return;
-        }
-
-        if (!survey.getWriterUid().equals(token.getUid())) {
-            res.setStatusCode(403).end();
-            return;
-        }
-
-        boolean success = survey.update(title, summary, items, openDate, closeDate).saveUpdated();
-
-        if (success) {
-            res.setStatusCode(200).end();
-        } else {
+        } catch (SQLException exception) {
             res.setStatusCode(500).end();
         }
 

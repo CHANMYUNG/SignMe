@@ -13,7 +13,8 @@ public class DBManager {
     private static final String USER = "root";
     private static final String PASSWORD = "xogns1228";
 
-    private DBManager(){}
+    private DBManager() {
+    }
 
     static {
         try {
@@ -49,18 +50,17 @@ public class DBManager {
         return rs;
     }
 
-    public synchronized static int update(String query, Object ... param){
+    public synchronized static int update(String query, Object... param) throws SQLException {
         int affectedRows = -1;
 
-        try{
-            System.out.println(getPrepared(query,param).toString());
-            affectedRows = getPrepared(query, param).executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+        System.out.println(getPrepared(query, param).toString());
+        affectedRows = getPrepared(query, param).executeUpdate();
+
 
         return affectedRows;
     }
+
     private synchronized static PreparedStatement getPrepared(String query, Object... param) {
         PreparedStatement statement = null;
         try {
@@ -75,7 +75,6 @@ public class DBManager {
         }
         return statement;
     }
-
 
 
 }

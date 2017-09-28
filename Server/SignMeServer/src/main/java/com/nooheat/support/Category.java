@@ -10,6 +10,7 @@ public enum Category {
     TASK,
     SURVEY,
     RESPONSELESSLETTER,
+    RESPONSELETTER,
     LETTER
 
 }
