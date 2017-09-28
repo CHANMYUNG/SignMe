@@ -58,7 +58,9 @@
                     ]
                     , color : "#FF0000"
                     , textColor : "#FFFF00"
-                }
+				}
+				,
+				event
             ]
 		});
 		

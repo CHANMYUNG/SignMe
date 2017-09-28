@@ -2,7 +2,7 @@
 .g_artcle {
     padding-top: 5vh;
     width: 70vw;
-    padding-left: 20vw;
+    margin-left: 20vw;
 }
 
 #g_a_artcle {
@@ -43,3 +43,8 @@
 .button {
     margin-left: 120px;
 }
+.subbar{
+    height: 1px;
+    width: 30vw;
+    color: black;
+    background-color: black;}
