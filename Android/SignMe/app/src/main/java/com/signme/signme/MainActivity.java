@@ -43,23 +43,21 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //리스트 뷰
-//        Log.d("xxx", FirebaseInstanceId.getInstance().getToken());
 
         ListView listView;
         ListViewAdapter adapter;
 
-        adapter=new ListViewAdapter();
+        adapter = new ListViewAdapter();
 
-        listView=(ListView)findViewById(R.id.alarm_listview);
+        listView = (ListView) findViewById(R.id.alarm_listview);
         listView.setAdapter(adapter);
-        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.text),"\n새로운 가정통신문",ContextCompat.getDrawable(this,R.drawable.right));
-        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.chat),"\n새로운 메세지",ContextCompat.getDrawable(this,R.drawable.right));
-        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.calander),"\n새로운 일정",ContextCompat.getDrawable(this,R.drawable.right));
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.text), "\n새로운 가정통신문", ContextCompat.getDrawable(this, R.drawable.right));
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.chat), "\n새로운 메세지", ContextCompat.getDrawable(this, R.drawable.right));
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.calander), "\n새로운 일정", ContextCompat.getDrawable(this, R.drawable.right));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
-                Intent listbtn=new Intent(getApplicationContext(),LetterListActivity.class);
+                Intent listbtn = new Intent(getApplicationContext(), LetterListActivity.class);
                 startActivity(listbtn);
             }
         });
@@ -91,13 +89,13 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
                         break;
                     // 신청서 일정 선택시
                     case R.id.nav_schedule:
-                        Intent schedule=new Intent(getApplicationContext(),LetterListActivity.class);
+                        Intent schedule = new Intent(getApplicationContext(), LetterListActivity.class);
                         startActivity(schedule);
                         break;
 
                     // 가정통신문 선택시
                     case R.id.nav_newsLetter:
-                        Intent intent=new Intent(getApplicationContext(),ResponseLetterActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ResponseLetterActivity.class);
                         startActivity(intent);
 
                         break;
@@ -118,9 +116,10 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
         });
         mButton = (ImageButton) findViewById(R.id.profilebtn);
         mPhotoImgeView = (ImageView) findViewById(R.id.profile);
-        mypagebtn=(ImageButton) findViewById(R.id.mypagebtn);
+        mypagebtn = (ImageButton) findViewById(R.id.mypagebtn);
         mButton.setOnClickListener(this);
     }
+
     ///마이페이지
     //카메라에서 이미지 가져오기
     private void doTakePhotoAction() {
@@ -134,7 +133,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
 
     private void doTakeAlbumAction() {
 
-          Intent intent = new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
         startActivityForResult(intent, PICK_FROM_ALBUM);
     }
@@ -234,6 +233,7 @@ public class MainActivity extends Activity implements DialogInterface.OnClickLis
     public void onClick(DialogInterface dialog, int which) {
 
     }
+
     //마이페이지 버튼
     public void mypageonClicked(View view) {
         Intent intent = new Intent(getApplicationContext(), MypageActivity.class);

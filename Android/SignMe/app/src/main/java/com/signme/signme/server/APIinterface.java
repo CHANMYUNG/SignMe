@@ -28,7 +28,7 @@ import retrofit2.http.Url;
  */
 
 public interface APIInterface {
-    String URL = "http://192.168.155.102:8000/";
+    String URL = "http://172.20.10.2:8000/";
 
     @GET("account/id/check/:id")
     Call<JSONObject> id_check(@Path("check_id") String check_id);

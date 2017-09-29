@@ -1,14 +1,20 @@
 package com.signme.signme.adapter;
 
-import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.signme.signme.LetterTypes;
 import com.signme.signme.R;
+import com.signme.signme.response.ResponseLetterActivity;
+import com.signme.signme.responseless.ResponselessLetterActivity;
+import com.signme.signme.survey.SurveyActivity;
 
 import java.util.ArrayList;
 
@@ -16,57 +22,89 @@ import java.util.ArrayList;
  * Created by dsm2016 on 2017-09-24.
  */
 
-public class LetterListAdapter extends BaseAdapter {
+public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.MyViewHolder> {
 
-    ArrayList<LetterListItem> letterListItemArrayList = new ArrayList<LetterListItem>();
+    ArrayList<LetterListItem> mLetterSet = new ArrayList<LetterListItem>();
 
-    public LetterListAdapter() {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    }
+        public TextView titleView;
+        public TextView openDateView;
+        public TextView closeDateView;
+        public TextView closeDateMentView;
 
-    @Override
-    public int getCount() {
-        return letterListItemArrayList.size();
-    }
+        public MyViewHolder(View view, final int position) {
+            super(view);
 
-    @Override
-    public LetterListItem getItem(int position) {
-        return letterListItemArrayList.get(position);
-    }
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LetterListItem item = mLetterSet.get(position);
+                    int letterNumber = item.getLetterNumber();
+                    Intent letterActivity = null;
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
+                    if (item.isAnswered()) {
+                        Toast.makeText(v.getContext(), "이미 응답한 가정통신문입니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-    @Override
-    public View getView(int position, View converView, ViewGroup parent) {
-        Context context = parent.getContext();
-        if (converView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            converView = inflater.inflate(R.layout.letter_list_item, parent, false);
+                    if (item.getType() == LetterTypes.RESPONSELESSLETTER) {
+                        letterActivity = new Intent(v.getContext(), ResponselessLetterActivity.class);
+                    }
+                    if (item.getType() == LetterTypes.SURVEY) {
+                        letterActivity = new Intent(v.getContext(), SurveyActivity.class);
+                    }
+                    if (item.getType() == LetterTypes.RESPONSELETTER) {
+                        letterActivity = new Intent(v.getContext(), ResponseLetterActivity.class);
+                    }
+
+                    letterActivity.putExtra("letterNumber", letterNumber);
+                    v.getContext().startActivity(letterActivity);
+                }
+
+            });
+
+            titleView = (TextView) view.findViewById(R.id.letter_title);
+            openDateView = (TextView) view.findViewById(R.id.letter_openDate);
+            closeDateView = (TextView) view.findViewById(R.id.letter_closeDate);
+            closeDateMentView = (TextView) view.findViewById(R.id.letter_closeDateMent);
         }
-        TextView title = (TextView) converView.findViewById(R.id.title_text);
-        TextView openDate = (TextView) converView.findViewById(R.id.openDate);
-        TextView closeDate = (TextView) converView.findViewById(R.id.closeDate);
-        TextView closeDateMent = (TextView) converView.findViewById(R.id.closeDateMent);
-        LetterListItem letterListItem = getItem(position);
-        title.setText(letterListItem.getTitle());
 
-        openDate.setText(letterListItem.getOpenDate());
+    }
 
-        if (letterListItem.getType() != LetterTypes.RESPONSELESSLETTER) {
-            closeDate.setText(letterListItem.getCloseDate());
+    public LetterListAdapter(ArrayList<LetterListItem> mLetterSet) {
+        this.mLetterSet = mLetterSet;
+    }
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.letter_list_item, parent, false);
+        MyViewHolder vh = new MyViewHolder(v, viewType);
+        Log.d("xxx", "onCreateViewHolder: " + viewType);
+        return vh;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        Log.d("BINDBIND", "ASDASDDAS");
+        holder.titleView.setText(mLetterSet.get(position).getTitle());
+        holder.openDateView.setText(mLetterSet.get(position).getOpenDate());
+        if (mLetterSet.get(position).getType() != LetterTypes.RESPONSELESSLETTER) {
+            holder.closeDateView.setText(mLetterSet.get(position).getCloseDate());
         } else {
-            closeDateMent.setVisibility(View.INVISIBLE);
-            closeDate.setVisibility(View.INVISIBLE);
+            holder.closeDateMentView.setVisibility(View.GONE);
+            holder.closeDateView.setVisibility(View.GONE);
         }
-
-        return converView;
     }
 
-    public void addItem(LetterListItem item) {
-        letterListItemArrayList.add(item);
+    @Override
+    public int getItemCount() {
+        return mLetterSet.size();
     }
 
 }

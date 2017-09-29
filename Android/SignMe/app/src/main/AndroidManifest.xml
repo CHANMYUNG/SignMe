@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
-        <activity android:name=".SplashActivity">
+        <activity android:name=".MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,6 +32,11 @@
         <activity android:name=".LetterListActivity"></activity>
         <activity android:name=".responseless.ResponselessLetterActivity"></activity>
         <activity android:name=".survey.SurveyActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".Register2Activity"></activity>
+        <activity android:name=".Register3Activity"></activity>
+        <activity android:name=".RegisterfinActivity"></activity>
+        <activity android:name=".SplashActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>

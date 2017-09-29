@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -39,20 +40,31 @@ public class LoginActivity extends AppCompatActivity {
     EditText idField;
     EditText passwordField;
     Retrofit retrofit;
+    Button registerBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginActivity = this;
+//        loginActivity = this;
+//        registerBtn = (Button) findViewById(R.id.registerButton);
+//
+//        registerBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("asdadasd", "goRegisterClicked: ");
+//                Intent registerActivity = new Intent(getApplicationContext(), RegisterActivity.class);
+//                startActivity(registerActivity);
+//            }
+//        });
     }
 
 
-    public void loginClicked(View view) {
+    public void loginButtonClicked(View view) {
         // aquery = new AQuery(getApplicationContext());
 
-        idField = (EditText) findViewById(R.id.idField);
-        passwordField = (EditText) findViewById(R.id.passwordField);
+        idField = (EditText) findViewById(R.id.login_input_id);
+        passwordField = (EditText) findViewById(R.id.login_input_password);
 
         String user_id = idField.getText().toString();
         String user_password = passwordField.getText().toString();
@@ -70,67 +82,9 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             if (!user_id.isEmpty() && !user_password.isEmpty()) {
                 postLoginData(user_id, user_password);
-//                    Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
-//                    startActivity(intent);
-                // postLoginData(user_id,user_password);
-                   /* Map<String,String> params=new HashMap<>();
-                    params.put("id",id);
-                    params.put("password",password);
-                    aquery.ajax("http://13.124.15.202:80/account/sign/in",params,String.class,new AjaxCallback<String>(){
-                        @Override
-                        public void callback(String url, String response, AjaxStatus status) {
-                            int statusCode=status.getCode();
-                            Log.d("statuCode",Integer.toString(statusCode));
-                            if(statusCode==201){
-                                finish();
-                                Intent intent = new Intent(getApplicationContext(), TutorMainActivity.class);
-                                startActivity(intent);
-
-                            }
-                             else if(statusCode==400){
-                                Log.d("연결","x");
-                                Toast toast=Toast.makeText(getApplicationContext(),"연결 확인해주세요", Toast.LENGTH_SHORT);
-                                toast.show();
-                            }
-                            else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                Dialog dialog = builder.setMessage("아이디 비밀번호 다시 입력해 주세요.").setPositiveButton("OK", null).create();
-                                dialog.show();
-                            }
-                        }
-                    });
-*/
             }
-
-
-            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-
         }
 
-    }
-
-    public void BackonClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), LandingActivity.class);
-        startActivity(intent);
-        LandingActivity.landingActivity.finish();
-    }
-
-    public void CloseonClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), LandingActivity.class);
-        startActivity(intent);
-        LandingActivity.landingActivity.finish();
-    }
-
-    public void goRegisterClicked(View view) {
-
-        Log.d(this.getLocalClassName(), "goRegisterClicked: ");
-    }
-
-    public void goForgetClicked(View view) {
-        Intent intent = new Intent(getApplicationContext(), FogetidActivity.class);
-        startActivity(intent);
-        Log.d(this.getLocalClassName(), "goForgetClicked: ");
     }
 
     public void postLoginData(final String id, String password) {
