@@ -6,10 +6,8 @@ $(document).ready(function(){
         console.log(form_data);
         $.ajax({
             url: 'http://192.168.1.101:8000/account/sign/in',
-            headers: {
-                'Access-Control-Allow-Origin':'http://192.168.1.101',
-                'Content-Type' : 'application/x-www-form-urlencoded'
-            },
+            
+            
             // header:('Access-Control-Allow-Origin: *'),
             type: 'POST',
             data: form_data,
