@@ -1,4 +1,4 @@
-package com.signme.signme.response;
+package com.signme.signme.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

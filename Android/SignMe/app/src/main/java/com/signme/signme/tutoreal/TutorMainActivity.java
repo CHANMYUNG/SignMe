@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
-import com.signme.signme.MainActivity;
 import com.signme.signme.R;
+import com.signme.signme.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;

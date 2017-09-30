@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,7 +20,8 @@ import com.signme.signme.LetterTypes;
 import com.signme.signme.LoginActivity;
 import com.signme.signme.R;
 import com.signme.signme.adapter.LetterListAdapter;
-import com.signme.signme.adapter.LetterListItem;
+import com.signme.signme.model.LetterListItem;
+import com.signme.signme.activity.SettingActivity;
 import com.signme.signme.server.APIInterface;
 
 import java.util.ArrayList;
@@ -49,12 +51,22 @@ public class LetterListFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_letter_list, container, false);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.letter_list);
 
         getLetterListFromServer();
+
+        rootView.findViewById(R.id.go_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("GO SETTING", "CLICKED");
+                // ((LetterListAdapter) mAdapter).clear();
+                Intent setting = new Intent(getActivity().getApplicationContext(), SettingActivity.class);
+                getActivity().startActivity(setting);
+            }
+        });
 
         return rootView;
     }
@@ -93,12 +105,14 @@ public class LetterListFragment extends Fragment {
                         LetterTypes type = LetterTypes.valueOf(item.get("type").toString().replace("\"", ""));
                         int letterNumber = Integer.parseInt(item.get("letterNumber").toString().replace("\"", ""));
                         String title = item.get("title").toString().replace("\"", "");
+                        String writerName = item.get("writerName").toString().replace("\"", "");
                         String openDate = item.get("openDate").toString().replace("\"", "");
 
                         LetterListItem letterItem = new LetterListItem();
                         letterItem.setLetterNumber(letterNumber);
                         letterItem.setType(type);
                         letterItem.setTitle(title);
+                        letterItem.setWriterName(writerName);
                         letterItem.setOpenDate(openDate);
                         letterItem.setLetterNumber(letterNumber);
                         if (type != LetterTypes.RESPONSELESSLETTER) {

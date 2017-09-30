@@ -1,19 +1,22 @@
-package com.signme.signme;
+package com.signme.signme.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.signme.signme.LetterTypes;
+import com.signme.signme.LoginActivity;
+import com.signme.signme.R;
 import com.signme.signme.adapter.LetterListAdapter;
 
-import com.signme.signme.adapter.LetterListItem;
+import com.signme.signme.model.LetterListItem;
 import com.signme.signme.server.APIInterface;
 
 import java.util.ArrayList;
@@ -42,6 +45,17 @@ public class LetterListActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_letter_list);
+
+        ((NestedScrollView) findViewById(R.id.nested)).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Log.d("AD", "ASD");
+                Log.d("scrollX", scrollX + "");
+                Log.d("scrollY", scrollY + "");
+                Log.d("oldScrollX", oldScrollX + "");
+                Log.d("oldScrollY s", oldScrollY + "");
+            }
+        });
     }
 
 

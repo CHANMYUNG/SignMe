@@ -1,20 +1,17 @@
-package com.signme.signme.survey;
+package com.signme.signme.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.signme.signme.R;
-
-import org.w3c.dom.Text;
+import com.signme.signme.model.SurveyQuestionItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +49,7 @@ public class SurveyQuestionAdapter extends BaseAdapter {
         Context context = parent.getContext();
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.survey_item, parent, false);
+            convertView = inflater.inflate(R.layout.item_survey, parent, false);
         }
 
         TextView question = (TextView) convertView.findViewById(R.id.survey_question);

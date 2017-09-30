@@ -1,4 +1,4 @@
-package com.signme.signme.survey;
+package com.signme.signme.model;
 
 /**
  * Created by NooHeat on 26/09/2017.

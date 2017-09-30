@@ -1,12 +1,17 @@
-package com.signme.signme;
+package com.signme.signme.activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.signme.signme.R;
 import com.signme.signme.fragment.LetterListFragment;
 import com.signme.signme.fragment.TaskFragment;
 
@@ -14,16 +19,17 @@ import com.signme.signme.fragment.TaskFragment;
  * Created by NooHeat on 28/09/2017.
  */
 
-public class MainActivity2 extends AppCompatActivity implements AHBottomNavigation.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements AHBottomNavigation.OnTabSelectedListener {
     AHBottomNavigation bottomNavigation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_ver2);
+        setContentView(R.layout.activity_main);
 
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnTabSelectedListener(this);
+
         this.createNavItems();
 
 
@@ -44,15 +50,18 @@ public class MainActivity2 extends AppCompatActivity implements AHBottomNavigati
     }
 
     public void createNavItems() {
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("first", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("second", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("third", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem("Letters", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("Tasks", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("MyPage", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
 
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
+
         bottomNavigation.setBehaviorTranslationEnabled(true);
-        bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        bottomNavigation.setTranslucentNavigationEnabled(true);
+        bottomNavigation.setTitleState(AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE);
+
         bottomNavigation.setCurrentItem(0);
     }
 }

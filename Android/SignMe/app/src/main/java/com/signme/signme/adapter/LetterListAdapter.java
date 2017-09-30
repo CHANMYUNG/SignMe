@@ -1,7 +1,6 @@
 package com.signme.signme.adapter;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,9 +11,10 @@ import android.widget.Toast;
 
 import com.signme.signme.LetterTypes;
 import com.signme.signme.R;
-import com.signme.signme.response.ResponseLetterActivity;
-import com.signme.signme.responseless.ResponselessLetterActivity;
-import com.signme.signme.survey.SurveyActivity;
+import com.signme.signme.model.LetterListItem;
+import com.signme.signme.activity.ResponseLetterActivity;
+import com.signme.signme.activity.ResponselessLetterActivity;
+import com.signme.signme.activity.SurveyActivity;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView titleView;
+        public TextView writerNameView;
         public TextView openDateView;
         public TextView closeDateView;
         public TextView closeDateMentView;
@@ -65,6 +66,7 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
             });
 
             titleView = (TextView) view.findViewById(R.id.letter_title);
+            writerNameView = (TextView) view.findViewById(R.id.letter_writerName);
             openDateView = (TextView) view.findViewById(R.id.letter_openDate);
             closeDateView = (TextView) view.findViewById(R.id.letter_closeDate);
             closeDateMentView = (TextView) view.findViewById(R.id.letter_closeDateMent);
@@ -78,7 +80,7 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.letter_list_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_letter_list, parent, false);
         MyViewHolder vh = new MyViewHolder(v, viewType);
         Log.d("xxx", "onCreateViewHolder: " + viewType);
         return vh;
@@ -94,6 +96,7 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
         Log.d("BINDBIND", "ASDASDDAS");
         holder.titleView.setText(mLetterSet.get(position).getTitle());
         holder.openDateView.setText(mLetterSet.get(position).getOpenDate());
+        holder.writerNameView.setText(mLetterSet.get(position).getWriterName());
         if (mLetterSet.get(position).getType() != LetterTypes.RESPONSELESSLETTER) {
             holder.closeDateView.setText(mLetterSet.get(position).getCloseDate());
         } else {
@@ -107,4 +110,8 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
         return mLetterSet.size();
     }
 
+    public void clear() {
+        this.mLetterSet = new ArrayList<>();
+        this.notifyDataSetChanged();
+    }
 }

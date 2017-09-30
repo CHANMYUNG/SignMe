@@ -1,4 +1,4 @@
-package com.signme.signme.survey;
+package com.signme.signme.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +16,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.signme.signme.LoginActivity;
 import com.signme.signme.R;
+import com.signme.signme.model.SurveyQuestionItem;
 import com.signme.signme.server.APIInterface;
+import com.signme.signme.adapter.SurveyQuestionAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

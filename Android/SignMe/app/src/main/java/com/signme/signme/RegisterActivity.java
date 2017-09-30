@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
+import com.signme.signme.activity.MainActivity;
 
 /**
  * Created by Kimsoomin on 2017-09-04.
@@ -59,12 +60,12 @@ public class RegisterActivity  extends AppCompatActivity{
     }
 
     public void CloseButtonClicked(View view){
-        Intent close2 = new Intent(getApplication(), LandingActivity.class);
+        Intent close2 = new Intent(getApplication(), MainActivity.class);
         startActivity(close2);
     }
 
     public void BackButtonClicked(View view){
-        Intent back = new Intent(getApplication(), LandingActivity.class);
+        Intent back = new Intent(getApplication(), MainActivity.class);
         startActivity(back);
     }
 
