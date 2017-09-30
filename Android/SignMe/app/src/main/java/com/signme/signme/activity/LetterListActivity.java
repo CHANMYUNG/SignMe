@@ -45,17 +45,6 @@ public class LetterListActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_letter_list);
-
-        ((NestedScrollView) findViewById(R.id.nested)).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Log.d("AD", "ASD");
-                Log.d("scrollX", scrollX + "");
-                Log.d("scrollY", scrollY + "");
-                Log.d("oldScrollX", oldScrollX + "");
-                Log.d("oldScrollY s", oldScrollY + "");
-            }
-        });
     }
 
 
