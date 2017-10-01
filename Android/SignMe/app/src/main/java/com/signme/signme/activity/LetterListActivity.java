@@ -16,6 +16,7 @@ import com.signme.signme.LoginActivity;
 import com.signme.signme.R;
 import com.signme.signme.adapter.LetterListAdapter;
 
+import com.signme.signme.adapter.WrapLayoutManager;
 import com.signme.signme.model.LetterListItem;
 import com.signme.signme.server.APIInterface;
 
@@ -45,13 +46,19 @@ public class LetterListActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_letter_list);
+        getLetterListFromServer();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("E!@#", "onRestart: ");
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getLetterListFromServer();
+        Log.d("E!@#", "onResume: ");
     }
 
     // TODO: RecyclerView 클릭시 몇번째 아이템인지 알아내기 -> 그에 맞는 Intent
@@ -61,8 +68,7 @@ public class LetterListActivity extends Activity {
         mRecyclerView = (RecyclerView) findViewById(R.id.letter_list);
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(new WrapLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         mAdapter = new LetterListAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);
@@ -104,7 +110,9 @@ public class LetterListActivity extends Activity {
                         Log.d("PROCESSED", letterItem.toString());
                         mDataset.add(letterItem);
                     }
-                    mAdapter.notifyDataSetChanged();
+                    mAdapter.notifyItemChanged(mDataset.size() - 1);
+                    //mAdapter.notifyDataSetChanged();
+
                 } else if (response.code() == 401) {
 
                     Toast.makeText(getApplicationContext(), "로그인이 만료되었습니다. 다시 로그인해주세요.", Toast.LENGTH_LONG).show();

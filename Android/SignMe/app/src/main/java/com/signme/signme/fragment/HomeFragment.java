@@ -4,29 +4,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.signme.signme.LetterTypes;
 import com.signme.signme.LoginActivity;
 import com.signme.signme.R;
 import com.signme.signme.adapter.LetterListAdapter;
+import com.signme.signme.adapter.WrapLayoutManager;
 import com.signme.signme.model.LetterListItem;
-import com.signme.signme.activity.SettingActivity;
 import com.signme.signme.server.APIInterface;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.zip.Inflater;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,50 +40,86 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by NooHeat on 28/09/2017.
  */
 
-public class LetterListFragment extends Fragment {
+public class HomeFragment extends Fragment {
+    private FrameLayout fragmentContainer;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<LetterListItem> mDataset;
+    private ArrayList<LetterListItem> mDataset = new ArrayList<>();
     private Retrofit retrofit;
     private APIInterface apiInterface;
-    private View rootView;
+
+
+    public static HomeFragment newInstance(int index) {
+        HomeFragment fragment = new HomeFragment();
+        Bundle b = new Bundle();
+        b.putInt("index", index);
+        fragment.setArguments(b);
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_letter_list, container, false);
-
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.letter_list);
-
-        getLetterListFromServer();
-
-        rootView.findViewById(R.id.go_setting).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("GO SETTING", "CLICKED");
-                // ((LetterListAdapter) mAdapter).clear();
-                Intent setting = new Intent(getActivity().getApplicationContext(), SettingActivity.class);
-                getActivity().startActivity(setting);
-            }
-        });
-
-        return rootView;
+        View view = null;
+        if (getArguments().getInt("index", 0) == 0) {
+            view = inflater.inflate(R.layout.fragment_letter_list, container, false);
+            initLetterList(view);
+            return view;
+        }
+        if (getArguments().getInt("index", 0) == 1) {
+            view = inflater.inflate(R.layout.fragment_task, container, false);
+            initTask(view);
+            return view;
+        }
+        return view;
     }
 
-    // TODO: RecyclerView 클릭시 몇번째 아이템인지 알아내기 -> 그에 맞는 Intent
-    private void getLetterListFromServer() {
-        mDataset = new ArrayList<>();
+    // 가정통신문 리스트 UI
+    private void initLetterList(View view) {
+        fragmentContainer = (FrameLayout) view.findViewById(R.id.fragment_container);
 
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.letter_list);
+        mDataset = new ArrayList<>();
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.letter_list);
+        mRecyclerView = (RecyclerView) mRecyclerView.findViewById(R.id.letter_list);
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
+
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new LetterListAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);
 
+        loadLetterListFromServer();
+    }
+
+    private void initTask(View view) {
+    }
+
+    public void willBeHidden() {
+        if (fragmentContainer != null) {
+            Animation fadeOut = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+            fragmentContainer.startAnimation(fadeOut);
+        }
+    }
+
+    public void willBeDisplayed() {
+        if (fragmentContainer != null) {
+            Animation fadeIn = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
+            fragmentContainer.startAnimation(fadeIn);
+        }
+    }
+
+    public void refresh() {
+        if (getArguments().getInt("index", 0) == 0) {
+            loadLetterListFromServer();
+        }
+    }
+
+    public void loadLetterListFromServer() {
+        mDataset.clear();
+        mAdapter.notifyDataSetChanged();
         retrofit = new Retrofit.Builder()
                 .baseUrl(APIInterface.URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -120,7 +156,7 @@ public class LetterListFragment extends Fragment {
                             letterItem.setCloseDate(item.get("closeDate").toString().replace("\"", ""));
 
                         }
-                        Log.d("PROCESSED", letterItem.toString());
+
                         mDataset.add(letterItem);
                     }
                     mAdapter.notifyDataSetChanged();
@@ -141,5 +177,11 @@ public class LetterListFragment extends Fragment {
                 Toast.makeText(getActivity().getApplicationContext(), "오류가 발생했습니다. ", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("!@!", "onResume: ");
     }
 }

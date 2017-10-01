@@ -110,8 +110,6 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
         return mLetterSet.size();
     }
 
-    public void clear() {
-        this.mLetterSet = new ArrayList<>();
-        this.notifyDataSetChanged();
-    }
+
+
 }
