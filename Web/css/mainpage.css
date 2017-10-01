@@ -1,5 +1,4 @@
 @import url("http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
-
 *{
     margin: 0;
     padding: 0;
@@ -7,15 +6,20 @@
     text-decoration:none;
     
 }
-
 html,body{
     width: 100%;
     height: 100%;
 }
-
+a:link {
+  color: #ffffff;
+}
+a:visited {
+  color: #ffffff;
+}
 #page_wrapper{
     width:100%;
     height:100%;
+    color: #ffffff;
     background: url("../img/main_background.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -39,49 +43,54 @@ html,body{
     color: #ffffff;    
     
 }
-.bar_btn{
-  width:60px;
-  height: 60px;
-  display:block;
-  position:absolute;
-  top:0;
-  margin-top: 8px;
-  margin-left: 8px;
-  margin-right: 8px;
+#menu{
+  width: 100%;
+  height: 100px;
 }
-#open_btn{
-  right: 0;
+ul>li{
+  font-size: 16px;
+  font-weight: lighter;
+  
+  float: left;
+  list-style: none;
+  margin: 8px;
+  
+}
+ul>li:first-child{
+  margin-left: 20px;
+  margin-right: 0px;
+}
+#menu>ul:nth-child(2){
+  float: right;
+}
+ul>li:last-child{
+  margin-right: 20px;
+}
+#main{
+  position: relative;
+  top: 25%;
+  text-align: center;
 }
 
-#main{
-    position: relative;
-    top: 30%;
-    text-align: center;
-    color: #ffffff;
-    letter-spacing: 1.5em;
-    
+#main>h1{
+  font-size: 90px;
+  font-weight: normal;
+  letter-spacing: 0.2em;
+  line-height: 1em;
 }
-#main_1{
-    font-size: 90px;
+#main>hr{
+  height: 1px;
+  width: 30%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: auto;
+  margin-right: auto;
 }
-#main_hr{
-    width: 32%;
-    height: 2px;
-    border: 0px solid #ffffff;
-    margin: 0 auto 2em auto;
-    background: #ffffff;
-    
+#main>p{
+  font-size: 30px;
+  font-weight: lighter;
 }
-#main>p:nth-child(2){
-  background: pink;
-}
-.main_2{
-    font-size: 30px;
-    font-weight: lighter;
-    letter-spacing: 0.1em;
-    line-height: 1em;
-    
-}
+
 .blur{
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
@@ -116,7 +125,7 @@ html,body{
     margin:50% 0 0 -20%;
     position:relative;
     top:50%; left:50%;
-    background:#fff;
+    background:#ffffff;
     opacity:0;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -160,17 +169,17 @@ input::-webkit-input-placeholder {
   text-align: center;
   font-weight: lighter;
 }
-  form>input[type="button"]{
-    width: 360px;
-    height: 64px;
-    background-color: #e2ebff;
-    border: 0px solid #e2ebff;
-    font-size: 20px;
-    font-weight: lighter;
-    letter-spacing: 0.2em;
-    border-radius: 32px;
-    margin-top: 20px;
-  }
+form>input[type="button"]{
+  width: 360px;
+  height: 64px;
+  background-color: #e2ebff;
+  border: 0px solid #e2ebff;
+  font-size: 20px;
+  font-weight: lighter;
+  letter-spacing: 0.2em;
+  border-radius: 32px;
+  margin-top: 20px;
+}
 form>div{
     font-size: 15px;
     font-weight: lighter;
@@ -178,8 +187,8 @@ form>div{
     text-decoration:none;
     margin-top: 8px;
 }
-  .modal-wrapper.open .modal{
-    margin-top:-200px;
-    opacity:1;
-  }
+.modal-wrapper.open .modal{
+  margin-top:-200px;
+  opacity:1;
+}
   
