@@ -9,6 +9,8 @@ import io.vertx.core.json.JsonObject;
 public class Letter implements Comparable<Letter> {
     String openDate;
     Category type;
+    String writerUid;
+    String title;
 
     public JsonObject toJson() {
         return null;
@@ -17,5 +19,13 @@ public class Letter implements Comparable<Letter> {
     @Override
     public int compareTo(Letter o) {
         return openDate.compareTo(o.openDate) * -1;
+    }
+
+    public String getWriterUid() {
+        return writerUid;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

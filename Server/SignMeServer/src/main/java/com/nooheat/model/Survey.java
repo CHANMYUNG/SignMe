@@ -4,6 +4,7 @@ import com.nooheat.database.DBManager;
 import com.nooheat.support.Category;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by NooHeat on 17/09/2017.
  */
-public class Survey extends Letter {
+public class Survey extends Letter implements Statistic {
     private final static String SURVEY_SAVE = "INSERT INTO survey(writerUid, title, summary, openDate, closeDate) VALUES(?,?,?,?,?);";
     private final static String QUESTION_SAVE = "INSERT INTO surveyQuestion(question) VALUES(?)";
     private final static String SURVEY_FINDALL = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName, (SELECT count(*)>=1 FROM surveyAnswer as SA WHERE SA.uid = ? AND SA.letterNumber = s.letterNumber) as isAnswered  FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid ORDER BY letterNumber;";
@@ -24,8 +25,6 @@ public class Survey extends Letter {
     private final static String ANSWER_SAVE = "INSERT INTO  surveyAnswer(uid, letterNumber, columnIndex, answer, answerDate) VALUES(?, ?, ?, ?, ?);";
     private final static String COUNT_ANSWER = "SELECT count(distinct uid) as count FROM surveyAnswer WHERE letterNumber = ?;";
     private int letterNumber;
-    private String title;
-    private String writerUid;
     private String summary;
     private List items;
     private String closeDate;
@@ -303,5 +302,10 @@ public class Survey extends Letter {
 
     public void setAnswered(boolean answered) {
         isAnswered = answered;
+    }
+
+    @Override
+    public XSSFWorkbook getStatistic() {
+        return null;
     }
 }

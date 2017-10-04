@@ -18,10 +18,8 @@ public class ResponseLetter extends Letter {
     private static final String FINDONE = "SELECT letterNumber, l.writerUid, l.title, l.contents, l.openDate, l.closeDate, a.name AS writerName FROM responseLetter AS l LEFT JOIN ADMIN as a ON l.writerUid = a.uid WHERE letterNumber = ?;";
     private static final String INSERT = "INSERT INTO responseLetter(writerUid,title,contents,openDate,closeDate) VALUES(?,?,?,?,?);";
     private static final String ANSWER_SAVE = "INSERT INTO letterAnswer(uid, letterNumber, answer , responseDate) VALUES(?,?,?,?);";
-    private String title;
     private String contents;
     private String closeDate;
-    private String writerUid;
     private String writerName;
     private int letterNumber;
     private boolean isAnswered;

@@ -1,14 +1,11 @@
 package com.nooheat.model;
 
-import com.mysql.cj.api.mysqla.result.Resultset;
 import com.nooheat.database.DBManager;
 import com.nooheat.support.Category;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import javax.xml.ws.Response;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +15,7 @@ import java.util.List;
  * Created by NooHeat on 10/09/2017.
  */
 
-public class ResponselessLetter extends Letter {
+public class ResponselessLetter extends Letter implements Statistic {
 
     final static String FINDALL = "SELECT letterNumber, title, contents, openDate, a.name, r.writerUid, a.name AS writerName FROM responselessLetter AS r LEFT JOIN ADMIN as a ON r.writerUid = a.uid;";
     final static String SAVE = "INSERT INTO responselessLetter(writerUid, title, contents, openDate) VALUES(?, ?, ?, ?)";
@@ -48,8 +45,6 @@ public class ResponselessLetter extends Letter {
         return openDate;
     }
 
-    String writerUid;
-    String title;
     String contents;
     String writerName;
 
@@ -195,4 +190,8 @@ public class ResponselessLetter extends Letter {
                 .put("writerName", this.writerName);
     }
 
+    @Override
+    public XSSFWorkbook getStatistic() {
+        return null;
+    }
 }
