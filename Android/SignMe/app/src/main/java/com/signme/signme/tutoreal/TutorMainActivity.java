@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.signme.signme.R;
-import com.signme.signme.activity.MainActivity;
+import com.signme.signme.activity.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class TutorMainActivity extends AppCompatActivity implements ViewFlipperA
             @Override
             public void onClick(View v) {
                 Log.d("dd", "dd");
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
                 TutorMainActivity.tutorMainActivity.finish();
                 finish();
@@ -89,7 +89,7 @@ public class TutorMainActivity extends AppCompatActivity implements ViewFlipperA
             @Override
             public void onClick(View v) {
                 Log.d("dd", "dd");
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
                 TutorMainActivity.tutorMainActivity.finish();
                 finish();

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.signme.signme.activity.MainActivity;
+import com.signme.signme.activity.HomeActivity;
 
 public class RegisterfinActivity extends AppCompatActivity {
 
@@ -16,7 +16,7 @@ public class RegisterfinActivity extends AppCompatActivity {
     }
 
     public void Registerfin(View view){
-        Intent registerfin = new Intent(RegisterfinActivity.this, MainActivity.class);
+        Intent registerfin = new Intent(RegisterfinActivity.this, HomeActivity.class);
         startActivity(registerfin);
     }
 }

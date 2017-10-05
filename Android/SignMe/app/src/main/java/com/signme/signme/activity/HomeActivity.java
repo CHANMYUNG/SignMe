@@ -17,7 +17,7 @@ import com.signme.signme.fragment.TaskFragment;
  * Created by NooHeat on 28/09/2017.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     AHBottomNavigation bottomNavigation;
     AHBottomNavigationViewPager viewPager;
     HomeFragment currentFragment = null;

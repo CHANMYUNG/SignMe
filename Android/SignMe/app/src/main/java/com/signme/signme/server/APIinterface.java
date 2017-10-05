@@ -75,6 +75,15 @@ public interface APIInterface {
     @GET("/letter")
     Call<JsonArray> getLetterList(@Header("signme-x-access-token") String token);
 
+    @GET("/letter/survey")
+    Call<JsonArray> getSurveyList(@Header("signme-x-access-token") String token);
+
+    @GET("/letter/responseless")
+    Call<JsonArray> getResponselessList(@Header("signme-x-access-token") String token);
+
+    @GET("/letter/response")
+    Call<JsonArray> getResponseList(@Header("signme-x-access-token") String token);
+
     @GET
     Call<JsonObject> getSurvey(@Url String url, @Header("signme-x-access-token") String token);
 
