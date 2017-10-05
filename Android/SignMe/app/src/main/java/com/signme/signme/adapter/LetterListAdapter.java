@@ -15,8 +15,11 @@ import com.signme.signme.model.LetterListItem;
 import com.signme.signme.activity.ResponseLetterActivity;
 import com.signme.signme.activity.ResponselessLetterActivity;
 import com.signme.signme.activity.SurveyActivity;
+import com.signme.signme.support.DateTime;
 
 import java.util.ArrayList;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by dsm2016 on 2017-09-24.
@@ -34,20 +37,15 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
         public TextView closeDateView;
         public TextView closeDateMentView;
 
-        public MyViewHolder(View view, final int position) {
+        public MyViewHolder(final View view, final int position) {
             super(view);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    LetterListItem item = mLetterSet.get(position);
+                public void onClick(final View v) {
+                    final LetterListItem item = mLetterSet.get(position);
                     int letterNumber = item.getLetterNumber();
                     Intent letterActivity = null;
-
-                    if (item.isAnswered()) {
-                        Toast.makeText(v.getContext(), "이미 응답한 가정통신문입니다.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
 
                     if (item.getType() == LetterTypes.RESPONSELESSLETTER) {
                         letterActivity = new Intent(v.getContext(), ResponselessLetterActivity.class);
@@ -60,7 +58,36 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
                     }
 
                     letterActivity.putExtra("letterNumber", letterNumber);
-                    v.getContext().startActivity(letterActivity);
+
+                    if (item.isAnswered()) {
+                        final Intent finalLetterActivity = letterActivity;
+                        new SweetAlertDialog(v.getContext(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("이미 답변하셨습니다!")
+                                .setContentText("응답을 수정하실건가요?")
+                                .setConfirmText("네! 수정할래요.")
+                                .setCancelText("아뇨 됐어요.")
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sDialog) {
+                                        // reuse previous dialog instance
+                                        if(item.getCloseDate().compareTo(DateTime.getDateNow()) == -1){
+                                            Toast.makeText(sDialog.getContext(), "응답 기한이 지났습니다.", Toast.LENGTH_SHORT).show();
+                                            sDialog.dismiss();
+                                        }
+                                        else {
+                                            finalLetterActivity.putExtra("modify", true);
+                                            v.getContext().startActivity(finalLetterActivity);
+                                        }
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                        return;
+                    }
+                    else{
+                        v.getContext().startActivity(letterActivity);
+                    }
+
                 }
 
             });

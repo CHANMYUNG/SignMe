@@ -1,5 +1,7 @@
 package com.signme.signme.server;
 
+import android.view.animation.BounceInterpolator;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -17,6 +19,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -28,7 +31,7 @@ import retrofit2.http.Url;
  */
 
 public interface APIInterface {
-    String URL = "http://172.30.1.41:8000/";
+    String URL = "http://192.168.0.131:8000/";
 
     @GET("account/id/check/:id")
     Call<JSONObject> id_check(@Path("check_id") String check_id);
@@ -80,9 +83,17 @@ public interface APIInterface {
     Call<Void> doAnswerToSurvey(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
 
     @FormUrlEncoded
+    @PUT
+    Call<Void> modifyAnswerToSurvey(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
+
+
+    @FormUrlEncoded
     @POST
     Call<Void> doAnswerToResponse(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
 
+    @FormUrlEncoded
+    @PUT
+    Call<Void> modifyAnswerToResponse(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
 
     @GET
     Call<JsonObject> getResponseLetter(@Url String url, @Header("signme-x-access-token") String token);
