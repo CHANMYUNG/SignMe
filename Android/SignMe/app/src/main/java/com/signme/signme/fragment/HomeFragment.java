@@ -22,6 +22,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -72,6 +75,11 @@ public class HomeFragment extends Fragment {
     //일정내용 들어가는 부분
     final String content="일정이 없습니다.";
 
+    private AHBottomNavigation bottomNavigation;
+    private AHBottomNavigationViewPager viewPager;
+    private LetterListFragment currentFragment = null;
+    private LetterListViewPagerAdapter adapter;
+
     public static HomeFragment newInstance(int index) {
         HomeFragment fragment = new HomeFragment();
         Bundle b = new Bundle();
@@ -86,7 +94,7 @@ public class HomeFragment extends Fragment {
         View view = null;
         Log.d("idfd","dfdf");
         if (getArguments().getInt("index", 0) == 0) {
-            view = inflater.inflate(R.layout.fragment_letter_list, container, false);
+            view = inflater.inflate(R.layout.fragment_letter_list_2, container, false);
             initLetterList(view);
             return view;
         }
@@ -100,21 +108,55 @@ public class HomeFragment extends Fragment {
 
     // 가정통신문 리스트 UI
     private void initLetterList(View view) {
-        fragmentContainer = (FrameLayout) view.findViewById(R.id.fragment_container);
 
-        mDataset = new ArrayList<>();
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.letter_list);
-        mRecyclerView = (RecyclerView) mRecyclerView.findViewById(R.id.letter_list);
-        mRecyclerView.setHasFixedSize(true);
+        bottomNavigation = (AHBottomNavigation) view.findViewById(R.id.bottom_navigation);
+        viewPager = (AHBottomNavigationViewPager) view.findViewById(R.id.view_pager);
 
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem("전체보기", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("비응답형", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("응답형", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem("설문조사", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        bottomNavigation.addItem(item1);
+        bottomNavigation.addItem(item2);
+        bottomNavigation.addItem(item3);
+        bottomNavigation.addItem(item4);
 
-        mAdapter = new LetterListAdapter(mDataset);
-        mRecyclerView.setAdapter(mAdapter);
+        bottomNavigation.setTranslucentNavigationEnabled(true);
 
-        loadLetterListFromServer();
+        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+            @Override
+            public boolean onTabSelected(int position, boolean wasSelected) {
+
+                if (currentFragment == null) currentFragment = adapter.getCurrentFragment();
+
+                if (wasSelected && currentFragment != null) {
+                    currentFragment.refresh();
+                    return true;
+                }
+                if (currentFragment != null) currentFragment.willBeHidden();
+
+                viewPager.setCurrentItem(position, false);
+
+                if (currentFragment == null) return true;
+
+                currentFragment = adapter.getCurrentFragment();
+                currentFragment.willBeDisplayed();
+
+                return true;
+            }
+        });
+
+        viewPager.setOffscreenPageLimit(4);
+        adapter = new LetterListViewPagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(adapter);
+        currentFragment = adapter.getCurrentFragment();
+
+        bottomNavigation.setBehaviorTranslationEnabled(true);
+        bottomNavigation.setTranslucentNavigationEnabled(true);
+        bottomNavigation.setTitleState(AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE);
+
+        bottomNavigation.setCurrentItem(0);
     }
 
     private void initTask(View view) {
@@ -211,71 +253,70 @@ public class HomeFragment extends Fragment {
 
     public void refresh() {
         if (getArguments().getInt("index", 0) == 0) {
-            loadLetterListFromServer();
         }
     }
-
-    public void loadLetterListFromServer() {
-        mDataset.clear();
-        mAdapter.notifyDataSetChanged();
-        retrofit = new Retrofit.Builder()
-                .baseUrl(APIInterface.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiInterface = retrofit.create(APIInterface.class);
-
-        Call<JsonArray> call = apiInterface.getLetterList(getActivity().getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
-
-        call.enqueue(new Callback<JsonArray>() {
-            @Override
-            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                if (response.code() == 200) {
-                    JsonArray letters = response.body();
-                    Iterator iterator = letters.iterator();
-                    while (iterator.hasNext()) {
-                        JsonObject item = (JsonObject) iterator.next();
-                        Log.d("ASDASD", item.toString());
-                        LetterTypes type = LetterTypes.valueOf(item.get("type").toString().replace("\"", ""));
-                        int letterNumber = Integer.parseInt(item.get("letterNumber").toString().replace("\"", ""));
-                        String title = item.get("title").toString().replace("\"", "");
-                        String writerName = item.get("writerName").toString().replace("\"", "");
-                        String openDate = item.get("openDate").toString().replace("\"", "");
-
-                        LetterListItem letterItem = new LetterListItem();
-                        letterItem.setLetterNumber(letterNumber);
-                        letterItem.setType(type);
-                        letterItem.setTitle(title);
-                        letterItem.setWriterName(writerName);
-                        letterItem.setOpenDate(openDate);
-                        letterItem.setLetterNumber(letterNumber);
-                        if (type != LetterTypes.RESPONSELESSLETTER) {
-                            letterItem.setAnswered(Boolean.parseBoolean(item.get("isAnswered").toString().replace("\"", "")));
-                            letterItem.setCloseDate(item.get("closeDate").toString().replace("\"", ""));
-
-                        }
-
-                        mDataset.add(letterItem);
-                    }
-                    mAdapter.notifyDataSetChanged();
-                } else if (response.code() == 401) {
-
-                    Toast.makeText(getActivity().getApplicationContext(), "로그인이 만료되었습니다. 다시 로그인해주세요.", Toast.LENGTH_LONG).show();
-
-                    Intent loginActivity = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
-                    startActivity(loginActivity);
-
-                } else {
-                    Toast.makeText(getActivity().getApplicationContext(), "일시적인 서버오류입니다. ", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonArray> call, Throwable t) {
-                Toast.makeText(getActivity().getApplicationContext(), "오류가 발생했습니다. ", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//
+//    public void loadLetterListFromServer() {
+//        mDataset.clear();
+//        mAdapter.notifyDataSetChanged();
+//        retrofit = new Retrofit.Builder()
+//                .baseUrl(APIInterface.URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        apiInterface = retrofit.create(APIInterface.class);
+//
+//        Call<JsonArray> call = apiInterface.getLetterList(getActivity().getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+//
+//        call.enqueue(new Callback<JsonArray>() {
+//            @Override
+//            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+//                if (response.code() == 200) {
+//                    JsonArray letters = response.body();
+//                    Iterator iterator = letters.iterator();
+//                    while (iterator.hasNext()) {
+//                        JsonObject item = (JsonObject) iterator.next();
+//                        Log.d("ASDASD", item.toString());
+//                        LetterTypes type = LetterTypes.valueOf(item.get("type").toString().replace("\"", ""));
+//                        int letterNumber = Integer.parseInt(item.get("letterNumber").toString().replace("\"", ""));
+//                        String title = item.get("title").toString().replace("\"", "");
+//                        String writerName = item.get("writerName").toString().replace("\"", "");
+//                        String openDate = item.get("openDate").toString().replace("\"", "");
+//
+//                        LetterListItem letterItem = new LetterListItem();
+//                        letterItem.setLetterNumber(letterNumber);
+//                        letterItem.setType(type);
+//                        letterItem.setTitle(title);
+//                        letterItem.setWriterName(writerName);
+//                        letterItem.setOpenDate(openDate);
+//                        letterItem.setLetterNumber(letterNumber);
+//                        if (type != LetterTypes.RESPONSELESSLETTER) {
+//                            letterItem.setAnswered(Boolean.parseBoolean(item.get("isAnswered").toString().replace("\"", "")));
+//                            letterItem.setCloseDate(item.get("closeDate").toString().replace("\"", ""));
+//
+//                        }
+//
+//                        mDataset.add(letterItem);
+//                    }
+//                    mAdapter.notifyDataSetChanged();
+//                } else if (response.code() == 401) {
+//
+//                    Toast.makeText(getActivity().getApplicationContext(), "로그인이 만료되었습니다. 다시 로그인해주세요.", Toast.LENGTH_LONG).show();
+//
+//                    Intent loginActivity = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+//                    startActivity(loginActivity);
+//
+//                } else {
+//                    Toast.makeText(getActivity().getApplicationContext(), "일시적인 서버오류입니다. ", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JsonArray> call, Throwable t) {
+//                Toast.makeText(getActivity().getApplicationContext(), "오류가 발생했습니다. ", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     @Override
     public void onResume() {

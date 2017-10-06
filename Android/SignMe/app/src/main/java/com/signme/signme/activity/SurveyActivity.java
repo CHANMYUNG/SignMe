@@ -44,6 +44,7 @@ public class SurveyActivity extends AppCompatActivity {
     TextView surveySummary;
     int letterNumber;
     private static Activity thisActivity;
+    private boolean modifyMode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class SurveyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey);
 
         letterNumber = getIntent().getIntExtra("letterNumber", -1);
+        modifyMode = getIntent().getBooleanExtra("modify", false);
+
+        Log.d("MODE", modifyMode + "");
         questionListView = (ListView) findViewById(R.id.survey_question_list);
 
         View header = getLayoutInflater().inflate(R.layout.survey_summary_header, null, false);
@@ -132,12 +136,16 @@ public class SurveyActivity extends AppCompatActivity {
 
                 if (answers.contains(null)) {
                     Toast.makeText(getApplicationContext(), "빈틈없이 입력해주세요!", Toast.LENGTH_SHORT).show();
-                } else postSurveyAnswers(answers);
+                } else if (modifyMode == false) {
+                    answerToSurvey(answers);
+                } else if (modifyMode == true) {
+                    modifyAnswer(answers);
+                }
             }
         });
     }
 
-    public void postSurveyAnswers(ArrayList<Integer> answers) {
+    public void answerToSurvey(ArrayList<Integer> answers) {
         Log.d("POSTSURVEY", "ADIUHASDHUAS");
         retrofit = new Retrofit.Builder()
                 .baseUrl(APIInterface.URL)
@@ -175,6 +183,46 @@ public class SurveyActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "일시적인 서버 오류입니다. 다시 시도해주세요. ", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void modifyAnswer(ArrayList<Integer> answers) {
+        retrofit = new Retrofit.Builder()
+                .baseUrl(APIInterface.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiInterface = retrofit.create(APIInterface.class);
+
+        Map<String, Object> fieldMap = new HashMap<>();
+        fieldMap.put("answers", answers);
+
+        Call<Void> call = apiInterface.modifyAnswerToSurvey("/answer/survey/" + letterNumber, fieldMap, getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                int statusCode = response.code();
+                if (statusCode == 200) {
+                    Log.d("SUCCEED", "BRO!");
+                    Toast.makeText(getApplicationContext(), "답변 완료", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                if (statusCode == 400) {
+                    Toast.makeText(getApplicationContext(), "서버 오류입니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                if (statusCode == 500) {
+                    Toast.makeText(getApplicationContext(), "이미 답변하셨습니다.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e("ERR:: ANSWER TO SURVEY", t.getStackTrace() + "");
+                Toast.makeText(getApplicationContext(), "일시적인 서버 오류입니다. 다시 시도해주세요. ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }
