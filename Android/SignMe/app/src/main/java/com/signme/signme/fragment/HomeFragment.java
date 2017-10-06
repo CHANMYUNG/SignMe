@@ -1,9 +1,15 @@
 package com.signme.signme.fragment;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,20 +19,30 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.signme.signme.Calender.EventDecorator;
+import com.signme.signme.Calender.OneDayDecorator;
+import com.signme.signme.Calender.SundayDecorator;
 import com.signme.signme.LetterTypes;
 import com.signme.signme.LoginActivity;
 import com.signme.signme.R;
 import com.signme.signme.adapter.LetterListAdapter;
-import com.signme.signme.adapter.WrapLayoutManager;
 import com.signme.signme.model.LetterListItem;
 import com.signme.signme.server.APIInterface;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +57,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class HomeFragment extends Fragment {
+    private FrameLayout fragmentContainer2;
     private FrameLayout fragmentContainer;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -48,7 +65,12 @@ public class HomeFragment extends Fragment {
     private ArrayList<LetterListItem> mDataset = new ArrayList<>();
     private Retrofit retrofit;
     private APIInterface apiInterface;
-
+    private TextView tv;
+    private long btnPressTime = 0;
+    MaterialCalendarView mcv;
+    final Context context=getActivity();
+    //일정내용 들어가는 부분
+    final String content="일정이 없습니다.";
 
     public static HomeFragment newInstance(int index) {
         HomeFragment fragment = new HomeFragment();
@@ -62,6 +84,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
         View view = null;
+        Log.d("idfd","dfdf");
         if (getArguments().getInt("index", 0) == 0) {
             view = inflater.inflate(R.layout.fragment_letter_list, container, false);
             initLetterList(view);
@@ -95,6 +118,81 @@ public class HomeFragment extends Fragment {
     }
 
     private void initTask(View view) {
+        fragmentContainer2=(FrameLayout)view.findViewById(R.id.fragment_Calender);
+        tv=(TextView)view.findViewById(R.id.scahuletext);
+        mcv=(MaterialCalendarView)view.findViewById(R.id.calendarView);
+        mcv.addDecorators(
+                new SundayDecorator(),
+                new OneDayDecorator()
+
+        );
+        new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
+        mcv.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView mcv, @NonNull CalendarDay date, boolean selected) {
+                Log.d("wowo","wowo");
+                //날짜 한번 클릭했을 때
+                if(System.currentTimeMillis()>btnPressTime+500){
+                    btnPressTime = System.currentTimeMillis();
+                    mcv.state().edit()
+                            .setFirstDayOfWeek(Calendar.MONDAY)
+                            .setMinimumDate(CalendarDay.from(1900, 1, 1))
+                            .setMaximumDate(CalendarDay.from(2100, 12, 31))
+                            .setCalendarDisplayMode(CalendarMode.WEEKS)
+                            .commit();
+                    tv.setText(content);
+                    return;
+                }
+                //날짜 클릭 두 번 했을 때
+                if (System.currentTimeMillis()<=btnPressTime+1000){
+                    mcv.state().edit()
+                            .setFirstDayOfWeek(Calendar.MONDAY)
+                            .setMinimumDate(CalendarDay.from(1900, 1, 1))
+                            .setMaximumDate(CalendarDay.from(2100, 12, 31))
+                            .setCalendarDisplayMode(CalendarMode.MONTHS)
+                            .commit();
+                    tv.setText("");
+                }
+
+            }
+        });
+
+    }
+    public class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
+
+        @Override
+        protected List<CalendarDay> doInBackground(@NonNull Void... voids) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.MONTH, -2);
+            ArrayList<CalendarDay> dates = new ArrayList<>();
+            //일정이 있는 특정 날짜에 점 찍어 주는 것
+
+            for (int i = 0; i < 30; i++) {
+                CalendarDay day = CalendarDay.from(calendar);
+                dates.add(day);
+                calendar.add(Calendar.DATE,3);
+            }
+
+
+
+            return dates;
+        }
+
+        @Override
+        protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
+            super.onPostExecute(calendarDays);
+
+            if ( getActivity().isFinishing()) {
+                return;
+            }
+
+            mcv.addDecorator(new EventDecorator(Color.RED, calendarDays));
+        }
     }
 
     public void willBeHidden() {
