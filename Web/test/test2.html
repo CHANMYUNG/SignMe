@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   
     <title>Document</title>
     <style>
         *{
             margin: 0;
             padding: 0;
-
+            
         }
         html, body{
             width: 100%;
@@ -16,34 +15,36 @@
         }
         #outter{
             width: 100%;
-            height: 60px;
-            display: table;
-            border: 1px solid #000000;
+            height: 100px;
         }
         #inner{
-            font-size: 0px;
             width: 100%;
-            height: 30px;
-            display: table-cell;
-            vertical-align: middle;
-
+            height: 50px;
+            /* display: table; */
+        }
+        #inner>*{
+            /* display: table-cell;
+            vertical-align: middle; */
+        }
+        span{
+            display: block;
+            font-size: 30px;
+            height: 50px;
+            width: 200px;
         }
         input{
             box-sizing: border-box;
-            height: 30px;
-        }
-        span{
-            font-size: 20px;
-            /* line-height: 100%; */
-            vertical-align: middle;
-
+            font-size: 30px;
+            width: 200px;
+            height: 50px;
         }
     </style>
 </head>
 <body>
     <div id="outter">
         <div id="inner">
-            <span>adsf</span>
+            <span>test1</span>
+            <input type="text">
             <input type="text">
         </div>
     </div>

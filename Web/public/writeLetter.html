@@ -6,53 +6,87 @@
     <script src='./../lib/jquery.min.js'></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/writeLetter.css">
-    
-    
+    <script src="../js/writeLetter.js"></script>
     
 </head>
 <body>
-    <div id="main">
-        <div class="g_banner">
-            <div class="g_b_banner">
-                <span class="bannerindex">여기다</span>
-                <span class="bannerlogo">Sign me</span>
-                <span class="bannerlogin">로그인</span>
-            </div>
+    <div id="page_wrapper" >
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="">
+                        <span  class="here">*</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span  class="here">가정통신문관리</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>일정</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>마이페이지</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>설정</span>
+                    </a>
+                </li>                                
+            </ul>
+            <ul>
+                <li>
+                    <a href="" class="login_trigger">
+                        <span>로그인</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>회원가입</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div class="g_body">
-            <div class="g_artcle">
-                <div id="g_a_banner">
-                    <h1 class="g_a_b_h1">비응답형 설문조사</h1>
-                    <hr class="bar">
+        <div id="title">
+            <h1>SIGN ME</h1>
+            <hr>
+        </div>
+        <div id="contant">
+            <form action="">
+                <h2>비응답형 설문 조사</h2>
+                <h3>응답하지 않아도 되는 설문지를 작성해 주세요.</h3>
+                <hr>
+                <div id="c_title">
+                    <span>제목:&nbsp;</span>
+                    <input type="text">
                 </div>
-                <div class="main_body">
-                    <form action="#" method="post" name="f1" onsubmit="return submit_chk(this);">
-                        <div id="wrtie_body">
-                            <div id="write_title">
-                                <span class="leftbox">제목</span>
-                                <span class="leftbox">&nbsp;:&nbsp;</span>
-                                <input type="text" id="form_title" placeholder="제목을 입력해주세요" class="leftbox">
-                                <div class="clearbox"></div>
-                            </div>
-                            <div id="wrtie_date">
-                                <span class="leftbox">작성일</span>
-                                <span class="leftbox">&nbsp;:&nbsp;</span>
-                                <input type="date" id="form_date" class="leftbox">
-                                <div class="clearbox"></div>
-                            </div>
-                            <div id="write_contant">
-                                <textarea id="form_contant" placeholder="입력할 글을 입력해주세요." name="" id="" cols="110" rows="30" style="resize:none;font-size:18px"></textarea>
-                            </div>
-                        </div>
-                        <div id="write_submit">
-                            <input type="submit">
-                        </div>
-                    </form>
-                    
-                </div>                       
-            </div> 
+                <div id="c_date">
+                    <span>시작일:&nbsp;</span>
+                    <input type="date">
+                    <span>&nbsp;~&nbsp;</span>
+                    <span>마감일:&nbsp;</span>
+                    <input type="date">
+                </div>
+                <div id="c_contant">
+                    <p>소개글</p>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <hr>
+                <div id="c_artcle">
+                    <p>내용 입력</p>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div style="clear:both"></div>
+                <div id="c_submit">
+                    <input type="submit" value="저장합니다.">
+                </div>
+            </form>  
         </div>
-    </div>
-    
+    </div> 
 </body>
 </html>

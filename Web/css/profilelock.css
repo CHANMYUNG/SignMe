@@ -115,50 +115,30 @@ ul>li{
     color: #000000;
 }
 
-#artcle>div:last-child>div:first-child{
-    margin-top: 100px;
-    float: right;
-    margin-right: 8px;
-    margin-left: 8px;
-    margin-bottom: 25px;
-}
-#artcle>div:last-child>div:first-child>div>input{
-    width: 240px;
-    height: 30px;
-    box-sizing: border-box;
-}
-#artcle>div:last-child>div:first-child>select{
-    height: 30px;
-}
-#artcle>div:last-child>div:first-child>*{
-    float: left;
-}
-
-tr, td, th, table, thead, tbody{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    border-collapse: collapse;
-}
-table, tr, thead, tbody{
-    width: 1042px;
+#artcle>div:last-child{
     text-align: center;
-    /* border-top: 1px solid #000000;
-    border-bottom: 1px solid #000000; */
-    margin: 8px;
-    border-bottom: 1px solid #95989A;
-    border-top: 1px solid #95989A;
+}
+#artcle>div:last-child>img{
+    margin-top:150px;
+}
+#artcle>div:last-child>p{
+    font-size: 30px;
+    margin-top:16px;
+    margin-bottom: 16px;
+}
+#artcle>div:last-child>div>input{
+    box-sizing: border-box;
+    width: 215px;
+    height: 30px;
+}
+#artcle>div:last-child>div>button{
+    box-sizing: border-box;
+    font-size: 22px;
+    width: 60px;
+    height: 30px;
     
-}
-tr>*{
-    padding-top:22px;
-    padding-bottom:22px;
-    font-size: 16px;
-    font-weight: lighter;
-}
-td>a:visited{
-    color: #95989a;
-}
-td>a:link{
-    color: #95989a;
+    background-color: #636363;
+    border: 0px solid #636363;
+    color: #ffffff;
+    margin-left: 8px;
 }

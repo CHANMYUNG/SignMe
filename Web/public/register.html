@@ -1,130 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>register</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-       
-        <link rel="stylesheet" type="text/css" href="../css/main.css">
-        <link rel="stylesheet" type="text/css" href="../css/register.css">
-        <script src="./js/register.js"></script>
-    </head>
-    <body>
-        <div id="main">
-            <div class="g_banner">
-                <div class="g_b_banner">
-                    <span class="bannerlogo">Sign me</span>
-                   <span class="bannerlogin">로그인</span>
-                </div>
-            </div>
-            <div class="g_artcle">
-                <div id="g_a_banner">
-                    <h1 class="g_a_b_h1">회원가입</h1>
-                    <hr class="bar">
-                </div>
-                <div id="g_a_artcle">
-                    <div id="registerbox">
-                        <form action="" method="post">
-                            <ul>
-                                <li>
-                                    <div class="b_leftbox">
-                                        
-                                        <div id="idbox" class="leftbox">
-                                            <label for="" style="padding-right: 60px;"  class="g_a_text">아이디</label>
-                                            <span id="sarobar" style="font-size: 13px;">|</span>
-                                            <input type="text" name="user_id" class="inputbox" value="" placeholder="아이디를 입력하세요">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="b_leftbox">
-                                        <div id="pwbox" class="leftbox">
-                                            <label for="" style="padding-right: 40px;"  class="g_a_text">비밀번호</label>
-                                            <span id="sarobar" style="font-size: 13px;">|</span>
-                                            <input type="password" class="inputbox" id="user_pw" value="" placeholder="비밀번호를 입력하세요">
-                                        </div>  
-                                    </div>
-                                    
-                                </li>
-                                <li>
-                                    <div class="b_leftbox">
-                                        <div id="pwrbox" class="leftbox">
-                                            <label for="" style="padding-right: 0px;"  class="g_a_text">비밀번호확인</label>
-                                            <span id="sarobar" style="font-size: 13px;">|</span>
-                                            <input type="password" class="inputbox" id="user_pw_confirm" value="" placeholder="비밀번호를 다시입력하세요">    
-                                        </div>    
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="b_leftbox">
-                                        <div id="namebox" class="leftbox">
-                                            <label for="" style="padding-right: 80px;"  class="g_a_text">이름</label>
-                                            <span id="sarobar" style="font-size: 13px;">|</span>
-                                            <input type="text" id="name" class="inputbox" value="" placeholder="이름을 입력하세요">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="b_leftbox">
-                                        <div id="phbox" class="leftbox">
-                                            <label for="" style="padding-right: 40px;"  class="g_a_text">전화번호</label>
-                                            <span id="sarobar" style="font-size: 13px;">|</span>
-                                            <input type="text" class="inputboxsp" id="phone1" value="">
-                                            <span>-</span>
-                                            <input type="text" class="inputboxsp" id="phone2" value="">
-                                            <span>-</span>
-                                            <input type="text" class="inputboxsp" id="phone3" value="">
-                                        </div>    
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="b_leftbox">
-                                        <div id="embox" class="leftbox">
-                                            <label for="" style="padding-right: 60px;"  class="g_a_text">이메일</label>
-                                            <span id="sarobar" style="font-size: 13px;">|</span>
-                                            <input type="text" class="inputbox" id="email" value="" placeholder="이메일을 입력">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="b_leftbox">
-                                        <div id="srbox" class="leftbox">
-                                            <label for="" style="padding-right: 40px;"  class="g_a_text">시리얼키</label>
-                                            <span id="sarobar" style="font-size: 13px;">|</span>
-                                            <input type="text" class="inputboxsr" id="serail1" value="">
-                                            <span>-</span>
-                                            <input type="text" class="inputboxsr" id="serail2" value="">
-                                            <span>-</span>
-                                            <input type="text" class="inputboxsr" id="serail3" value="">
-                                            <span>-</span>
-                                            <input type="text" class="inputboxsr" id="serail4" value="">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="b_leftbox">
-                                        <div id="mabox" class="leftbox">
-                                            <label for="" style="padding-right: 80px;"  class="g_a_text">담당</label>
-                                            <span id="sarobar" style="font-size: 13px;">|</span>
-                                            <input type="text" class="inputbox" id="charge" value="" placeholder="">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <div id="subbox" class="leftbox">
-                                            <button class="button" type="submit">회원가입</button>
-                                        </div>    
-                                    </div>
-                                </li>
-                            </ul>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="g_footer">
-                   
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/register.css">
+    <script src="../js/register.js"></script>
+    <title>reigster</title>
+</head>
+<body>
+    <div id="page_wrapper">
+        <div id="bar">
+
         </div>
-    </body>
+        <div id="title">
+            <h1>SIGN ME</h1>
+        </div>
+        <div id="contant"> 
+           <form action="">
+                <div id="form_contant">
+                    <h2>회원가입</h2>
+                    <hr>
+                    <h3>회원가입을 위해 필요한 기본 정보 입니다.</h3>
+                    <div id="contant_form">
+                        <table>
+                            <tr id="idtr">
+                                <td>
+                                    아이디
+                                </td>
+                                <td>
+                                    <input type="text">
+                                    <button class="form_btn">아이디증복확인</button>
+                                </td>
+                            </tr>
+                            <tr id="pwtr">
+                                <td>
+                                    비밀번호
+                                </td>
+                                <td>
+                                    <input type="password">
+                                </td>
+                            </tr>
+                            <tr id="pwrtr">
+                                <td>
+                                    비밀번호 확인
+                                </td>
+                                <td>
+                                    <input type="password">
+                                </td>
+                            </tr>
+                            <tr id="nametr">
+                                <td>
+                                    이름
+                                </td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                            </tr>
+                            <tr id="phonetr">
+                                <td>
+                                    전화번호
+                                </td>
+                                <td>
+                                    <select name="" id="">
+                                        <option value="">010</option>
+                                        <option value="">033</option>
+                                    </select>
+                                    <span>-</span>
+                                    <input type="text">
+                                    <span>-</span>
+                                    <input type="text">
+                                </td>
+                            </tr>
+                            <tr id="emailtr">
+                                <td>
+                                    이메일
+                                </td>
+                                <td>
+                                    <input type="text">
+                                    <span>@</span>
+                                    <input type="text">
+                                    <select name="" id="">
+                                        <option value="">gmail.com</option>
+                                        <option value="">naver.com</option>
+                                    </select>
+                                    <button class="form_btn">이메일 중복 검사</button>
+                                </td>
+                            </tr>
+                            <tr id="serialtr">
+                                <td>
+                                    시리얼 키
+                                </td>
+                                <td>
+                                    <input type="text">
+                                    <span>-</span>
+                                    <input type="text">
+                                    <span>-</span>
+                                    <input type="text">
+                                    <span>-</span>
+                                    <input type="text">
+                                    <button class="form_btn">시리얼 유효성 판별</button>
+                                </td>
+                            </tr>
+                            <tr id="jobtr">
+                                <td>
+                                    담당
+                                </td>
+                                <td>
+                                    <select name="" id="">
+                                        <option value="">경무</option>
+                                        <option value="">행정</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- <div>
+                            <div>
+                                <span>아이디</span>
+                                <input type="text" style="margin-left:160px">
+                                <button class="form_btn">아이디증복확인</button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                               <span>비밀번호</span>
+                                <input type="password" style="margin-left:140px"> 
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                                <span>비밀번호 확인</span>
+                                <input type="password" style="margin-left:95px">
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                                <span>이름</span>
+                                <input type="text" style="margin-left:175px">  
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                                <span>전화번호</span>
+                            
+                                <select name="" id="" style="margin-left:140px">
+                                    <option value="">010</option>
+                                    <option value="">033</option>
+                                </select>
+                                <input type="text">
+                                <input type="text">
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                                <span>이메일</span>
+                                <input type="text" style="margin-left:160px">
+                                <span>@</span>
+                                <input type="text">
+                                <select name="" id="">
+                                    <option value="">gmail.com</option>
+                                    <option value="">naver.com</option>
+                                </select>
+                                <button class="form_btn">이메일 중복 검사</button>
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                            
+                                <span>시리얼키</span>                           
+                                <input type="text"style="margin-left:130px">
+                                <span>-</span>
+                                <input type="text">
+                                <span>-</span>
+                                <input type="text">
+                                <span>-</span>
+                                <input type="text">
+                                <button class="form_btn">시리얼 유효성 판별</button>
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                                    <span>담당</span>
+                                <select name="" id="" style="margin-left:175px">
+                                    <option value="">경무</option>
+                                    <option value="">행정</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <hr>-->                        
+                    </div> 
+                </div>
+                <div id="form_button">
+                    <input class="btn_form" type="submit" value="회원가입">
+                    <button class="btn_form">회원가입 취소</button>
+                </div>   
+            </form> 
+        </div>
+        
+    </div>
+</body>
 </html>

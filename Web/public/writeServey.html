@@ -6,31 +6,98 @@
     <script src='./../lib/jquery.min.js'></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/writeServey.css">
-    <script src="../js/writeServeyAddList.js"></script>
+    <script src="../js/writeServey.js"></script>
     
 </head>
 <body>
-        <script>
-                
-                
-            </script>
-    <div id="main">
-        <div class="g_banner">
-            <div class="g_b_banner">
-                <span class="bannerindex">여기다</span>
-                <span class="bannerlogo">Sign me</span>
-                <span class="bannerlogin">로그인</span>
-            </div>
+    <div id="page_wrapper" >
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="">
+                        <span  class="here">*</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span  class="here">가정통신문관리</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>일정</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>마이페이지</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>설정</span>
+                    </a>
+                </li>                                
+            </ul>
+            <ul>
+                <li>
+                    <a href="" class="login_trigger">
+                        <span>로그인</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>회원가입</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div class="g_body">
-            <div class="g_artcle">
-                <div id="g_a_banner">
-                    <h1 class="g_a_b_h1">설문조사</h1>
-                    <hr class="bar">
+        <div id="title">
+            <h1>SIGN ME</h1>
+            <hr>
+        </div>
+        <div id="contant">
+            <form action="">
+                <h2>설문조사 등록하기</h2>
+                <h3>설문조사지를 등록해주세요.</h3>
+                <hr>
+                <div id="c_title">
+                    <span>제목:&nbsp;</span>
+                    <input type="text">
                 </div>
-                <div class="main_body">
-                    <!-- 여기부터-->
-                    <form action="/" onsubmit="return submit_chk(this);">
+                <div id="c_date">
+                    <span>시작일:&nbsp;</span>
+                    <input type="date">
+                    <span>&nbsp;~&nbsp;</span>
+                    <span>마감일:&nbsp;</span>
+                    <input type="date">
+                </div>
+                <div id="c_contant">
+                    <p>소개글</p>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <hr>
+                <button type="button" id="add_btn">
+                    <span>5선 질문 등록하기</span>
+                    <span>+</span>
+                </button>
+                <div id="c_addlist">
+                    <div id="list_1">
+                        <label for="">질문 1 :</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+                <div id="c_submit">
+                    <input type="submit" value="저장합니다.">
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+
+                    <!-- <form action="/" onsubmit="return submit_chk(this);">
                         <div id="main_bd_head">
                             <div id="hd_title_outer">
                                 <div id="hd_title_title" class="leftbox">
@@ -133,88 +200,9 @@
                                 <input id="submit_btn" type="submit" value="전송">
                             </div>
                         </div>
-                    </form>
-                    <!--여기까지-->
-                    <!-- <div>
-                        <div id="b_body">
-                            <div id="write_title_des">
-                                <div id="write_title">
-                                    <span>제목</span>
-                                    <span>:</span>
-                                    <input type="text" name="" id="title" placeholder="제목을 입력하세요">
-                                </div>
-                                <div id="write_des">
-                                    <span>내용</span>
-                                    <span>:</span>
-                                    <input type="text" name="" id="title" placeholder="제목을 입력하세요">
-                                </div>
-                            </div>
-                            <div id="formdiv">
-                                <div id="form_hd" class="leftbox">
-                                    <div class="form_title leftbox">
-                                        <span>항목</span>
-                                    </div>
-                                    <div class="form_check form_hd_checklist leftbox">
-                                        <span>매우 좋음</span>
-                                    </div>
-                                    <div class="form_check form_hd_checklist leftbox">
-                                        <span>좋음</span>
-                                    </div>
-                                    <div class="form_check form_hd_checklist leftbox">
-                                        <span>보통</span>
-                                    </div>
-                                    <div class="form_check form_hd_checklist leftbox">
-                                        <span>싫음</span>
-                                    </div>
-                                    <div class="form_check form_hd_checklist leftbox ">
-                                        <span>매우 싫음</span>
-                                    </div>
-                                </div>
-                                <form action="">
-                                    <div id="form_bd" class="clearbox">
-                                        <div class="form_bd_list" id="form_bd_list_1">
-                                            <div class="form_title form_bd_list_title leftbox">
-                                                <div class="num_list">
-                                                    <span >1</span> 
-                                                </div>
-                                                <div class="list_input_title">
-                                                    <input type="text" placeholder="항목을 입력하세요">    
-                                                </div>
-                                            </div>
-                                            <div class="form_check form_bd_list_check leftbox">
-                                                <input type="radio">
-                                            </div>
-                                            <div class="form_check form_bd_list_check leftbox">
-                                                <input type="radio">
-                                            </div>
-                                            <div class="form_check form_bd_list_check leftbox">
-                                                <input type="radio">
-                                            </div>
-                                            <div class="form_check form_bd_list_check leftbox">
-                                                <input type="radio">
-                                            </div>
-                                            <div class="form_check form_bd_list_check leftbox">
-                                                <input type="radio">
-                                            </div>
-                                            <div class="clearbox"></div>
-                                            
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            
-                        <div class="clearbox"></div>
-                        
-                        <button id="addBtn" >add</button>
-                        <button id="removeBtn" >remove</button>           
-                        
-                        <input type="submit" name="완성">
-                        </div>
-                    </div>
-                </div> -->                              
-            </div> 
-        </div>
-    </div>
+                    </form> -->
+                                               
+ 
     
 </body>
 </html>

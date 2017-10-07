@@ -14,111 +14,105 @@
 
     </head>
     <body>
-        <!-- <script>
-            function clicklink(link){
-                $('.g_a_a_a_b_l_li').css('text-decoration','none');
-                $(link).css('text-decoration','underline');
-            }
-            function uldropdown(){
-                 if($('#g_a_a_b_s_ch_list').css('display')=='none'){
-                    $('#g_a_a_b_s_ch_list').css('display','block');
-                }else{
-                    $('#g_a_a_b_s_ch_list').css('display','none');
-                }   
-               
-            }
-            function dropdown(link){
-                $(g_a_a_b_s_ch_span).html(link);
-                
-            }
-        </script> -->
-        <div id="main">
-            <div class="g_banner">
-                <div class="g_b_banner">
-                    <span class="bannerindex">여기다</span>
-                    <span class="bannerlogo">Sign me</span>
-                   <span class="bannerlogin">로그인</span>
-                </div>
+        <div id="page_wrapper" >
+            <div id="menu">
+                <ul>
+                    <li>
+                        <a href="">
+                            <span  class="here">*</span>
+                        </a>
+                    </li>
+                    <li>
+                         <a href="">
+                            <span  class="here">가정통신문관리</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>일정</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>마이페이지</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>설정</span>
+                        </a>
+                    </li>                                                       
+                </ul>
+                <ul>
+                    <li>
+                        <a href="" class="login_trigger">
+                            <span>로그인</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>회원가입</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div id="listContant">
-                <div class="g_artcle">
-                    <div id="g_a_banner">
-                        <h1 class="g_a_b_h1">가정통신문</h1>
-                        <hr id="g_a_b_h1_bar" class="bar">
-                    </div>
-                    <div class="g_a_bar">
-                        <div id="chlinks">
-                            <p class="chlink"><a href="">전체</a></p>
-                            <p class="chlink"><a href="">교내</a></p>
-                            <p class="chlink"><a href="">교외</a></p>
-                        </div>
-                        <!-- <span class="clear"></span> -->
-                        <div id="chboxs">
-                            <div class="chbox" id="chboxInputdiv">
-                                <input type="text" id="chboxInput" name="" value="" placeholder="검색어를 입력하세요">
+            <div id="title">
+                <h1>SIGN ME</h1>
+                <hr>
+            </div>
+            <div id="contant">
+                <h2>가정통신문</h2>
+                <h3>가정통신문을 등록 및 수정, 관리 하실 수 있습니다.</h3>
+                <hr>
+                <div id="bar">
+                    <ul>
+                        <li>
+                            <a href="" style="color:#000000">전체</a>
+                        </li>
+                        <li>
+                            <a href="">교내</a>
+                        </li>
+                        <li>
+                            <a href="">교외</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <div>
                                 <span></span>
+                                <input type="text">
                             </div>
-                                
-                                <input class="chbox" id="btn-serarch" type="button" value="검색">
-
-                                <select class="chbox" name="" id="">
-                                    <option class="chboxlist" value="">1번썜</option>
-                                    <option class="chboxlist" value="">2번썜</option>
-                                    <option class="chboxlist" value="">3번썜</option>
-                                    <option class="chboxlist" value="">4번썜</option>
-                                </select>
-                            <!-- <div class="chbox">
-                                <a href="" class="chickli"><p>전체</p></a>
-                                <ul class="modalchboxul">
-                                    <li class="modalchboxli"><a href="">자바쌤</a></li>
-                                    <li class="modalchboxli"><a href="">자바쌤</a></li>
-                                    <li class="modalchboxli"><a href="">자바쌤</a></li>   
-                                </ul>
-                            </div>
-                            <div class="chbox">
-                                <a href="" class="chickli"><p>전체</p></a>
-                                <ul class="modalchboxul">
-                                    <li class="modalchboxli"><a href="">자바쌤</a></li>
-                                    <li class="modalchboxli"><a href="">자바쌤</a></li>
-                                    <li class="modalchboxli"><a href="">자바쌤</a></li>   
-                                </ul>
-                            </div> -->
-                        </div>                    
-                    </div>
-                    <div class="g_a_list">
-                        <div id="listName">
-                            <div id="itemDate" class="listNameItembox texenter">
-                                <p class="listNameItemboxText">작성일</p>
-                            </div>
-                            <div id="itemContent" class="listNameItembox">
-                                <p class="listNameItemboxText">내용</p>
-                            </div>
-                            <div id="itemPerson" class="listNameItembox">
-                                <p class="listNameItemboxText">작성자</p>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                        <div id="listArtcle">
-                            <!-- 글은 여기에 추가-->
-                            <div class="listContant outer" id="1">
-                                <div class="listNameWhen listItem">
-                                        <p>2018.8.28 - 2018.9.15</p>            
-                                </div>
-                                <div class="listNameText listItem">
-                                    <p >자바프로젝트를 끝낸다</p>
-                                </div>
-                                <div class="listNameWho listItem">
-                                    <p>자바썜</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>    
-            </div>
-            
-            <div class="g_footer">
-                   
-            </div>
-        </div>
+                        </li>
+                        <li>
+                            <select name="" id="">
+                                <option value="">자바쌤</option>
+                                <option value="">문학쌤</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>가정통신문 이름</th>
+                                <th>가정통신문 기간</th>
+                                <th>담당자</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2017학년도 2학기 학교폭력 실태 조사</td>
+                                <td>2017.09.10~2017.09.20</td>
+                                <td>홍길동</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div> 
+       
     </body>
 </html>
