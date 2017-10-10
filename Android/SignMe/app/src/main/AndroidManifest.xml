@@ -37,6 +37,9 @@
         <activity android:name=".RegisterfinActivity"></activity>
         <activity android:name=".SplashActivity"></activity>
         <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.ChangeEmailActivity"></activity>
+        <activity android:name=".activity.ChangePwdActivity"></activity>
+        <activity android:name=".activity.ResponsedLetterActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

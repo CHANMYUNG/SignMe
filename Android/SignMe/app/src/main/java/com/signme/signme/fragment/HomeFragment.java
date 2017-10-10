@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,15 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -34,34 +34,28 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.signme.signme.Calender.EventDecorator;
 import com.signme.signme.Calender.OneDayDecorator;
 import com.signme.signme.Calender.SundayDecorator;
-import com.signme.signme.LetterTypes;
-import com.signme.signme.LoginActivity;
 import com.signme.signme.R;
-import com.signme.signme.adapter.LetterListAdapter;
+import com.signme.signme.activity.ChangeEmailActivity;
+import com.signme.signme.activity.ChangePwdActivity;
+import com.signme.signme.activity.ResponsedLetterActivity;
 import com.signme.signme.model.LetterListItem;
 import com.signme.signme.server.APIInterface;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by NooHeat on 28/09/2017.
  */
 
 public class HomeFragment extends Fragment {
-    private FrameLayout fragmentContainer2;
     private FrameLayout fragmentContainer;
+    private FrameLayout fragmentContainer2;
+    private FrameLayout fragmentContainer3;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -102,6 +96,10 @@ public class HomeFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_task, container, false);
             initTask(view);
             return view;
+        }
+        if(getArguments().getInt("index",0)==2){
+            view=inflater.inflate(R.layout.fragment_mypage,container,false);
+            initMypage(view);
         }
         return view;
     }
@@ -200,6 +198,7 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
     public class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
 
         @Override
@@ -225,6 +224,7 @@ public class HomeFragment extends Fragment {
             return dates;
         }
 
+
         @Override
         protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
             super.onPostExecute(calendarDays);
@@ -236,6 +236,103 @@ public class HomeFragment extends Fragment {
             mcv.addDecorator(new EventDecorator(Color.RED, calendarDays));
         }
     }
+    //mypage
+    private void initMypage(View view){
+        fragmentContainer3=(FrameLayout)view.findViewById(R.id.fragment_Mypage);
+        //이메일 수정
+        RelativeLayout email_rl=(RelativeLayout)view.findViewById(R.id.email_rl);
+        email_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailintent=new Intent(getActivity(), ChangeEmailActivity.class);
+                startActivity(emailintent);
+            }
+        });
+        //비밀번호 수정
+        RelativeLayout pwd_rl=(RelativeLayout)view.findViewById(R.id.pwd_rl);
+        pwd_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pwdintent=new Intent(getActivity(), ChangePwdActivity.class);
+                startActivity(pwdintent);
+
+            }
+        });
+        //참여한 가정통신문
+        RelativeLayout reseponsed_rl=(RelativeLayout)view.findViewById(R.id.respnosed_rl);
+        reseponsed_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent responsedintent=new Intent(getActivity(),ResponsedLetterActivity.class);
+                startActivity(responsedintent);
+            }
+        });
+
+
+        //푸시알람 설정정
+        ToggleButton toggleButton=(ToggleButton)view.findViewById(R.id.fcm_btn);
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                        Toast.makeText(getActivity(),"푸시 알람이 설정 됬습니다.",Toast.LENGTH_LONG).show();
+
+                }
+                else{
+                    Toast.makeText(getActivity(),"푸시 알람이 해제 됬습니다.",Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
+        //로그아웃
+        RelativeLayout logoutlayout=(RelativeLayout) view.findViewById(R.id.Logout_layout);
+        logoutlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog=new AlertDialog.Builder(getActivity());
+                dialog.setTitle("로그아웃");
+                dialog.setMessage("로그아웃하시겠습니까?");
+                dialog.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.setNegativeButton("취소",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
+        //탈퇴
+        RelativeLayout outbtn=(RelativeLayout)view.findViewById(R.id.secession);
+        outbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog=new AlertDialog.Builder(getActivity());
+                dialog.setTitle("탈퇴");
+                dialog.setMessage("탈퇴하시겠습니까?");
+                dialog.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.setNegativeButton("취소",new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
 
     public void willBeHidden() {
         if (fragmentContainer != null) {
