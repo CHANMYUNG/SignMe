@@ -21,6 +21,7 @@ public class HomeViewPagerAdapter extends FragmentPagerAdapter {
         fragments.clear();
         fragments.add(HomeFragment.newInstance(0));
         fragments.add(HomeFragment.newInstance(1));
+        fragments.add(HomeFragment.newInstance(2));
     }
 
     @Override
