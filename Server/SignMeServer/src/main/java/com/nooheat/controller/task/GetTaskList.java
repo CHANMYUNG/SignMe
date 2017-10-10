@@ -26,12 +26,14 @@ public class GetTaskList implements Handler<RoutingContext> {
             if (RequestManager.paramValidationCheck(req.getParam("year"))) {
                 int year = Integer.parseInt(req.getParam("year"));
                 if (RequestManager.paramValidationCheck(req.getParam("month"))) {
-
                     int month = Integer.parseInt(req.getParam("month"));
-
-                    response = Task.findByYearAndMonth(year, month);
+                    if (RequestManager.paramValidationCheck(req.getParam("day"))) {
+                        int day = Integer.parseInt(req.getParam("day"));
+                        response = Task.findByDate(year, month, day);
+                    } else response = Task.findByYearAndMonth(year, month);
                 } else response = Task.findByYear(year);
             } else {
+                System.out.println("FINDALL");
                 response = Task.findAll();
             }
 

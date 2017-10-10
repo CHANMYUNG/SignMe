@@ -1,10 +1,7 @@
-package com.nooheat.controller.letter;
+package com.nooheat.controller.Statistics;
 
 import com.nooheat.manager.JWT;
-import com.nooheat.model.Letter;
-import com.nooheat.model.ResponselessLetter;
-import com.nooheat.model.Statistic;
-import com.nooheat.model.Survey;
+import com.nooheat.model.*;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.support.URIMapping;
@@ -47,25 +44,26 @@ public class GetLetterStatistics implements Handler<RoutingContext> {
             String type = req.getParam("type");
             int letterNumber = Integer.parseInt(req.getParam("letterNumber"));
 
-            if (!(type.equals("survey") || type.equals("responseless"))) {
+            if (!(type.equals("survey") || type.equals("response"))) {
                 res.setStatusCode(400).end();
                 return;
             }
 
-            Statistic statistic = type.equals("survey") ? Survey.findOne(letterNumber) : ResponselessLetter.findOne(letterNumber);
+            Statistic statistic = type.equals("survey") ? Survey.findOne(letterNumber) : ResponseLetter.findOne(letterNumber);
 
 //            if(!((Letter)statistic).getWriterUid().equals(token.getUid())){
 //                res.setStatusCode(403).end();
 //                return;
 //            }
 
-            XSSFWorkbook workbook = new XSSFWorkbook();/*statistic.getStatistic();*/
+            assert statistic != null;
+            XSSFWorkbook workbook = statistic.getStatistic();/*statistic.getStatistic();*/
 
-            workbook.write(new FileOutputStream(/*formattedTime+" "+*/ "ASDASDASD" + ".xlsx"));
+            workbook.write(new FileOutputStream(/*formattedTime+" "+*/ "asdf" + ".xlsx"));
 
             res
                     .putHeader("Content-Disposition", "filename=" + "TEST.xlsx"/*((Letter) statistic).getTitle()+".xlsx"*/)
-                    .sendFile("./1003 SignMe-API-Document.xlsx");
+                    .sendFile("./asdf.xlsx");
 
 
         } catch (NumberFormatException e) {

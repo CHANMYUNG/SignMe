@@ -82,13 +82,13 @@ public class ResponselessLetter extends Letter implements Statistic {
 
     public static JsonArray findAll() {
 
-        JsonArray response = null;
+        JsonArray response = new JsonArray();
 
         ResultSet rs = DBManager.execute(FINDALL);
 
         try {
             while (rs.next()) {
-                response = new JsonArray();
+                System.out.println("!@#!@#");
                 JsonObject object = new JsonObject();
                 object.put("letterNumber", rs.getString("letterNumber"));
                 object.put("writerUid", rs.getString("writerUid"));

@@ -4,6 +4,8 @@ import com.nooheat.database.DBManager;
 import com.nooheat.support.Category;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.sql.ResultSet;
@@ -23,6 +25,7 @@ public class Survey extends Letter implements Statistic {
     private final static String SURVEY_DELETE = "DELETE FROM survey WHERE letterNumber = ?";
     private final static String QUESTION_DELETE = "DELETE FROM surveyQuestion WHERE letterNumber = ?";
     private final static String ANSWER_SAVE = "INSERT INTO  surveyAnswer(uid, letterNumber, columnIndex, answer, answerDate) VALUES(?, ?, ?, ?, ?);";
+    private final static String ANSWER_MODIFY = "UPDATE surveyAnswer SET answer = ?, answerDate = ? WHERE uid = ? AND letterNumber = ? AND columnIndex = ?;";
     private final static String COUNT_ANSWER = "SELECT count(distinct uid) as count FROM surveyAnswer WHERE letterNumber = ?;";
     private int letterNumber;
     private String summary;
@@ -84,6 +87,7 @@ public class Survey extends Letter implements Statistic {
         ResultSet rs = DBManager.execute(SURVEY_FINDALL, uid);
         JsonArray result = new JsonArray();
         while (rs.next()) {
+            System.out.println("!@#!@#");
             JsonObject object = new JsonObject();
             object.put("letterNumber", rs.getInt("letterNumber"));
             object.put("title", rs.getString("title"));
@@ -306,6 +310,27 @@ public class Survey extends Letter implements Statistic {
 
     @Override
     public XSSFWorkbook getStatistic() {
-        return null;
+        XSSFWorkbook statistic = new XSSFWorkbook();
+        XSSFSheet sheet = statistic.createSheet("통계");
+        XSSFRow rowHead = sheet.createRow(0);
+        rowHead.createCell(0).setCellValue("제목");
+        rowHead.createCell(1).setCellValue("작성자");
+        rowHead.createCell(2).setCellValue("딥변 수");
+
+        return statistic;
+    }
+
+    public boolean modifyAnswer(String uid, List answers, String answerDate) throws SQLException {
+        Iterator<Integer> iterator = answers.iterator();
+        int columnIndex = 1;
+        while (iterator.hasNext()) {
+            int answer = iterator.next();
+
+            if (DBManager.update(ANSWER_MODIFY, answer, answerDate, uid, letterNumber, columnIndex++) == -1) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -1,4 +1,4 @@
-package com.nooheat.controller.answer;
+package com.nooheat.controller.answer.survey;
 
 import com.nooheat.manager.JWT;
 import com.nooheat.manager.RequestManager;
@@ -21,9 +21,9 @@ import java.util.List;
 /**
  * Created by NooHeat on 23/09/2017.
  */
-@API(category = Category.SURVEY, summary = "설문조사 응답", requestBody = "answers : [], answerDate : String", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
+@API(category = Category.SURVEY, summary = "설문조사 응답", requestBody = "answers : []", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
 @URIMapping(uri = "/answer/survey/:letterNumber", method = HttpMethod.POST)
-public class SurveyAnswer implements Handler<RoutingContext> {
+public class AnswerToSurvey implements Handler<RoutingContext> {
     @Override
     public void handle(RoutingContext ctx) {
         HttpServerResponse res = ctx.response();

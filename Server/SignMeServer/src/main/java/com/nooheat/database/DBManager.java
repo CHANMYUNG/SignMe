@@ -40,7 +40,7 @@ public class DBManager {
 
     public synchronized static ResultSet execute(String query, Object... param) {
         ResultSet rs = null;
-
+        System.out.println(getPrepared(query, param).toString());
         try {
             rs = getPrepared(query, param).executeQuery();
         } catch (SQLException e) {

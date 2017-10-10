@@ -12,10 +12,7 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.handler.BodyHandler;
-import io.vertx.ext.web.handler.CookieHandler;
-import io.vertx.ext.web.handler.SessionHandler;
-import io.vertx.ext.web.handler.StaticHandler;
+import io.vertx.ext.web.handler.*;
 import io.vertx.ext.web.impl.RouterImpl;
 import io.vertx.ext.web.sstore.LocalSessionStore;
 import org.json.JSONArray;
@@ -31,11 +28,12 @@ public class CoreVirticle extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         Router router = Router.router(vertx);
-        int serverPort = 8000;
+        int serverPort = 7800;
 
 
         router.route().handler(BodyHandler.create().setUploadsDirectory("upload-files"));
         router.route().handler(CookieHandler.create());
+        router.route().handler(CorsHandler.create("*"));
 
         Routing.route(router, "com.nooheat.controller");
         router.route().handler(StaticHandler.create());

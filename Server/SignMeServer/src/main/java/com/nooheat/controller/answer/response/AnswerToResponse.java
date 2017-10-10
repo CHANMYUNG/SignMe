@@ -1,4 +1,4 @@
-package com.nooheat.controller.answer;
+package com.nooheat.controller.answer.response;
 
 import com.nooheat.manager.JWT;
 import com.nooheat.manager.RequestManager;
@@ -17,9 +17,9 @@ import java.sql.SQLException;
 /**
  * Created by NooHeat on 28/09/2017.
  */
-@API(category = Category.RESPONSELETTER, summary = "응답형 가정통신문 응답", requestBody = "answers : boolean", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
+@API(category = Category.RESPONSELETTER, summary = "응답형 가정통신문 응답", requestBody = "answer : boolean", successCode = 200, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
 @URIMapping(uri = "/answer/response/:letterNumber", method = HttpMethod.POST)
-public class ResponseLetterAnswer implements Handler<RoutingContext> {
+public class AnswerToResponse implements Handler<RoutingContext> {
     @Override
     public void handle(RoutingContext ctx) {
         HttpServerRequest req = ctx.request();

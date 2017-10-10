@@ -14,6 +14,7 @@ import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
 
 import java.sql.SQLException;
+import java.util.UUID;
 
 /**
  * Created by NooHeat on 25/07/2017.
@@ -48,7 +49,7 @@ public class PostTask implements Handler<RoutingContext> {
             return;
         }
 
-        Task task = new Task(token.getUid(), title, summary, startDate, endDate);
+        Task task = new Task(token.getUid(), title, summary, startDate, endDate, "#" + "AB63DC", null);
 
         if (task.isDuplicated()) {
             res.setStatusCode(400).end("Duplicated");
