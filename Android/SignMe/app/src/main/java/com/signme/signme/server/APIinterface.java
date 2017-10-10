@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -31,6 +32,7 @@ import retrofit2.http.Url;
  */
 
 public interface APIInterface {
+
     String URL = "http://192.168.1.103:7800/";
 
     @GET("account/id/check/:id")
@@ -106,4 +108,7 @@ public interface APIInterface {
 
     @GET
     Call<JsonObject> getResponseLetter(@Url String url, @Header("signme-x-access-token") String token);
+
+    @GET("/task")
+    Call<JsonArray> getTask(@QueryMap Map<String, Object> queryMap, @Header("signme-x-access-token") String token);
 }

@@ -3,7 +3,9 @@ package com.signme.signme.fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,10 +29,15 @@ import android.widget.ToggleButton;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import com.signme.signme.Calender.EventDecorator;
 import com.signme.signme.Calender.OneDayDecorator;
 import com.signme.signme.Calender.SundayDecorator;
@@ -39,14 +46,29 @@ import com.signme.signme.activity.ChangeEmailActivity;
 import com.signme.signme.activity.ChangePwdActivity;
 import com.signme.signme.activity.ResponsedLetterActivity;
 import com.signme.signme.model.LetterListItem;
+import com.signme.signme.override.AdvancedDot;
 import com.signme.signme.server.APIInterface;
+
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Period;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by NooHeat on 28/09/2017.
@@ -65,14 +87,17 @@ public class HomeFragment extends Fragment {
     private TextView tv;
     private long btnPressTime = 0;
     MaterialCalendarView mcv;
-    final Context context=getActivity();
+    final Context context = getActivity();
     //일정내용 들어가는 부분
-    final String content="일정이 없습니다.";
+    final String content = "일정이 없습니다.";
 
     private AHBottomNavigation bottomNavigation;
     private AHBottomNavigationViewPager viewPager;
     private LetterListFragment currentFragment = null;
     private LetterListViewPagerAdapter adapter;
+
+
+    private Map<CalendarDay, ArrayList<Integer>> dayMap;
 
     public static HomeFragment newInstance(int index) {
         HomeFragment fragment = new HomeFragment();
@@ -86,7 +111,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
         View view = null;
-        Log.d("idfd","dfdf");
+        Log.d("idfd", "dfdf");
         if (getArguments().getInt("index", 0) == 0) {
             view = inflater.inflate(R.layout.fragment_letter_list_2, container, false);
             initLetterList(view);
@@ -158,45 +183,87 @@ public class HomeFragment extends Fragment {
     }
 
     private void initTask(View view) {
-        fragmentContainer2=(FrameLayout)view.findViewById(R.id.fragment_Calender);
-        tv=(TextView)view.findViewById(R.id.scahuletext);
-        mcv=(MaterialCalendarView)view.findViewById(R.id.calendarView);
+        fragmentContainer2 = (FrameLayout) view.findViewById(R.id.fragment_Calender);
+        tv = (TextView) view.findViewById(R.id.scahuletext);
+        mcv = (MaterialCalendarView) view.findViewById(R.id.calendarView);
+        mcv.setShowOtherDates(MaterialCalendarView.SHOW_ALL);
+
+        Calendar minimumDate = Calendar.getInstance();
+        minimumDate.set(2017, Calendar.JANUARY, 1);
+        Calendar maximumDate = Calendar.getInstance();
+        maximumDate.set(2019, Calendar.DECEMBER, 31);
+        mcv.state().edit()
+                .setMinimumDate(minimumDate.getTime())
+                .setMaximumDate(maximumDate.getTime())
+                .commit();
+
         mcv.addDecorators(
                 new SundayDecorator(),
                 new OneDayDecorator()
 
         );
-        new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
-        mcv.setOnDateChangedListener(new OnDateSelectedListener() {
+
+        mcv.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
-            public void onDateSelected(@NonNull MaterialCalendarView mcv, @NonNull CalendarDay date, boolean selected) {
-                Log.d("wowo","wowo");
-                //날짜 한번 클릭했을 때
-                if(System.currentTimeMillis()>btnPressTime+500){
-                    btnPressTime = System.currentTimeMillis();
-                    mcv.state().edit()
-                            .setFirstDayOfWeek(Calendar.MONDAY)
-                            .setMinimumDate(CalendarDay.from(1900, 1, 1))
-                            .setMaximumDate(CalendarDay.from(2100, 12, 31))
-                            .setCalendarDisplayMode(CalendarMode.WEEKS)
-                            .commit();
-                    tv.setText(content);
-                    return;
-                }
-                //날짜 클릭 두 번 했을 때
-                if (System.currentTimeMillis()<=btnPressTime+1000){
-                    mcv.state().edit()
-                            .setFirstDayOfWeek(Calendar.MONDAY)
-                            .setMinimumDate(CalendarDay.from(1900, 1, 1))
-                            .setMaximumDate(CalendarDay.from(2100, 12, 31))
-                            .setCalendarDisplayMode(CalendarMode.MONTHS)
-                            .commit();
-                    tv.setText("");
-                }
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
 
             }
         });
+        mcv.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
 
+                final int year = date.getYear();
+                final int month = date.getMonth() + 1;
+                final int day = date.getDay();
+
+                Map<String, Object> queryMap = new HashMap<>();
+                queryMap.put("year", year);
+                queryMap.put("month", month);
+                queryMap.put("day", day);
+
+
+                retrofit = new Retrofit.Builder().baseUrl(APIInterface.URL).addConverterFactory(GsonConverterFactory.create()).build();
+                apiInterface = retrofit.create(APIInterface.class);
+
+                Call<JsonArray> call = apiInterface.getTask(queryMap, getActivity().getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+
+                call.enqueue(new Callback<JsonArray>() {
+                    @Override
+                    public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                        if (response.code() == 200) {
+                            JsonArray tasks = response.body();
+
+                            SweetAlertDialog dialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE)
+                                    .setTitleText(year + "년 " + month + "월 " + day + "일 일정");
+
+                            String contents = "";
+                            for (int i = 0; i < tasks.size(); i++) {
+
+                                JsonObject task = (JsonObject) tasks.get(i);
+                                String type = task.get("type").toString().replace("\"", "");
+                                if (type.equals("RESPONSELESS")) contents += "[비응답형]";
+                                if (type.equals("RESPONSE")) contents += "[응답형]";
+                                if (type.equals("SURVEY")) contents += "[설문조사]";
+                                contents += " " + task.get("title").toString().replace("\"", "");
+                                contents += " | 작성자 : " + task.get("writerName").toString().replace("\"", "");
+                                if (i < tasks.size() - 1) contents += "\n";
+                            }
+                            dialog.setContentText(contents);
+                            dialog.show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonArray> call, Throwable t) {
+
+                    }
+                });
+                Log.d("DASDASD", "onDateSelected: " + date.getDate());
+            }
+        });
+
+        loadTasks();
     }
 
     public class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
@@ -211,15 +278,11 @@ public class HomeFragment extends Fragment {
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.MONTH, -2);
             ArrayList<CalendarDay> dates = new ArrayList<>();
-            //일정이 있는 특정 날짜에 점 찍어 주는 것
-
             for (int i = 0; i < 30; i++) {
                 CalendarDay day = CalendarDay.from(calendar);
                 dates.add(day);
-                calendar.add(Calendar.DATE,3);
+                calendar.add(Calendar.DATE, 5);
             }
-
-
 
             return dates;
         }
@@ -229,11 +292,22 @@ public class HomeFragment extends Fragment {
         protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
             super.onPostExecute(calendarDays);
 
-            if ( getActivity().isFinishing()) {
+            if (getActivity().isFinishing()) {
                 return;
             }
-
-            mcv.addDecorator(new EventDecorator(Color.RED, calendarDays));
+            Iterator<CalendarDay> dayIterator = dayMap.keySet().iterator();
+            while (dayIterator.hasNext()) {
+                ArrayList<CalendarDay> days = new ArrayList<>();
+                CalendarDay day = dayIterator.next();
+                days.add(day);
+                final ArrayList<Integer> colorList = dayMap.get(day);
+                mcv.addDecorator(new EventDecorator(Color.parseColor("#000000"), days) {
+                    @Override
+                    public void decorate(DayViewFacade view) {
+                        view.addSpan(new AdvancedDot(5).setColors(colorList));
+                    }
+                });
+            }
         }
     }
     //mypage
@@ -333,6 +407,54 @@ public class HomeFragment extends Fragment {
         });
     }
 
+
+    public void loadTasks() {
+        dayMap = new HashMap<>();
+        // TODO: 점찍기........startDate, endDate 사이의 모든 날에 색 입히기.;;
+        retrofit = new Retrofit.Builder().baseUrl(APIInterface.URL).addConverterFactory(GsonConverterFactory.create()).build();
+        apiInterface = retrofit.create(APIInterface.class);
+
+        Call<JsonArray> call = apiInterface.getTask(new HashMap<String, Object>(), getActivity().getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+        call.enqueue(new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                JsonArray tasks = response.body();
+
+                for (int i = 0; i < tasks.size(); i++) {
+                    JsonObject task = (JsonObject) tasks.get(i);
+                    int color = Color.parseColor(task.get("color").toString().replace("\"", ""));
+
+                    String startDate = task.get("startDate").toString().replace("\"", "");
+                    String[] splitedStartDate = startDate.split(" ");
+
+                    String endDate = task.get("endDate").toString().replace("\"", "");
+                    String[] splitedEndDate = endDate.split(" ");
+
+                    DateTime startDateTime = new DateTime(Integer.parseInt(splitedStartDate[0].split("-")[0]), Integer.parseInt(splitedStartDate[0].split("-")[1]), Integer.parseInt(splitedStartDate[0].split("-")[2]), 0, 0, 0);
+                    DateTime endDateTime = new DateTime(Integer.parseInt(splitedEndDate[0].split("-")[0]), Integer.parseInt(splitedEndDate[0].split("-")[1]), Integer.parseInt(splitedEndDate[0].split("-")[2]), 23, 59, 59);
+
+                    while (true) {
+                        if (endDateTime.toDate().after(startDateTime.toDate())) {
+                            ArrayList<Integer> list = dayMap.get(CalendarDay.from(startDateTime.toDate()));
+                            if(list == null) list = new ArrayList<>();
+                            list.add(color);
+                            dayMap.put(CalendarDay.from(startDateTime.toDate()), list);
+                        } else {
+                            break;
+                        }
+                        startDateTime = startDateTime.plusDays(1);
+                    }
+                }
+                new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                t.printStackTrace();
+                Log.d("!@#!@#@!", "onFailure: " + "FAILD");
+            }
+        });
+    }
 
     public void willBeHidden() {
         if (fragmentContainer != null) {
