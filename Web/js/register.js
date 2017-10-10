@@ -3,15 +3,14 @@ function submit_chk(myForm) {
     var reg2 = /^[A-Za-z|A-Za-z0-9]{1,16}@[A-Za-z|A-Za-z0-9]{1,16}\.(com|net)$/;
     var reg3 = /^[A-Za-z|A-Za-z0-9]{1,16}$/;
 
-    var id = myForm.user_id;
-    var mail = myForm.user_mail;
-    var pw = myForm.user_pw;
-    var pw_confirm = myForm.user_pw_confirm;
+    var id = myForm.login_id;
+    var mail = myForm.login_mail;
+    var pw = myForm.login_pwd;
+    var pw_confirm = myForm.login_rpwd;
 
     var result1 = reg1.test(id.value);
     var result2 = reg2.test(mail.value);
     var result3 = reg3.test(pw.value);
-    var result4 = reg4.test(serial.value);
 
     if (!result1) {
         alert("아이디 형식이 잘못되었습니다.");
@@ -33,11 +32,6 @@ function submit_chk(myForm) {
         mail.value = "";
         mail.focus();
         return false;
-    } else if (!result4) {
-        alert("시리얼 키가 잘못 되었습니다.");
-        serial.value = "";
-        serial.focus();
-        return false;
     }
 }
 
@@ -47,7 +41,7 @@ $(document).ready(function () {
         type: 'post',
         data: $('form').serialize(),
         success: function (result) {
-            Response.sendRedirect("main.html")
+            Response.sendRedirect("../public/registerDone.html");
         }
     })
 })

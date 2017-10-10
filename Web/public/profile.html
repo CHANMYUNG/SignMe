@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>mypage</title>
+        <title>profile</title>
         <meta charset="UTF-8">
        
         <link rel="stylesheet" type="text/css" href="../css/main.css">
@@ -13,33 +13,29 @@
             <div id="menu">
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="../public/mainpage.html">
                             <span  class="here">*</span>
                         </a>
                     </li>
                     <li>
-                         <a href="">
-                            <span >가정통신문관리</span>
+                            <a href="../public/list.html">
+                            <span  class="here">가정통신문관리</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="../public/calendar.html">
                             <span>일정</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <span class="here">마이페이지</span>
+                        <a href="../public/mypage.html">
+                            <span>마이페이지</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="">
-                            <span>설정</span>
-                        </a>
-                    </li>                                                       
+                                                                        
                 </ul>
                 <ul>
-                    <li>
+                    <!-- <li>
                         <a href="" class="login_trigger">
                             <span>로그인</span>
                         </a>
@@ -48,7 +44,7 @@
                         <a href="">
                             <span>회원가입</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div id="title">
@@ -68,63 +64,70 @@
                         </div>
                     </div>
                     <div>
-                        <div>
-                            <h1>ooo님의 회원 정보 입니다.</h1>
-                            <hr>
-                        </div>
-                        <div>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>아이디</td>
-                                        <td><input type="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>비밀번호</td>
-                                        <td><input type="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>이름</td>
-                                        <td><input type="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>전화번호</td>
-                                        <td>
-                                            <div>
-                                                <select name="" id="">
-                                                    <option value="">010</option>
-                                                    <option value="">011</option>
-                                                </select>
-                                                <span>-</span>
+                        <form action="">
+                            <div>
+                                <h1>ooo님의 회원 정보 입니다.</h1>
+                                <hr>
+                            </div>
+                            <div>
+                                
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>아이디</td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>비밀번호</td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>이름</td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>전화번호</td>
+                                            <td>
+                                                <div>
+                                                    <select name="" id="">
+                                                        <option value="">010</option>
+                                                        <option value="">011</option>
+                                                    </select>
+                                                    <span>-</span>
+                                                    <input type="text">
+                                                    <span>-</span>
+                                                    <input type="text">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>이메일</td>
+                                            <td>
+                                                <div>
+                                                    <input type="text">
+                                                    <span>@</span>
+                                                    <input type="text">
+                                                    <select name="" id="">
+                                                        <option value="">-이메일 선택-</option>
+                                                        <option value="">gmail.com</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>담당</td>
+                                            <td>
                                                 <input type="text">
-                                                <span>-</span>
-                                                <input type="text">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>이메일</td>
-                                        <td>
-                                            <div>
-                                                <input type="text">
-                                                <span>@</span>
-                                                <input type="text">
-                                                <select name="" id="">
-                                                    <option value="">-이메일 선택-</option>
-                                                    <option value="">gmail.com</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>담당</td>
-                                        <td>
-                                            <input type="text">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <input type="submit">
+                                <button>정보 변경 취소</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div> 

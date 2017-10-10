@@ -180,4 +180,9 @@ form>div{
   margin-top:-200px;
   opacity:1;
 }
-  
+form>div>a:visited{
+  color: rgb(143, 143, 143);
+}
+form>div>a:link{
+  color: rgb(143, 143, 143);
+}

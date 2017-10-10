@@ -10,41 +10,36 @@
         <link rel="stylesheet" type="text/css" href="../css/list.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="../jquery-3.2.1.js"></script>
-        
-
+        <script src="../js/list.js"></script>
     </head>
     <body>
         <div id="page_wrapper" >
             <div id="menu">
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="../public/mainpage.html">
                             <span  class="here">*</span>
                         </a>
                     </li>
                     <li>
-                         <a href="">
+                         <a href="../public/list.html">
                             <span  class="here">가정통신문관리</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="../public/calendar.html">
                             <span>일정</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="../public/mypage.html">
                             <span>마이페이지</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="">
-                            <span>설정</span>
-                        </a>
-                    </li>                                                       
+                                                                        
                 </ul>
                 <ul>
-                    <li>
+                    <!-- <li>
                         <a href="" class="login_trigger">
                             <span>로그인</span>
                         </a>
@@ -53,7 +48,7 @@
                         <a href="">
                             <span>회원가입</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div id="title">
@@ -80,7 +75,7 @@
                         <li>
                             <div>
                                 <span></span>
-                                <input type="text">
+                                <input id="search" type="text" onkeypress="if( event.keyCode==13 ){goSearch();}">
                             </div>
                         </li>
                         <li>
@@ -88,6 +83,9 @@
                                 <option value="">자바쌤</option>
                                 <option value="">문학쌤</option>
                             </select>
+                        </li>
+                        <li>
+                            <button class="login_trigger">글작성</button>
                         </li>
                     </ul>
                 </div>
@@ -110,9 +108,20 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                
+                </div>       
             </div> 
-       
+        </div>
+        <div class="modal-wrapper">
+            <div class="modal">
+                <div class="content">
+                    <h1>작성하실 설문지 종류를 선택해주세요</h1>
+                    <div>
+                        <button>응답형 설문조사</button>
+                        <button>비응답형 설문조사</button>
+                        <button>설문조사</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

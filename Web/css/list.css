@@ -90,7 +90,11 @@ ul>li{
 #bar>ul>li>a{
     color: #c2c2c2;
 }
-
+#bar>ul>li>button{
+    height: 30px;
+    width: 60px;
+    font-size: 15px;
+}
 input, select{
     height: 30px;
     box-sizing: border-box;
@@ -136,3 +140,78 @@ tr>th:nth-child(3){
 tr>th:nth-child(4){
     width: 270px;
 }
+
+
+.blur{
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.modal-wrapper{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0; left:0;
+    background:rgba(0,0,0,0.5);
+    visibility:hidden;
+    opacity:0;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+}
+  
+  .modal-wrapper.open{
+    opacity:1;
+    visibility:visible;
+  }
+  
+  .modal{
+    width:960px;
+    height:285px;
+    display:block;
+    margin:50% 0 0 -25%;
+    position:relative;
+    top:50%; left:50%;
+    background:#ffffff;
+    opacity:0;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+.content{
+    text-align: center;
+    
+}
+.content>h1{
+    font-size: 53px;
+    font-weight: lighter;
+    margin-top: 65px;
+}
+.content>div{
+    margin: 0 auto;
+    margin-top: 45px;
+
+}
+.content>div>button{
+    width: 250px;
+    height: 80px;
+    font-size: 25px;
+    font-weight: lighter;
+    background-color: #706f6f;
+    color: #ffffff;
+    border: 0px solid #ffffff;
+}
+.content>div>button:nth-child(2){
+    margin-left: 45px;
+    margin-right: 45px;
+}
+.modal-wrapper.open .modal{
+  margin-top:-200px;
+  opacity:1;
+}
+  

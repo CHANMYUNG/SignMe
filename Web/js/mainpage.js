@@ -23,8 +23,10 @@ $( document ).ready(function() {
             data:$('form').serialize(),
             success: function(result){
                 Response.sendRedireect("main.html");
+                
             }
         })
+        
 
     })
     $('.modal').click(function(){

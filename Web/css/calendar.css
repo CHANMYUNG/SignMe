@@ -1,59 +1,128 @@
-.g_artcle {
-    margin: 0px 0px;
-    width: 80vw;
-    height: 100%;
-    text-align: center;
-    margin-left: 10vw;
-}
-.bar {
-    width: 80vw;
-}
-.g_body{
-    height: 100%;
-}
-.main_body{
-    width: 80w;
-    height: 100vh;
-}
-#calendarbar{
-    width: 55vw;
-    margin:0;
-    padding: 0px;
-}
-#addbar{
-    float: right;
-    width: 24vw;
-    height: 90%;
+
+hr{
+    background-color: #000000;
+    border: 0px solid #000000;
     margin: 0px;
-    /* border: 1px solid black; */
-    padding: 0px;
+}
+#menu{
+    width: 100%;
+    height: 100px;
+    margin-top: 50px;
+    
+}
+ul>li{
+    font-size: 22px;
+    font-weight: lighter; 
+    float: left;
+    list-style: none;
+    margin-right: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+#menu>ul:first-child{
+    margin-left: 85px;
+
+}
+#menu>ul:last-child{
+    float: right;
+    margin-right: 85px;
+}
+.here{
+    color: #1159BB;
+    font-weight: bold;
+}
+#title>h1{
+
+    font-size: 100pt;
+    font-weight: lighter;
+    letter-spacing: 0.2em;
+    line-height: 1em;
+    
+    text-align: center;
+    
+    margin-bottom: 16px;
+}
+#title>hr{
+    margin: 0 auto;
+    width: 800px;
+    height: 2px;
+    
+
+    margin-bottom: 16px;
+}
+#contant{
+    width: 1290px;
+    height: 100%;
+    margin: 0 auto;
+}
+#contant>h2{
+    font-size: 45px;
+    font-weight: lighter;
+    margin-bottom: 20px;
 }
 
-.leftbox{
+#contant>hr{
+    height: 1px;
+    margin-bottom: 20px;
+}
+#artcle{
+    width: 100%;
+    height: 756px;
+    border: 1px solid #c2c2c2;
+    box-sizing: border-box;
     float: left;
 }
-.colorCodeDiv{
+#artcle>div{
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    height: 756px;
+    float: left;
     
-    margin: auto;
-    margin-top: 3vw;
-    width: 18vw;
-    height: 50vh;
-    padding: 5px 5px;
-    background-color: #ffffff;
-    border: 1px solid black;
 }
-.colorDivBlank{
-    margin-top: 1vh;
+#artcle>div:first-child{
+    
+    width: 955px;
+    
 }
-.colorDiv{
-    margin-left: 3vw;
-    padding: 0px;
-    width: 18px;
-    height: 18px;
-    border: 1px solid black;
-    background-color: #E5F70C;
+
+#artcle>div:last-child{
+    float: right;
+
+    width: 300px;
+    height: 100%;
 }
-.colorWho{
-    width: 5vw;
-    text-align: right;
+#artcle>div:last-child>div{
+    width: 260px;
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#artcle>div:last-child>div>h2{
+    margin-top: 30px;
+    font-weight: normal;
+    font-size: 25px
+}
+#artcle>div:last-child>div>hr{
+    height: 1px;
+    
+}
+#artcle>div:last-child>div>div{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#artcle>div:last-child>div>div>div>*{
+    float: left;
+}
+#artcle>div:last-child>div>div>div>div{
+    height: 20px;
+    width: 20px;
+    background-color: yellow;
+    border: 1px solid #c2c2c2;
+    margin-right: 30px;
+}
+#artcle>div:last-child>div>div>div>span{
+    font-size: 25px;
 }

@@ -26,4 +26,11 @@ $(document).ready(function(){
         listNum--;
     });
 
+    4{'#submit_btn'}.click(function(){
+        if(!$('#login_id').val()){
+            
+            $('#login_id').focus();
+            return false;
+        }
+    })
 });

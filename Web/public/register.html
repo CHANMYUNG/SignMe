@@ -17,7 +17,7 @@
             <h1>SIGN ME</h1>
         </div>
         <div id="contant"> 
-           <form action="">
+           <form action="" id="myform" onsubmit="return submit_chk(this);">
                 <div id="form_contant">
                     <h2>회원가입</h2>
                     <hr>
@@ -29,8 +29,8 @@
                                     아이디
                                 </td>
                                 <td>
-                                    <input type="text">
-                                    <button class="form_btn">아이디증복확인</button>
+                                    <input id="login_id" type="text">
+                                    <button type="button" class="form_btn">아이디증복확인</button>
                                 </td>
                             </tr>
                             <tr id="pwtr">
@@ -38,7 +38,7 @@
                                     비밀번호
                                 </td>
                                 <td>
-                                    <input type="password">
+                                    <input id="login_pwd" type="password">
                                 </td>
                             </tr>
                             <tr id="pwrtr">
@@ -46,7 +46,7 @@
                                     비밀번호 확인
                                 </td>
                                 <td>
-                                    <input type="password">
+                                    <input id="login_rpwd" type="password">
                                 </td>
                             </tr>
                             <tr id="nametr">
@@ -54,15 +54,16 @@
                                     이름
                                 </td>
                                 <td>
-                                    <input type="text">
+                                    <input id="login_name" type="text">
                                 </td>
                             </tr>
                             <tr id="phonetr">
                                 <td>
                                     전화번호
                                 </td>
-                                <td>
+                                <td id="login_phonee">
                                     <select name="" id="">
+                                        <option value="">-선택-</option>
                                         <option value="">010</option>
                                         <option value="">033</option>
                                     </select>
@@ -77,21 +78,24 @@
                                     이메일
                                 </td>
                                 <td>
-                                    <input type="text">
+                                    <!-- <input type="text">
                                     <span>@</span>
                                     <input type="text">
                                     <select name="" id="">
+                                        <option value="">선택하세요</option>
+                                        <option value="">daum.net</option>
                                         <option value="">gmail.com</option>
                                         <option value="">naver.com</option>
-                                    </select>
-                                    <button class="form_btn">이메일 중복 검사</button>
+                                    </select> -->
+                                    <input  id="login_email"ㄹㄹ type="email">
+                                    <button type="button" class="form_btn">이메일 중복 검사</button>
                                 </td>
                             </tr>
                             <tr id="serialtr">
                                 <td>
                                     시리얼 키
                                 </td>
-                                <td>
+                                <td id="login_serial">
                                     <input type="text">
                                     <span>-</span>
                                     <input type="text">
@@ -99,18 +103,19 @@
                                     <input type="text">
                                     <span>-</span>
                                     <input type="text">
-                                    <button class="form_btn">시리얼 유효성 판별</button>
+                                    <button type="button" class="form_btn">시리얼 유효성 판별</button>
                                 </td>
                             </tr>
                             <tr id="jobtr">
                                 <td>
                                     담당
                                 </td>
-                                <td>
-                                    <select name="" id="">
+                                <td id="login_job"> 
+                                    <input type="text">
+                                    <!-- <select name="" id="">
                                         <option value="">경무</option>
                                         <option value="">행정</option>
-                                    </select>
+                                    </select> -->
                                 </td>
                             </tr>
                         </table>
