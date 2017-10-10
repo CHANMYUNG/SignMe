@@ -138,7 +138,7 @@ public class ResponseLetterActivity extends AppCompatActivity {
 
         fieldMap.put("answer", answer);
 
-        Call<Void> call = apiInterface.modifyAnswerToResponse("answer/response/" + letterNumber, fieldMap, getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+        Call<Void> call = apiInterface.changeAnswerToResponse("answer/response/" + letterNumber, fieldMap, getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
