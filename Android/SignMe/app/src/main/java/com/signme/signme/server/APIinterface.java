@@ -32,7 +32,7 @@ import retrofit2.http.Url;
  */
 
 public interface APIInterface {
-
+    
     String URL = "http://192.168.1.103:7800/";
 
     @GET("account/id/check/:id")
@@ -96,7 +96,7 @@ public interface APIInterface {
 
     @FormUrlEncoded
     @PUT
-    Call<Void> modifyAnswerToSurvey(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
+    Call<Void> changeAnswerToSurvey(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
 
 
     @FormUrlEncoded
@@ -105,7 +105,7 @@ public interface APIInterface {
 
     @FormUrlEncoded
     @PUT
-    Call<Void> modifyAnswerToResponse(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
+    Call<Void> changeAnswerToResponse(@Url String url, @FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
 
     @GET
     Call<JsonObject> getResponseLetter(@Url String url, @Header("signme-x-access-token") String token);

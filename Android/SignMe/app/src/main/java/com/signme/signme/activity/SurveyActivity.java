@@ -195,7 +195,7 @@ public class SurveyActivity extends AppCompatActivity {
         Map<String, Object> fieldMap = new HashMap<>();
         fieldMap.put("answers", answers);
 
-        Call<Void> call = apiInterface.modifyAnswerToSurvey("/answer/survey/" + letterNumber, fieldMap, getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+        Call<Void> call = apiInterface.changeAnswerToSurvey("/answer/survey/" + letterNumber, fieldMap, getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
 
         call.enqueue(new Callback<Void>() {
             @Override
