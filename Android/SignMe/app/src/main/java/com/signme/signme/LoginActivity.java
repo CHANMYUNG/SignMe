@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
@@ -46,6 +47,23 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        TextView fogetbtn=(TextView) findViewById(R.id.login_to_findPassword_button);
+        fogetbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(LoginActivity.this,FogetidActivity.class);
+                startActivity(intent);
+            }
+        });
+        TextView signupbtn=(TextView)findViewById(R.id.login_to_signup_button);
+        signupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
 //        loginActivity = this;
 //        registerBtn = (Button) findViewById(R.id.registerButton);
 //

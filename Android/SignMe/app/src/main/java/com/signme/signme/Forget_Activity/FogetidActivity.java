@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -62,12 +63,15 @@ public class FogetidActivity extends AppCompatActivity {
     public void fogetidcheck(View view){
         aquery = new AQuery(getApplicationContext());
         final EditText namefield=(EditText)findViewById(R.id.forgetid_name);
-        final TextView whelk=(TextView)findViewById(R.id.email_whelk);
+        final TextView whelk_tv=(TextView)findViewById(R.id.email_whelk);
         final EditText emailfield1=(EditText) findViewById(R.id.email);
         final EditText emailfield2=(EditText) findViewById(R.id.email3);
         String name=namefield.getText().toString();
+        String whelk=whelk_tv.getText().toString();
         String email1=emailfield1.getText().toString();
         String email2=emailfield2.getText().toString();
+        String email=email1+whelk+email2;
+        Log.d("이메일:",email);
         if(name.trim().equals("")||email1.trim().equals("")||email2.trim().equals("")||email2.trim().equals("--이메일 입력--")||email2.trim().equals("직접입력")){
             AlertDialog.Builder builder = new AlertDialog.Builder(FogetidActivity.this);
             Dialog dialog = builder.setMessage("이름과 이메일을 반드시 입력해주세요.").setPositiveButton("OK", null).create();
@@ -82,7 +86,11 @@ public class FogetidActivity extends AppCompatActivity {
 
 
 
+
     }
+
+
+
     //엑티비티 종료
     public void closeonClick(View view) {
         FogetidActivity.fogetidActivity.finish();
@@ -92,7 +100,6 @@ public class FogetidActivity extends AppCompatActivity {
     public void fogetpwonClick(View view) {
         Intent intent = new Intent(getApplicationContext(), FogetpwActivity.class);
         startActivity(intent);
-        FogetidActivity.fogetidActivity.finish();
         finish();
     }
 }

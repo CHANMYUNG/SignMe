@@ -57,22 +57,23 @@ public interface APIInterface {
 
     @GET
     Call<JsonObject> getResponselessLetter(@Url String url, @Header("signme-x-access-token") String token);
+//
+//    @FormUrlEncoded
+//    @POST("/logout")
+//    Call<Void> doLogOut();
+//
+//    @FormUrlEncoded
+//    @POST("/foget/id")
+//    Call<Void> forgetid(@Field("name") String name,
+//                        @Field("email") String email);
+//
+//    @FormUrlEncoded
+//    @POST("/foget/pw")
+//    Call<Void> forgetpw(@Field("id") String id,
+//                        @Field("email") String email,
+//                        @Field("Cercode") String Cercode
+//    );
 
-    @FormUrlEncoded
-    @POST("/logout")
-    Call<Void> doLogOut();
-
-    @FormUrlEncoded
-    @POST("/foget/id")
-    Call<Void> forgetid(@Field("name") String name,
-                        @Field("email") String email);
-
-    @FormUrlEncoded
-    @POST("/foget/pw")
-    Call<Void> forgetpw(@Field("id") String id,
-                        @Field("email") String email,
-                        @Field("Cercode") String Cercode
-    );
 
     @GET("/letter")
     Call<JsonArray> getLetterList(@Header("signme-x-access-token") String token);

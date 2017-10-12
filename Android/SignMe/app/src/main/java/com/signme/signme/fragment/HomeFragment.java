@@ -29,6 +29,8 @@ import android.widget.ToggleButton;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -41,6 +43,7 @@ import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import com.signme.signme.Calender.EventDecorator;
 import com.signme.signme.Calender.OneDayDecorator;
 import com.signme.signme.Calender.SundayDecorator;
+import com.signme.signme.LoginActivity;
 import com.signme.signme.R;
 import com.signme.signme.activity.ChangeEmailActivity;
 import com.signme.signme.activity.ChangePwdActivity;
@@ -112,6 +115,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
         View view = null;
         Log.d("idfd", "dfdf");
+
         if (getArguments().getInt("index", 0) == 0) {
             view = inflater.inflate(R.layout.fragment_letter_list_2, container, false);
             initLetterList(view);
@@ -239,7 +243,6 @@ public class HomeFragment extends Fragment {
 
                             String contents = "";
                             for (int i = 0; i < tasks.size(); i++) {
-
                                 JsonObject task = (JsonObject) tasks.get(i);
                                 String type = task.get("type").toString().replace("\"", "");
                                 if (type.equals("RESPONSELESS")) contents += "[비응답형]";
@@ -370,7 +373,10 @@ public class HomeFragment extends Fragment {
                 dialog.setPositiveButton("확인",new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        getActivity().getSharedPreferences("test", MODE_PRIVATE).edit().clear().commit();
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
                 });
                 dialog.setNegativeButton("취소",new DialogInterface.OnClickListener(){

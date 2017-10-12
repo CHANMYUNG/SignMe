@@ -8,6 +8,8 @@ import android.util.Log;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.signme.signme.FCM.FirebaseInstanceIDService;
 import com.signme.signme.R;
 import com.signme.signme.fragment.HomeFragment;
 import com.signme.signme.fragment.HomeViewPagerAdapter;
@@ -27,7 +29,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initUI();
 
         this.createNavItems();

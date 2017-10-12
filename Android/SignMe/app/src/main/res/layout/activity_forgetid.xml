@@ -5,300 +5,299 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
-        android:id="@+id/jyj"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="120dp">
-
-        <ImageView
-            android:layout_above="@+id/aoa"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/line3"
-            android:layout_toLeftOf="@+id/mxm"
-            />
 
         <RelativeLayout
-            android:id="@+id/mxm"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/cc"
-
-            >
+            android:id="@+id/jyj"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true">
 
             <ImageView
-                android:id="@+id/zz"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/box" />
-
-            <ImageButton
-                android:id="@+id/qw"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/bbd"
-                android:background="@android:color/transparent"
-                android:onClick="closeonClick"
-                android:src="@drawable/close" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/qw"
-                android:gravity="center"
-                android:text="아이디 찾기"
-                android:textColor="#95989A"
-                android:textSize="15dp" />
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/aoa"
+                android:layout_alignParentRight="true"
+                android:layout_toLeftOf="@+id/mxm"
+                android:src="@drawable/line3" />
 
             <RelativeLayout
-                android:id="@+id/bbd"
-                android:layout_width="15dp"
+                android:id="@+id/mxm"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/cc"
+
+                >
+
+                <ImageView
+                    android:id="@+id/zz"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/box" />
+
+                <ImageButton
+                    android:id="@+id/qw"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/bbd"
+                    android:background="@android:color/transparent"
+                    android:onClick="closeonClick"
+                    android:src="@drawable/close" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/qw"
+                    android:gravity="center"
+                    android:text="아이디 찾기"
+                    android:textColor="#95989A"
+                    android:textSize="15dp" />
+
+                <RelativeLayout
+                    android:id="@+id/bbd"
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"></RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/cc"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/box" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:onClick="fogetpwonClick"
+                    android:text="비밀번호 찾기"
+                    android:textColor="#95989A"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/aoa"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_alignParentBottom="true"></RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/aoa"
+                android:layout_toLeftOf="@+id/mxm"
+                android:src="@drawable/line3" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/pd"
+            android:layout_below="@+id/jyj">
+
+            <RelativeLayout
+                android:id="@+id/bbc"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"></RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/bbq"
+                android:layout_toRightOf="@+id/bbc">
+
+                <RelativeLayout
+                    android:id="@+id/vixx"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp">
+
+                    <TextView
+                        android:id="@+id/textViewd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/textViewc"
+                        android:text="아이디를 잊으셨나요?"
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/textViewc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="간단한 정보입력을 통해 알 수 있습니다."
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/exo"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/vixx">
+
+                    <TextView
+                        android:id="@+id/momo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이름"
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/forgetid_name"
+                        android:layout_width="140dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/rectangle"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/sm"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/exo"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/cna"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이메일"
+                        android:textColor="#95989A"
+                        android:textSize="20dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/yg"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_below="@+id/cna">
+
+                        <EditText
+                            android:id="@+id/forgetid_email"
+                            android:layout_width="140dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="@drawable/rectangle"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/email_whelk"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_toLeftOf="@+id/email3"
+                            android:layout_toRightOf="@+id/email"
+                            android:gravity="center"
+                            android:text="\@"
+                            android:textColor="#95989A"
+                            android:textSize="15dp" />
+
+                        <EditText
+                            android:id="@+id/email3"
+                            android:layout_width="140dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rectangle"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="15dp" />
+                    </RelativeLayout>
+
+                    <Spinner
+                        android:id="@+id/email2"
+                        android:layout_width="140dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/yg"
+                        android:background="@drawable/rectangle"
+                        android:drawSelectorOnTop="true"
+                        android:entries="@array/planets_array"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/yg"
+                        android:src="@drawable/down" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/sm">
+
+                    <Button
+                        android:layout_width="70dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/shape"
+                        android:onClick="fogetidcheck"
+                        android:text="확인"
+                        android:textColor="#95989A"
+                        android:textSize="20dp"
+
+                        />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bbq"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"></RelativeLayout>
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/cc"
-            android:layout_width="120dp"
+            android:id="@+id/pd"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true">
+            android:background="#33C5F3">
 
-            <ImageView
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/box" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
                 android:gravity="center"
-                android:onClick="fogetpwonClick"
-                android:text="비밀번호 찾기"
-                android:textColor="#95989A"
-                android:textSize="15dp" />
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
         </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/aoa"
-            android:layout_width="match_parent"
-            android:layout_height="7dp"
-            android:layout_alignParentBottom="true"></RelativeLayout>
-
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/aoa"
-            android:layout_toLeftOf="@+id/mxm"
-            android:src="@drawable/line3" />
-
-    </RelativeLayout>
-
-
-
-    <RelativeLayout
-        android:layout_below="@+id/jyj"
-        android:layout_above="@+id/pd"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:id="@+id/bbc"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"></RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/bbq"
-            android:layout_toRightOf="@+id/bbc">
-
-            <RelativeLayout
-                android:id="@+id/vixx"
-                android:layout_width="match_parent"
-                android:layout_height="130dp">
-
-                <TextView
-                    android:id="@+id/textViewd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/textViewc"
-                    android:text="아이디를 잊으셨나요?"
-                    android:textColor="#95989A"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/textViewc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="간단한 정보입력을 통해 알 수 있습니다."
-                    android:textColor="#95989A"
-                    android:textSize="20dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/exo"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/vixx">
-
-                <TextView
-                    android:id="@+id/momo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이름"
-                    android:textColor="#95989A"
-                    android:textSize="20dp" />
-
-                <EditText
-                    android:id="@+id/forgetid_name"
-                    android:layout_width="140dp"
-                    android:layout_height="35dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/rectangle"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/sm"
-                android:layout_below="@+id/exo"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true">
-
-                <TextView
-                    android:id="@+id/cna"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이메일"
-                    android:textColor="#95989A"
-                    android:textSize="20dp" />
-
-                <RelativeLayout
-                    android:id="@+id/yg"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_below="@+id/cna">
-
-                    <EditText
-                        android:id="@+id/forgetid_email"
-                        android:layout_width="140dp"
-                        android:layout_height="35dp"
-                        android:layout_alignParentLeft="true"
-                        android:background="@drawable/rectangle"
-                        android:inputType="text"
-                        android:padding="10dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/email_whelk"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_toLeftOf="@+id/email3"
-                        android:layout_toRightOf="@+id/email"
-                        android:gravity="center"
-                        android:text="\@"
-                        android:textColor="#95989A"
-                        android:textSize="15dp" />
-
-                    <EditText
-                        android:id="@+id/email3"
-                        android:layout_width="140dp"
-                        android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
-                        android:background="@drawable/rectangle"
-                        android:inputType="text"
-                        android:padding="10dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
-                        android:textSize="15dp" />
-                </RelativeLayout>
-
-                <Spinner
-                    android:id="@+id/email2"
-                    android:layout_width="140dp"
-                    android:layout_height="35dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/yg"
-                    android:background="@drawable/rectangle"
-                    android:drawSelectorOnTop="true"
-                    android:entries="@array/planets_array"
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/yg"
-                    android:src="@drawable/down" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/sm">
-
-                <Button
-                    android:layout_width="70dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/shape"
-                    android:onClick="fogetidcheck"
-                    android:text="확인"
-                    android:textColor="#95989A"
-                    android:textSize="20dp"
-
-                    />
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/bbq"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"></RelativeLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/pd"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#33C5F3"
-        android:layout_alignParentBottom="true"
-        >
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:gravity="center"
-            />
-    </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

@@ -93,7 +93,7 @@
                             <TextView
                                 android:id="@+id/responseless_writerName"
                                 android:layout_width="80dp"
-                                android:layout_height="70dp"
+                                android:layout_height="50dp"
                                 android:layout_alignParentRight="true"
                                 android:textSize="20dp"
 
@@ -103,11 +103,11 @@
                             <TextView
                                 android:id="@+id/responseless_openDate"
                                 android:layout_width="80dp"
-                                android:layout_height="30dp"
+                                android:layout_height="50dp"
                                 android:gravity="center_vertical"
                                 android:textColor="@color/black"
                                 android:layout_alignParentRight="true"
-                                android:layout_below="@+id/name_text"
+                                android:layout_below="@+id/responseless_writerName"
                                 />
                             <TextView
                                 android:id="@+id/responseless_contents"

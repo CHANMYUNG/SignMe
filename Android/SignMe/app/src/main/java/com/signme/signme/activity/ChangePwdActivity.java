@@ -37,44 +37,27 @@ public class ChangePwdActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_pwd);
-        nowpwdfield=(EditText)findViewById(R.id.nowpwd_et);
-        newpwdfield=(EditText)findViewById(R.id.newpwd_et);
-        confrim_newpwdfield=(EditText)findViewById(R.id.comfrim_newpwd_et);
-        nowpwd=nowpwdfield.getText().toString();
-        newpwd=newpwdfield.getText().toString();
-        confrim_newpwd=confrim_newpwdfield.getText().toString();
+//        nowpwdfield=(EditText)findViewById(R.id.nowpwd_et);
+//        newpwdfield=(EditText)findViewById(R.id.newpwd_et);
+//        confrim_newpwdfield=(EditText)findViewById(R.id.comfrim_newpwd_et);
+//        nowpwd=nowpwdfield.getText().toString();
+//        newpwd=newpwdfield.getText().toString();
+//        confrim_newpwd=confrim_newpwdfield.getText().toString();
 
-
-        confrim_newpwdfield.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                if(newpwd.equals(confrim_newpwd)){
-//                    newpwdfield.setBackgroundColor(Color.GREEN);
-//                    confrim_newpwdfield.setBackgroundColor(Color.GREEN);
-//                }
-//                else{
-//                    newpwdfield.setBackgroundColor(Color.RED);
-//                    confrim_newpwdfield.setBackgroundColor(Color.RED);
-//                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         //저장
         ImageView pwdcheck=(ImageView)findViewById(R.id.pwd_check);
         pwdcheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                nowpwdfield=(EditText)findViewById(R.id.nowpwd_et);
+                newpwdfield=(EditText)findViewById(R.id.newpwd_et);
+                confrim_newpwdfield=(EditText)findViewById(R.id.comfrim_newpwd_et);
+                nowpwd=nowpwdfield.getText().toString();
+                newpwd=newpwdfield.getText().toString();
+                confrim_newpwd=confrim_newpwdfield.getText().toString();
+                Log.d("비밀번호",newpwd);
+                Log.d("비밀번호2",confrim_newpwd);
                 if(newpwd.equals(confrim_newpwd)){
 
                     AlertDialog.Builder dialog=new AlertDialog.Builder(ChangePwdActivity.this);
