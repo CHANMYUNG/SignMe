@@ -1,0 +1,189 @@
+
+hr{
+    background-color: #000000;
+    border: 0px solid #000000;
+    margin: 0px;
+}
+#menu{
+    width: 100%;
+    height: 100px;
+    margin-top: 50px;
+    
+}
+ul>li{
+    font-size: 22px;
+    font-weight: lighter; 
+    float: left;
+    list-style: none;
+    margin-right: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+#menu>ul:first-child{
+    margin-left: 85px;
+
+}
+#menu>ul:last-child{
+    float: right;
+    margin-right: 85px;
+}
+.here{
+    color: #1159BB;
+    font-weight: bold;
+}
+#title>h1{
+
+    font-size: 100pt;
+    font-weight: lighter;
+    letter-spacing: 0.2em;
+    line-height: 1em;
+    
+    text-align: center;
+    
+    margin-bottom: 16px;
+}
+#title>hr{
+    margin: 0 auto;
+    width: 800px;
+    height: 2px;
+    
+
+    margin-bottom: 16px;
+}
+#contant{
+    width: 1290px;
+    height: 100%;
+    margin: 0 auto;
+}
+#contant>h2{
+    font-size: 45px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+#contant>hr{
+    height: 1px;
+    margin-bottom: 20px;
+}
+#artcle{
+    width: 100%;
+    height: 525px;
+    border: 1px solid #c2c2c2;
+    box-sizing: border-box;
+    float: left;
+}
+#artcle>div:first-child{
+    box-sizing: border-box;
+    float: left;
+    width: 230px;
+    height: 100%;
+    border: 1px solid #c2c2c2;
+    font-size: 25px;
+}
+#artcle>div:last-child{
+    float: left;
+    box-sizing: border-box;
+    width: 1058px;
+    height: 100%;
+}
+#artcle>div:first-child>div{
+    height: 90px;
+    width: 100%;
+}
+#artcle>div:first-child>div:first-child{
+    background-color: #948F8F;
+    color: #ffffff;
+}
+#artcle>div:first-child>div>a>p{
+    padding-top: 32.5px;
+    padding-left: 10px;
+}
+#artcle>div:first-child>div:last-child{
+    background-color: #E6E6E6;
+}
+#artcle>div:first-child>div:first-child>a:visited{
+    color: #ffffff;
+}
+#artcle>div:first-child>div:first-child>a:link{
+    color: #ffffff;
+}
+#artcle>div:first-child>div:last-child>a:visited{
+    color: #000000;
+}
+#artcle>div:first-child>div:last-child>a:link{
+    color: #000000;
+}
+
+#artcle>div:last-child>form>div:first-child>h1{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 40px;
+    font-weight: lighter;
+}
+#artcle>div:last-child>form>div:first-child>hr{
+    height: 1px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#artcle>div:last-child>form>div:last-child{
+    text-align: center;
+    
+}
+#artcle>div:last-child>form>div:last-child>*{
+    width: 165px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: lighter;
+    letter-spacing: 0.1em;
+    border: none;
+}    
+#artcle>div:last-child>form>div:last-child>input{
+    background-color: #000000;
+    color: #ffffff;
+    margin-right: 25px;
+}
+#artcle>div:last-child>form>div:last-child>button{
+    background-color: #706f6f;
+    color: #ffffff;
+}
+table, tbody, tr{
+    width: 100%;
+}
+table{
+    margin-left: 50px;
+}
+td{
+    font-size: 20px;
+    color: #95989A;
+    /* padding-top: 20px; */
+    padding-bottom: 20px;
+}
+input, select{
+    box-sizing: border-box;
+    height: 30px;
+}
+tr{
+    border: 1px solid #000000;
+    height: 30px;
+}
+tr>td:first-child{
+    width: 150px;
+}
+tbody>tr:nth-child(1)>td>input{
+    width: 240px;
+}
+tbody>tr:nth-child(2)>td>input{
+    width: 240px;
+}
+tbody>tr:nth-child(3)>td>input{
+    width: 170px;
+}
+tbody>tr:nth-child(4)>td>div>*{
+    width: 75px;
+}
+tbody>tr:nth-child(5)>td>div>*{
+    width: 190px;
+}
