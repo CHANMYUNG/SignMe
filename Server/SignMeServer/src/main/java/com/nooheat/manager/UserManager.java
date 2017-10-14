@@ -12,6 +12,8 @@ import io.vertx.ext.web.impl.CookieImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by NooHeat on 18/06/2017.
@@ -71,6 +73,7 @@ public class UserManager {
             return rs.getInt("count");
         else return 0;
     }
+
     public static int getParentCount() throws SQLException {
         ResultSet rs = DBManager.execute("SELECT COUNT(DISTINCT stuNum) AS count FROM USER WHERE identity = 'parent';");
         if (rs.next())
@@ -94,5 +97,19 @@ public class UserManager {
         else return 0;
     }
 
+    public static Iterator<Integer> getStuNumIterator() {
+        ResultSet rs = DBManager.execute("SELECT DISTINCT stuNum FROM USER;");
+        ArrayList<Integer> list = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                list.add(rs.getInt("stuNum"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            return list.iterator();
+        }
+    }
 
 }
