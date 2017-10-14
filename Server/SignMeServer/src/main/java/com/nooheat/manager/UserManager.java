@@ -48,4 +48,51 @@ public class UserManager {
 
         return (userAffectedRows + adminAffectedRows) == 1;
     }
+
+    public static int getChildCount() throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT COUNT(DISTINCT stuNum) AS count FROM USER WHERE identity = 'child';");
+        if (rs.next())
+            return rs.getInt("count");
+        return 0;
+    }
+
+    public static int getChildCount(int grade) throws SQLException {
+        String like = grade + "%";
+        ResultSet rs = DBManager.execute("SELECT COUNT(DISTINCT stuNum) AS count FROM USER WHERE stuNum like ? AND identity = 'child';", like);
+        if (rs.next())
+            return rs.getInt("count");
+        else return 0;
+    }
+
+    public static int getChildCount(int grade, int Class) throws SQLException {
+        String like = "" + grade + "0" + Class + "%";
+        ResultSet rs = DBManager.execute("SELECT COUNT(DISTINCT stuNum) AS count FROM USER WHERE stuNum like ? AND identity = 'child';", like);
+        if (rs.next())
+            return rs.getInt("count");
+        else return 0;
+    }
+    public static int getParentCount() throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT COUNT(DISTINCT stuNum) AS count FROM USER WHERE identity = 'parent';");
+        if (rs.next())
+            return rs.getInt("count");
+        return 0;
+    }
+
+    public static int getParentCount(int grade) throws SQLException {
+        String like = grade + "%";
+        ResultSet rs = DBManager.execute("SELECT COUNT(DISTINCT stuNum) AS count FROM USER WHERE stuNum like ? AND identity = 'parent';", like);
+        if (rs.next())
+            return rs.getInt("count");
+        else return 0;
+    }
+
+    public static int getParentCount(int grade, int Class) throws SQLException {
+        String like = "" + grade + "0" + Class + "%";
+        ResultSet rs = DBManager.execute("SELECT COUNT(DISTINCT stuNum) AS count FROM USER WHERE stuNum like ? AND identity = 'parent';", like);
+        if (rs.next())
+            return rs.getInt("count");
+        else return 0;
+    }
+
+
 }

@@ -18,6 +18,7 @@ import io.vertx.ext.web.sstore.LocalSessionStore;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,9 @@ public class CoreVirticle extends AbstractVerticle {
     public void start() throws Exception {
         Router router = Router.router(vertx);
         int serverPort = 7800;
-
+        String s = "장고분";
+        s = URLEncoder.encode(s, "utf-8");
+        System.out.println(s);
 
         router.route().handler(BodyHandler.create().setUploadsDirectory("upload-files"));
         router.route().handler(CookieHandler.create());

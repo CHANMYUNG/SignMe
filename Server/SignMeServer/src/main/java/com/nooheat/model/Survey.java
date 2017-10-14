@@ -20,13 +20,33 @@ import java.util.List;
 public class Survey extends Letter implements Statistic {
     private final static String SURVEY_SAVE = "INSERT INTO survey(writerUid, title, summary, openDate, closeDate) VALUES(?,?,?,?,?);";
     private final static String QUESTION_SAVE = "INSERT INTO surveyQuestion(question) VALUES(?)";
-    private final static String SURVEY_FINDALL = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName, (SELECT count(*)>=1 FROM surveyAnswer as SA WHERE SA.uid = ? AND SA.letterNumber = s.letterNumber) as isAnswered  FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid ORDER BY letterNumber;";
-    private final static String SURVEY_FINDONE = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid WHERE letterNumber = ?;";
+    private final static String SURVEY_FINDALL = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName, (SELECT count(*)>=1 " +
+            "FROM surveyAnswer as SA WHERE SA.uid = ? AND SA.letterNumber = s.letterNumber) as isAnswered  " +
+            "FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid ORDER BY letterNumber;";
+    private final static String SURVEY_FINDONE = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName " +
+            "FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid " +
+            "WHERE letterNumber = ?;";
     private final static String SURVEY_DELETE = "DELETE FROM survey WHERE letterNumber = ?";
     private final static String QUESTION_DELETE = "DELETE FROM surveyQuestion WHERE letterNumber = ?";
     private final static String ANSWER_SAVE = "INSERT INTO  surveyAnswer(uid, letterNumber, columnIndex, answer, answerDate) VALUES(?, ?, ?, ?, ?);";
     private final static String ANSWER_MODIFY = "UPDATE surveyAnswer SET answer = ?, answerDate = ? WHERE uid = ? AND letterNumber = ? AND columnIndex = ?;";
     private final static String COUNT_ANSWER = "SELECT count(distinct uid) as count FROM surveyAnswer WHERE letterNumber = ?;";
+    private final static String ANSWER_COUNT_STUDENT = "SELECT COUNT(distinct uid) AS count " +
+            "FROM surveyAnswer AS A " +
+            "WHERE letterNumber = ? AND (SELECT identity FROM USER AS U WHERE A.uid = U.uid) = 'child' AND (SELECT stuNum FROM USER AS U WHERE A.uid = U.uid) like ?;";
+    private final static String ANSWER_COUNT_PARENT = "SELECT COUNT(distinct uid) AS count " +
+            "FROM surveyAnswer AS A " +
+            "WHERE letterNumber = ? AND (SELECT identity FROM USER AS U WHERE A.uid = U.uid) = 'parent' AND (SELECT stuNum FROM USER AS U WHERE A.uid = U.uid) like ?;";
+
+    // TODO: ANSWER_COUNT_PARENT_ALL, ANSWER_COUNT_STUDENT_ALL
+    private final static String ANSWER_COUNT_PARENT_ALL = "SELECT COUNT(distinct uid) AS count " +
+            "FROM surveyAnswer AS A " +
+            "WHERE letterNumber = ? AND (SELECT identity FROM USER AS U WHERE A.uid = U.uid) = 'parent';";
+
+    private final static String ANSWER_COUNT_STUDENT_ALL = "SELECT COUNT(distinct uid) AS count " +
+            "FROM surveyAnswer AS A " +
+            "WHERE letterNumber = ? AND (SELECT identity FROM USER AS U WHERE A.uid = U.uid) = 'child';";
+
     private int letterNumber;
     private String summary;
     private List items;
@@ -309,14 +329,94 @@ public class Survey extends Letter implements Statistic {
     }
 
     @Override
-    public XSSFWorkbook getStatistic() {
+    public XSSFWorkbook getStatistic() throws SQLException {
         XSSFWorkbook statistic = new XSSFWorkbook();
         XSSFSheet sheet = statistic.createSheet("통계");
         XSSFRow rowHead = sheet.createRow(0);
         rowHead.createCell(0).setCellValue("제목");
-        rowHead.createCell(1).setCellValue("작성자");
-        rowHead.createCell(2).setCellValue("딥변 수");
+        rowHead.createCell(1).setCellValue(title);
+        rowHead = sheet.createRow(1);
+        rowHead.createCell(0).setCellValue("작성자");
+        rowHead.createCell(1).setCellValue(writerName);
+        rowHead = sheet.createRow(3);
+        rowHead.createCell(0).setCellValue("학생");
+        rowHead.createCell(1).setCellValue("1학년");
+        rowHead.createCell(2).setCellValue("2학년");
+        rowHead.createCell(3).setCellValue("3학년");
+        rowHead.createCell(4).setCellValue("총합");
+        rowHead = sheet.createRow(4);
 
+        ResultSet rs = DBManager.execute(ANSWER_COUNT_STUDENT, letterNumber, "1%");
+        rs.next();
+        rowHead.createCell(1).setCellValue(rs.getInt("count"));
+
+        rs = DBManager.execute(ANSWER_COUNT_STUDENT, letterNumber, "2%");
+        rs.next();
+        rowHead.createCell(2).setCellValue(rs.getInt("count"));
+        // TODO: SQL변수로 빼기
+        rs = DBManager.execute(ANSWER_COUNT_STUDENT, letterNumber, "3%");
+        rs.next();
+        rowHead.createCell(3).setCellValue(rs.getInt("count"));
+
+        rs = DBManager.execute(ANSWER_COUNT_STUDENT_ALL, letterNumber);
+        rs.next();
+        rowHead.createCell(4).setCellValue(rs.getInt("count"));
+
+        rowHead = sheet.createRow(6);
+        rowHead.createCell(0).setCellValue("학부모");
+        rowHead.createCell(1).setCellValue("1학년");
+        rowHead.createCell(2).setCellValue("2학년");
+        rowHead.createCell(3).setCellValue("3학년");
+        rowHead.createCell(4).setCellValue("총합");
+
+        rowHead = sheet.createRow(7);
+        rowHead.createCell(0).setCellValue("응답 수");
+        rs = DBManager.execute(ANSWER_COUNT_PARENT, letterNumber, "1%");
+        rs.next();
+        rowHead.createCell(1).setCellValue(rs.getInt("count"));
+
+        rs = DBManager.execute(ANSWER_COUNT_PARENT, letterNumber, "2%");
+        rs.next();
+        rowHead.createCell(2).setCellValue(rs.getInt("count"));
+
+        rs = DBManager.execute(ANSWER_COUNT_PARENT, letterNumber, "3%");
+        rs.next();
+        rowHead.createCell(3).setCellValue(rs.getInt("count"));
+
+        rs = DBManager.execute(ANSWER_COUNT_PARENT_ALL, letterNumber);
+        rs.next();
+        rowHead.createCell(4).setCellValue(rs.getInt("count"));
+
+        sheet = statistic.createSheet("세부통계");
+
+        XSSFRow row;
+        row = sheet.createRow(1);
+        row.createCell(1).setCellValue("학번");
+        row.createCell(2).setCellValue("학생응답");
+        row.createCell(3).setCellValue("학부모응답");
+
+        ResultSet stuNums = DBManager.execute("SELECT DISTINCT stuNum FROM USER ORDER BY stuNum DESC;");
+        ResultSet studentAnswer;
+        ResultSet parentAnswer;
+
+        int rowCount = 2;
+        while (stuNums.next()) {
+            row = sheet.createRow(rowCount++);
+            int stuNum = stuNums.getInt("stuNum");
+            row.createCell(1).setCellValue(stuNum);
+            studentAnswer = DBManager.execute("SELECT answer FROM letterAnswer WHERE letterNumber = ? AND uid = (SELECT uid FROM USER WHERE stuNum = ? AND identity = 'child');", letterNumber, stuNum);
+            if (studentAnswer.next()) {
+                row.createCell(2).setCellValue(studentAnswer.getBoolean("answer") ? "YES" : "NO");
+            } else {
+                row.createCell(2).setCellValue("미응답");
+            }
+            parentAnswer = DBManager.execute("SELECT answer FROM letterAnswer WHERE letterNumber = ? AND uid = (SELECT uid FROM USER WHERE stuNum = ? AND identity = 'parent');", letterNumber, stuNum);
+            if (parentAnswer.next()) {
+                row.createCell(3).setCellValue(parentAnswer.getBoolean("answer") ? "YES" : "NO");
+            } else {
+                row.createCell(3).setCellValue("미응답");
+            }
+        }
         return statistic;
     }
 
@@ -333,4 +433,47 @@ public class Survey extends Letter implements Statistic {
 
         return true;
     }
+
+    private int getParantAnswerCount() throws SQLException {
+        ResultSet rs = DBManager.execute(ANSWER_COUNT_PARENT_ALL, letterNumber);
+        rs.next();
+        return rs.getInt("count");
+    }
+
+    private int getParentAnswerCount(int grade) throws SQLException {
+        ResultSet rs = DBManager.execute(ANSWER_COUNT_PARENT, letterNumber, grade + "%");
+        rs.next();
+        return rs.getInt("count");
+    }
+
+    private int getParentAnswerCount(int grade, int Class) throws SQLException {
+        ResultSet rs = DBManager.execute(ANSWER_COUNT_PARENT, letterNumber, grade + "0" + Class + "%");
+        rs.next();
+        return rs.getInt("count");
+    }
+
+    private int getStudentAnswerCount() throws SQLException {
+        ResultSet rs = DBManager.execute(ANSWER_COUNT_STUDENT_ALL, letterNumber);
+        rs.next();
+        return rs.getInt("count");
+    }
+
+    private int getStudentAnswerCount(int grade) throws SQLException {
+        ResultSet rs = DBManager.execute(ANSWER_COUNT_STUDENT, letterNumber, grade + "%");
+        rs.next();
+        return rs.getInt("count");
+    }
+
+    private int getStudentAnswerCount(int grade, int Class) throws SQLException {
+        ResultSet rs = DBManager.execute(ANSWER_COUNT_STUDENT, letterNumber, grade + "0" + Class + "%");
+        rs.next();
+        return rs.getInt("count");
+    }
+
+    private int getNumberOfColumnIndexes() throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT COUNT(columnIndex) AS count FROM surveyQuestion WHERE letterNumber = ?", letterNumber);
+        rs.next();
+        return rs.getInt("count");
+    }
 }
+

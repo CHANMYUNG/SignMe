@@ -20,7 +20,7 @@ import java.sql.SQLException;
 /**
  * Created by NooHeat on 03/10/2017.
  */
-@API(category = Category.LETTER, summary = "통신문 통계 조회", successCode = 200, response = "[{type:RESPONSELESSLETTER, letterNumber:2, writerUid:2, title:보건교육, contents:성교육임ㅋ, openDate:2017-09-14}, {type:SURVEY, letterNumber:1, writerUid:2, title:앙, summary:브로들, items:[이잉, 이잉2], openDate:2017-09-17 00:00:00, closeDate:2017-09-27 00:00:00}]", failureCode = 500, etc = "[가정통신문은 type으로 구분.], 비로그인 : 401, 없는 letterNumber : 400, 서버 오류 : 500")
+@API(category = Category.LETTER, summary = "통신문 통계 조회", successCode = 200, response = ".xlsx파일", failureCode = 500, etc = "[가정통신문은 type으로 구분.], 비로그인 : 401, 없는 letterNumber : 400, 서버 오류 : 500")
 @URIMapping(uri = "/statistics/:type/:letterNumber", method = HttpMethod.GET)
 public class GetLetterStatistics implements Handler<RoutingContext> {
     @Override
