@@ -328,7 +328,7 @@ public class ResponseLetter extends Letter implements Statistic {
 
         row = sheet.createRow(rowCount++);
         row.createCell(0).setCellValue("총합");
-        row.createCell(5).setCellValue(getParentYesCount() + " (" + form.format(getParentAnswerCount() / (double) UserManager.getParentCount() * 100) + "%)");
+        row.createCell(5).setCellValue(getParentAnswerCount() + " (" + form.format(getParentAnswerCount() / (double) UserManager.getParentCount() * 100) + "%)");
 
         rowCount++;
         row = sheet.createRow(rowCount++);

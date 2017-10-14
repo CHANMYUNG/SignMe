@@ -1,6 +1,7 @@
 package com.nooheat.model;
 
 import com.nooheat.database.DBManager;
+import com.nooheat.manager.UserManager;
 import com.nooheat.support.Category;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -10,6 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -332,92 +334,153 @@ public class Survey extends Letter implements Statistic {
     public XSSFWorkbook getStatistic() throws SQLException {
         XSSFWorkbook statistic = new XSSFWorkbook();
         XSSFSheet sheet = statistic.createSheet("통계");
-        XSSFRow rowHead = sheet.createRow(0);
-        rowHead.createCell(0).setCellValue("제목");
-        rowHead.createCell(1).setCellValue(title);
-        rowHead = sheet.createRow(1);
-        rowHead.createCell(0).setCellValue("작성자");
-        rowHead.createCell(1).setCellValue(writerName);
-        rowHead = sheet.createRow(3);
-        rowHead.createCell(0).setCellValue("학생");
-        rowHead.createCell(1).setCellValue("1학년");
-        rowHead.createCell(2).setCellValue("2학년");
-        rowHead.createCell(3).setCellValue("3학년");
-        rowHead.createCell(4).setCellValue("총합");
-        rowHead = sheet.createRow(4);
-
-        ResultSet rs = DBManager.execute(ANSWER_COUNT_STUDENT, letterNumber, "1%");
-        rs.next();
-        rowHead.createCell(1).setCellValue(rs.getInt("count"));
-
-        rs = DBManager.execute(ANSWER_COUNT_STUDENT, letterNumber, "2%");
-        rs.next();
-        rowHead.createCell(2).setCellValue(rs.getInt("count"));
-        // TODO: SQL변수로 빼기
-        rs = DBManager.execute(ANSWER_COUNT_STUDENT, letterNumber, "3%");
-        rs.next();
-        rowHead.createCell(3).setCellValue(rs.getInt("count"));
-
-        rs = DBManager.execute(ANSWER_COUNT_STUDENT_ALL, letterNumber);
-        rs.next();
-        rowHead.createCell(4).setCellValue(rs.getInt("count"));
-
-        rowHead = sheet.createRow(6);
-        rowHead.createCell(0).setCellValue("학부모");
-        rowHead.createCell(1).setCellValue("1학년");
-        rowHead.createCell(2).setCellValue("2학년");
-        rowHead.createCell(3).setCellValue("3학년");
-        rowHead.createCell(4).setCellValue("총합");
-
-        rowHead = sheet.createRow(7);
-        rowHead.createCell(0).setCellValue("응답 수");
-        rs = DBManager.execute(ANSWER_COUNT_PARENT, letterNumber, "1%");
-        rs.next();
-        rowHead.createCell(1).setCellValue(rs.getInt("count"));
-
-        rs = DBManager.execute(ANSWER_COUNT_PARENT, letterNumber, "2%");
-        rs.next();
-        rowHead.createCell(2).setCellValue(rs.getInt("count"));
-
-        rs = DBManager.execute(ANSWER_COUNT_PARENT, letterNumber, "3%");
-        rs.next();
-        rowHead.createCell(3).setCellValue(rs.getInt("count"));
-
-        rs = DBManager.execute(ANSWER_COUNT_PARENT_ALL, letterNumber);
-        rs.next();
-        rowHead.createCell(4).setCellValue(rs.getInt("count"));
+        sheet = createFirstSheet(sheet);
 
         sheet = statistic.createSheet("세부통계");
 
-        XSSFRow row;
-        row = sheet.createRow(1);
-        row.createCell(1).setCellValue("학번");
-        row.createCell(2).setCellValue("학생응답");
-        row.createCell(3).setCellValue("학부모응답");
+        sheet = createSecondSheet(sheet);
+        return statistic;
+    }
 
-        ResultSet stuNums = DBManager.execute("SELECT DISTINCT stuNum FROM USER ORDER BY stuNum DESC;");
-        ResultSet studentAnswer;
-        ResultSet parentAnswer;
+    private XSSFSheet createFirstSheet(XSSFSheet sheet) throws SQLException {
+        DecimalFormat form = new DecimalFormat("#.##");
 
-        int rowCount = 2;
-        while (stuNums.next()) {
+        int rowCount = 0;
+        XSSFRow row = sheet.createRow(rowCount++);
+
+        row.createCell(0).setCellValue("제목");
+        row.createCell(1).setCellValue(title);
+        row = sheet.createRow(rowCount++);
+        row.createCell(0).setCellValue("작성자");
+        row.createCell(1).setCellValue(writerName);
+        rowCount++;
+        row = sheet.createRow(rowCount++);
+        row.createCell(0).setCellValue("응답 현황");
+        row = sheet.createRow(rowCount++);
+        row.createCell(0).setCellValue("학생");
+        row.createCell(1).setCellValue("1반");
+        row.createCell(2).setCellValue("2반");
+        row.createCell(3).setCellValue("3반");
+        row.createCell(4).setCellValue("4반");
+        row.createCell(5).setCellValue("총합");
+        for (int i = 1; i <= 3; i++) {
             row = sheet.createRow(rowCount++);
-            int stuNum = stuNums.getInt("stuNum");
-            row.createCell(1).setCellValue(stuNum);
-            studentAnswer = DBManager.execute("SELECT answer FROM letterAnswer WHERE letterNumber = ? AND uid = (SELECT uid FROM USER WHERE stuNum = ? AND identity = 'child');", letterNumber, stuNum);
-            if (studentAnswer.next()) {
-                row.createCell(2).setCellValue(studentAnswer.getBoolean("answer") ? "YES" : "NO");
-            } else {
-                row.createCell(2).setCellValue("미응답");
+            row.createCell(0).setCellValue(i + "학년");
+            for (int j = 1; j <= 4; j++) {
+                if (UserManager.getChildCount(i, j) == 0) row.createCell(j).setCellValue("학생이 없음");
+                else
+                    row.createCell(j).setCellValue(getStudentAnswerCount(i, j) + " (" + form.format(getStudentAnswerCount(i, j) / (double) UserManager.getChildCount(i, j) * 100) + "%)");
             }
-            parentAnswer = DBManager.execute("SELECT answer FROM letterAnswer WHERE letterNumber = ? AND uid = (SELECT uid FROM USER WHERE stuNum = ? AND identity = 'parent');", letterNumber, stuNum);
-            if (parentAnswer.next()) {
-                row.createCell(3).setCellValue(parentAnswer.getBoolean("answer") ? "YES" : "NO");
-            } else {
-                row.createCell(3).setCellValue("미응답");
+            if (UserManager.getChildCount(i) == 0) row.createCell(5).setCellValue("학생이 없음");
+            else
+                row.createCell(5).setCellValue(getStudentAnswerCount(i) + " (" + form.format(getStudentAnswerCount(i) / (double) UserManager.getChildCount(i) * 100) + "%)");
+        }
+
+        row = sheet.createRow(rowCount++);
+        row.createCell(0).setCellValue("총합");
+        row.createCell(5).setCellValue(getStudentAnswerCount() + " (" + form.format(getStudentAnswerCount() / (double) UserManager.getChildCount() * 100) + "%)");
+
+        rowCount++;
+        row = sheet.createRow(rowCount++);
+        row.createCell(0).setCellValue("학부모");
+        row.createCell(1).setCellValue("1반");
+        row.createCell(2).setCellValue("2반");
+        row.createCell(3).setCellValue("3반");
+        row.createCell(4).setCellValue("4반");
+        row.createCell(5).setCellValue("총합");
+        for (int i = 1; i <= 3; i++) {
+            row = sheet.createRow(rowCount++);
+            row.createCell(0).setCellValue(i + "학년");
+            for (int j = 1; j <= 4; j++) {
+                if (UserManager.getParentCount(i, j) == 0) row.createCell(j).setCellValue("학부모 없음");
+                else
+                    row.createCell(j).setCellValue(getParentAnswerCount(i, j) + " (" + form.format(getParentAnswerCount(i, j) / (double) UserManager.getParentCount(i, j) * 100) + "%)");
+            }
+            if (UserManager.getChildCount(i) == 0) row.createCell(5).setCellValue("학부모 없음");
+            else
+                row.createCell(5).setCellValue(getParentAnswerCount(i) + " (" + form.format(getParentAnswerCount(i) / (double) UserManager.getParentCount(i) * 100) + "%)");
+        }
+
+        row = sheet.createRow(rowCount++);
+        row.createCell(0).setCellValue("총합");
+        row.createCell(5).setCellValue(getParentAnswerCount() + " (" + form.format(getParentAnswerCount() / (double) UserManager.getParentCount() * 100) + "%)");
+
+        //int columIndexCount = getNumberOfColumnIndexes();
+        return sheet;
+    }
+
+    private XSSFSheet createSecondSheet(XSSFSheet sheet) throws SQLException {
+        int rowCount = 0;
+        int cellCount = 0;
+        XSSFRow row = sheet.createRow(rowCount++);
+        Iterator<String> questionIterator = items.iterator();
+        row.createCell(cellCount++).setCellValue("학번");
+        row.createCell(cellCount++).setCellValue("학생/학부모");
+        row.createCell(cellCount++).setCellValue("이름");
+        while (questionIterator.hasNext()) {
+            row.createCell(cellCount++).setCellValue(questionIterator.next());
+        }
+
+        Iterator<Integer> stuNumIterator = UserManager.getStuNumIterator();
+
+        while (stuNumIterator.hasNext()) {
+            int stuNum = stuNumIterator.next();
+
+            ResultSet studentRs = DBManager.execute("SELECT uid, name FROM USER WHERE identity = 'child' AND stuNum = ?", stuNum);
+            if (studentRs.next()) {
+                row = sheet.createRow(rowCount++);
+                row.createCell(0).setCellValue(stuNum);
+                row.createCell(1).setCellValue("학생");
+                row.createCell(2).setCellValue(studentRs.getString("name"));
+                ResultSet answerRs = DBManager.execute("SELECT answer FROM surveyAnswer WHERE letterNumber = ? AND uid = ? ORDER BY columnIndex;", letterNumber, studentRs.getString("uid"));
+                cellCount = 3;
+                System.out.println(answerRs.isLast());
+                System.out.println(answerRs.isAfterLast());
+                if (answerRs.next()) {
+                    do {
+                        int a = answerRs.getInt("answer");
+                        String answer = "응답없음";
+                        if (a == 1) answer = "전혀 아니다";
+                        if (a == 2) answer = "아니다";
+                        if (a == 3) answer = "보통";
+                        if (a == 4) answer = "그렇다";
+                        if (a == 5) answer = "매우 그렇다";
+                        row.createCell(cellCount++).setCellValue(answer);
+                    } while (answerRs.next());
+                } else {
+                    for (int i = 0; i < getNumberOfColumnIndexes(); i++) {
+                        row.createCell(cellCount++).setCellValue("미응답");
+                    }
+                }
+            }
+
+            ResultSet parentRs = DBManager.execute("SELECT uid, name FROM USER WHERE identity = 'parent' AND stuNum = ?", stuNum);
+            if (parentRs.next()) {
+                row = sheet.createRow(rowCount++);
+                row.createCell(0).setCellValue(stuNum);
+                row.createCell(1).setCellValue("학부모");
+                row.createCell(2).setCellValue(parentRs.getString("name"));
+                ResultSet answerRs = DBManager.execute("SELECT answer FROM surveyAnswer WHERE letterNumber = ? AND uid = ? ORDER BY columnIndex;", letterNumber, parentRs.getString("uid"));
+                cellCount = 3;
+                if (answerRs.next()) {
+                    do {
+                        int a = answerRs.getInt("answer");
+                        String answer = "응답없음";
+                        if (a == 1) answer = "전혀 아니다";
+                        if (a == 2) answer = "아니다";
+                        if (a == 3) answer = "보통";
+                        if (a == 4) answer = "그렇다";
+                        if (a == 5) answer = "매우 그렇다";
+                        row.createCell(cellCount++).setCellValue(answer);
+                    } while (answerRs.next());
+                } else {
+                    for (int i = 0; i < getNumberOfColumnIndexes(); i++) {
+                        row.createCell(cellCount++).setCellValue("미응답");
+                    }
+                }
             }
         }
-        return statistic;
+        return sheet;
     }
 
     public boolean modifyAnswer(String uid, List answers, String answerDate) throws SQLException {
@@ -434,7 +497,7 @@ public class Survey extends Letter implements Statistic {
         return true;
     }
 
-    private int getParantAnswerCount() throws SQLException {
+    private int getParentAnswerCount() throws SQLException {
         ResultSet rs = DBManager.execute(ANSWER_COUNT_PARENT_ALL, letterNumber);
         rs.next();
         return rs.getInt("count");
