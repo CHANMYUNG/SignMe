@@ -4,10 +4,7 @@ import com.nooheat.manager.JWT;
 import com.nooheat.manager.RequestManager;
 import com.nooheat.model.Survey;
 import com.nooheat.model.Task;
-import com.nooheat.support.API;
-import com.nooheat.support.Category;
-import com.nooheat.support.TaskColor;
-import com.nooheat.support.URIMapping;
+import com.nooheat.support.*;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerRequest;
@@ -22,7 +19,7 @@ import java.util.List;
  * Created by NooHeat on 04/09/2017.
  */
 
-@API(category = Category.SURVEY, summary = "설문조사 생성", requestBody = "title : String, summary : String, items : List, openDate : String, closeDate : String", successCode = 201, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
+@API(category = Category.SURVEY, summary = "설문조사 생성", requestBody = "title : String, summary : String, items : List, closeDate : String", successCode = 201, failureCode = 400, etc = "잘못된 요청 : 400, 비로그인 : 401")
 @URIMapping(uri = "/survey", method = HttpMethod.POST)
 public class PostSurvey implements Handler<RoutingContext> {
 
@@ -48,7 +45,7 @@ public class PostSurvey implements Handler<RoutingContext> {
         String writerUid = token.getUid();
         String title = req.getFormAttribute("title");
         String summary = req.getFormAttribute("summary");
-        String openDate = req.getFormAttribute("openDate");
+        String openDate = DateTime.getDateNow();
         String closeDate = req.getFormAttribute("closeDate");
         String itemString = req.getFormAttribute("items");
 

@@ -27,7 +27,7 @@ public class ResponseLetter extends Letter implements Statistic {
     private static final String FINDONE = "SELECT letterNumber, l.writerUid, l.title, l.contents, l.openDate, l.closeDate, a.name AS writerName " +
             "FROM responseLetter AS l LEFT JOIN ADMIN as a ON l.writerUid = a.uid " +
             "WHERE letterNumber = ?;";
-    private static final String INSERT = "INSERT INTO responseLetter(writerUid,title,contents,openDate,closeDate) VALUES(?,?,?,?,?);";
+    private static final String INSERT = "INSERT INTO responseLetter(letterNumber, writerUid,title,contents,openDate,closeDate) VALUES(?,?,?,?,?,?);";
     private static final String ANSWER_SAVE = "INSERT INTO letterAnswer(uid, letterNumber, answer , responseDate) VALUES(?,?,?,?);";
     private static final String ANSWER_MODIFY = "UPDATE letterAnswer SET answer = ?, answerDate = ? WHERE uid = ? AND letterNumber = ?;";
     private static final String ANSWER_COUNT_STUDENT_ALL = "SELECT COUNT(a.uid) as count " +
@@ -144,7 +144,7 @@ public class ResponseLetter extends Letter implements Statistic {
     }
 
     public boolean save() throws SQLException {
-        return DBManager.update(INSERT, writerUid, title, contents, openDate, closeDate) != -1;
+        return DBManager.update(INSERT, letterNumber, writerUid, title, contents, openDate, closeDate) != -1;
     }
 
     public static ResponseLetter findOne(int letterNumber) throws SQLException {
@@ -177,7 +177,8 @@ public class ResponseLetter extends Letter implements Statistic {
                 .toString();
     }
 
-    public ResponseLetter() {
+    public ResponseLetter() throws SQLException {
+        this.letterNumber = getNextLetterNumber();
         this.type = Category.RESPONSELETTER;
     }
 
@@ -496,5 +497,31 @@ public class ResponseLetter extends Letter implements Statistic {
         ResultSet rs = DBManager.execute(YES_COUNT_PARENT, letterNumber, grade + "0" + Class + "%");
         rs.next();
         return rs.getInt("count");
+    }
+
+    private int getNextLetterNumber() throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT max(letterNumber) AS max FROM responseLetter");
+        if (rs.next()) {
+            return rs.getInt("max") + 1;
+        } else {
+            return 1;
+        }
+    }
+
+    public boolean saveUpdated() throws SQLException {
+        boolean updated = DBManager.update("UPDATE responseLetter " +
+                "SET title = ?, contents = ?, openDate = ?, closeDate = ? " +
+                "WHERE letterNumber = ?", title, contents, openDate, closeDate, letterNumber) != -1;
+
+        boolean answersDeleted = DBManager.update("DELETE FROM letterAnswer WHERE letterNumber = ?", letterNumber) != -1;
+
+        return updated && answersDeleted;
+    }
+
+    public boolean delete() throws SQLException {
+        boolean letterDeleted = DBManager.update("DELETE FROM responseLetter WHERE letterNumber = ?", letterNumber) != -1;
+        boolean answersDeleted = DBManager.update("DELETE FROM letterAnswer WHERE letterNumber = ?", letterNumber) != -1;
+
+        return letterDeleted && answersDeleted;
     }
 }

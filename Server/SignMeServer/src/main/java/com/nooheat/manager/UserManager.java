@@ -29,7 +29,7 @@ public class UserManager {
 
         ResultSet rs = DBManager.execute("select * from " + type + " where id = ? and password = ?", AES256.encrypt(id), SHA256.encrypt(password));
 
-        boolean isAdmin = type.toUpperCase().equals("admin");
+        boolean isAdmin = type.toUpperCase().equals("ADMIN");
 
         try {
 

@@ -6,6 +6,7 @@ import com.nooheat.model.Survey;
 import com.nooheat.model.Task;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
+import com.nooheat.support.DateTime;
 import com.nooheat.support.URIMapping;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by NooHeat on 23/09/2017.
  */
-@API(category = Category.SURVEY, summary = "설문조사 조회", requestBody = "title : String, summary : String, items : List, openDate : String, closeDate : String", successCode = 200, failureCode = 400, etc = "없는 letterNumber : 400, 비로그인 : 401, 관리자 아님 :403, 서버 오류 : 500")
+@API(category = Category.SURVEY, summary = "설문조사 조회", requestBody = "title : String, summary : String, items : List, closeDate : String", successCode = 200, failureCode = 400, etc = "없는 letterNumber : 400, 비로그인 : 401, 관리자 아님 :403, 서버 오류 : 500")
 @URIMapping(uri = "/survey/:letterNumber", method = HttpMethod.PUT)
 public class PutSurvey implements Handler<RoutingContext> {
     @Override
@@ -45,7 +46,7 @@ public class PutSurvey implements Handler<RoutingContext> {
             letterNumber = Integer.parseInt(req.getParam("letterNumber"));
             String title = req.getFormAttribute("title");
             String summary = req.getFormAttribute("summary");
-            String openDate = req.getFormAttribute("openDate");
+            String openDate = DateTime.getDateNow();
             String closeDate = req.getFormAttribute("closeDate");
             List items = new JsonArray(req.getFormAttribute("items")).getList();
 
