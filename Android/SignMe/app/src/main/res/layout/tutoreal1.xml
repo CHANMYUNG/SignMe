@@ -1,65 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/tutoreal1_fl">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:scale_base_height="450"
-        app:scale_base_width="400"></com.ssomai.android.scalablelayout.ScalableLayout>
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:scale_base_height="105"
-        app:scale_base_width="400">
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:text="안녕하세요. SIGN ME입니다.\nSIGN ME 이용은 처음이시죠?\n사용방법을 지금부터\n알려드리겠습니다."
-            android:textColor="#95989A"
-            app:scale_height="105"
-            app:scale_textsize="20"
-            app:scale_width="400" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:scale_base_height="45"
-        app:scale_base_width="400">
-
-        <Button
-            android:id="@+id/skip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="SKIP>"
-            android:textColor="#95989A"
-            android:textStyle="bold"
-            app:scale_height="45"
-            app:scale_left="310"
-            app:scale_textsize="30"
-            app:scale_width="90" />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        app:scale_base_height="100"
-        app:scale_base_width="1000">
+        android:background="@drawable/tutoreal1"
 
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+        >
 
-</LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/tutoreal1_skip_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+
+                >
+
+                <Button
+                    android:id="@+id/skip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="SKIP>"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#95989A"
+                    android:textStyle="bold"
+
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+
+</FrameLayout>

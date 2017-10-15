@@ -1,36 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/tutoreal8_fl"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:scale_base_width="400"
-        app:scale_base_height="640"
-        android:background="@color/white">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="tutoreal8"
-            android:textColor="@color/black"
-            app:scale_textsize="30"
-            app:scale_height="100"
-            app:scale_width="150"
-            />
+        android:layout_height="match_parent">
+
+
+
         <Button
-            android:id="@+id/End"
+            android:id="@+id/tuto_finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rectangle"
-            android:text="시작"
-            app:scale_height="50"
-            android:textColor="@color/black"
-            app:scale_textsize="30"
-            app:scale_left="200"
+            android:background="@null"
+            android:text="시작>"
+            android:layout_alignParentRight="true"
+            android:textColor="#95989A"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
             />
+    </RelativeLayout>
 
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-
-</LinearLayout>
+</FrameLayout>

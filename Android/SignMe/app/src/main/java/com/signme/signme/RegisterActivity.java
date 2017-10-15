@@ -7,6 +7,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.signme.signme.activity.HomeActivity;
@@ -70,7 +71,7 @@ public class RegisterActivity  extends AppCompatActivity{
     }
 
     public void registerokClicked(View v){
-        /*if(check1.isChecked() && check2.isChecked() && check3.isChecked() && check4.isChecked()) {
+        if(check1.isChecked() && check2.isChecked() && check3.isChecked() && check4.isChecked()) {
             Intent agreeok = new Intent(getApplication(), Register2Activity.class);
             startActivity(agreeok);
         } else {
@@ -79,10 +80,10 @@ public class RegisterActivity  extends AppCompatActivity{
             check2.setChecked(false);
             check3.setChecked(false);
             check4.setChecked(false);
-        }*/
+        }
 
-        Intent registeragreeok = new Intent(getApplicationContext(), Register2Activity.class);
-        startActivity(registeragreeok);
+//        Intent registeragreeok = new Intent(getApplicationContext(), Register2Activity.class);
+//        startActivity(registeragreeok);
     }
 }
 

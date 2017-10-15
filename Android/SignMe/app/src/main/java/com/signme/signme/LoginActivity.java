@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
-import com.signme.signme.Forget_Activity.FogetidActivity;
+import com.signme.signme.Forget_Activity.ForgetMainActivity;
 import com.signme.signme.server.APIInterface;
 import com.signme.signme.tutoreal.TutorMainActivity;
 
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         fogetbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(LoginActivity.this,FogetidActivity.class);
+                Intent intent =new Intent(LoginActivity.this, ForgetMainActivity.class);
                 startActivity(intent);
             }
         });

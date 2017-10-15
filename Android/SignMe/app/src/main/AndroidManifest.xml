@@ -16,13 +16,12 @@
         tools:replace="android:icon">
 
         <activity android:name=".activity.HomeActivity">
+
         </activity>
         <activity android:name=".chat.indexchating"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".tutoreal.TutorMainActivity"></activity>
-        <activity android:name=".Forget_Activity.FogetidActivity"></activity>
-        <activity android:name=".Forget_Activity.FogetpwActivity"></activity>
-        <activity android:name=".PwchangeActivity"></activity>
+        <activity android:name=".Forget_Activity.PwchangeActivity"></activity>
         <activity android:name=".activity.ResponseLetterActivity"></activity>
         <activity android:name=".activity.ResponselessLetterActivity"></activity>
         <activity android:name=".activity.SurveyActivity"></activity>
@@ -37,6 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Forget_Activity.ForgetMainActivity"></activity>
         <service
             android:name=".FCM.FirebaseInstanceIDService">
             <intent-filter>

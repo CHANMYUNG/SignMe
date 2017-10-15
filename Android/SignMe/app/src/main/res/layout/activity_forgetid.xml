@@ -1,116 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/forgetid_fl">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/jyj"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_alignParentTop="true">
-
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/aoa"
-                android:layout_alignParentRight="true"
-                android:layout_toLeftOf="@+id/mxm"
-                android:src="@drawable/line3" />
-
-            <RelativeLayout
-                android:id="@+id/mxm"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/cc"
-
-                >
-
-                <ImageView
-                    android:id="@+id/zz"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/box" />
-
-                <ImageButton
-                    android:id="@+id/qw"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/bbd"
-                    android:background="@android:color/transparent"
-                    android:onClick="closeonClick"
-                    android:src="@drawable/close" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toLeftOf="@+id/qw"
-                    android:gravity="center"
-                    android:text="아이디 찾기"
-                    android:textColor="#95989A"
-                    android:textSize="15dp" />
-
-                <RelativeLayout
-                    android:id="@+id/bbd"
-                    android:layout_width="15dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"></RelativeLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/cc"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/box" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:onClick="fogetpwonClick"
-                    android:text="비밀번호 찾기"
-                    android:textColor="#95989A"
-                    android:textSize="15dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/aoa"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_alignParentBottom="true"></RelativeLayout>
-
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/aoa"
-                android:layout_toLeftOf="@+id/mxm"
-                android:src="@drawable/line3" />
-
-        </RelativeLayout>
-
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/pd"
-            android:layout_below="@+id/jyj">
+            android:layout_above="@+id/pd">
 
             <RelativeLayout
                 android:id="@+id/bbc"
@@ -182,9 +87,8 @@
                     android:id="@+id/sm"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/exo"
-                    android:layout_centerVertical="true">
+                    android:layout_centerHorizontal="true">
 
                     <TextView
                         android:id="@+id/cna"
@@ -217,7 +121,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:layout_toLeftOf="@+id/email3"
-                            android:layout_toRightOf="@+id/email"
+                            android:layout_toRightOf="@+id/forgetid_email"
                             android:gravity="center"
                             android:text="\@"
                             android:textColor="#95989A"
@@ -263,6 +167,7 @@
 
                     <Button
                         android:layout_width="70dp"
+                        android:id="@+id/fogetid_check"
                         android:layout_height="35dp"
                         android:background="@drawable/shape"
                         android:onClick="fogetidcheck"
@@ -300,4 +205,4 @@
                 android:textSize="25dp" />
         </RelativeLayout>
     </RelativeLayout>
-</LinearLayout>
+</FrameLayout>

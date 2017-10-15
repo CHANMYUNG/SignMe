@@ -1,112 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/forgetpwd_fl">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:id="@+id/jyj"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_alignParentTop="true">
-
-
-            <RelativeLayout
-                android:id="@+id/mxm"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/cc"
-
-                >
-
-                <ImageView
-                    android:id="@+id/idfindbtn"
-                    android:onClick="id_findonClick"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/box" />
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="아이디 찾기"
-                    android:textColor="#95989A"
-                    android:textSize="15dp" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/cc"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true">
-
-                <ImageButton
-                    android:id="@+id/qw"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/bbd"
-                    android:background="@android:color/transparent"
-                    android:onClick="closeonClick"
-                    android:src="@drawable/close" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/box" />
-
-                <RelativeLayout
-                    android:id="@+id/bbd"
-                    android:layout_width="15dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"></RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toLeftOf="@+id/bbd"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:text="비밀번호 찾기"
-                    android:textColor="#95989A"
-                    android:textSize="15dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/aoa"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_alignParentBottom="true"></RelativeLayout>
-
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/aoa"
-                android:layout_toLeftOf="@+id/cc"
-                android:src="@drawable/line3" />
-
-        </RelativeLayout>
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/pd"
-            android:layout_below="@+id/jyj">
+           >
 
             <RelativeLayout
                 android:id="@+id/bbc"
@@ -128,7 +36,7 @@
 
                     <TextView
                         android:id="@+id/textViewd"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/textViewc"
                         android:text="비밀번호를 잊으셨나요?"
@@ -137,7 +45,7 @@
 
                     <TextView
                         android:id="@+id/textViewc"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="이메일 인증을 통해 알 수 있습니다."
@@ -154,7 +62,7 @@
 
                     <TextView
                         android:id="@+id/momo"
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="35dp"
                         android:gravity="center_vertical"
                         android:text="아이디"
@@ -180,15 +88,7 @@
                         android:layout_height="match_parent"
                         android:layout_toRightOf="@+id/user_id"></RelativeLayout>
 
-                    <Button
-                        android:id="@+id/id_check"
-                        android:layout_width="100dp"
-                        android:layout_height="35dp"
-                        android:layout_toRightOf="@+id/iu"
-                        android:background="@drawable/shape"
-                        android:onClick="idcheckonClick"
-                        android:text="확인"
-                        android:textColor="#95989A" />
+
 
                 </RelativeLayout>
 
@@ -205,11 +105,12 @@
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:text="이메일"
+                        android:gravity="center_vertical"
                         android:textColor="#95989A"
                         android:textSize="20dp" />
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/emailcode_send"
                         android:onClick="spend_emailcodeonClick"
                         android:layout_width="80dp"
                         android:layout_height="30dp"
@@ -238,7 +139,7 @@
                             android:textSize="15dp" />
 
                         <TextView
-                            android:id="@+id/email_whelk"
+                            android:id="@+id/pwdemail_whelk"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:layout_toLeftOf="@+id/forgetpwd_email3"
@@ -262,7 +163,7 @@
                     </RelativeLayout>
 
                     <Spinner
-                        android:id="@+id/email2"
+                        android:id="@+id/fogetpwd_email2"
                         android:layout_width="140dp"
                         android:layout_height="35dp"
                         android:layout_alignParentRight="true"
@@ -311,7 +212,7 @@
                         android:layout_toRightOf="@+id/emailcode"
                         ></RelativeLayout>
                     <Button
-                        android:id="@+id/forgetpwd_save"
+                        android:id="@+id/emailcode_check"
                         android:layout_width="70dp"
                         android:layout_height="35dp"
                         android:layout_toRightOf="@+id/cnc"
@@ -351,4 +252,4 @@
                 android:textSize="25dp" />
         </RelativeLayout>
     </RelativeLayout>
-</LinearLayout>
+</FrameLayout>
