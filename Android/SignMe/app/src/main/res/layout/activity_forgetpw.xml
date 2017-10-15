@@ -79,6 +79,7 @@
                         android:background="@drawable/rectangle"
                         android:inputType="text"
                         android:padding="10dp"
+                        android:textSize="10dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray" />
 
@@ -133,10 +134,11 @@
                             android:layout_alignParentLeft="true"
                             android:background="@drawable/rectangle"
                             android:inputType="text"
+                            android:textSize="10dp"
                             android:padding="10dp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray"
-                            android:textSize="15dp" />
+                          />
 
                         <TextView
                             android:id="@+id/pwdemail_whelk"
@@ -159,7 +161,7 @@
                             android:padding="10dp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray"
-                            android:textSize="15dp" />
+                            android:textSize="10dp" />
                     </RelativeLayout>
 
                     <Spinner
@@ -203,6 +205,7 @@
                         android:background="@drawable/rectangle"
                         android:inputType="text"
                         android:padding="10dp"
+                        android:textSize="10dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray" />
                     <RelativeLayout
