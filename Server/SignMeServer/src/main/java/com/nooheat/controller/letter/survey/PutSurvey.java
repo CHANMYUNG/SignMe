@@ -3,6 +3,7 @@ package com.nooheat.controller.letter.survey;
 import com.nooheat.manager.JWT;
 import com.nooheat.manager.RequestManager;
 import com.nooheat.model.Survey;
+import com.nooheat.model.Task;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.support.URIMapping;
@@ -65,14 +66,17 @@ public class PutSurvey implements Handler<RoutingContext> {
                 return;
             }
 
+            Task task = Task.findOne("SURVEY", survey.getLetterNumber());
+
             if (!survey.getWriterUid().equals(token.getUid())) {
                 res.setStatusCode(403).end();
                 return;
             }
 
             boolean success = survey.update(title, summary, items, openDate, closeDate).saveUpdated();
-
-            if (success) {
+            task.update(title, summary, openDate, closeDate);
+            boolean taskUpdated = task.saveUpdated();
+            if (success && taskUpdated) {
                 res.setStatusCode(200).end();
             } else {
                 res.setStatusCode(500).end();
@@ -80,6 +84,7 @@ public class PutSurvey implements Handler<RoutingContext> {
         } catch (NumberFormatException e) {
             res.setStatusCode(400).end();
         } catch (SQLException exception) {
+            exception.printStackTrace();
             res.setStatusCode(500).end();
         }
 

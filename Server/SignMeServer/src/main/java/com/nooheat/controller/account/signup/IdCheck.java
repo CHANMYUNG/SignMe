@@ -17,10 +17,11 @@ import java.sql.SQLException;
  * Created by NooHeat on 17/07/2017.
  */
 @URIMapping(uri = "/account/id/check/:id", method = HttpMethod.GET)
-@API(category = Category.ACCOUNT, summary = "아이디 유효성 검사", requestBody = "id : String", successCode = 200, failureCode = 400)
+@API(category = Category.ACCOUNT, summary = "아이디 유효성 검사", requestBody = "id : String",  successCode = 200, failureCode = 400)
 public class IdCheck implements Handler<RoutingContext> {
     @Override
     public void handle(RoutingContext context) {
+
         String id = context.request().getParam("id");
 
         ResultSet userRs = DBManager.execute("SELECT * FROM USER WHERE id = ?", AES256.encrypt(id));

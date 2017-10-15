@@ -3,8 +3,10 @@ package com.nooheat.controller.letter.survey;
 import com.nooheat.manager.JWT;
 import com.nooheat.manager.RequestManager;
 import com.nooheat.model.Survey;
+import com.nooheat.model.Task;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
+import com.nooheat.support.TaskColor;
 import com.nooheat.support.URIMapping;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -57,12 +59,15 @@ public class PostSurvey implements Handler<RoutingContext> {
 
         List items = new JsonArray(itemString).getList();
 
-        Survey survey = new Survey(writerUid, title, summary, items, openDate, closeDate);
-
-        boolean result = false;
         try {
+            Survey survey = new Survey(writerUid, title, summary, items, openDate, closeDate);
+            Task task = new Task(writerUid, title, summary, openDate, closeDate, TaskColor.geneateColorCode(), "SURVEY", survey.getLetterNumber());
+
+            boolean result = false;
+            boolean taskSaved = false;
             result = survey.save();
-            if (result) res.setStatusCode(201).end();
+            taskSaved = task.save();
+            if (result && taskSaved) res.setStatusCode(201).end();
             else res.setStatusCode(400).end();
         } catch (SQLException e) {
             e.printStackTrace();

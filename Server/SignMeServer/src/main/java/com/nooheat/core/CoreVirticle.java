@@ -1,5 +1,6 @@
 package com.nooheat.core;
 
+import com.nooheat.manager.Mail;
 import com.nooheat.support.Routing;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Context;
@@ -30,9 +31,6 @@ public class CoreVirticle extends AbstractVerticle {
     public void start() throws Exception {
         Router router = Router.router(vertx);
         int serverPort = 7800;
-        String s = "장고분";
-        s = URLEncoder.encode(s, "utf-8");
-        System.out.println(s);
 
         router.route().handler(BodyHandler.create().setUploadsDirectory("upload-files"));
         router.route().handler(CookieHandler.create());

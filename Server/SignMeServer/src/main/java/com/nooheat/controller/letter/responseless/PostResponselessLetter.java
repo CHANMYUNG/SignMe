@@ -2,6 +2,7 @@ package com.nooheat.controller.letter.responseless;
 
 import com.nooheat.manager.JWT;
 import com.nooheat.model.ResponselessLetter;
+import com.nooheat.model.Task;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.support.DateTime;
@@ -43,7 +44,6 @@ public class PostResponselessLetter implements Handler<RoutingContext> {
         String openDate = DateTime.getDateNow();
 
         ResponselessLetter letter = new ResponselessLetter(writerUid, title, contents, openDate);
-
         boolean success = false;
         try {
             success = letter.save();

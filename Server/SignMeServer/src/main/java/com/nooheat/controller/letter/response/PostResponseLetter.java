@@ -3,10 +3,8 @@ package com.nooheat.controller.letter.response;
 import com.nooheat.manager.JWT;
 import com.nooheat.manager.RequestManager;
 import com.nooheat.model.ResponseLetter;
-import com.nooheat.support.API;
-import com.nooheat.support.Category;
-import com.nooheat.support.DateTime;
-import com.nooheat.support.URIMapping;
+import com.nooheat.model.Task;
+import com.nooheat.support.*;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -40,13 +38,12 @@ public class PostResponseLetter implements Handler<RoutingContext> {
             return;
         }
 
-        String writeruid = token.getUid();
+        String writerUid = token.getUid();
         String title = req.getFormAttribute("title");
         String contents = req.getFormAttribute("contents");
         String openDate = DateTime.getDateNow();
         String closeDate = req.getFormAttribute("closeDate");
-
-        if (RequestManager.paramValidationCheck(writeruid, title, contents, closeDate) == false) {
+        if (RequestManager.paramValidationCheck(writerUid, title, contents, closeDate) == false) {
             res.setStatusCode(400).end();
             return;
         }
@@ -56,12 +53,15 @@ public class PostResponseLetter implements Handler<RoutingContext> {
         letter.setContents(contents);
         letter.setOpenDate(openDate);
         letter.setCloseDate(closeDate);
-        letter.setWriterUid(writeruid);
+        letter.setWriterUid(writerUid);
+
+        //Task task = new Task(writerUid, title, "", openDate, closeDate, TaskColor.geneateColorCode(), "RESPONSE");
 
         try {
             boolean success = letter.save();
-
-            if (success) res.setStatusCode(201).end();
+            //  boolean taskSaved = task.save();
+            // TODO : taskSaved 사용
+            if (success /*&& taskSaved*/) res.setStatusCode(201).end();
             else res.setStatusCode(400).end();
 
         } catch (SQLException e) {

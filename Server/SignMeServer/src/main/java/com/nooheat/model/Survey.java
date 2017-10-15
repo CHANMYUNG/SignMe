@@ -20,8 +20,9 @@ import java.util.List;
  * Created by NooHeat on 17/09/2017.
  */
 public class Survey extends Letter implements Statistic {
-    private final static String SURVEY_SAVE = "INSERT INTO survey(writerUid, title, summary, openDate, closeDate) VALUES(?,?,?,?,?);";
-    private final static String QUESTION_SAVE = "INSERT INTO surveyQuestion(question) VALUES(?)";
+    private final static String SURVEY_SAVE = "INSERT INTO survey(letterNumber,writerUid, title, summary, openDate, closeDate) VALUES(?,?,?,?,?,?);";
+    private final static String SURVEY_UPDATE = "UPDATE SURVEY SET title = ?, summary = ?, openDate = ?, closeDate = ? WHERE letterNumber = ?";
+    private final static String QUESTION_SAVE = "INSERT INTO surveyQuestion(letterNumber,columnIndex,question) VALUES(?,?,?)";
     private final static String SURVEY_FINDALL = "SELECT s.letterNumber, s.title, s.writerUid, s.summary, s.openDate, s.closeDate, a.name AS writerName, (SELECT count(*)>=1 " +
             "FROM surveyAnswer as SA WHERE SA.uid = ? AND SA.letterNumber = s.letterNumber) as isAnswered  " +
             "FROM survey AS s LEFT JOIN ADMIN AS a ON s.writerUid = a.uid ORDER BY letterNumber;";
@@ -56,11 +57,12 @@ public class Survey extends Letter implements Statistic {
     private String writerName;
     private boolean isAnswered;
 
-    public Survey() {
+    public Survey() throws SQLException {
+        this.letterNumber = getNextLetterNumber();
         this.type = Category.SURVEY;
     }
 
-    public Survey(int letterNumber, String writerUid, String title, String summary, List items, String openDate, String closeDate) {
+    public Survey(int letterNumber, String writerUid, String title, String summary, List items, String openDate, String closeDate) throws SQLException {
         this.type = Category.SURVEY;
         this.letterNumber = letterNumber;
         this.writerUid = writerUid;
@@ -71,38 +73,34 @@ public class Survey extends Letter implements Statistic {
         this.closeDate = closeDate;
     }
 
-    public Survey(String writerUid, String title, String summary, List items, String openDate, String closeDate) {
-        this.type = Category.SURVEY;
-        this.writerUid = writerUid;
-        this.title = title;
-        this.summary = summary;
-        this.items = items;
-        this.openDate = openDate;
-        this.closeDate = closeDate;
+    public Survey(String writerUid, String title, String summary, List items, String openDate, String closeDate) throws SQLException {
+        this(getNextLetterNumber(), writerUid, title, summary, items, openDate, closeDate);
     }
 
     public boolean save() throws SQLException {
-        boolean surveySave = DBManager.update(SURVEY_SAVE, writerUid, title, summary, openDate, closeDate) == 1;
+        boolean surveySave = DBManager.update(SURVEY_SAVE, letterNumber, writerUid, title, summary, openDate, closeDate) == 1;
         boolean questionSave = saveItems();
 
         return surveySave && questionSave;
     }
 
     public boolean saveItems() throws SQLException {
+        int columnIndex = 1;
 
         for (Object question : items) {
-            if (DBManager.update(QUESTION_SAVE, (String) question) != 1) return false;
+            if (DBManager.update(QUESTION_SAVE, letterNumber, columnIndex++, (String) question) != 1) return false;
         }
 
         return true;
     }
 
     public boolean saveUpdated() throws SQLException {
-        boolean surveySave = DBManager.update(SURVEY_SAVE, writerUid, title, summary, openDate, closeDate) == 1;
+        boolean surveySave = DBManager.update(SURVEY_UPDATE, title, summary, openDate, closeDate, letterNumber) == 1;
+        boolean answersDeleted = DBManager.update("DELETE FROM surveyAnswer WHERE letterNumber = ?", letterNumber) != -1;
         boolean isDeletedAll = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
         boolean questionSave = saveItems();
 
-        return surveySave && isDeletedAll && questionSave;
+        return surveySave && isDeletedAll && questionSave && answersDeleted;
     }
 
     public static JsonArray findAll(String uid) throws SQLException {
@@ -236,8 +234,8 @@ public class Survey extends Letter implements Statistic {
     public boolean delete() throws SQLException {
         boolean areQuestionsDeleted = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
         boolean isSurveyDeleted = DBManager.update(SURVEY_DELETE, this.letterNumber) != -1;
-
-        return areQuestionsDeleted && isSurveyDeleted;
+        boolean answersDeleted = DBManager.update("DELETE FROM surveyAnswer WHERE letterNumber = ?", letterNumber) != -1;
+        return areQuestionsDeleted && isSurveyDeleted && answersDeleted;
     }
 
     public boolean answer(String uid, List answers, String answerDate) throws SQLException {
@@ -537,6 +535,13 @@ public class Survey extends Letter implements Statistic {
         ResultSet rs = DBManager.execute("SELECT COUNT(columnIndex) AS count FROM surveyQuestion WHERE letterNumber = ?", letterNumber);
         rs.next();
         return rs.getInt("count");
+    }
+
+    public static int getNextLetterNumber() throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT max(letterNumber) AS max FROM SURVEY");
+        if (rs.next()) {
+            return rs.getInt("max") + 1;
+        } else return 1;
     }
 }
 

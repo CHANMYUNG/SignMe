@@ -9,6 +9,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.impl.CookieImpl;
+import sun.security.provider.SHA;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class UserManager {
 
         ResultSet rs = DBManager.execute("select * from " + type + " where id = ? and password = ?", AES256.encrypt(id), SHA256.encrypt(password));
 
-        boolean isAdmin = type.equals("admin");
+        boolean isAdmin = type.toUpperCase().equals("admin");
 
         try {
 
@@ -112,4 +113,44 @@ public class UserManager {
         }
     }
 
+    public static String getIdByEmail(String email, String type) throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT id FROM " + type + " WHERE email = ?;", email);
+        if (rs.next()) {
+            return AES256.decrypt(rs.getString("id"));
+        } else return null;
+    }
+
+    public static boolean verifyCodeAuthentication(String verifyCode, String type) throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT id FROM " + type + " WHERE verifyCode = ?;", verifyCode);
+        if (rs.next()) {
+            return true;
+        } else return false;
+    }
+
+    public static boolean updateVerifyCode(String email, String verifyCode, String type) throws SQLException {
+        return DBManager.update("UPDATE " + type + " SET verifyCode = ? WHERE email = ?", verifyCode, email) != -1;
+    }
+
+    public static String getEmailById(String id, String type) throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT email FROM " + type + " WHERE id = ?;", AES256.encrypt(id));
+        if (rs.next()) {
+            return rs.getString("email");
+        } else return null;
+    }
+
+    public static void updatePasswordByUid(String uid, String password, String type) throws SQLException {
+        DBManager.update("UPDATE " + type + " SET password = ? WHERE uid = ?", password, uid);
+        return;
+    }
+
+    public static boolean updatePasswordByVerifyCode(String verifyCode, String New, String type) throws SQLException {
+        return DBManager.update("UPDATE " + type + " SET password = ?, verifyCode = null WHERE verifyCode = ?", SHA256.encrypt(New), verifyCode) == 1;
+    }
+
+    public static String getPasswordByUid(String uid, String type) throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT password FROM " + type + " WHERE uid = ?;");
+        if (rs.next()) {
+            return rs.getString("password");
+        } else return null;
+    }
 }

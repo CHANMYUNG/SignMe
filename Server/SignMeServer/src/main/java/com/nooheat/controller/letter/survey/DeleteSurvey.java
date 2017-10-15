@@ -2,6 +2,7 @@ package com.nooheat.controller.letter.survey;
 
 import com.nooheat.manager.JWT;
 import com.nooheat.model.Survey;
+import com.nooheat.model.Task;
 import com.nooheat.support.API;
 import com.nooheat.support.Category;
 import com.nooheat.support.URIMapping;
@@ -53,6 +54,7 @@ public class DeleteSurvey implements Handler<RoutingContext> {
                 res.setStatusCode(400).end();
                 return;
             }
+            Task task = Task.findOne("SURVEY", survey.getLetterNumber());
 
             if (!survey.getWriterUid().equals(token.getUid())) {
                 res.setStatusCode(403).end();
@@ -61,8 +63,9 @@ public class DeleteSurvey implements Handler<RoutingContext> {
 
 
             boolean success = survey.delete();
-            if (success) res.setStatusCode(200).end();
-            else res.setStatusCode(500).end();
+            boolean taskDeleted = task.delete();
+            if (success && taskDeleted) res.setStatusCode(200).end();
+            else res.setStatusCode(400).end();
         } catch (SQLException e) {
             res.setStatusCode(500).end();
         }
