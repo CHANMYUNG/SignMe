@@ -83,7 +83,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="200dp"
                 android:gravity="center_vertical"
-                android:text="비밀번호 입력"
+                android:text="비밀번호 \n입력"
                 android:textColor="#95989A"
                 android:textSize="15dp" />
             <EditText
@@ -102,7 +102,7 @@
                 android:layout_below="@+id/pwdtv"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
-                android:text="비밀번호 재입력"
+                android:text="비밀번호 \n재입력"
                 android:textColor="#95989A"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"
