@@ -121,4 +121,13 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST("/change/password")
     Call<Void> changePassword(@FieldMap Map<String, Object> fieldMap, @Header("signme-x-access-token") String token);
+
+    @FormUrlEncoded
+    @POST("/account/leave")
+    Call<Void> accountLeave(@Field("type") String type, @Header("signme-x-access-token") String token);
+
+
+    @GET("/letter/responsed")
+    Call<JsonArray> getResponsedLetterList(@Header("signme-x-access-token") String token);
+
 }

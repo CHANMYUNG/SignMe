@@ -7,5 +7,6 @@ package com.signme.signme;
 public enum LetterTypes {
     RESPONSELESSLETTER,
     SURVEY,
-    RESPONSELETTER
+    RESPONSELETTER,
+    ALL
 }

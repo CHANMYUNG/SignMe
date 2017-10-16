@@ -27,6 +27,7 @@ public class LetterListViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        currentFragment = fragments.get(position);
         return fragments.get(position);
     }
 

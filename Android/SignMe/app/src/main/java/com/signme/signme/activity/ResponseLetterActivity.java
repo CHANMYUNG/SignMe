@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -88,6 +89,7 @@ public class ResponseLetterActivity extends AppCompatActivity {
         responseSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(":!@#@", "onClick: " + modifyMode);
                 if (modifyMode == false) {
                     answerToResponseLetter();
                 } else {

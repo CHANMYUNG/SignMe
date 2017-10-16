@@ -156,7 +156,7 @@ public class LetterListFragment extends Fragment {
     }
 
     public void loadLetters(final LetterTypes type) {
-        Log.d("!@#!#", "뿌아아아: ");
+        Log.d("!@#!#", "뿌아아아: " + type.toString());
         mDataset.clear();
         mAdapter.notifyDataSetChanged();
 
@@ -168,7 +168,9 @@ public class LetterListFragment extends Fragment {
         apiInterface = retrofit.create(APIInterface.class);
 
         Call<JsonArray> call = null;
-
+        if (type == LetterTypes.ALL) {
+            call = apiInterface.getLetterList(getActivity().getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+        }
         if (type == LetterTypes.RESPONSELESSLETTER) {
             call = apiInterface.getResponselessList(getActivity().getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
         }
@@ -184,23 +186,27 @@ public class LetterListFragment extends Fragment {
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if (response.code() == 200) {
                     JsonArray letters = response.body();
+                    Log.d("REFRESH", "onResponse: " + letters.toString());
                     Iterator iterator = letters.iterator();
                     while (iterator.hasNext()) {
                         JsonObject item = (JsonObject) iterator.next();
-
+                        Log.d("REFRESH", "onResponse: OBJECT : " + item.toString());
                         int letterNumber = Integer.parseInt(item.get("letterNumber").toString().replace("\"", ""));
                         String title = item.get("title").toString().replace("\"", "");
                         String writerName = item.get("writerName").toString().replace("\"", "");
                         String openDate = item.get("openDate").toString().replace("\"", "");
-
+                        LetterTypes ftype = type;
+                        if (type == LetterTypes.ALL) {
+                            ftype = LetterTypes.valueOf(item.get("type").toString().replace("\"", ""));
+                        }
                         LetterListItem letterItem = new LetterListItem();
                         letterItem.setLetterNumber(letterNumber);
-                        letterItem.setType(type);
+                        letterItem.setType(ftype);
                         letterItem.setTitle(title);
                         letterItem.setWriterName(writerName);
                         letterItem.setOpenDate(openDate);
                         letterItem.setLetterNumber(letterNumber);
-                        if (type != LetterTypes.RESPONSELESSLETTER) {
+                        if (ftype != LetterTypes.RESPONSELESSLETTER) {
                             letterItem.setAnswered(Boolean.parseBoolean(item.get("isAnswered").toString().replace("\"", "")));
                             letterItem.setCloseDate(item.get("closeDate").toString().replace("\"", ""));
 
@@ -242,14 +248,18 @@ public class LetterListFragment extends Fragment {
         }
     }
 
-    public void refresh() {
-        if (getArguments().getInt("index", 0) == 0) {
+    public void refresh(int position) {
+        Log.d("PAGE", "refresh: " + position);
+        if (position == 0) {
+            loadLetters(LetterTypes.ALL);
+        }
+        if (position == 1) {
             loadLetters(LetterTypes.RESPONSELESSLETTER);
         }
-        if (getArguments().getInt("index", 0) == 1) {
+        if (position == 2) {
             loadLetters(LetterTypes.RESPONSELETTER);
         }
-        if (getArguments().getInt("index", 0) == 2) {
+        if (position == 3) {
             loadLetters(LetterTypes.SURVEY);
         }
     }

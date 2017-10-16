@@ -60,22 +60,6 @@
                 app:mcv_selectionColor="#33C5F3"
 
                 />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/calendarView"
-                android:layout_marginBottom="?attr/actionBarSize"
-                android:padding="20dp">
-
-                <TextView
-                    android:id="@+id/scahuletext"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="132128931893719237189237891738917239871289371893798127389127389712983712983791823789127398172398172938\n131729371892371893789123891273981723891739817289"
-                    android:textColor="#FFF"
-                    android:textSize="20dp" />
-            </ScrollView>
         </RelativeLayout>
     </RelativeLayout>
 

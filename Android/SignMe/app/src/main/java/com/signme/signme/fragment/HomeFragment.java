@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<LetterListItem> mDataset = new ArrayList<>();
     private Retrofit retrofit;
     private APIInterface apiInterface;
-    private TextView tv;
+
     private long btnPressTime = 0;
     MaterialCalendarView mcv;
     final Context context = getActivity();
@@ -126,8 +126,8 @@ public class HomeFragment extends Fragment {
             initTask(view);
             return view;
         }
-        if(getArguments().getInt("index",0)==2){
-            view=inflater.inflate(R.layout.fragment_mypage,container,false);
+        if (getArguments().getInt("index", 0) == 2) {
+            view = inflater.inflate(R.layout.fragment_mypage, container, false);
             initMypage(view);
         }
         return view;
@@ -154,16 +154,17 @@ public class HomeFragment extends Fragment {
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
-
+                Log.d("#$#$", "onTabSelected: " + wasSelected);
+                Log.d("#$#$", "onTabSelected1: " + (currentFragment == null));
                 if (currentFragment == null) currentFragment = adapter.getCurrentFragment();
-
-                if (wasSelected && currentFragment != null) {
-                    currentFragment.refresh();
+                Log.d("#$#$", "onTabSelected2: " + (currentFragment != null));
+                if (wasSelected && (currentFragment != null)) {
+                    currentFragment.refresh(position);
                     return true;
                 }
                 if (currentFragment != null) currentFragment.willBeHidden();
 
-                viewPager.setCurrentItem(position, false);
+                viewPager.setCurrentItem(position, true);
 
                 if (currentFragment == null) return true;
 
@@ -188,7 +189,6 @@ public class HomeFragment extends Fragment {
 
     private void initTask(View view) {
         fragmentContainer2 = (FrameLayout) view.findViewById(R.id.fragment_Calender);
-        tv = (TextView) view.findViewById(R.id.scahuletext);
         mcv = (MaterialCalendarView) view.findViewById(R.id.calendarView);
         mcv.setShowOtherDates(MaterialCalendarView.SHOW_ALL);
 
@@ -313,64 +313,64 @@ public class HomeFragment extends Fragment {
             }
         }
     }
+
     //mypage
-    private void initMypage(View view){
-        fragmentContainer3=(FrameLayout)view.findViewById(R.id.fragment_Mypage);
+    private void initMypage(View view) {
+        fragmentContainer3 = (FrameLayout) view.findViewById(R.id.fragment_Mypage);
         //이메일 수정
-        RelativeLayout email_rl=(RelativeLayout)view.findViewById(R.id.email_rl);
+        RelativeLayout email_rl = (RelativeLayout) view.findViewById(R.id.email_rl);
         email_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent emailintent=new Intent(getActivity(), ChangeEmailActivity.class);
+                Intent emailintent = new Intent(getActivity(), ChangeEmailActivity.class);
                 startActivity(emailintent);
             }
         });
         //비밀번호 수정
-        RelativeLayout pwd_rl=(RelativeLayout)view.findViewById(R.id.pwd_rl);
+        RelativeLayout pwd_rl = (RelativeLayout) view.findViewById(R.id.pwd_rl);
         pwd_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pwdintent=new Intent(getActivity(), ChangePwdActivity.class);
+                Intent pwdintent = new Intent(getActivity(), ChangePwdActivity.class);
                 startActivity(pwdintent);
 
             }
         });
         //참여한 가정통신문
-        RelativeLayout reseponsed_rl=(RelativeLayout)view.findViewById(R.id.respnosed_rl);
+        final RelativeLayout reseponsed_rl = (RelativeLayout) view.findViewById(R.id.respnosed_rl);
         reseponsed_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent responsedintent=new Intent(getActivity(),ResponsedLetterActivity.class);
+                Intent responsedintent = new Intent(getActivity(), ResponsedLetterActivity.class);
                 startActivity(responsedintent);
             }
         });
 
 
         //푸시알람 설정정
-        ToggleButton toggleButton=(ToggleButton)view.findViewById(R.id.fcm_btn);
+        ToggleButton toggleButton = (ToggleButton) view.findViewById(R.id.fcm_btn);
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                        Toast.makeText(getActivity(),"푸시 알람이 설정 됬습니다.",Toast.LENGTH_LONG).show();
+                if (isChecked) {
+                    Toast.makeText(getActivity(), "푸시 알람이 설정 됬습니다.", Toast.LENGTH_LONG).show();
 
-                }
-                else{
-                    Toast.makeText(getActivity(),"푸시 알람이 해제 됬습니다.",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), "푸시 알람이 해제 됬습니다.", Toast.LENGTH_LONG).show();
 
                 }
             }
         });
 
         //로그아웃
-        RelativeLayout logoutlayout=(RelativeLayout) view.findViewById(R.id.Logout_layout);
+        RelativeLayout logoutlayout = (RelativeLayout) view.findViewById(R.id.Logout_layout);
         logoutlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dialog=new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setTitle("로그아웃");
                 dialog.setMessage("로그아웃하시겠습니까?");
-                dialog.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         getActivity().getSharedPreferences("test", MODE_PRIVATE).edit().clear().commit();
@@ -379,7 +379,7 @@ public class HomeFragment extends Fragment {
                         getActivity().finish();
                     }
                 });
-                dialog.setNegativeButton("취소",new DialogInterface.OnClickListener(){
+                dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -389,20 +389,47 @@ public class HomeFragment extends Fragment {
             }
         });
         //탈퇴
-        RelativeLayout outbtn=(RelativeLayout)view.findViewById(R.id.secession);
+        RelativeLayout outbtn = (RelativeLayout) view.findViewById(R.id.secession);
         outbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dialog=new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setTitle("탈퇴");
                 dialog.setMessage("탈퇴하시겠습니까?");
-                dialog.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        retrofit = new Retrofit.Builder().baseUrl(APIInterface.URL).addConverterFactory(GsonConverterFactory.create()).build();
+                        apiInterface = retrofit.create(APIInterface.class);
 
+                        Call<Void> call = apiInterface.accountLeave("USER", getActivity().getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if (response.code() == 200) {
+                                    getActivity().getSharedPreferences("test", MODE_PRIVATE).edit().clear().commit();
+                                    new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE)
+                                            .setTitleText("탈퇴")
+                                            .setContentText("탈퇴하였습니다.")
+                                            .setConfirmText("완료").setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                                            startActivity(intent);
+                                            getActivity().finish();
+                                        }
+                                    }).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+
+                            }
+                        });
                     }
                 });
-                dialog.setNegativeButton("취소",new DialogInterface.OnClickListener(){
+                dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -442,7 +469,7 @@ public class HomeFragment extends Fragment {
                     while (true) {
                         if (endDateTime.toDate().after(startDateTime.toDate())) {
                             ArrayList<Integer> list = dayMap.get(CalendarDay.from(startDateTime.toDate()));
-                            if(list == null) list = new ArrayList<>();
+                            if (list == null) list = new ArrayList<>();
                             list.add(color);
                             dayMap.put(CalendarDay.from(startDateTime.toDate()), list);
                         } else {
