@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "723929003349",
-    "firebase_url": "https://signme-c2f40.firebaseio.com",
-    "project_id": "signme-c2f40",
-    "storage_bucket": "signme-c2f40.appspot.com"
+    "project_number": "55036479458",
+    "firebase_url": "https://dsm-signme.firebaseio.com",
+    "project_id": "dsm-signme",
+    "storage_bucket": "dsm-signme.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:723929003349:android:140bfbae2fbb3ee4",
+        "mobilesdk_app_id": "1:55036479458:android:140bfbae2fbb3ee4",
         "android_client_info": {
           "package_name": "com.signme.signme"
         }
       },
       "oauth_client": [
         {
-          "client_id": "723929003349-9k77enpfmpcmoraf669666p737ffq0lg.apps.googleusercontent.com",
+          "client_id": "55036479458-rgu1bd7b0ltmadk3pg60j9r7p84fmt23.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD5CS4I5yXfdd0Yp8Cz0OLvE0y74Xz_efI"
+          "current_key": "AIzaSyChNWUQ5-SN4co_SVK9W4uGlk3EAY4shOE"
         }
       ],
       "services": {

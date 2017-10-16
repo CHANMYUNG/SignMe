@@ -5,49 +5,45 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.RemoteMessage;
 import com.signme.signme.R;
+import com.signme.signme.activity.HomeActivity;
 
 /**
- * Created by dsm2016 on 2017-09-27.
+ * Created by NooHeat on 16/10/2017.
  */
 
-public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService
-{
-    private static final String TAG="FirebaseMsgService";
-
-    private String msg;
+public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
+    private static final String TAG = "FirebaseMsgService";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-       super.onMessageReceived(remoteMessage);
-        if(remoteMessage.getNotification()!=null){
-            Log.d(TAG,"Message data payload:"+remoteMessage.getNotification().getBody());
-            NotificationCompat.Builder mbuilder=new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
-               .setContentTitle("새로운 가정통신문이 올라왔습니다.")
-               .setContentText(msg)
-               .setAutoCancel(true)
-               .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)).setVibrate(new long[]{1,1000});
-            NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(0,mbuilder.build());
-        }
+        Log.d("!@#!@#", "onMessageReceived: ");
+        sendNotification(remoteMessage.getData().get("message"));
+    }
 
+    private void sendNotification(String messageBody) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                PendingIntent.FLAG_ONE_SHOT);
 
-//        msg=remoteMessage.getNotification().getBody();
-//        Intent intent=new Intent(this, MainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent contentIntent=PendingIntent.getActivity(this,0,new Intent(this,MainActivity.class),0);
-//        NotificationCompat.Builder mbuilder=new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
-//                .setContentTitle("새로운 가정통신문이 올라왔습니다.")
-//                .setContentText(msg)
-//                .setAutoCancel(true)
-//                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-//                .setVibrate(new long[]{1,1000});
-//        NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-//        notificationManager.notify(0,mbuilder.build());
-//        mbuilder.setContentIntent(contentIntent);
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("FCM Push Test")
+                .setContentText(messageBody)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 }

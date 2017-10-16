@@ -9,11 +9,10 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.signme.signme.FCM.FirebaseInstanceIDService;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.signme.signme.R;
 import com.signme.signme.fragment.HomeFragment;
 import com.signme.signme.fragment.HomeViewPagerAdapter;
-import com.signme.signme.fragment.TaskFragment;
 
 /**
  * Created by NooHeat on 28/09/2017.
@@ -31,6 +30,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initUI();
 
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        FirebaseInstanceId.getInstance().getToken();
+        Log.d("TOKEN", "onCreate: " + FirebaseInstanceId.getInstance().getToken());
         this.createNavItems();
 
 
