@@ -29,7 +29,7 @@ public class ResponseLetter extends Letter implements Statistic {
             "WHERE letterNumber = ?;";
     private static final String INSERT = "INSERT INTO responseLetter(letterNumber, writerUid,title,contents,openDate,closeDate) VALUES(?,?,?,?,?,?);";
     private static final String ANSWER_SAVE = "INSERT INTO letterAnswer(uid, letterNumber, answer , responseDate) VALUES(?,?,?,?);";
-    private static final String ANSWER_MODIFY = "UPDATE letterAnswer SET answer = ?, answerDate = ? WHERE uid = ? AND letterNumber = ?;";
+    private static final String ANSWER_MODIFY = "UPDATE letterAnswer SET answer = ?, responseDate = ? WHERE uid = ? AND letterNumber = ?;";
     private static final String ANSWER_COUNT_STUDENT_ALL = "SELECT COUNT(a.uid) as count " +
             "FROM letterAnswer as a " +
             "WHERE letterNumber = ? AND (SELECT identity from USER as _U where _U.uid=a.uid) ='child'";
@@ -76,7 +76,6 @@ public class ResponseLetter extends Letter implements Statistic {
     private String closeDate;
     private String writerName;
     private int letterNumber;
-    private boolean isAnswered;
     private Category type;
 
     public Category getType() {
@@ -251,6 +250,7 @@ public class ResponseLetter extends Letter implements Statistic {
             letter.put("letterNumber", rs.getInt("letterNumber"));
             letter.put("contents", rs.getString("contents"));
             letter.put("isAnswered", rs.getBoolean("isAnswered"));
+            letter.put("type", "RESPONSE");
             response.add(letter);
         }
         return response;

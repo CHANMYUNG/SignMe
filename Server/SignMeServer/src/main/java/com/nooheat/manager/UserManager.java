@@ -139,7 +139,7 @@ public class UserManager {
     }
 
     public static void updatePasswordByUid(String uid, String password, String type) throws SQLException {
-        DBManager.update("UPDATE " + type + " SET password = ? WHERE uid = ?", password, uid);
+        DBManager.update("UPDATE " + type + " SET password = ? WHERE uid = ?", SHA256.encrypt(password), uid);
         return;
     }
 
@@ -148,9 +148,25 @@ public class UserManager {
     }
 
     public static String getPasswordByUid(String uid, String type) throws SQLException {
-        ResultSet rs = DBManager.execute("SELECT password FROM " + type + " WHERE uid = ?;");
+        ResultSet rs = DBManager.execute("SELECT password FROM " + type + " WHERE uid = ?;", uid);
         if (rs.next()) {
             return rs.getString("password");
         } else return null;
+    }
+
+    public static String getEmailByUid(String uid, String type) throws SQLException {
+        ResultSet rs = DBManager.execute("SELECT email FROM " + type + " WHERE uid = ?;", uid);
+        if (rs.next()) {
+            return rs.getString("email");
+        } else return null;
+    }
+
+    public static void updateEmailByUid(String uid, String email, String type) throws SQLException {
+        DBManager.update("UPDATE " + type + " SET email = ? WHERE uid = ?", email, uid);
+        return;
+    }
+
+    public static void deleteAccount(String uid, String type) throws SQLException {
+        DBManager.update("UPDATE " + type + " SET id = null, password = null, email = null WHERE uid = ?", uid);
     }
 }

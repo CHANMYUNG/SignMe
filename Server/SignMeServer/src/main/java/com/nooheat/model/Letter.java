@@ -11,6 +11,7 @@ public class Letter implements Comparable<Letter> {
     Category type;
     String writerUid;
     String title;
+    boolean isAnswered;
 
     public JsonObject toJson() {
         return null;
@@ -27,5 +28,9 @@ public class Letter implements Comparable<Letter> {
 
     public String getTitle() {
         return title;
+    }
+
+    public boolean isAnswered() {
+        return isAnswered;
     }
 }

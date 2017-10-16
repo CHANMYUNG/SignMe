@@ -55,7 +55,6 @@ public class Survey extends Letter implements Statistic {
     private List items;
     private String closeDate;
     private String writerName;
-    private boolean isAnswered;
 
     public Survey() throws SQLException {
         this.letterNumber = getNextLetterNumber();
@@ -116,6 +115,7 @@ public class Survey extends Letter implements Statistic {
             object.put("closeDate", rs.getString("closeDate"));
             object.put("writerName", rs.getString("writerName"));
             object.put("isAnswered", rs.getBoolean("isAnswered"));
+            object.put("type", "SURVEY");
             ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", object.getInteger("letterNumber"));
 
             JsonArray items = new JsonArray();
