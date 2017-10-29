@@ -140,9 +140,9 @@ public class HomeFragment extends Fragment {
         viewPager = (AHBottomNavigationViewPager) view.findViewById(R.id.view_pager);
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("전체보기", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("비응답형", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("응답형", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem("설문조사", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("비응답형", R.drawable.ic_insert_drive_file_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("응답형", R.drawable.ic_description_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem("설문조사", R.drawable.ic_edit_black_24dp, R.color.colorPrimary);
 
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
@@ -159,17 +159,18 @@ public class HomeFragment extends Fragment {
                 if (currentFragment == null) currentFragment = adapter.getCurrentFragment();
                 Log.d("#$#$", "onTabSelected2: " + (currentFragment != null));
                 if (wasSelected && (currentFragment != null)) {
-                    currentFragment.refresh(position);
+                    currentFragment = (LetterListFragment) adapter.getItem(position);
+                    currentFragment.refresh();
                     return true;
                 }
-                if (currentFragment != null) currentFragment.willBeHidden();
+                //if (currentFragment != null) currentFragment.willBeHidden();
 
                 viewPager.setCurrentItem(position, true);
 
                 if (currentFragment == null) return true;
 
                 currentFragment = adapter.getCurrentFragment();
-                currentFragment.willBeDisplayed();
+                //currentFragment.willBeDisplayed();
 
                 return true;
             }

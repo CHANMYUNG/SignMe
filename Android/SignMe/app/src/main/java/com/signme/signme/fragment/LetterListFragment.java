@@ -47,6 +47,7 @@ public class LetterListFragment extends Fragment {
     private ArrayList<LetterListItem> mDataset = new ArrayList<>();
     private Retrofit retrofit;
     private APIInterface apiInterface;
+    private int type = 0;
 
     public static LetterListFragment newInstance(int index) {
         LetterListFragment fragment = new LetterListFragment();
@@ -60,7 +61,7 @@ public class LetterListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_survey_list, container, false);
-
+        type = getArguments().getInt("index", 0);
         fragmentContainer = (FrameLayout) view.findViewById(R.id.fragment_container);
 
         mDataset = new ArrayList<>();
@@ -185,6 +186,7 @@ public class LetterListFragment extends Fragment {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if (response.code() == 200) {
+                    Log.d("!@#!", "onResponse: " + call.request().url());
                     JsonArray letters = response.body();
                     Log.d("REFRESH", "onResponse: " + letters.toString());
                     Iterator iterator = letters.iterator();
@@ -248,18 +250,36 @@ public class LetterListFragment extends Fragment {
         }
     }
 
-    public void refresh(int position) {
-        Log.d("PAGE", "refresh: " + position);
-        if (position == 0) {
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("!#", "onResume: " + type);
+        if (type == 0) {
             loadLetters(LetterTypes.ALL);
         }
-        if (position == 1) {
+        if (type == 1) {
             loadLetters(LetterTypes.RESPONSELESSLETTER);
         }
-        if (position == 2) {
+        if (type == 2) {
             loadLetters(LetterTypes.RESPONSELETTER);
         }
-        if (position == 3) {
+        if (type == 3) {
+            loadLetters(LetterTypes.SURVEY);
+        }
+    }
+
+    public void refresh() {
+        Log.d("!@#!", "refresh: ");
+        if (type == 0) {
+            loadLetters(LetterTypes.ALL);
+        }
+        if (type == 1) {
+            loadLetters(LetterTypes.RESPONSELESSLETTER);
+        }
+        if (type == 2) {
+            loadLetters(LetterTypes.RESPONSELETTER);
+        }
+        if (type == 3) {
             loadLetters(LetterTypes.SURVEY);
         }
     }

@@ -43,8 +43,8 @@ public class HomeActivity extends AppCompatActivity {
         viewPager = (AHBottomNavigationViewPager) findViewById(R.id.view_pager);
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("Letters", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("Tasks", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("MyPage", R.drawable.ic_chat_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("Tasks", R.drawable.ic_event_note_black_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("MyPage", R.drawable.main_mypage, R.color.colorPrimary);
 
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);

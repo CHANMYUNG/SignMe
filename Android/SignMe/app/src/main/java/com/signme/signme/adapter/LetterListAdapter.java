@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,11 +71,10 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
                                     @Override
                                     public void onClick(SweetAlertDialog sDialog) {
                                         // reuse previous dialog instance
-                                        if(item.getCloseDate().compareTo(DateTime.getDateNow()) == -1){
+                                        if (item.getCloseDate().compareTo(DateTime.getDateNow()) == -1) {
                                             Toast.makeText(sDialog.getContext(), "응답 기한이 지났습니다.", Toast.LENGTH_SHORT).show();
                                             sDialog.dismiss();
-                                        }
-                                        else {
+                                        } else {
                                             finalLetterActivity.putExtra("modify", true);
                                             v.getContext().startActivity(finalLetterActivity);
                                         }
@@ -83,20 +83,29 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
                                 })
                                 .show();
                         return;
-                    }
-                    else{
+                    } else {
                         v.getContext().startActivity(letterActivity);
                     }
 
                 }
 
             });
-
+            LetterListItem item = mLetterSet.get(position);
             titleView = (TextView) view.findViewById(R.id.letter_title);
             writerNameView = (TextView) view.findViewById(R.id.letter_writerName);
             openDateView = (TextView) view.findViewById(R.id.letter_openDate);
             closeDateView = (TextView) view.findViewById(R.id.letter_closeDate);
             closeDateMentView = (TextView) view.findViewById(R.id.letter_closeDateMent);
+            ImageView letterLogo = (ImageView) view.findViewById(R.id.letterLogo);
+//            if (item.getType() == LetterTypes.RESPONSELESSLETTER) {
+//                letterLogo.setImageResource(R.drawable.ic_insert_drive_file_black_24dp);
+//            }
+//            if (item.getType() == LetterTypes.SURVEY) {
+//                letterLogo.setImageResource(R.drawable.ic_edit_black_24dp);
+//            }
+//            if (item.getType() == LetterTypes.RESPONSELETTER) {
+//                letterLogo.setImageResource(R.drawable.ic_description_black_24dp);
+//            }
         }
 
     }
@@ -136,7 +145,6 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
     public int getItemCount() {
         return mLetterSet.size();
     }
-
 
 
 }
