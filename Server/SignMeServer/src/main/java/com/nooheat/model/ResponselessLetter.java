@@ -82,7 +82,9 @@ public class ResponselessLetter extends Letter implements Statistic {
 
     public static JsonArray findAll() {
 
-        JsonArray response = new JsonArray();
+        List<JsonObject> list = new ArrayList<>();
+
+        JsonArray response;
 
         ResultSet rs = DBManager.execute(FINDALL);
 
@@ -96,12 +98,14 @@ public class ResponselessLetter extends Letter implements Statistic {
                 object.put("contents", rs.getString("contents"));
                 object.put("openDate", rs.getString("openDate"));
                 object.put("writerName", rs.getString("writerName"));
-                response.add(object);
+                list.add(object);
             }
-            return response;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        list.sort(((o1, o2) -> o2.getString("openDate").compareTo(o2.getString("openDate"))));
+
+        response = new JsonArray(list.toString());
 
         return response;
     }
@@ -129,7 +133,13 @@ public class ResponselessLetter extends Letter implements Statistic {
     }
 
     public boolean save() throws SQLException {
-        return DBManager.update(SAVE, writerUid, title, contents, openDate) == 1;
+        if (DBManager.update(SAVE, writerUid, title, contents, openDate) == 1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     public ResponselessLetter update(String title, String contents) {
@@ -158,11 +168,23 @@ public class ResponselessLetter extends Letter implements Statistic {
     }
 
     public boolean saveUpdated() throws SQLException {
-        return DBManager.update(UPDATE, title, contents, openDate, letterNumber) == 1;
+        if (DBManager.update(UPDATE, title, contents, openDate, letterNumber) == 1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     public boolean delete() throws SQLException {
-        return DBManager.update(DELETE, letterNumber) != -1;
+        if (DBManager.update(DELETE, letterNumber) != -1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     @Override

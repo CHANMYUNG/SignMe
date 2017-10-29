@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -143,7 +144,13 @@ public class ResponseLetter extends Letter implements Statistic {
     }
 
     public boolean save() throws SQLException {
-        return DBManager.update(INSERT, letterNumber, writerUid, title, contents, openDate, closeDate) != -1;
+        if (DBManager.update(INSERT, letterNumber, writerUid, title, contents, openDate, closeDate) != -1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     public static ResponseLetter findOne(int letterNumber) throws SQLException {
@@ -230,16 +237,30 @@ public class ResponseLetter extends Letter implements Statistic {
     }
 
     public boolean answer(String uid, boolean answer) throws SQLException {
-        return DBManager.update(ANSWER_SAVE, uid, this.letterNumber, answer, DateTime.getDateNow()) != -1;
+        if (DBManager.update(ANSWER_SAVE, uid, this.letterNumber, answer, DateTime.getDateNow()) != -1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     public boolean modifyAnswer(String uid, boolean answer) throws SQLException {
-        return DBManager.update(ANSWER_MODIFY, answer, DateTime.getDateNow(), uid, letterNumber) != -1;
+        if (DBManager.update(ANSWER_MODIFY, answer, DateTime.getDateNow(), uid, letterNumber) != -1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     public static JsonArray findAll(String uid) throws SQLException {
         ResultSet rs = DBManager.execute(FINDALL, uid);
-        JsonArray response = new JsonArray();
+        List<JsonObject> list = new ArrayList<>();
+        JsonArray response;
+
         while (rs.next()) {
             JsonObject letter = new JsonObject();
             letter.put("title", rs.getString("title"));
@@ -251,8 +272,13 @@ public class ResponseLetter extends Letter implements Statistic {
             letter.put("contents", rs.getString("contents"));
             letter.put("isAnswered", rs.getBoolean("isAnswered"));
             letter.put("type", "RESPONSE");
-            response.add(letter);
+
+            list.add(letter);
         }
+        list.sort((o1, o2) -> o2.getString("openDate").compareTo(o1.getString("openDate")));
+
+        response = new JsonArray(list.toString());
+
         return response;
     }
 
@@ -303,7 +329,7 @@ public class ResponseLetter extends Letter implements Statistic {
         }
 
         row = sheet.createRow(rowCount++);
-        row.createCell(0).setCellValue("총합");
+        row.createCell(0).setCellValue("전체 총합");
         row.createCell(5).setCellValue(getStudentAnswerCount() + " (" + form.format(getStudentAnswerCount() / (double) UserManager.getChildCount() * 100) + "%)");
 
         rowCount++;
@@ -328,7 +354,7 @@ public class ResponseLetter extends Letter implements Statistic {
         }
 
         row = sheet.createRow(rowCount++);
-        row.createCell(0).setCellValue("총합");
+        row.createCell(0).setCellValue("전체 총합");
         row.createCell(5).setCellValue(getParentAnswerCount() + " (" + form.format(getParentAnswerCount() / (double) UserManager.getParentCount() * 100) + "%)");
 
         rowCount++;
@@ -356,7 +382,7 @@ public class ResponseLetter extends Letter implements Statistic {
         }
 
         row = sheet.createRow(rowCount++);
-        row.createCell(0).setCellValue("총합");
+        row.createCell(0).setCellValue("전체 총합");
         row.createCell(5).setCellValue(getStudentYesCount() + " (" + form.format(getStudentYesCount() / (double) getStudentAnswerCount() * 100) + "%)");
 
         rowCount++;
@@ -381,7 +407,7 @@ public class ResponseLetter extends Letter implements Statistic {
         }
 
         row = sheet.createRow(rowCount++);
-        row.createCell(0).setCellValue("총합");
+        row.createCell(0).setCellValue("전체 총합");
         row.createCell(5).setCellValue(getParentYesCount() + " (" + form.format(getParentYesCount() / (double) getParentAnswerCount() * 100) + "%)");
 
         return sheet;
@@ -515,13 +541,25 @@ public class ResponseLetter extends Letter implements Statistic {
 
         boolean answersDeleted = DBManager.update("DELETE FROM letterAnswer WHERE letterNumber = ?", letterNumber) != -1;
 
-        return updated && answersDeleted;
+        if (updated && answersDeleted) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     public boolean delete() throws SQLException {
         boolean letterDeleted = DBManager.update("DELETE FROM responseLetter WHERE letterNumber = ?", letterNumber) != -1;
         boolean answersDeleted = DBManager.update("DELETE FROM letterAnswer WHERE letterNumber = ?", letterNumber) != -1;
 
-        return letterDeleted && answersDeleted;
+        if (letterDeleted && answersDeleted) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 }

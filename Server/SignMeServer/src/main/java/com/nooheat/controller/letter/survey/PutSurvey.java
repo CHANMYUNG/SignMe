@@ -49,8 +49,8 @@ public class PutSurvey implements Handler<RoutingContext> {
             String openDate = DateTime.getDateNow();
             String closeDate = req.getFormAttribute("closeDate");
             List items = new JsonArray(req.getFormAttribute("items")).getList();
-
-            if (RequestManager.paramValidationCheck(title, summary, openDate, closeDate, items) == false) {
+            List answerForms = new JsonArray(req.getFormAttribute("answerForms")).getList();
+            if (RequestManager.paramValidationCheck(title, summary, openDate, closeDate, items, answerForms) == false) {
                 res.setStatusCode(400).end();
                 return;
             }
@@ -73,8 +73,8 @@ public class PutSurvey implements Handler<RoutingContext> {
                 res.setStatusCode(403).end();
                 return;
             }
-
-            boolean success = survey.update(title, summary, items, openDate, closeDate).saveUpdated();
+            System.out.println(answerForms);
+            boolean success = survey.update(title, summary, items, answerForms, openDate, closeDate).saveUpdated();
             task.update(title, summary, openDate, closeDate);
             boolean taskUpdated = task.saveUpdated();
             if (success && taskUpdated) {

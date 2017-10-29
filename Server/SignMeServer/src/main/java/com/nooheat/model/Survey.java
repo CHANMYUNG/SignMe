@@ -8,13 +8,12 @@ import io.vertx.core.json.JsonObject;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.JSONArray;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by NooHeat on 17/09/2017.
@@ -53,6 +52,7 @@ public class Survey extends Letter implements Statistic {
     private int letterNumber;
     private String summary;
     private List items;
+    private List answerForms;
     private String closeDate;
     private String writerName;
 
@@ -61,7 +61,7 @@ public class Survey extends Letter implements Statistic {
         this.type = Category.SURVEY;
     }
 
-    public Survey(int letterNumber, String writerUid, String title, String summary, List items, String openDate, String closeDate) throws SQLException {
+    public Survey(int letterNumber, String writerUid, String title, String summary, List items, List answerForms, String openDate, String closeDate) throws SQLException {
         this.type = Category.SURVEY;
         this.letterNumber = letterNumber;
         this.writerUid = writerUid;
@@ -70,41 +70,77 @@ public class Survey extends Letter implements Statistic {
         this.items = items;
         this.openDate = openDate;
         this.closeDate = closeDate;
+        this.answerForms = answerForms;
     }
 
-    public Survey(String writerUid, String title, String summary, List items, String openDate, String closeDate) throws SQLException {
-        this(getNextLetterNumber(), writerUid, title, summary, items, openDate, closeDate);
+    public Survey(String writerUid, String title, String summary, List items, List answerForms, String openDate, String closeDate) throws SQLException {
+        this(getNextLetterNumber(), writerUid, title, summary, items, answerForms, openDate, closeDate);
     }
 
     public boolean save() throws SQLException {
         boolean surveySave = DBManager.update(SURVEY_SAVE, letterNumber, writerUid, title, summary, openDate, closeDate) == 1;
         boolean questionSave = saveItems();
+        boolean answerFormSave = saveAnswerForms();
+        if (surveySave && questionSave && answerFormSave) DBManager.commit();
+        else DBManager.rollback();
+        return surveySave && questionSave && answerFormSave;
+    }
 
-        return surveySave && questionSave;
+    public boolean saveAnswerForms() throws SQLException {
+
+        int columnIndex = 1;
+        for (int i = 0; i < answerForms.size(); i++) {
+            //for (Object answerForm : answerForms) {
+            System.out.println("ASDASDA");
+            int answerFormIndex = 1;
+            System.out.println("DDASD" + answerForms.get(i).toString());
+            List answerSheet = Arrays.asList(answerForms.get(i).toString().substring(1, answerForms.get(i).toString().length() - 1).split(", "));
+            for (Object answer : answerSheet) {
+                if (DBManager.update("INSERT INTO surveyAnswerSheet(letterNumber,questionNumber,answerNumber, answer) VALUES(?,?,?,?);", letterNumber, columnIndex, answerFormIndex++, answer) == -1) {
+                    DBManager.rollback();
+                    return false;
+                }
+            }
+            columnIndex++;
+
+        }
+        DBManager.commit();
+        return true;
     }
 
     public boolean saveItems() throws SQLException {
         int columnIndex = 1;
 
         for (Object question : items) {
-            if (DBManager.update(QUESTION_SAVE, letterNumber, columnIndex++, (String) question) != 1) return false;
+            if (DBManager.update(QUESTION_SAVE, letterNumber, columnIndex++, question) == -1) {
+                DBManager.rollback();
+                return false;
+            }
         }
 
+        DBManager.commit();
         return true;
     }
 
     public boolean saveUpdated() throws SQLException {
-        boolean surveySave = DBManager.update(SURVEY_UPDATE, title, summary, openDate, closeDate, letterNumber) == 1;
+        boolean surveySave = DBManager.update(SURVEY_UPDATE, title, summary, openDate, closeDate, letterNumber) != -1;
+        boolean answerFormsDeleted = DBManager.update("DELETE FROM surveyAnswerSheet WHERE letterNumber =?", letterNumber) != -1;
         boolean answersDeleted = DBManager.update("DELETE FROM surveyAnswer WHERE letterNumber = ?", letterNumber) != -1;
         boolean isDeletedAll = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
         boolean questionSave = saveItems();
+        boolean answerFormsSaved = saveAnswerForms();
 
-        return surveySave && isDeletedAll && questionSave && answersDeleted;
+        if (surveySave && isDeletedAll && questionSave && answersDeleted && answerFormsDeleted && answerFormsSaved)
+            DBManager.commit();
+        else DBManager.rollback();
+
+        return surveySave && isDeletedAll && questionSave && answersDeleted && answerFormsDeleted && answerFormsSaved;
     }
 
     public static JsonArray findAll(String uid) throws SQLException {
         ResultSet rs = DBManager.execute(SURVEY_FINDALL, uid);
-        JsonArray result = new JsonArray();
+        List<JsonObject> list = new ArrayList<>();
+        JsonArray result;
         while (rs.next()) {
             System.out.println("!@#!@#");
             JsonObject object = new JsonObject();
@@ -116,16 +152,13 @@ public class Survey extends Letter implements Statistic {
             object.put("writerName", rs.getString("writerName"));
             object.put("isAnswered", rs.getBoolean("isAnswered"));
             object.put("type", "SURVEY");
-            ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", object.getInteger("letterNumber"));
 
-            JsonArray items = new JsonArray();
-            while (inner_rs.next()) {
-
-                items.add(inner_rs.getString("question"));
-            }
-            object.put("items", items);
-            result.add(object);
+            list.add(object);
         }
+
+        list.sort((o1, o2) -> o2.getString("openDate").compareTo(o1.getString("openDate")) * -1);
+
+        result = new JsonArray(list.toString());
 
         return result;
     }
@@ -145,12 +178,25 @@ public class Survey extends Letter implements Statistic {
             ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", rs.getInt("letterNumber"));
 
             List<String> items = new ArrayList<>();
+
+            List<List<String>> answerForms = new ArrayList<>();
+
+            int questionNumber = 1;
             while (inner_rs.next()) {
 
                 items.add(inner_rs.getString("question"));
+
+                ArrayList<String> answerSheet = new ArrayList<>();
+                ResultSet answerSheetRs = DBManager.execute("SELECT answer FROM surveyAnswerSheet WHERE letterNumber = ? AND questionNumber = ? ORDER BY answerNumber", letterNumber, questionNumber++);
+                while (answerSheetRs.next()) {
+                    answerSheet.add(answerSheetRs.getString("answer"));
+                }
+                answerForms.add(answerSheet);
             }
 
+
             survey.setItems(items);
+            survey.setAnswerForms(answerForms);
 
             return survey;
         } else return null;
@@ -171,15 +217,29 @@ public class Survey extends Letter implements Statistic {
             survey.setCloseDate(rs.getString("closeDate"));
             survey.setWriterName(rs.getString("writerName"));
             survey.setAnswered(rs.getBoolean("isAnswered"));
-            ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", rs.getInt("letterNumber"));
+            int letterNumber = rs.getInt("letterNumber");
+            ResultSet inner_rs = DBManager.execute("SELECT columnIndex, question FROM surveyQuestion WHERE letterNumber = ?", letterNumber);
 
             List<String> items = new ArrayList<>();
+
+            List<List<String>> answerForms = new ArrayList<>();
+
+            int questionNumber = 1;
             while (inner_rs.next()) {
 
                 items.add(inner_rs.getString("question"));
+
+                ArrayList<String> answerSheet = new ArrayList<>();
+                ResultSet answerSheetRs = DBManager.execute("SELECT answer FROM surveyAnswerSheet WHERE letterNumber = ? AND questionNumber = ? ORDER BY answerNumber", letterNumber, questionNumber);
+                while (answerSheetRs.next()) {
+                    answerSheet.add(answerSheetRs.getString("answer"));
+                }
+                answerForms.add(answerSheet);
             }
 
+
             survey.setItems(items);
+            survey.setAnswerForms(answerForms);
             surveys.add(survey);
         }
 
@@ -199,6 +259,7 @@ public class Survey extends Letter implements Statistic {
                 .put("openDate", this.openDate)
                 .put("closeDate", this.closeDate)
                 .put("isAnswered", this.isAnswered)
+                .put("answerForms", this.answerForms)
                 .toString();
     }
 
@@ -214,16 +275,17 @@ public class Survey extends Letter implements Statistic {
                 .put("items", this.items)
                 .put("openDate", this.openDate)
                 .put("isAnswered", this.isAnswered)
-                .put("closeDate", this.closeDate);
+                .put("closeDate", this.closeDate)
+                .put("answerForms", this.answerForms);
     }
 
-    public Survey update(String title, String summary, List items, String openDate, String closeDate) {
+    public Survey update(String title, String summary, List items, List answerForms, String openDate, String closeDate) {
         this.title = title;
         this.summary = summary;
         this.items = items;
         this.openDate = openDate;
         this.closeDate = closeDate;
-
+        this.answerForms = answerForms;
         return this;
     }
 
@@ -232,9 +294,14 @@ public class Survey extends Letter implements Statistic {
     }
 
     public boolean delete() throws SQLException {
+        boolean answerFormsDeleted = DBManager.update("DELETE FROM surveyAnswerForms WHERE letterNumber = ?", letterNumber) != -1;
         boolean areQuestionsDeleted = DBManager.update(QUESTION_DELETE, this.letterNumber) != -1;
         boolean isSurveyDeleted = DBManager.update(SURVEY_DELETE, this.letterNumber) != -1;
         boolean answersDeleted = DBManager.update("DELETE FROM surveyAnswer WHERE letterNumber = ?", letterNumber) != -1;
+        if (answersDeleted && isSurveyDeleted && answersDeleted && answerFormsDeleted)
+            DBManager.commit();
+        else DBManager.rollback();
+
         return areQuestionsDeleted && isSurveyDeleted && answersDeleted;
     }
 
@@ -245,10 +312,11 @@ public class Survey extends Letter implements Statistic {
             int answer = iterator.next();
 
             if (DBManager.update(ANSWER_SAVE, uid, this.letterNumber, columnIndex++, answer, answerDate) == -1) {
+                DBManager.rollback();
                 return false;
             }
         }
-
+        DBManager.commit();
         return true;
     }
 
@@ -432,18 +500,21 @@ public class Survey extends Letter implements Statistic {
                 row.createCell(2).setCellValue(studentRs.getString("name"));
                 ResultSet answerRs = DBManager.execute("SELECT answer FROM surveyAnswer WHERE letterNumber = ? AND uid = ? ORDER BY columnIndex;", letterNumber, studentRs.getString("uid"));
                 cellCount = 3;
+                int questionNumber = 1;
                 System.out.println(answerRs.isLast());
                 System.out.println(answerRs.isAfterLast());
                 if (answerRs.next()) {
                     do {
                         int a = answerRs.getInt("answer");
+                        System.out.println("ANSWER: " + a);
                         String answer = "응답없음";
-                        if (a == 1) answer = "전혀 아니다";
-                        if (a == 2) answer = "아니다";
-                        if (a == 3) answer = "보통";
-                        if (a == 4) answer = "그렇다";
-                        if (a == 5) answer = "매우 그렇다";
+                        if (a == 1) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(0);
+                        if (a == 2) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(1);
+                        if (a == 3) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(2);
+                        if (a == 4) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(3);
+                        if (a == 5) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(4);
                         row.createCell(cellCount++).setCellValue(answer);
+                        questionNumber++;
                     } while (answerRs.next());
                 } else {
                     for (int i = 0; i < getNumberOfColumnIndexes(); i++) {
@@ -460,16 +531,18 @@ public class Survey extends Letter implements Statistic {
                 row.createCell(2).setCellValue(parentRs.getString("name"));
                 ResultSet answerRs = DBManager.execute("SELECT answer FROM surveyAnswer WHERE letterNumber = ? AND uid = ? ORDER BY columnIndex;", letterNumber, parentRs.getString("uid"));
                 cellCount = 3;
+                int questionNumber = 1;
                 if (answerRs.next()) {
                     do {
                         int a = answerRs.getInt("answer");
                         String answer = "응답없음";
-                        if (a == 1) answer = "전혀 아니다";
-                        if (a == 2) answer = "아니다";
-                        if (a == 3) answer = "보통";
-                        if (a == 4) answer = "그렇다";
-                        if (a == 5) answer = "매우 그렇다";
+                        if (a == 1) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(0);
+                        if (a == 2) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(1);
+                        if (a == 3) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(2);
+                        if (a == 4) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(3);
+                        if (a == 5) answer = (String) ((List) answerForms.get(questionNumber - 1)).get(4);
                         row.createCell(cellCount++).setCellValue(answer);
+                        questionNumber++;
                     } while (answerRs.next());
                 } else {
                     for (int i = 0; i < getNumberOfColumnIndexes(); i++) {
@@ -488,10 +561,12 @@ public class Survey extends Letter implements Statistic {
             int answer = iterator.next();
 
             if (DBManager.update(ANSWER_MODIFY, answer, answerDate, uid, letterNumber, columnIndex++) == -1) {
+                DBManager.rollback();
                 return false;
             }
         }
 
+        DBManager.commit();
         return true;
     }
 
@@ -542,6 +617,14 @@ public class Survey extends Letter implements Statistic {
         if (rs.next()) {
             return rs.getInt("max") + 1;
         } else return 1;
+    }
+
+    public List getAnswerForms() {
+        return answerForms;
+    }
+
+    public void setAnswerForms(List answerForms) {
+        this.answerForms = answerForms;
     }
 }
 

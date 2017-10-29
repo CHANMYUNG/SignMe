@@ -20,6 +20,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection.setAutoCommit(false);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -76,5 +77,11 @@ public class DBManager {
         return statement;
     }
 
+    public synchronized static void commit() throws SQLException {
+        connection.commit();
+    }
 
+    public synchronized static void rollback() throws SQLException {
+        connection.rollback();
+    }
 }

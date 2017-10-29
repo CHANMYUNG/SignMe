@@ -203,7 +203,13 @@ public class Task {
     }
 
     public boolean save() throws SQLException {
-        return DBManager.update(SAVE, letterNumber, writerUid, title, summary, startDate, endDate, color, type) == 1;
+        if (DBManager.update(SAVE, letterNumber, writerUid, title, summary, startDate, endDate, color, type) == 1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     public boolean isDuplicated() {
@@ -229,11 +235,23 @@ public class Task {
     }
 
     public boolean saveUpdated() throws SQLException {
-        return DBManager.update(UPDATE, title, summary, startDate, endDate, tid) == 1;
+        if (DBManager.update(UPDATE, title, summary, startDate, endDate, tid) == 1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     public boolean delete() throws SQLException {
-        return DBManager.update(DELETE, tid) != -1;
+        if (DBManager.update(DELETE, tid) != -1) {
+            DBManager.commit();
+            return true;
+        } else {
+            DBManager.rollback();
+            return false;
+        }
     }
 
     @Override

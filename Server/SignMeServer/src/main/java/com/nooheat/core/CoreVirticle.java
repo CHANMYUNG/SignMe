@@ -1,6 +1,9 @@
 package com.nooheat.core;
 
 import com.nooheat.manager.Mail;
+import com.nooheat.secure.AES256;
+import com.nooheat.secure.SHA256;
+import com.nooheat.support.FCM;
 import com.nooheat.support.Routing;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Context;
@@ -32,6 +35,9 @@ public class CoreVirticle extends AbstractVerticle {
         Router router = Router.router(vertx);
         int serverPort = 7800;
 
+        FCM.notification("fq-V3XirFhE:APA91bExeIOWzpFME13Nq1_zUGAf9AQL7THQk0BqK9BEy_bOkcKywnJuj-Rq1tHLJD4wltC5pMvsROotQFrnF28sGmPXaom934zhDh1jztVkBwznWoB20IG5kkeUg-OSqs7DHQyTZ-OJ", "asdas");
+        System.out.println(AES256.encrypt("test"));
+        System.out.println(SHA256.encrypt("1234"));
         router.route().handler(BodyHandler.create().setUploadsDirectory("upload-files"));
         router.route().handler(CookieHandler.create());
         router.route().handler(CorsHandler.create("*"));

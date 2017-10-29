@@ -16,7 +16,7 @@ import java.sql.SQLException;
 /**
  * Created by NooHeat on 23/09/2017.
  */
-@API(category = Category.SURVEY, summary = "설문조사 조회", successCode = 200, response = "{letterNumber:1, title:앙, summary:브로들, openDate:2017-09-17 00:00:00, closeDate:2017-09-27 00:00:00, items:[이잉, 이잉2]}", failureCode = 500, etc = "비로그인 : 401, 없는 letterNumber : 400, 서버 오류 : 500")
+@API(category = Category.SURVEY, summary = "설문조사 조회", successCode = 200, response = "{letterNumber:1, title:앙, summary:브로들, openDate:2017-09-17 00:00:00, closeDate:2017-09-27 00:00:00, items:[이잉, 이잉2], answerForms: [[]]}", failureCode = 500, etc = "비로그인 : 401, 없는 letterNumber : 400, 서버 오류 : 500")
 @URIMapping(uri = "/survey/:letterNumber", method = HttpMethod.GET)
 public class GetSurvey implements Handler<RoutingContext> {
     @Override

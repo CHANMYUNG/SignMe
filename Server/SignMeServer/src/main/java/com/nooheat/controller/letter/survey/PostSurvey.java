@@ -48,16 +48,19 @@ public class PostSurvey implements Handler<RoutingContext> {
         String openDate = DateTime.getDateNow();
         String closeDate = req.getFormAttribute("closeDate");
         String itemString = req.getFormAttribute("items");
-
-        if (RequestManager.paramValidationCheck(writerUid, title, summary, openDate, closeDate, itemString) == false) {
+        String answerFormsString = req.getFormAttribute("answerForms");
+        System.out.println(itemString);
+        System.out.println(answerFormsString);
+        if (RequestManager.paramValidationCheck(writerUid, title, summary, openDate, closeDate, itemString, answerFormsString) == false) {
             res.setStatusCode(400).end();
             return;
         }
 
         List items = new JsonArray(itemString).getList();
+        List answerForms = new JsonArray(answerFormsString).getList();
 
         try {
-            Survey survey = new Survey(writerUid, title, summary, items, openDate, closeDate);
+            Survey survey = new Survey(writerUid, title, summary, items, answerForms, openDate, closeDate);
             Task task = new Task(writerUid, title, summary, openDate, closeDate, TaskColor.geneateColorCode(), "SURVEY", survey.getLetterNumber());
 
             boolean result = false;
