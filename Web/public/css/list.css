@@ -208,7 +208,6 @@ tr>th:nth-child(4){
 }
 .content>div>button:nth-child(2){
     margin-left: 45px;
-    margin-right: 45px;
 }
 .modal-wrapper.open .modal{
   margin-top:-200px;

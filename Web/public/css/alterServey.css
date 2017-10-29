@@ -113,16 +113,6 @@ form>hr{
     height: 25px;
     width: 485px;
 }
-#c_addlist>div>div{
-    margin-left: 15px;
-}
-#c_addlist>div>div>input{
-    height: 25px;
-    width: 60px;
-    margin-left: 10px;
-    
-}
-
 #c_submit>input{
     width: 95px;
     height: 25px;

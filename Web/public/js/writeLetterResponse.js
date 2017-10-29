@@ -4,7 +4,8 @@ $(document).ready(function(){
         var form_title=$("#titleInput");
         var form_date=$("#openDateInput");
         var form_content=$("#contentsInput");
-        
+        // var form_req1=$("#req1");
+        // var form_req2=$("#req2");
         if (!form_title.val()) {
             alert("제목 칸이 비어져 있습니다.");
             // form_title = "";
@@ -22,11 +23,26 @@ $(document).ready(function(){
             // form_content = "";
             form_content.focus();
             return false;
-        }else {
+        }
+        // else if (!form_req1.val()) {
+        //     alert("내용이 비어져 있습니다.");
+        //     // form_content = "";
+        //     form_req1.focus();
+        //     return false;
+        // }
+        // else if (!form_req2.val()) {
+        //     alert("내용이 비어져 있습니다.");
+        //     // form_content = "";
+        //     form_req2.focus();
+        //     return false;
+        // }
+        else {
             var dataInput={
-                'title' : $("#titleInput").val(),
-                'contents' : $("#contentsInput").val(),
-                'openData' : $("#openDateInput").val()
+                'title' : form_date.val(),
+                'contents' : form_content.val(),
+                'openData' : form_date.val()
+                // 'agree' : form_req1.val(),
+                // 'disagree' : form_req2.val()
             };
             console.log(dataInput);
             $.ajax({

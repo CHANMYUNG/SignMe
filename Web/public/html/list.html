@@ -59,17 +59,17 @@
                 <div id="bar">
                     <ul>
                         <li>
-                            <a href="" style="color:#000000">전체</a>
+                            <a id="alllist" style="color:#000000">전체</a>
                         </li>
                         <li>
-                            <a href="">교내</a>
+                            <a id="letterlist">비응답형 가정통신문</a>
                         </li>
                         <li>
-                            <a href="">교외</a>
+                            <a id="surveylist" >설문조사</a>
                         </li>
                     </ul>
                     <ul>
-                        <li>
+                        <!-- <li>
                             <div>
                                 <span></span>
                                 <input id="search" type="text" onkeypress="if( event.keyCode==13 ){goSearch();}">
@@ -80,7 +80,7 @@
                                 <option value="">자바쌤</option>
                                 <option value="">문학쌤</option>
                             </select>
-                        </li>
+                        </li> -->
                         <li>
                             <button class="login_trigger">글작성</button>
                         </li>
@@ -97,12 +97,12 @@
                             </tr> 
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr onclick="location.href='http://www.happyjung.com/'">
                                 <td>1</td>
                                 <td>2017학년도 2학기 학교폭력 실태 조사</td>
                                 <td>2017.09.10~2017.09.20</td>
                                 <td>홍길동</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>       
@@ -113,9 +113,9 @@
                 <div class="content">
                     <h1>작성하실 설문지 종류를 선택해주세요</h1>
                     <div>
-                        <button>응답형 설문조사</button>
-                        <button>비응답형 설문조사</button>
-                        <button>설문조사</button>
+                        <button onclick="location.href='http://localhost:7800/public/html/writeServey.html';">응답형 설문조사</button>
+                        <button onclick="location.href='http://localhost:7800/public/html/writeLetter.html';">비응답형 가정통신문</button>
+                        <!-- <button>가정통신문</button> -->
                     </div>
                 </div>
             </div>

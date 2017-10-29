@@ -97,31 +97,6 @@ form>hr{
     resize: none;
     
 }
-#c_addlist>div{
-    clear: both;
-    margin-bottom: 8px;
-}
-#c_addlist>div>*{
-    display: block;
-    float: left;
-}
-#c_addlist>div>label{
-    width: 80px;
-    height: 20px;
-}
-#c_addlist>div>input{
-    height: 25px;
-    width: 485px;
-}
-#c_addlist>div>div{
-    margin-left: 15px;
-}
-#c_addlist>div>div>input{
-    height: 25px;
-    width: 60px;
-    margin-left: 10px;
-    
-}
 
 #c_submit>input{
     width: 95px;
@@ -130,6 +105,15 @@ form>hr{
     border: 1px solid #9A9999;
 
     margin-top: 50px;
+}
+#c_artcle>p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#c_artcle>textarea{
+    width: 780px;
+    height: 200px;
+    resize: none;
 }
 form>button{
     width: 700px;

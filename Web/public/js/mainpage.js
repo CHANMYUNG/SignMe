@@ -27,12 +27,17 @@ $( document ).ready(function() {
             type:'POST',
             data:ajaxInput,
             success: function(result){
-                alert("로그인 되었습니다.");
+                // alert("로그인 되었습니다.");
                 window.location.href="/public/html/mainpage_login.html";
                 
             },
+            statusCode: {
+                404: function() {
+                    alert("아이디 혹은 비밀번호가 틀렸습니다.");
+                }
+            },
             failure : function(e){
-                alert("등록되지 않은 아이디 혹은 비밀번호 입니다.")
+                alert("error");
                 console.log(e);
             },
             finally : function(er){

@@ -36,6 +36,8 @@ function submit_chk(myForm) {
 }
 
 $(document).ready(function () {
+    var registerInput={};
+    var check=0;
     $("#button_id").click(function(){
         $.ajax({
             url: '/account/id/check/'+$("#login_id").val(),
@@ -43,9 +45,15 @@ $(document).ready(function () {
             data: "",
             success: function (result) {
                 alert("사용가능한 아이디입니다..");
+                registerInput.id=$("#login_id").val();
+            },
+            statusCode: {
+                400: function() {
+                    alert("이미 존재하는 아이디입니다.");
+                }
             },
             failure : function(e){
-                alert("이미 존재하는 아이디입니다.");
+                console.log("error");
                 console.log(e);
             },
             finally : function(er){
@@ -56,23 +64,83 @@ $(document).ready(function () {
     });
     $("#button_email").click(function(){
         $.ajax({
-            url: '/account/email/check/:'+$("#login_email").val(),
+            url: '/account/email/check/'+$("#login_email").val(),
             type: 'get',
             data: "",
             success: function (result) {
-                alert("인증되었습니다")
+                alert("인증되었습니다");
+                registerInput.email=$("#login_email").val();  
+            },
+            statusCode: {
+                400: function() {
+                    alert("이미 존재하는 이메일입니다.");
+                }
+            },
+            failure : function(e){
+                console.log("error");
+                console.log(e);
+            },
+            finally : function(er){
+                console.log("?????이게뭐람");
+                console.log(er);
+            }
+        })
+    });
+    $("#button_serial").click(function(){
+        var input=""+$("#serial_1").val()+$("#serial_2").val()+$("#serial_3").val()+$("#serial_4").val();
+        $.ajax({
+            url: '/account/uid/check/'+input,
+            type: 'get',
+            data: "",
+            success: function (result) {
+                result = JSON.parse(result);
+                alert("인증되었습니다");
+                registerInput.uid=input;
+                console.log(registerInput);
+                $('#login_name').value = "1";
+                
+            },
+            statusCode: {
+                400: function() {
+                    alert("존재하지 않는 시리얼키입니다.");
+                }
+            },
+            failure : function(e){
+                console.log("error");
+                console.log(e);
+            },
+            finally : function(er){
+                console.log("?????이게뭐람");
+                console.log(er);
             }
         })
     });
     $("#submit_btn").click(function(){
-        $.ajax({
-            url: '/account/sign/up',
-            type: 'post',
-            data: $('form').serialize(),
-            success: function (result) {
-                Response.sendRedirect("../html/registerDone.html");
-            }
-        })
+        if($("#login_pwd").val()==$("#login_rpwd").val()){
+            registerInput.password=$("#login_pwd").val();
+           $.ajax({
+                url: '/account/sign/up',
+                type: 'post',
+                data: registerInput,
+                success: function (result) {
+                    window.location.href="/public/html/registerDone.html";
+                },
+                statusCode: {
+                    400: function() {
+                        alert("모든 정보를 올바르게 입력해주세요");
+                    }
+                },
+                failure : function(e){
+                    console.log("error");
+                    console.log(e);
+                },
+                finally : function(er){
+                    console.log("error");
+                    console.log(er);
+                }
+            }) 
+        }
+        
     })
     
 })
