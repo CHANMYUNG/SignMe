@@ -75,7 +75,9 @@
                         android:background="@drawable/shape3"/>
                     <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true">
                         <RelativeLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
@@ -83,9 +85,10 @@
                             <TextView
                                 android:id="@+id/responseless_title"
                                 android:textColor="#000"
-                                android:textSize="50dp"
+                                android:textSize="20dp"
                                 android:gravity="center"
                                 android:textStyle="bold"
+                                android:layout_toLeftOf="@+id/responseless_writerName"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
                                 android:layout_alignParentTop="true"
@@ -95,8 +98,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="50dp"
                                 android:layout_alignParentRight="true"
-                                android:textSize="20dp"
-
+                                android:textSize="10dp"
                                 android:gravity="bottom"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@color/black"/>
@@ -104,6 +106,7 @@
                                 android:id="@+id/responseless_openDate"
                                 android:layout_width="80dp"
                                 android:layout_height="50dp"
+                                android:textSize="10dp"
                                 android:gravity="center_vertical"
                                 android:textColor="@color/black"
                                 android:layout_alignParentRight="true"
@@ -111,14 +114,14 @@
                                 />
                             <TextView
                                 android:id="@+id/responseless_contents"
-
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:textSize="20dp"
+                                android:textSize="10dp"
                                 android:padding="10dp"
                                 android:textColor="@color/black"
                                 android:layout_below="@+id/responseless_title"
-                                 />
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentStart="true" />
                         </RelativeLayout>
 
 
