@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.JsonObject;
@@ -70,6 +71,9 @@ public class ResponselessLetterActivity extends AppCompatActivity {
 
             }
         });
+    }
+    public void responseless_letter_backonClick(View v){
+        finish();
     }
 
 }

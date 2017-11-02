@@ -47,7 +47,7 @@ public class SurveyActivity extends AppCompatActivity {
     private boolean modifyMode;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         thisActivity = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
@@ -79,7 +79,7 @@ public class SurveyActivity extends AppCompatActivity {
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (response.code() == 200) {
+                /*if (response.code() == 200) {
                     JsonObject survey = response.body();
 
                     surveyTitle = (TextView) findViewById(R.id.survey_title);
@@ -88,6 +88,23 @@ public class SurveyActivity extends AppCompatActivity {
                     surveySummary = (TextView) findViewById(R.id.survey_summary);
                     surveySummary.setText(survey.get("summary").toString().replace("\"", ""));
 
+                    JsonArray answerforms=survey.getAsJsonArray("answerforms");
+                    Iterator answerformsIterator=answerforms.iterator();
+                    while (answerformsIterator.hasNext()){
+                        JsonArray answerArray=answerforms.getAsJsonArray();
+                        Iterator answersIterator=answerArray.iterator();
+                        for(int i=0;i<=answerArray.size();i++){
+                            JsonObject jsonObject = (JsonObject) answerArray.get(i);
+                            String answer=answersIterator.next().toString();
+                            SurveyQuestionItem questionItem2=new SurveyQuestionItem();
+                            questionItem2.setAnswer1(answer);
+                            adapter.addItem(questionItem2);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+
+
+                    Log.d("전체 데이터", response.body().toString());
                     JsonArray questions = survey.getAsJsonArray("items");
                     Iterator quesionIterator = questions.iterator();
                     while (quesionIterator.hasNext()) {
@@ -96,10 +113,63 @@ public class SurveyActivity extends AppCompatActivity {
                         SurveyQuestionItem questionItem = new SurveyQuestionItem();
                         questionItem.setQuestion(question);
 
+
                         adapter.addItem(questionItem);
                         Log.d("notifyDataSetChanged", "!@#!@#");
                         adapter.notifyDataSetChanged();
                     }
+                }
+*/
+                if (response.code() == 200) {
+                    JsonObject survey = response.body();
+
+                    surveyTitle = (TextView) findViewById(R.id.survey_title);
+                    surveyTitle.setText(survey.get("title").toString().replace("\"", ""));
+                    Log.d("전체 데이터", response.body().toString());
+                    JsonArray questions = survey.getAsJsonArray("items");
+                    Iterator quesionIterator = questions.iterator();
+                    JsonArray jsonArray = response.body().getAsJsonArray("answerForms");
+                    JsonArray jsonElements = jsonArray.getAsJsonArray();
+                    for (int i = 0; i < jsonElements.size(); i++) {
+
+                        String question = quesionIterator.next().toString().replace("\"", "");
+                        SurveyQuestionItem questionItem = new SurveyQuestionItem();
+                        questionItem.setQuestion(question);
+                        String arr = String.valueOf(jsonElements.get(i));
+                        arr = arr.replace("\"", "");
+                        arr = arr.replace("[", "");
+                        arr = arr.replace("]", "");
+
+                        String[] arr2 = arr.split(",");
+
+                        SurveyQuestionItem answerItem =new SurveyQuestionItem(question, arr2[0],arr2[1],arr2[2],arr2[3],arr2[4]);
+                        adapter.addItem(answerItem);
+                        adapter.notifyDataSetChanged();
+
+                        Log.d("notifyDataSetChanged", "!@#!@#");
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    surveySummary = (TextView) findViewById(R.id.survey_summary);
+                    surveySummary.setText(survey.get("summary").toString().replace("\"", ""));
+
+//                    for (int i = 0; i < jsonElements.size(); i++) {
+//                        String arr = String.valueOf(jsonElements.get(i));
+//                        arr = arr.replace("\"", "");
+//                        arr = arr.replace("[", "");
+//                        arr = arr.replace("]", "");
+//
+//                        String[] arr2 = arr.split(",");
+//
+//                        SurveyQuestionItem answerItem =new SurveyQuestionItem(quetion, arr2[0],arr2[1],arr2[2],arr2[3],arr2[4]);
+//                        adapter.addItem(answerItem);
+//                        adapter.notifyDataSetChanged();
+//\
+//
+//                        Log.d("--logCheck", arr2.toString());
+//                    }
+//
+
                 }
                 if (response.code() == 400) {
                     Toast.makeText(getApplicationContext(), "삭제된 설문조사입니다.", Toast.LENGTH_SHORT).show();

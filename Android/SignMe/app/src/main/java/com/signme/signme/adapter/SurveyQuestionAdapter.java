@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -55,6 +56,21 @@ public class SurveyQuestionAdapter extends BaseAdapter {
         TextView question = (TextView) convertView.findViewById(R.id.survey_question);
         SurveyQuestionItem questionItem = (SurveyQuestionItem) getItem(position);
         question.setText(questionItem.getQuestion());
+
+        TextView radio1=(TextView) convertView.findViewById(R.id.radio_tv1);
+        TextView radio2=(TextView) convertView.findViewById(R.id.radio_tv2);
+        TextView radio3=(TextView) convertView.findViewById(R.id.radio_tv3);
+        TextView radio4=(TextView) convertView.findViewById(R.id.radio_tv4);
+        TextView radio5=(TextView) convertView.findViewById(R.id.radio_tv5);
+        radio1.setText(questionItem.getAnswer1());
+        radio2.setText(questionItem.getAnswer2());
+        radio3.setText(questionItem.getAnswer3());
+        radio4.setText(questionItem.getAnswer4());
+        radio5.setText(questionItem.getAnswer5());
+        Log.d("라디오",radio1.toString());
+
+
+
 
         final RadioGroup answerGroup = (RadioGroup) convertView.findViewById(R.id.survey_answer_group);
         answerGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

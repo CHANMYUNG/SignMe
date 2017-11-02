@@ -57,15 +57,18 @@ public class ResponseLetterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject letter = response.body();
+                Log.d("letter",letter.toString());
                 TextView title = (TextView) findViewById(R.id.response_title);
                 TextView contents = (TextView) findViewById(R.id.response_contents);
                 TextView openDate = (TextView) findViewById(R.id.response_openDate);
                 TextView closeDate = (TextView) findViewById(R.id.response_closeDate);
+                TextView name=(TextView)findViewById(R.id.response_writerName);
 
                 title.setText(letter.get("title").toString().replace("\"", ""));
                 contents.setText(letter.get("contents").toString().replace("\"", ""));
                 openDate.setText(letter.get("openDate").toString().replace("\"", ""));
                 closeDate.setText(letter.get("closeDate").toString().replace("\"", ""));
+                 name.setText(letter.get("writerName").toString().replace("\"",""));
 
             }
 
@@ -97,6 +100,9 @@ public class ResponseLetterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void response_letter_backonClick(View v){
+        finish();
     }
 
     private void answerToResponseLetter() {

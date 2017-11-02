@@ -189,6 +189,7 @@ public class LetterListFragment extends Fragment {
                     Log.d("!@#!", "onResponse: " + call.request().url());
                     JsonArray letters = response.body();
                     Log.d("REFRESH", "onResponse: " + letters.toString());
+
                     Iterator iterator = letters.iterator();
                     while (iterator.hasNext()) {
                         JsonObject item = (JsonObject) iterator.next();

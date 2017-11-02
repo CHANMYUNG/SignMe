@@ -75,56 +75,63 @@
                 android:width="30dp" />
         </RadioGroup>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/survey_answer_group"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             >
 
-            <TextView
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="매우 그렇다."
-                android:textSize="10dp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="30dp"
-                />
+                <TextView
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="그렇다."
-                android:textSize="10dp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="15dp"/>
+                    android:id="@+id/radio_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="35dp"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="보통"
-                android:textSize="10dp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="22dp"/>
+                <TextView
+                    android:id="@+id/radio_tv2"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="아니다."
-                android:textSize="10dp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="25dp"/>
+                    android:layout_toRightOf="@+id/radio_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="40dp"/>
 
-            <TextView
+                <TextView
+                    android:id="@+id/radio_tv3"
+                    android:layout_toRightOf="@+id/radio_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="40dp"/>
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전혀아니다."
-                android:textSize="10dp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="17dp"/>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/radio_tv4"
+                    android:layout_toRightOf="@+id/radio_tv3"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="40dp"/>
+
+                <TextView
+                    android:id="@+id/radio_tv5"
+                    android:layout_toRightOf="@+id/radio_tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="40dp"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 
 </LinearLayout>
