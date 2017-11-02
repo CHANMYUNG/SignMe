@@ -1,0 +1,145 @@
+a:visited{
+    color :rgb(143, 143, 143);
+}
+a:link{
+    color: rgb(143, 143, 143);
+}
+hr{
+    background-color: #000000;
+    border: 0px solid #000000;
+}
+#menu{
+    width: 100%;
+    height: 100px;
+    margin-top: 50px;
+    
+}
+ul>li{
+
+    font-size: 22px;
+    font-weight: lighter;
+    
+    float: left;
+    list-style: none;
+    margin-right: 8px;
+    
+}
+#menu>ul:first-child{
+    margin-left: 85px;
+
+}
+#menu>ul:last-child{
+    float: right;
+    margin-right: 85px;
+}
+.here{
+    color: #1159BB;
+    font-weight: bold;
+}
+#title>h1{
+
+    font-size: 100pt;
+    font-weight: lighter;
+    letter-spacing: 0.2em;
+    line-height: 1em;
+    
+    text-align: center;
+    
+    margin-bottom: 16px;
+}
+#title>hr{
+    margin: 0 auto;
+    width: 800px;
+    height: 2px;
+    
+
+    margin-bottom: 16px;
+}
+#contant{
+    width: 1250px;
+    height: 100%;
+    margin: 0 auto;
+}
+form{
+    font-size: 20px;
+    font-weight: lighter;
+}
+form>div{
+    margin-top: 8px;
+}
+#c_contant>*{
+    margin-bottom: 8px;
+}
+form>h2{
+    font-size: 45px;
+    font-weight: lighter;
+    margin-bottom: 8px;
+}
+form>h3{
+    font-size: 25px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+form>hr{
+    height: 1px;
+}
+#c_title>input{
+    width: 470px;
+    height: 20px;
+}
+#c_date>input{
+    height: 20px;
+
+}
+#c_contant>textarea{
+    width: 780px;
+    height: 90px;
+    resize: none;
+    
+}
+#c_addlist>div{
+    clear: both;
+    margin-bottom: 8px;
+}
+#c_addlist>div>*{
+    display: block;
+    float: left;
+}
+#c_addlist>div>label{
+    width: 80px;
+    height: 20px;
+}
+#c_addlist>div>input{
+    height: 25px;
+    width: 485px;
+}
+#c_submit>input{
+    width: 95px;
+    height: 25px;
+    background-color: #9A9999;
+    border: 1px solid #9A9999;
+
+    margin-top: 50px;
+}
+form>button{
+    width: 700px;
+    height: 55px;
+    color: #ffffff;
+
+    background-color: #c2c2c2;
+    border: 0px solid #c2c2c2;
+    border-radius: 27.5px;
+
+    margin-top: 20px;
+}
+form>button>span:first-child{
+    font-size: 17px;
+    float: left;
+    margin-left: 40px;
+    margin-top: 10px;
+}
+form>button>span:last-child{
+    font-size: 35px;
+    float: right;
+    margin-right: 40px;
+}
