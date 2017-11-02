@@ -208,6 +208,10 @@ tr>th:nth-child(4){
 }
 .content>div>button:nth-child(2){
     margin-left: 45px;
+<<<<<<< HEAD
+=======
+    margin-right: 45px;
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
 }
 .modal-wrapper.open .modal{
   margin-top:-200px;

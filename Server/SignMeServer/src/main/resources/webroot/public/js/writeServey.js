@@ -1,9 +1,15 @@
 function makearray(len){
     var itemsInput="[";
     for(var j=1;j<=len;j++){
+<<<<<<< HEAD
         itemsInput+="\"";
         itemsInput+=$("#list_"+j).children('input').val();
         itemsInput+="\"";        
+=======
+        itemsInput+="{";
+        itemsInput+=$("#list_"+len).children('input').val();
+        itemsInput+="}";
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
         if(j!=len){
             itemsInput+=",";   
         }else{
@@ -44,6 +50,7 @@ $(document).ready(function(){
     $("#submit_btn").click(function(){
         
         var items=makearray(listNum);
+<<<<<<< HEAD
         // console.log(items);
         // console.log($("#input_title").val());
         
@@ -77,5 +84,25 @@ $(document).ready(function(){
                 console.log(er);
             }
         });
+=======
+        console.log(items);
+
+        var dataInput={
+            'title' : $("#title").val(),
+            'summary' : $("#summary").val(),
+            'items' : items,
+            'openDate' : $("#openDate").val(),
+            'closeDate' : $("#closeDate").val()
+        };
+        $.ajax({
+            url: '/account/sign/up',
+            type: 'post',
+            data: dataInput,
+            success: function (result) {
+                alert("작성완료");
+                Response.sendRedirect("../public/registerDone.html");
+            }
+        })
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
     });
 })

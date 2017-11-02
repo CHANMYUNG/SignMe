@@ -123,11 +123,14 @@ form>hr{
 #c_addlist>div>div>span{
     font-size: 22px;
 }
+<<<<<<< HEAD
 #c_addlist>div{
     height: 25px;
     width: 100%;
     margin-bottom: 15px;
 }
+=======
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
 #c_submit>input{
     width: 95px;
     height: 25px;

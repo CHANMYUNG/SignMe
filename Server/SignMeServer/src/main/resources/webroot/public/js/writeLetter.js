@@ -27,7 +27,11 @@ $(document).ready(function(){
     $("#submit_btn").click(function(){
         var dataInput={
             'title' : $("#titleInput").val(),
+<<<<<<< HEAD
             'contents' : $("#contentsInput").val(),
+=======
+            'contant' : $("#contentsInput").val(),
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
             'openData' : $("#openDateInput").val()
         };
         console.log(dataInput);
@@ -37,6 +41,7 @@ $(document).ready(function(){
             data: dataInput,
             success: function (result) {
                 alert("작성완료!");
+<<<<<<< HEAD
                 window.location.href="/public/html/list.html";
             },
             statusCode: {
@@ -51,6 +56,9 @@ $(document).ready(function(){
             finally : function(er){
                 console.log("?????");
                 console.log(er);
+=======
+                Response.sendRedirect("../public/list.html");
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
             }
         });
     })

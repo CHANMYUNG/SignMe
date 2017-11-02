@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+<<<<<<< HEAD
     var i=0;
     $.ajax({
         url:'/letter/survey',
@@ -74,6 +75,8 @@ $( document ).ready(function() {
             console.log(er);
         }
     });
+=======
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
     $('.login_trigger').click(function() {
         $('.modal-wrapper').toggleClass('open');
         $('#page_wrapper').toggleClass('blur');
@@ -86,6 +89,7 @@ $( document ).ready(function() {
         $('.modal-wrapper').removeClass('open');
         $('#page_wrapper').removeClass('blur');
     });
+<<<<<<< HEAD
     $("#alllist").click(function(){
         $("#alllist").css("color","#000000");
         $("#letterlist").css("color","#c2c2c2");
@@ -267,3 +271,28 @@ $( document ).ready(function() {
 //         return "진로쌤";
 //     }
 // }
+=======
+
+});
+function goSearch(){
+    $.ajax({
+        url:'/letter/responseless',
+        type:'get',
+        data:$('#search').val(),
+        success: function(result){
+            for(var i=0; i<result.length();i++){
+                $('tbody').append(
+                    `
+                        <tr>
+                            <td>${i+1}</td>
+                            <td>${result[i].des}</td>
+                            <td>${result[i].startday}~${result[i].endday}</td>
+                            <td>${result[i].writter}</td>
+                        </tr>
+                    `
+                )      
+            }       
+        }
+    });  
+}
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac

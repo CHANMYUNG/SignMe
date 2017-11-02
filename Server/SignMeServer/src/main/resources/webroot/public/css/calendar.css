@@ -108,6 +108,7 @@ ul>li{
     height: 1px;
     
 }
+<<<<<<< HEAD
 #wholist{
     margin-top: 20px;
     margin-left: 20px;
@@ -146,12 +147,29 @@ ul>li{
     float: left;
 }
 #wholist>div>div{
+=======
+#artcle>div:last-child>div>div{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#artcle>div:last-child>div>div>div>*{
+    float: left;
+}
+#artcle>div:last-child>div>div>div>div{
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
     height: 20px;
     width: 20px;
     background-color: yellow;
     border: 1px solid #c2c2c2;
     margin-right: 30px;
 }
+<<<<<<< HEAD
 #wholist>div>span{
     font-size: 25px;
 } */
+=======
+#artcle>div:last-child>div>div>div>span{
+    font-size: 25px;
+}
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac

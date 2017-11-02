@@ -130,8 +130,11 @@ $( document ).ready(function() {
         $("#alllist").css("color","#000000");
         $("#letterlist").css("color","#c2c2c2");
         $("#surveylist").css("color","#c2c2c2");
+<<<<<<< HEAD
         $("#letterresponselist").css("color","#c2c2c2");
         
+=======
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
         $("tbody").empty();
         $.ajax({
             url:'/letter/survey',
@@ -170,6 +173,7 @@ $( document ).ready(function() {
             }
         });
         $.ajax({
+<<<<<<< HEAD
             url:'/letter/response',
             type:'get',
             data:$('#search').val(),
@@ -206,6 +210,8 @@ $( document ).ready(function() {
             }
         });
         $.ajax({
+=======
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
             url:'/letter/responseless',
             type:'get',
             data:$('#search').val(),
@@ -218,7 +224,11 @@ $( document ).ready(function() {
                 for(var j=0; j<result.length;j++){
                     $('tbody').append(
                         `
+<<<<<<< HEAD
                             <tr onclick="location.href='../html/showLetter.html?${result[j].letterNumber}'">
+=======
+                            <tr onclick="location.href='../html/showLetter.html?${result[i].letterNumber}'">
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
                                 <td>${j+1+i}</td>
                                 <td>${result[j].title}</td>
                                 <td>${result[j].openDate}</td>
@@ -249,8 +259,11 @@ $( document ).ready(function() {
         $("#letterlist").css("color","#000000");
         $("#alllist").css("color","#c2c2c2");
         $("#surveylist").css("color","#c2c2c2");
+<<<<<<< HEAD
         $("#letterresponselist").css("color","#c2c2c2");
         
+=======
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
         $("tbody").empty();
         $.ajax({
             url:'/letter/responseless',
@@ -292,6 +305,7 @@ $( document ).ready(function() {
         });
         
     })
+<<<<<<< HEAD
     $("#letterresponselist").click(function(){
         $("#letterlist").css("color","#c2c2c2");
         $("#alllist").css("color","#c2c2c2");
@@ -339,12 +353,17 @@ $( document ).ready(function() {
         });
         
     })
+=======
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
     $("#surveylist").click(function(){
         $("#surveylist").css("color","#000000");
         $("#letterlist").css("color","#c2c2c2");
         $("#alllist").css("color","#c2c2c2");
+<<<<<<< HEAD
         $("#letterresponselist").css("color","#c2c2c2");
         
+=======
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
         $("tbody").empty();
         $.ajax({
             url:'/letter/survey',

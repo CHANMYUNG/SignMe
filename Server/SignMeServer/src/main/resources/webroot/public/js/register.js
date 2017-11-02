@@ -36,8 +36,11 @@ function submit_chk(myForm) {
 }
 
 $(document).ready(function () {
+<<<<<<< HEAD
     var registerInput={};
     var check=0;
+=======
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
     $("#button_id").click(function(){
         $.ajax({
             url: '/account/id/check/'+$("#login_id").val(),
@@ -45,6 +48,7 @@ $(document).ready(function () {
             data: "",
             success: function (result) {
                 alert("사용가능한 아이디입니다..");
+<<<<<<< HEAD
                 registerInput.id=$("#login_id").val();
             },
             statusCode: {
@@ -54,6 +58,11 @@ $(document).ready(function () {
             },
             failure : function(e){
                 console.log("error");
+=======
+            },
+            failure : function(e){
+                alert("이미 존재하는 아이디입니다.");
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
                 console.log(e);
             },
             finally : function(er){
@@ -64,6 +73,7 @@ $(document).ready(function () {
     });
     $("#button_email").click(function(){
         $.ajax({
+<<<<<<< HEAD
             url: '/account/email/check/'+$("#login_email").val(),
             type: 'get',
             data: "",
@@ -141,6 +151,25 @@ $(document).ready(function () {
             }) 
         }
         
+=======
+            url: '/account/email/check/:'+$("#login_email").val(),
+            type: 'get',
+            data: "",
+            success: function (result) {
+                alert("인증되었습니다")
+            }
+        })
+    });
+    $("#submit_btn").click(function(){
+        $.ajax({
+            url: '/account/sign/up',
+            type: 'post',
+            data: $('form').serialize(),
+            success: function (result) {
+                Response.sendRedirect("../html/registerDone.html");
+            }
+        })
+>>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
     })
     
 })
