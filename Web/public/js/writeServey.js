@@ -12,7 +12,6 @@ function makearray(len){
     }
     return itemsInput;
 }
-<<<<<<< HEAD
 function make_answer_array(len){
     var array="[";
     for(var i=1;i<=len;i++){
@@ -37,17 +36,11 @@ function make_answer_array(len){
     }
     return array;
 }
-=======
->>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
 
 $(document).ready(function(){
     //list number start 1
     var listNum=1;
     //add list 
-<<<<<<< HEAD
-=======
-    
->>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
     $("#add_btn").click(function(){
         listNum++;
         $("#c_addlist").append(
@@ -86,15 +79,11 @@ $(document).ready(function(){
     $("#submit_btn").click(function(){
         
         var items=makearray(listNum);
-<<<<<<< HEAD
         var answer=make_answer_array(listNum);
         // console.log(items);
         // console.log(new Array(answer).toString());
        
         
-=======
-        console.log(items);
->>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
         // console.log($("#input_title").val());
         
         var dataInput={
@@ -102,12 +91,8 @@ $(document).ready(function(){
             'summary' : $("#summary").val(),
             'items' : new Array(items).toString(),
             // 'openDate' : $("#openDate").val(),
-<<<<<<< HEAD
             'closeDate' : $("#closeDate").val(),
             'answerForms' : new Array(answer).toString()
-=======
-            'closeDate' : $("#closeDate").val()
->>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
         };
         $.ajax({
             url: '/survey',
