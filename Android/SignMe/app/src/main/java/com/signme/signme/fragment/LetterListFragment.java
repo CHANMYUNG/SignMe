@@ -115,7 +115,7 @@ public class LetterListFragment extends Fragment {
                     Iterator iterator = letters.iterator();
                     while (iterator.hasNext()) {
                         JsonObject item = (JsonObject) iterator.next();
-
+                        Log.d("리스트",item.toString());
                         int letterNumber = Integer.parseInt(item.get("letterNumber").toString().replace("\"", ""));
                         String title = item.get("title").toString().replace("\"", "");
                         String writerName = item.get("writerName").toString().replace("\"", "");
@@ -188,7 +188,7 @@ public class LetterListFragment extends Fragment {
                 if (response.code() == 200) {
                     Log.d("!@#!", "onResponse: " + call.request().url());
                     JsonArray letters = response.body();
-                    Log.d("REFRESH", "onResponse: " + letters.toString());
+                   // Log.d("REFRESH", "onResponse: " + letters.toString());
 
                     Iterator iterator = letters.iterator();
                     while (iterator.hasNext()) {

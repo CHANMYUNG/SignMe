@@ -238,10 +238,9 @@ public class HomeFragment extends Fragment {
                     public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                         if (response.code() == 200) {
                             JsonArray tasks = response.body();
-
+                            Log.d("task", tasks.toString());
                             SweetAlertDialog dialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE)
                                     .setTitleText(year + "년 " + month + "월 " + day + "일 일정");
-
                             String contents = "";
                             for (int i = 0; i < tasks.size(); i++) {
                                 JsonObject task = (JsonObject) tasks.get(i);
@@ -353,14 +352,28 @@ public class HomeFragment extends Fragment {
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    Toast.makeText(getActivity(), "푸시 알람이 설정 됬습니다.", Toast.LENGTH_LONG).show();
 
-                } else {
-                    Toast.makeText(getActivity(), "푸시 알람이 해제 됬습니다.", Toast.LENGTH_LONG).show();
+                    Map<String, Object> map = new HashMap();
+                    map.put("set",isChecked);
 
-                }
-            }
+                    retrofit = new Retrofit.Builder()
+                    .baseUrl(APIInterface.URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                apiInterface = retrofit.create(APIInterface.class);
+                    Call<Void> setswich=apiInterface.setswich(map,getActivity().getSharedPreferences("test",MODE_PRIVATE).getString("signme-x-access-token", null));
+                setswich.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                });
+          }
         });
 
         //로그아웃
@@ -453,7 +466,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 JsonArray tasks = response.body();
-
+                Log.d("tasks",tasks.toString());
                 for (int i = 0; i < tasks.size(); i++) {
                     JsonObject task = (JsonObject) tasks.get(i);
                     int color = Color.parseColor(task.get("color").toString().replace("\"", ""));

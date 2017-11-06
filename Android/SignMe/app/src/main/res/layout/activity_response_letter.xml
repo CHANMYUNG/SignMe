@@ -78,6 +78,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_toLeftOf="@+id/c"
                     android:layout_toRightOf="@+id/b">
 
@@ -168,7 +170,7 @@
                                 android:layout_below="@+id/response_closeDate"
                                 android:padding="10dp"
                                 android:textColor="@color/black"
-                                android:textSize="20dp" />
+                                android:textSize="10dp" />
 
                             <RadioGroup
                                 android:id="@+id/response_radio_group"

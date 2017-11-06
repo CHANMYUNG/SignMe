@@ -185,8 +185,10 @@ public class TutorMainActivity extends AppCompatActivity implements View.OnClick
             skip1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Intent intent=new Intent(TutorMainActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -198,6 +200,7 @@ public class TutorMainActivity extends AppCompatActivity implements View.OnClick
                 public void onClick(View v) {
                     Intent intent=new Intent(TutorMainActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -220,6 +223,7 @@ public class TutorMainActivity extends AppCompatActivity implements View.OnClick
                 public void onClick(View v) {
                     Intent intent=new Intent(TutorMainActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -231,6 +235,7 @@ public class TutorMainActivity extends AppCompatActivity implements View.OnClick
                 public void onClick(View v) {
                     Intent intent=new Intent(TutorMainActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -242,6 +247,7 @@ public class TutorMainActivity extends AppCompatActivity implements View.OnClick
                 public void onClick(View v) {
                     Intent intent=new Intent(TutorMainActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -253,6 +259,7 @@ public class TutorMainActivity extends AppCompatActivity implements View.OnClick
                 public void onClick(View v) {
                     Intent intent=new Intent(TutorMainActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -264,6 +271,7 @@ public class TutorMainActivity extends AppCompatActivity implements View.OnClick
                 public void onClick(View v) {
                     Intent intent=new Intent(TutorMainActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
         }

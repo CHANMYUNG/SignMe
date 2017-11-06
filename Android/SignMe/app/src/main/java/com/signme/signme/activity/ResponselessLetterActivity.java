@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.LoginFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -50,10 +51,20 @@ public class ResponselessLetterActivity extends AppCompatActivity {
                 String title = letter.get("title").toString().replace("\"","");
                 String date=letter.get("openDate").toString().replace("\"","");
                 String contents = letter.get("contents").toString().replace("\"","");
+                String content=contents.replace("\\n","\n");
+                Log.d("arr",content);
+
+//                String content[]=contents.split("\n");
+//
+//                for(int i=0;i<content.length;i++){
+//                    String arr=content[i];
+//                    Log.d("arr",arr);
+//                }
+
                 String writerName = letter.get("writerName").toString().replace("\"","");
                 Log.d("TITLE", title);
                 Log.d("DATE", date);
-                Log.d("TITLE", contents);
+                Log.d("TITLE", content.toString());
                 Log.d("TITLE", writerName);
                 title_text = (TextView) findViewById(R.id.responseless_title);
                 name_text = (TextView) findViewById(R.id.responseless_writerName);
@@ -61,7 +72,7 @@ public class ResponselessLetterActivity extends AppCompatActivity {
                 content_text = (TextView) findViewById(R.id.responseless_contents);
 
                 title_text.setText(title);
-                content_text.setText(contents);
+                content_text.setText(content);
                 date_text.setText(date);
                 name_text.setText(writerName);
             }

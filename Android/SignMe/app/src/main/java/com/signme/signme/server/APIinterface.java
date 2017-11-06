@@ -130,6 +130,9 @@ public interface APIInterface {
     @GET("/letter/responsed")
     Call<JsonArray> getResponsedLetterList(@Header("signme-x-access-token") String token);
 
-    //Call<Void>
+    @FormUrlEncoded
+    @PUT("/notification/switch")
+    Call<Void> setswich(@FieldMap Map<String, Object> fieldMap,@Header("signme-x-access-token") String token);
+
 
 }

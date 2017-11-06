@@ -63,9 +63,11 @@ public class ResponseLetterActivity extends AppCompatActivity {
                 TextView openDate = (TextView) findViewById(R.id.response_openDate);
                 TextView closeDate = (TextView) findViewById(R.id.response_closeDate);
                 TextView name=(TextView)findViewById(R.id.response_writerName);
-
+                String content=letter.get("contents").toString().replace("\"", "");
+                String con=content.replace("\\n","\n");
+                Log.d("content",con);
                 title.setText(letter.get("title").toString().replace("\"", ""));
-                contents.setText(letter.get("contents").toString().replace("\"", ""));
+                contents.setText(con);
                 openDate.setText(letter.get("openDate").toString().replace("\"", ""));
                 closeDate.setText(letter.get("closeDate").toString().replace("\"", ""));
                  name.setText(letter.get("writerName").toString().replace("\"",""));
