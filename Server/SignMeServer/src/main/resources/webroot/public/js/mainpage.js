@@ -27,11 +27,10 @@ $( document ).ready(function() {
             type:'POST',
             data:ajaxInput,
             success: function(result){
-                alert("로그인 되었습니다.");
+                // alert("로그인 되었습니다.");
                 window.location.href="/public/html/mainpage_login.html";
                 
             },
-<<<<<<< HEAD
             statusCode: {
                 404: function() {
                     alert("아이디 혹은 비밀번호가 틀렸습니다.");
@@ -39,10 +38,6 @@ $( document ).ready(function() {
             },
             failure : function(e){
                 alert("error");
-=======
-            failure : function(e){
-                alert("등록되지 않은 아이디 혹은 비밀번호 입니다.")
->>>>>>> 48383db8f90b92525301b6ff32d6018d108bd5ac
                 console.log(e);
             },
             finally : function(er){
