@@ -1,5 +1,6 @@
 package com.nooheat.controller.account;
 
+import com.nooheat.database.DBManager;
 import com.nooheat.manager.JWT;
 import com.nooheat.manager.RequestManager;
 import com.nooheat.manager.UserManager;
@@ -49,6 +50,7 @@ public class ChangePassword implements Handler<RoutingContext> {
                 res.setStatusCode(204).end();
             }
         } catch (SQLException e) {
+            DBManager.rollback();
             e.printStackTrace();
             res.setStatusCode(500).end();
         }

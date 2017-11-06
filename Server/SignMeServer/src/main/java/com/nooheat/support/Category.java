@@ -11,6 +11,7 @@ public enum Category {
     SURVEY,
     RESPONSELESSLETTER,
     RESPONSELETTER,
-    LETTER
+    LETTER,
+    NOTIFICATION
 
 }

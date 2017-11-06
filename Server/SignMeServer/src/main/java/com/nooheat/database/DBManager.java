@@ -77,11 +77,19 @@ public class DBManager {
         return statement;
     }
 
-    public synchronized static void commit() throws SQLException {
-        connection.commit();
+    public synchronized static void commit() {
+        try {
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public synchronized static void rollback() throws SQLException {
-        connection.rollback();
+    public synchronized static void rollback() {
+        try {
+            connection.rollback();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
