@@ -349,19 +349,20 @@ public class HomeFragment extends Fragment {
 
         //푸시알람 설정정
         ToggleButton toggleButton = (ToggleButton) view.findViewById(R.id.fcm_btn);
+        toggleButton.setChecked(getActivity().getSharedPreferences("test", MODE_PRIVATE).getBoolean("notificationEnabled", true));
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                    Map<String, Object> map = new HashMap();
-                    map.put("set",isChecked);
-
-                    retrofit = new Retrofit.Builder()
-                    .baseUrl(APIInterface.URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                            .build();
+                Map<String, Object> map = new HashMap();
+                map.put("set", isChecked);
+                getActivity().getSharedPreferences("test", MODE_PRIVATE).edit().putBoolean("notificationEnabled", isChecked).commit();
+                retrofit = new Retrofit.Builder()
+                        .baseUrl(APIInterface.URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
                 apiInterface = retrofit.create(APIInterface.class);
-                    Call<Void> setswich=apiInterface.setswich(map,getActivity().getSharedPreferences("test",MODE_PRIVATE).getString("signme-x-access-token", null));
+                Call<Void> setswich = apiInterface.setswich(map, getActivity().getSharedPreferences("test", MODE_PRIVATE).getString("signme-x-access-token", null));
                 setswich.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
@@ -373,7 +374,7 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
-          }
+            }
         });
 
         //로그아웃
@@ -466,7 +467,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 JsonArray tasks = response.body();
-                Log.d("tasks",tasks.toString());
+                Log.d("tasks", tasks.toString());
                 for (int i = 0; i < tasks.size(); i++) {
                     JsonObject task = (JsonObject) tasks.get(i);
                     int color = Color.parseColor(task.get("color").toString().replace("\"", ""));

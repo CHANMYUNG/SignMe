@@ -19,6 +19,7 @@ import com.signme.signme.activity.SurveyActivity;
 import com.signme.signme.support.DateTime;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -29,6 +30,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.MyViewHolder> {
 
     ArrayList<LetterListItem> mLetterSet = new ArrayList<LetterListItem>();
+    private static String TAG = "LETTERLISTADAPTER";
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -71,7 +73,7 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
                                     @Override
                                     public void onClick(SweetAlertDialog sDialog) {
                                         // reuse previous dialog instance
-                                        if (item.getCloseDate().compareTo(DateTime.getDateNow()) == -1) {
+                                        if (DateTime.compareTo(item.getCloseDate(), DateTime.getDateNow()) == -1) {
                                             Toast.makeText(sDialog.getContext(), "응답 기한이 지났습니다.", Toast.LENGTH_SHORT).show();
                                             sDialog.dismiss();
                                         } else {
@@ -84,7 +86,17 @@ public class LetterListAdapter extends RecyclerView.Adapter<LetterListAdapter.My
                                 .show();
                         return;
                     } else {
-                        v.getContext().startActivity(letterActivity);
+                        if (DateTime.compareTo(item.getCloseDate(), DateTime.getDateNow()) == -1) {
+                            new SweetAlertDialog(v.getContext(), SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText("만료된 가정통신문입니다!")
+                                    .setContentText("기한이 지난 가정통신문이에요!")
+                                    .setConfirmText("알겠어요")
+                                    .showCancelButton(false)
+                                    .show();
+                        }
+                        else{
+                            v.getContext().startActivity(letterActivity);
+                        }
                     }
 
                 }
