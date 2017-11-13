@@ -9,9 +9,9 @@ import java.util.Set;
  */
 public class DBManager {
     private static Connection connection;
-    private static final String URL = "jdbc:mysql://localhost:3306/signme?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "xogns1228";
+    private static final String URL = System.getenv("SIGNME_DB_URL");
+    private static final String USER = System.getenv("SIGNME_DB_USER");
+    private static final String PASSWORD = System.getenv("SIGNME_DB_PASSWORD");
 
     private DBManager() {
     }

@@ -462,7 +462,7 @@ public class Survey extends Letter implements Statistic {
                 else
                     row.createCell(j).setCellValue(getParentAnswerCount(i, j) + " (" + form.format(getParentAnswerCount(i, j) / (double) UserManager.getParentCount(i, j) * 100) + "%)");
             }
-            if (UserManager.getChildCount(i) == 0) row.createCell(5).setCellValue("학부모 없음");
+            if (UserManager.getParentCount(i) == 0) row.createCell(5).setCellValue("학부모 없음");
             else
                 row.createCell(5).setCellValue(getParentAnswerCount(i) + " (" + form.format(getParentAnswerCount(i) / (double) UserManager.getParentCount(i) * 100) + "%)");
         }

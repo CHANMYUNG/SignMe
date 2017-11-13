@@ -23,8 +23,7 @@ public class AES256 {
 
 
     static {
-        // 파일시스템으로 불러들일 예정
-        key = "1231kjandajkdjjdjj";
+        key = System.getenv("SIGNME_AES_KEY");
         iv = key.substring(0, 16);
         System.out.println(iv);
         byte[] keyBytes = new byte[16];

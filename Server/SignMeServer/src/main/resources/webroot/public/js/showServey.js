@@ -26,6 +26,8 @@ $(document).ready(function(){
                         <label for="">질문 ${i+1} :</label>
                         <div>
                            <span>${result.items[i]}</span>
+                           <span>  항목 : </span>
+                           <span>${result.answerForms[i]}</span>
                         </div>
                     </div>
                     `

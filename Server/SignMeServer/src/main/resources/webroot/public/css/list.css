@@ -206,9 +206,9 @@ tr>th:nth-child(4){
     color: #ffffff;
     border: 0px solid #ffffff;
 }
-.content>div>button:nth-child(2){
+/* .content>div>button:nth-child(2){
     margin-left: 45px;
-}
+} */
 .modal-wrapper.open .modal{
   margin-top:-200px;
   opacity:1;

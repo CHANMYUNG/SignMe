@@ -12,8 +12,8 @@ import java.util.Properties;
  */
 public class Mail {
     public static boolean sendEmail(String email, String verifyCode) throws MessagingException {
-        final String username = "nooheat1228@gmail.com";
-        final String password = "xogns1228";
+        final String username = System.getenv("SIGNME_EMAIL_ID");
+        final String password = System.getenv("SIGNME_EMAIL_PASSWORD");
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

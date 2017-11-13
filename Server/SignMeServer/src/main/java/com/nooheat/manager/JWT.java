@@ -23,7 +23,7 @@ public class JWT {
 
     static {
         try {
-            key = "signme-server-secret".getBytes("UTF-8");
+            key = System.getenv("SIGNME_JWT_SECRET").getBytes("UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             key = null;

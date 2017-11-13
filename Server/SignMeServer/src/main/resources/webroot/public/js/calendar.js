@@ -7,7 +7,7 @@ function eventInput(callback){
 		success: function(result){
 			result = JSON.parse(result);
 			// console.log(result.length);
-			console.log(typeof(result[1].startDate));
+			// console.log(typeof(result[1].startDate));
 			for(var i=0;i<result.length;i++){
 				$("#wholist").append(
 					`
@@ -24,8 +24,8 @@ function eventInput(callback){
 					backgroundColor : result[i].color
 				});
 				if(i==result.length-1){
-					callback(eventInput);					
-				}		
+					callback(eventInput);
+				}
 			}
 			// console.log(eventInput);
 		},
@@ -72,14 +72,14 @@ function createCalendar(callback){
 		editable: true,
 		eventLimit: false,
 		selectable: false,
-		selectHelper: false,	
-		events : ""	
+		selectHelper: false,
+		events : ""
 	});
 	callback();
 }
 
 $(document).ready(function() {
-		
+
 		// console.log(eventInput);
 		// var eventIn=eventInput();
 		// console.log(eventInput());
@@ -90,7 +90,7 @@ $(document).ready(function() {
 				$("#calendar").fullCalendar( 'addEventSource', eventsInput);
 			})
 		});
-		
+
 		// $('#calendar').fullCalendar('addEventSource',testInput);
 
 	});

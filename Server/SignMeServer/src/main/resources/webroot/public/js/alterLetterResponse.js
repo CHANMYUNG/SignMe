@@ -30,7 +30,7 @@ $(document).ready(function(){
     content = data[0];
     console.log(content);
     $.ajax({
-        url: '/letter/responseless/'+content,//letterId
+        url: '/letter/response/'+content,//letterId
         type: 'GET',
         data: "",
         success: function (result) {
@@ -62,11 +62,11 @@ $(document).ready(function(){
         var dataInput={
             'title' : $("#titleInput").val(),
             'contents' : $("#contentsInput").val(),
-            'openData' : $("#openDateInput").val()
+            'closeDate' : $("#closeDateInput").val()
         };
         console.log(dataInput);
         $.ajax({
-            url: '/letter/responseless/'+content,
+            url: '/letter/response/'+content,
             type: 'PUT',
             data: dataInput,
             success: function (result) {

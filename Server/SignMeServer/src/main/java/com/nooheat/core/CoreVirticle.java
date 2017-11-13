@@ -28,8 +28,7 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 //TODO : notification 리프레시토큰/enables
 
@@ -43,6 +42,7 @@ public class CoreVirticle extends AbstractVerticle {
     public void start() throws Exception {
         Router router = Router.router(vertx);
         int serverPort = 7800;
+
         Thread notificationThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,7 +62,7 @@ public class CoreVirticle extends AbstractVerticle {
                     rs = DBManager.execute("SELECT * FROM survey WHERE closeDate BETWEEN ? AND ?", now, after1HourTime);
                     while (rs.next()) {
                         String title = rs.getString("title");
-                        ResultSet inner_rs = DBManager.execute("SELECT token FROM USER AS U WHERE notificationEnabled = true AND (SELECT count(distinct uid) FROM survey WHERE uid = U.uid AND letterNumber = ?) < 1 AND token IS NOT NULL", rs.getInt("letterNumber"));
+                        ResultSet inner_rs = DBManager.execute("SELECT token FROM USER AS U WHERE notificationEnabled = true AND (SELECT count(distinct uid) FROM surveyAnswer WHERE uid = U.uid AND letterNumber = ?) < 1 AND token IS NOT NULL", rs.getInt("letterNumber"));
                         while (inner_rs.next())
                             FCMPush.pushFCMNotification(inner_rs.getString("token"), "[설문조사] " + title + "의 마감이 얼마남지 않았습니다");
                     }
