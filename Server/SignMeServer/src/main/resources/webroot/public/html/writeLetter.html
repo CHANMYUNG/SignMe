@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>writeLetter</title>
+    <script src="../jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/writeLetter.css">
+    <script src="../js/writeLetter.js"></script>
+    
+</head>
+<body>
+    <div id="page_wrapper" >
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="../html/mainpage_login.html">
+                        <span  class="here">*</span>
+                    </a>
+                </li>
+                <li>
+                        <a href="../html/list.html">
+                        <span  class="here">가정통신문관리</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../html/calendar.html">
+                        <span>일정</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../html/mypage.html">
+                        <span>마이페이지</span>
+                    </a>
+                </li>
+                                                                    
+            </ul>
+            <ul>
+                <!-- <li>
+                    <a href="" class="login_trigger">
+                        <span>로그인</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>회원가입</span>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+        <div id="title">
+            <h1>SIGN ME</h1>
+            <hr>
+        </div>
+        <div id="contant">
+            <form id="myForm" action="" method="">
+                <h2>비응답형 가정통신문</h2>
+                <h3>응답하지 않아도 되는 가정통신문을 작성해 주세요.</h3>
+                <hr>
+                <div id="c_title">
+                    <span>제목:&nbsp;</span>
+                    <input id="titleInput" type="text">
+                </div>
+                <div id="c_date">
+                    <span>시작일:&nbsp;</span>
+                    <input id="openDateInput" type="date">
+                    <!-- <span>&nbsp;~&nbsp;</span>
+                    <span>마감일:&nbsp;</span>
+                    <input type="date"> -->
+                </div>
+                <!-- <div id="c_contant">
+                    <p>소개글</p>
+                    <textarea id="contents" name="" id="" cols="30" rows="10"></textarea>
+                </div> -->
+                <hr>
+                <div id="c_artcle">
+                    <p>내용 입력</p>
+                    <textarea id="contentsInput" name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div style="clear:both"></div>
+                <div id="c_submit">
+                    <input id="submit_btn" type="button" value="저장합니다.">
+                </div>
+            </form>  
+        </div>
+    </div> 
+</body>
+</html>
