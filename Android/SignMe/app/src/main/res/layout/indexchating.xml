@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:background="#33C5F3"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+    <RelativeLayout
+        android:id="@+id/e"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true">
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </RelativeLayout>
+    <TextView
+        android:text="채팅"
+        android:textSize="40dp"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/e"
+        android:layout_toLeftOf="@+id/f"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:id="@+id/f"
+
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
+    </RelativeLayout>
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF">
+
+        <RelativeLayout
+            android:id="@+id/te"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="연락가능한 시간은 오전 9시 부터 오후 4시 까지입니다."
+                android:textColor="#95989A" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/vnv"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@+id/te">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/rectangle" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/vnv">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></ListView>
+            </ScrollView>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

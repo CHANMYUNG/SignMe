@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "55036479458",
+    "firebase_url": "https://dsm-signme.firebaseio.com",
+    "project_id": "dsm-signme",
+    "storage_bucket": "dsm-signme.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55036479458:android:140bfbae2fbb3ee4",
+        "android_client_info": {
+          "package_name": "com.signme.signme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55036479458-rgu1bd7b0ltmadk3pg60j9r7p84fmt23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChNWUQ5-SN4co_SVK9W4uGlk3EAY4shOE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_mypage"
+            android:title="마이페이지" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_schedule"
+            android:title="가정통신문 일정" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_newsLetter"
+            android:title="가정통신" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_chat"
+            android:title="채팅" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_option"
+            android:title="옵션" />
+    </group>
+
+</menu>

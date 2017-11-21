@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:minHeight="?attr/actionBarSize">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/modify_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/back" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@+id/modify_check"
+                    android:layout_toRightOf="@+id/modify_back"
+                    android:gravity="center"
+                    android:text="이메일 변경"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/modify_check"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/check" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar">
+
+            <TextView
+                android:id="@+id/m_tv"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="bottom"
+                android:text="현재 이메일 입력"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/m_cv"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/m_tv"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <ImageView
+                        android:id="@+id/modify_iv"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/email" />
+
+                    <EditText
+                        android:id="@+id/now_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/modify_iv"
+                        android:hint="email"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/mm_tv"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/m_cv"
+                android:layout_marginLeft="10dp"
+                android:gravity="bottom"
+                android:text="새 이메일 입력"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/mmm_cv"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/mm_tv"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <ImageView
+                        android:id="@+id/iv_e"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/email" />
+
+                    <EditText
+                        android:id="@+id/new_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/iv_e"
+                        android:hint="email"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

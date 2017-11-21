@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/registerokimage"
+        android:scaleType="fitXY"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="확인"
+        android:textColor="#95989A"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:onClick="Registerfin"
+        android:id="@+id/registerfin_button"
+        />
+
+    <TextView
+        android:id="@+id/registerfin_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="이제 SIGN ME를\n이용하실 수 있습니다."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:paddingBottom="90dp"
+        />
+</FrameLayout>

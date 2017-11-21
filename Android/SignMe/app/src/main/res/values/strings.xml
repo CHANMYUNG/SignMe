@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SIGN ME</string>
+    <string name="login">로그인</string>
+    <string name="register">회원가입</string>
+    <string name="id">아이디</string>
+    <string name="password">패스워드</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="planet_prompt">--이메일 입력--</string>
+    <string-array name="planets_array">
+        <item>--이메일 입력--</item>
+        <item>naver.com</item>
+        <item>daum.net</item>
+        <item>nate.com</item>
+        <item>직접입력</item>
+    </string-array>
+</resources>

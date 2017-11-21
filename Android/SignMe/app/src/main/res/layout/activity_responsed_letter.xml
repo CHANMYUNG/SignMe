@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:minHeight="?attr/actionBarSize">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/respnosed_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/back" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@+id/modify_check"
+                    android:layout_toRightOf="@+id/modify_back"
+                    android:gravity="center"
+                    android:text="참여한 가정통신문"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/responsed_rc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

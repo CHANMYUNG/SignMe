@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/survey_question_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/survey_question"
+            android:layout_width="250dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/survey_question_index"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <RadioGroup
+            android:id="@+id/survey_answer_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_below="@+id/survey_question"
+            android:layout_alignParentStart="true">
+
+                <RadioButton
+                    android:id="@+id/survey_answer5"
+                    android:textColor="#000"
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:width="30dp" />
+
+                <RadioButton
+                    android:id="@+id/survey_answer4"
+                    android:layout_toRightOf="@+id/survey_answer5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:width="30dp" />
+
+                <RadioButton
+                    android:id="@+id/survey_answer3"
+                    android:layout_toRightOf="@+id/survey_answer4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:width="30dp" />
+
+                <RadioButton
+                    android:id="@+id/survey_answer2"
+                    android:layout_toRightOf="@+id/survey_answer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:width="30dp" />
+
+                <RadioButton
+                    android:id="@+id/survey_answer1"
+                    android:layout_toRightOf="@+id/survey_answer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:width="30dp" />
+
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:layout_width="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/survey_answer_group"
+            android:layout_marginLeft="50dp"
+            >
+
+
+                <TextView
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/radio_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/radio_tv2"
+                    android:layout_toRightOf="@+id/radio_tv1"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/radio_tv3"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                  />
+
+                <TextView
+                    android:id="@+id/radio_tv3"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:id="@+id/radio_tv4"
+                    android:layout_toRightOf="@+id/radio_tv3"
+                    android:gravity="center"
+                    android:layout_toLeftOf="@+id/radio_tv5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                  />
+
+                <TextView
+                    android:id="@+id/radio_tv5"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                 />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/tutoreal2_fl"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:background="@drawable/tutoreal2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/skip2_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+
+                >
+                <Button
+                    android:id="@+id/skip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="SKIP>"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#95989A"
+                    android:textStyle="bold"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+
+
+</FrameLayout>
